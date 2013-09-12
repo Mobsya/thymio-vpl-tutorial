@@ -1,5 +1,5 @@
 targets=thymio-vpl-tutorial-en.zip
-deps=$(wildcard */*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl)
+deps=$(wildcard */*/*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) vpl.sty
 
 thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(deps) Makefile build
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<

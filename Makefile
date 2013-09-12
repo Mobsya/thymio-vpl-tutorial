@@ -14,6 +14,7 @@ thymio-vpl-tutorial-answers-%.pdf: answers/%/vpl-answers.tex $(deps) Makefile bu
 thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf
 	rm -f thymio-vpl-tutorial-$*.zip
 	zip $@ $^ programs/*.aesl answers/*.aesl
+	cd readmes/$* && zip ../../$@ *
 
 all:	$(targets)
 

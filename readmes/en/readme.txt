@@ -18,27 +18,14 @@
 
 Aseba is a programming environment for the Thymio-II robot. VPL is a
 component of Aseba that enables visual programming by dragging and
-dropping colorful blocks. This repository is a tutorial on using the
+dropping colorful blocks. This archive is a tutorial on using the
 Thymio-II robot with VPL. For more information on the Thymio-II and
 Aseba, see: https://aseba.wikidot.com/.
 
-There are five directories in this repository:
+There are two documents and two directories in this archive:
 
-docs:     The text of the tutorial
-images:   The images used in the tutorial
-programs: The Aseba/VPL programs for the examples in the tutorial
-answers:  Answers to the exercises and programs for the answers
-readmes:  Language-specific readmes for the distribution archives
+thymio-vpl-tutorial-en.pdf:             The tutorial
+thymio-vpl-tutorial-answers-en.pdf:     The answers to the questions
 
-This tutorial is written using LaTeX. To compile both the tutorial 
-and the answers, under unixes with pdflatex installed, just type:
-
-    make
-
-If you want to build by hand, the files to compile are:
-
-    docs/vpl.tex
-    answers/vpl-answers.tex
-
-If you have trouble compiling, or found errors in this document, please
-fill an issue at https://github.com/aseba-community/thymio-vpl-tutorial
+programs:     The Aseba/VPL programs for the examples in the tutorial
+answers:      The Aseba/VPL programs for the answers

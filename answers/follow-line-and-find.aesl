@@ -1,0 +1,78 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II">var state[4] = [0,0,0,0]
+var new_state[4] = [0,0,0,0]
+
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+sub display_state
+	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
+
+onevent prox
+	if prox.ground.reflected[0] > 300 and prox.ground.reflected[1] > 300 and state[0] == 0 and state[1] == 1 then
+		motor.left.target = -100
+		motor.right.target = 100
+	end
+	if prox.ground.reflected[0] > 300 and prox.ground.reflected[1] > 300 and state[0] == 1 and state[1] == 0 then
+		motor.left.target = 100
+		motor.right.target = -100
+	end
+	if prox.ground.reflected[0] > 300 and prox.ground.reflected[1] > 300 and state[0] == 0 and state[1] == 0 then
+		motor.left.target = 100
+		motor.right.target = -100
+	end
+	if prox.ground.reflected[0] &lt; 150 and prox.ground.reflected[1] &lt; 150 then
+		motor.left.target = 400
+		motor.right.target = 400
+	end
+	if prox.ground.reflected[0] &lt; 150 and prox.ground.reflected[1] > 300 then
+		motor.left.target = -300
+		motor.right.target = 300
+	end
+	if prox.ground.reflected[0] > 300 and prox.ground.reflected[1] &lt; 150 then
+		motor.left.target = 300
+		motor.right.target = -300
+	end
+	if prox.ground.reflected[0] &lt; 150 and prox.ground.reflected[1] > 300 then
+		new_state[0] = 0
+		new_state[1] = 1
+	end
+	if prox.ground.reflected[0] > 300 and prox.ground.reflected[1] &lt; 150 then
+		new_state[0] = 1
+		new_state[1] = 0
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot>
+<settings advanced-mode="true" color-scheme="0"/>
+
+<buttonset eb0="2" eb1="2" action-name="move" event-name="proxground" state="6" ab0="-100" ab1="100"/>
+
+<buttonset eb0="2" eb1="2" action-name="move" event-name="proxground" state="9" ab0="100" ab1="-100"/>
+
+<buttonset eb0="2" eb1="2" action-name="move" event-name="proxground" state="10" ab0="100" ab1="-100"/>
+
+<buttonset eb0="1" eb1="1" action-name="move" event-name="proxground" state="0" ab0="400" ab1="400"/>
+
+<buttonset eb0="1" eb1="2" action-name="move" event-name="proxground" state="0" ab0="-300" ab1="300"/>
+
+<buttonset eb0="2" eb1="1" action-name="move" event-name="proxground" state="0" ab0="300" ab1="-300"/>
+
+<buttonset eb0="1" eb1="2" action-name="statefilter" event-name="proxground" state="0" ab0="2" ab1="1" ab2="0" ab3="0"/>
+
+<buttonset eb0="2" eb1="1" action-name="statefilter" event-name="proxground" state="0" ab0="1" ab1="2" ab2="0" ab3="0"/>
+
+<buttonset/>
+
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

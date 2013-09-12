@@ -1,0 +1,73 @@
+\topmargin=0pt
+\marginparwidth=0pt
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
+\parindent=0pt
+\oddsidemargin=8mm
+\evensidemargin=8mm
+\textwidth=150mm
+\textheight=220mm
+
+\graphicspath{{../images/}}
+
+% Font for buttons and menus
+\newcommand*{\bu}[1]{\textsf{#1}}
+
+% Font for program entities
+\newcommand*{\p}[1]{\texttt{\textup{#1}}}
+
+% Inline graphics
+\newcommand*{\blk}[2][-20]{\raisebox{#1pt}%
+{\includegraphics[height=50pt,keepaspectratio=true]{#2}}}
+
+% Inline graphics
+\newcommand*{\blksm}[2][-15]{\raisebox{#1pt}%
+{\includegraphics[height=40pt,keepaspectratio=true]{#2}}}
+
+% Centered image
+\newcommand*{\gr}[2]%
+{\begin{center}
+\includegraphics[width=#2\textwidth,keepaspectratio=true]{#1}
+\end{center}}
+
+% Box
+\newcommand{\centeredbox}[1]{%
+\begin{center}%
+\fbox{%
+\begin{minipage}{.8\textwidth}%
+#1\end{minipage}}%
+\end{center}}
+
+% Change style of chapter and section headings
+\newcommand*{\chap}[1]{\chapter[#1]{\LARGE #1}}
+\newcommand*{\sect}[1]{\section*{\textit{#1}}}
+
+% Less space before chapter
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 10\p@
+  }}
+\def\@schapter#1{\if@twocolumn
+                   \@topnewpage[\@makeschapterhead{#1}]%
+                 \else
+                   \@makeschapterhead{#1}%
+                   \@afterheading
+                 \fi}
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 10\p@
+  }}
+\makeatother

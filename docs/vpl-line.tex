@@ -1,0 +1,186 @@
+\chap{The Robot Finds Its Way by Itself}\label{ch.line}
+
+In this chapter we program the robot to solve a real-world problem:
+\emph{line following}. Consider a warehouse with robotic carts that
+bring objects to a central dispatching area. There are lines painted on
+the floor of the warehouse and the robot receives instructions to follow
+certain lines until it reaches the storage bin of the desired object.
+
+Write a program that causes the robot to follow a line on the floor.
+
+{\raggedleft \hfill Program file \bu{follow-line}.}
+
+The line-following task brings out all the uncertainty of constructing
+robots in the real world. The line might not be perfectly straight, dust
+may obscure part of the line, dirt may cause one wheel to move more
+slowly than the other one. To follow a line, the robot must use a
+\emph{controller} that decides how much power to apply to each motor
+depending on the data received from the sensors.
+
+\sect{Setup}
+
+If the floor is light-colored, the sensor will detect a lot of reflected
+light and the event \blk{lots-of-light} will occur. We need a line
+that will cause an event to occur when there is little reflected light
+\blk{little-light}. This is easy to do by placing black
+electrician's tape on the floor (Figure~\ref{fig.tape}). The tape must
+be wide enough so that both ground sensors will sense black when the
+robot is successfully following the tape. A tape of width of 5
+centimeters is sufficient for the robot to follow the line even if there
+are small deviations.
+
+\begin{figure}
+\begin{center}
+\gr{blacktape}{.6}
+\caption{The Thymio-II robot following a line of tape}\label{fig.tape}
+\end{center}
+\end{figure}
+
+Make sure that you use a USB cable that is long enough (say, two
+meters), so that the Thymio-II can stay connected to the computer even
+as it moves.
+
+\sect{Start and stop the robot}
+
+The robot must move forward whenever \emph{both} sensors detect the
+black tape and stop whenever \emph{both} sensors detect the floor. The
+event-pairs are shown in Figure~\ref{fig.start-stop}. The first pair
+stops the motor when both ground sensors detect the floor, while the
+second pair causes the robot to move forwards when both sensors detect
+the tape.
+
+\begin{figure}
+\begin{center}
+\gr{line-forward}{.4}
+\caption{Start and stop the robot}\label{fig.start-stop}
+\end{center}
+\end{figure}
+
+The next step is to program the controller that follows the line:
+\begin{itemize}
+
+\item If the robot moves off the tape to the \emph{left}, the
+\emph{left} sensor will detect the floor while the \emph{right} sensor
+is still detecting the tape; in that case the robot should turn slightly
+to the \emph{right} (Figure~\ref{fig.one-off}).
+
+\item If the robot moves off the tape to the \emph{right}, the
+\emph{right} ground sensor will detect the floor while the \emph{left}
+sensor is still detecting the tape; in that case the robot should turn
+slightly to the \emph{left}.
+
+\end{itemize}
+
+
+\begin{figure}
+\begin{center}
+\begin{picture}(200,100)
+%\put(0,0){\framebox(200,100)}
+\thicklines
+\put(0,20){\line(1,0){200}}
+\put(0,70){\line(1,0){200}}
+\thinlines
+\put(80,0){
+\put(0,0){\line(1,1){50}}
+\put(0,0){\line(-1,1){50}}
+\put(50,50){\line(-1,1){50}}
+\put(-50,50){\line(1,1){50}}
+\put(20,55){\framebox(10,10){}}
+\put(5,72){\framebox(10,10){}}
+\put(-5,95){\line(1,0){10}}
+\put(45,45){\line(0,1){10}}
+\put(80, 0){\makebox(40,10)[l]{\bu{Floor}}}
+\put(80, 40){\makebox(40,10)[l]{\bu{Tape}}}
+\put(80, 80){\makebox(40,10)[l]{\bu{Floor}}}
+\put(25,75){\vector(1,1){20}}
+}
+\end{picture}
+\caption{The left sensor is off the tape and the right sensor is on the tape}
+\label{fig.one-off}
+\end{center}
+\end{figure}
+
+Two event-action pairs are needed (Figure~\ref{fig.follow-line}).
+
+\sect{Setting the parameters}
+
+It is easy to see that if the robot runs off the left edge of the tape
+as shown in Figure~\ref{fig.one-off}, it has to turn to the right, but
+how tight should the turn be? If the turn is too gentle, the right
+sensor might \emph{also} run off the tape before the robot turns back;
+if the turn is too aggressive, it might cause the robot to run off the
+other end of the tape. In any case, aggressive turns can be dangerous to
+the robot and whatever it is carrying.
+
+\centeredbox{\begin{center} \textbf{Parameters} \end{center}
+\emph{Parameters} are values that can be changed without affecting the
+overall structure of the event-action pairs that form the program.}
+
+\begin{figure}
+\begin{center}
+\gr{line-controller}{.4}
+\caption{Following the line}\label{fig.follow-line}
+\end{center}
+\end{figure}
+
+The parameters that you can set in this program are the speeds of the
+left and right motors in each motor action block. You will need to
+experiment with these values until the robot runs \emph{reliably}. Here,
+reliably means that the robot can successfully follow the line if you
+run the program several times. Since each time you place the robot on
+the line you might place it at a slightly different position and
+pointing in a slightly different direction, it is not enough to test the
+program only once.
+
+Surprisingly, the forward speed of the robot on the tape is also an
+important parameter. If it is too fast, the robot can run off the tape
+before the turning actions can affect its direction. However, if the
+speed is too slow, no one will buy your robot to use in a warehouse.
+
+There are many ways to set the parameters of the motor action blocks
+that control the turns. You can make one motor go slightly faster than
+the other, or you can have one motor go forward and one go backwards.
+
+\sect{Exercise \thechapter.1}
+
+The robot stops when both ground sensors detect that they are off the
+tape. Modify the program so that the robot makes a gentle left turn in
+an attempt to find the tape again. Try it on a tape with a left turn
+like the one shown in Figure~\ref{fig.tape}. Try increasing the forward
+speed of the robot. What happens when the robot gets to the end of the
+tape?
+
+\sect{Exercise \thechapter.2}
+
+Modify the program from the previous exercise so that
+the robot turns right when it runs off the tape. What happens?
+
+It would be nice if we could \emph{remember} which sensor was the last
+one to lose contact with the tape in order to cause the robot turn in
+the correct direction to find the tape again. In Chapter~\ref{ch.states}
+we will learn how to remember information.
+
+\sect{Exercise \thechapter.3}
+
+Experiment with different arrangements of the lines of tapes:
+\begin{itemize}
+\item Gentle turns;
+\item Sharp turns;
+\item Zigzagging lines;
+\item Wider lines (use an overlapping double line of tape);
+\item Narrow lines (cut the tape lengthwise before placing it on the floor).
+\end{itemize}
+
+Run competitions with your friends: Whose robot successfully follows the
+most lines? For each line, whose robot follows it in the shortest time?
+
+\sect{Exercise \thechapter.4}
+
+Discuss what effect the following modifications to the Thymio-II would
+have on the ability of the robot to follow a line:
+
+\begin{itemize}
+\item Ground sensing events occur more often or less often than 10 times a second;
+\item The sensors are further apart or closer together;
+\item There are more than two ground sensors on the bottom of the robot.
+\end{itemize}

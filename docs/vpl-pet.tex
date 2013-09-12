@@ -1,0 +1,219 @@
+\chap{A Pet Robot}\label{ch.pet}
+
+The robots we build in this chapter are called \emph{autonomous robots}.
+They display independent behavior that is normally associated with
+living things like cats and dogs. The behavior is achieved by
+\textit{feedback}: the robot will sense that something occurs in the
+world and modify its behavior accordingly.
+
+\sect{The robot obeys you}
+
+First, we will train the robot to obey. Normally, the robot stays in
+place without moving; when it detects your hand in front of it, it will
+move towards your hand.
+
+There are five horizontal distance sensors on the front of the Thymio-II
+robot and two on the rear of the robot.\footnote{The technical term is
+\emph{proximity sensor}, but we will use the simpler term
+\emph{horizontal distance sensor}.} Bring your hand slowly towards the
+sensors; when it gets close, a red light will appear around the sensors
+that detect your hands (Figure~\ref{fig.detect}).
+
+\begin{figure}
+\begin{center}
+\gr{detect}{.6}
+\caption{The front of the Thymio-II. Two sensors detect the fingers.}\label{fig.detect}
+\end{center}
+\end{figure}
+
+The block \blk{event-prox} is used to sense if something is close to the
+sensor or not. In either case it causes an event to occur. The small
+gray squares (five on the front and two on the rear) are used to specify
+when an event occurs. Clicking on a square will change it from gray to
+white to red and back to gray.
+
+\begin{itemize}
+\item \textbf{Gray}: The value of the sensor does not influence the
+program.
+\item \textbf{Red}: An event occurs when the sensor detects an object
+close to it.
+\item \textbf{White}: An event occurs when the sensor detects that there
+is \emph{no} object close to it.
+\end{itemize}
+
+To implement the behavior, we need the two event-action pairs shown in
+Figure~\ref{fig.follow-hand}. In the first pair, the center front sensor
+is white and the associated action is that the motors are off.
+Therefore, when the robot sits on the table it will not move, and it
+will stop if it had been moving. In the second pair, the center front
+sensor is red and the associated action is that both motors run quite
+fast. Therefore, when you bring your hand near the front of the robot,
+an event occurs that causes the robot to move forward.
+
+\begin{figure}
+\begin{center}
+\gr{likes-forward}{.4}
+\caption{Moving towards your hand}\label{fig.follow-hand}
+\end{center}
+\end{figure}
+
+
+\sect{Steering the Thymio-II robot}
+
+The Thymio-II robot does not have a steering wheel like a car or a
+handlebar like a bicycle. So how can it turn? The robot uses
+\emph{differential drive}, which is familiar from tracked vehicles like
+bulldozers (Figure~\ref{fig.bull}).
+
+\begin{figure}
+\begin{center}
+\gr{bulldozer}{0.35}
+\caption{A bulldozer with tracks for differential drive}\label{fig.bull}
+\end{center}
+\end{figure}
+
+If the right track moves faster than the left one, the vehicle turns
+left, and if the left track moves faster than the right one, the vehicle
+turns right. The greater the difference between the speeds, the tighter
+the turn. If one track moves forward at a certain speed while the other
+track moves backwards at the same speed, the vehicle will turn in place.
+
+The robot will turn if the left and right sliders of a motor action
+block are set to different values. Experiment with an event-action pair
+such as \blk{turning}. Set the left and right sliders, run the program
+and touch the center button; to stop the robot click on \blksm{stop}.
+Now you can change the sliders and try again.
+
+Note how the small image of the robot within the motor action block
+changes to indicate the direction in which the robot will turn.
+
+\sect{The robot likes you}
+
+A real pet follows you around. To make the robot follow your hand, add
+two additional event-action pairs: if the robot detects an object in
+front of its left-most sensor, it turns to the left, while if it detects
+an object in front of its right-most sensor, it turns to the right.
+
+{\raggedleft \hfill Program file \bu{likes}.}
+
+The program for the robot that likes you consists of two event-action
+pairs (Figure~\ref{fig.likes}). Experiment with the sliders on each
+motor action block.
+
+\begin{figure}
+\begin{center}
+\gr{likes-turns}{0.4}
+\caption{The robot likes you}\label{fig.likes}
+\end{center}
+\end{figure}
+
+\sect{Exercise \thechapter.1}
+
+Modify the pet robot so that it starts moving forward when the program
+is run and stops when it detects the edge of a table (or a strip of
+tape).
+
+\sect{Exercise \thechapter.2}
+
+What happens if you change the order of
+the event-action pairs that you used in the previous exercise?
+
+
+\centeredbox{
+\begin{center}
+\textbf{Ground sensors and horizontal sensors}
+\end{center}
+Be careful not to confuse the behavior of the horizontal
+sensors with the behavior of the ground sensors.
+\begin{itemize}
+
+\item For the horizontal sensors, the white square specifies that an
+event will occur if there is \emph{nothing nearby}, while the red square
+specifies that an event will occur if there is \emph{something nearby}.
+
+\item For the ground sensors, the white square specifies that an event
+will occur if \emph{only a little light is reflected from the surface},
+while the red square specifies that an event will occur \emph{if a lot
+of light is reflected from the surface}.
+
+\end{itemize}
+}
+
+\sect{The robot doesn't like you}
+
+Sometimes your pet may be in a bad mood and turn away from your hand.
+Write a program that causes this behavior in the robot.
+
+{\raggedleft \hfill Program file \bu{does-not-like}.}
+
+Open the program for the pet that likes you and exchange the association
+of the events with the actions. Detection of an obstacle by the left
+sensor causes the robot to turn right, while detection of an obstacle by
+the right sensor causes the robot to turn left (Figure~\ref{fig.hates}).
+
+\begin{figure}[htb]
+\begin{center}
+\gr{hates}{0.4}
+\caption{The robot doesn't you}\label{fig.hates}
+\end{center}
+\end{figure}
+
+\sect{Exercise \thechapter.3}
+
+Experiment with the sensors. Instead of using sensors 0 and
+4:\footnote{The front horizontal sensors are numbered 0, 1, 2, 3, 4 from
+the left of the robot to its right. The rear sensors are numbered 5 for
+the left one and 6 for the right one.}
+
+\begin{itemize}
+\item Use sensors 1 and 3 to turn the robot left and right,
+respectively.
+\item Use both sensors 0 and 1 to turn the robot left and both sensors 3
+and 4 to turn the robot right.
+\item Add event-action pairs for the rear sensors 5 and 6.
+\end{itemize}
+
+\sect{Setting the slides precisely (advanced)}
+
+It is difficult to set the sliders precisely so that, for example, both
+motors run at the same speed. By looking at the translation of the
+event-action pairs into a textual program you can improve the precision.
+The text is shown at the right of the VPL window.
+Here is the translation of the program where the
+pet likes you and follows you around.
+
+\begin{small}
+\begin{verbatim}
+onevent prox
+  if prox.horizontal[2] < 400 then
+    motor.left.target = 0
+    motor.right.target = 0
+  end
+  if prox.horizontal[2] > 500 then
+    motor.left.target = 300
+    motor.right.target = 300
+  end
+  if prox.horizontal[0] > 500 then
+    motor.left.target = -300
+    motor.right.target = 300
+  end
+  if prox.horizontal[4] > 500 then
+    motor.left.target = 300
+    motor.right.target = -300
+  end
+\end{verbatim}
+\end{small}
+
+The line \p{onevent prox} means: whenever the event of sampling the
+horizontal distance sensors (the \emph{proximity} sensors) occurs (it
+occurs 10 times a second), the lines that follow will be run. Values are
+read from the sensors and compared with a low value of 400 and a high
+value of 500. According to the results of the comparisons, the motor
+speeds are changed. For example, if the center sensor 2 senses a value
+higher than 500 (meaning that something is near it), the target speeds
+of both the left and right motors will be set to 300.
+
+Experiment with moving the sliders on the motor action blocks. You will
+see that the target speeds of the motors jump by 50 in the range $-$500
+to 500. By moving the sliders carefully, you can set the speeds to any
+of these values.

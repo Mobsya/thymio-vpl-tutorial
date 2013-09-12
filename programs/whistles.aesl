@@ -1,0 +1,31 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II">mic.threshold = 250
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent tap
+	call leds.top(32,0,32)
+
+onevent mic
+	call leds.bottom.left(0,32,32)
+	call leds.bottom.right(0,32,32)
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot>
+<settings advanced-mode="false" color-scheme="0"/>
+
+<buttonset action-name="colortop" event-name="tap" state="-1" ab0="32" ab1="0" ab2="32"/>
+
+<buttonset action-name="colorbottom" event-name="clap" state="-1" ab0="0" ab1="32" ab2="32"/>
+
+<buttonset/>
+
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

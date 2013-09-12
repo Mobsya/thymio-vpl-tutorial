@@ -1,0 +1,104 @@
+\chap{Let's Get Moving}
+
+\sect{Move forwards and backwards}
+
+The Thymio-II robot has two motors, one connected to each wheel. The
+motors can be run forwards and backwards, causing the robot to move
+forwards and backwards, and to make turns. Let us start with a simple
+project to learn about the motors.
+
+The motor action block \blk{action-motors} displays a small image of the
+robot in the center together with two sliders. The sliders control the
+speed of the motors, one slider for the left motor and one for the right
+motor. When the white square is centered in the slider, the
+corresponding motor is off. You can drag a square up to increase the
+forward speed and down to increase the backwards speed.
+
+Write a program to move the robot forward when the front button
+is touched and backwards when the back button is touched.
+
+{\raggedleft \hfill Program file \bu{moving}.}
+
+We need two event-action pairs (Figure~\ref{fig.nostop}). Drag and drop
+the event and action blocks and set the sliders equally for the left and
+right motors, half-way up for forward and half-way down for backwards.
+
+Run the program by clicking \blksm{run} and touch the buttons to
+make the robot go forwards and backwards.
+
+\begin{figure}
+\begin{center}
+\gr{no-stop-motors}{.4}
+\caption{Moving forward and backwards}\label{fig.nostop}
+\end{center}
+\end{figure}
+
+\sect{Stop the robot}
+
+\textbf{Help!} I can't stop the robot's motors!
+
+Click on the icon \blksm{stop} to stop the robot.
+
+Let us fix this problem by adding an event-action pair \blk{stop-motors}
+that will stop the motors when the center button is touched. When you
+drag the motor action block into the program area, it is already set
+with the sliders in the middle to turn off the motors.
+
+\sect{Don't fall off the table}
+
+If your robot moves on the floor, at worst, it might hit a wall or pull
+its cable out, but if you place your robot on a table, it might fall
+off, crash and break! Let us arrange for the robot to stop when it
+reaches the end of a table.
+
+\centeredbox{\textbf{Warning! Whenever the robot moves on a table, be
+ready to catch it in case it does fall off.}}
+
+We assume that the table is colored with a light color (my desk is light
+gray). If your table is colored with a dark color, you will have to
+modify the program.
+
+Turn the Thymio-II on its back. You will see at the front two small
+black rectangles with optical elements inside (Figure~\ref{fig.bottom}).
+These are the \emph{ground sensors} that can detect if the amount of
+reflected light is large or small. On a light-colored table, there is a
+lot of reflected light, but when the front of the robot goes past the
+end of the table, there will be much less reflected light. When this is
+detected we want the robot to stop.
+
+Drag the ground sensor event \blk{event-ground} into the program. There
+are two small squares at the top of the icon. Clicking the squares
+changes them from gray to white to red and finally back to gray. These
+meanings of the colors are:
+
+\begin{itemize}
+\item \textbf{Gray}: The sensor is not used.
+\item \textbf{Red}: An event occurs when there is a lot of reflected light.
+\item \textbf{White}: An event occurs when there is little reflected light.
+\end{itemize}
+
+To cause the robot to stop when there is little reflected light, click
+the squares until they are white and create the event-action pair
+\blk{dont-fall}.
+
+\begin{figure}
+\begin{center}
+\gr{bottom}{0.6}
+\caption{The bottom of the Thymio-II with two ground sensors at the
+ front}\label{fig.bottom}
+\end{center}
+\end{figure}
+
+Place the robot not far from the edge of the table and touch the front
+button. The robot should stop before falling off the table.
+
+When I ran the program, the robot \emph{did} fall off. The reason was
+that my nice desk has a rounded edge; by the time that the robot
+detected a low light level, it was no longer stable and tipped over. The
+solution was to place a strip of black electrician's tape close to the
+edge of the desk.
+
+\sect{Exercise \thechapter.1}
+
+Experiment with the speed of the robot. At maximum speed, is the robot
+still able to stop and not fall off the table?

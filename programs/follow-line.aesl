@@ -1,0 +1,22 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II"><toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot>
+<settings advanced-mode="false" color-scheme="0"/>
+
+<buttonset eb0="2" eb1="2" action-name="move" event-name="proxground" state="-1" ab0="0" ab1="0"/>
+
+<buttonset eb0="1" eb1="1" action-name="move" event-name="proxground" state="-1" ab0="200" ab1="200"/>
+
+<buttonset eb0="1" eb1="2" action-name="move" event-name="proxground" state="-1" ab0="-300" ab1="300"/>
+
+<buttonset eb0="2" eb1="1" action-name="move" event-name="proxground" state="-1" ab0="300" ab1="-300"/>
+
+<buttonset/>
+
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

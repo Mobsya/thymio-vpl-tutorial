@@ -37,8 +37,10 @@ and the answers, under unixes with pdflatex installed, just type:
 
 If you want to build by hand, the files to compile are:
 
-    docs/vpl.tex
-    answers/vpl-answers.tex
+    docs/LL/vpl.tex
+    answers/LL/vpl-answers.tex
+
+where LL is the language code (for instance "en").
 
 If you have trouble compiling, or found errors in this document, please
 fill an issue at https://github.com/aseba-community/thymio-vpl-tutorial

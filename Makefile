@@ -1,24 +1,31 @@
-targets=docs/vpl.pdf answers/vpl-answers.pdf
-deps=$(wildcard */*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) Makefile build
+targets=thymio-vpl-tutorial-en.zip
+deps=$(wildcard */*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl)
 
-%.pdf: %.tex $(deps)
-	cd build && TEXINPUTS=../docs:../answers:${TEXINPUTS} pdflatex ../$<
-	cd build && TEXINPUTS=../docs:../answers:${TEXINPUTS} pdflatex ../$<
-	mv build/$(@F) $@
+thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(deps) Makefile build
+	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
+	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
+	mv build/$*/vpl.pdf $@
 
-vpl-tutorial.zip: $(targets) Makefile
-	rm -f vpl-tutorial.zip
-	zip vpl-tutorial.zip $(targets) programs/*.aesl answers/*.aesl
+thymio-vpl-tutorial-answers-%.pdf: answers/%/vpl-answers.tex $(deps) Makefile build
+	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
+	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
+	mv build/$*/vpl-answers.pdf $@
+
+thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf
+	rm -f thymio-vpl-tutorial-$*.zip
+	zip $@ $^ programs/*.aesl answers/*.aesl
+
+all:	$(targets)
 
 clean: buildclean
 
 build:
-	mkdir -p build
+	mkdir -p build/en
 
 buildclean:
 	rm -rf build *~ */*~ 
 
 distclean: clean
-	rm -f $(targets)
+	rm -f *.pdf $(targets)
 
 .PHONY: clean buildclean distclean all dist

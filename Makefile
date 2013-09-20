@@ -1,5 +1,5 @@
 targets=thymio-vpl-tutorial-en.zip
-deps=$(wildcard */*/*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) vpl.sty
+deps=$(wildcard */*/*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) vpl.sty authors.txt
 
 thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(deps) Makefile build
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
@@ -13,7 +13,7 @@ thymio-vpl-tutorial-answers-%.pdf: answers/%/vpl-answers.tex $(deps) Makefile bu
 
 thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf
 	rm -f thymio-vpl-tutorial-$*.zip
-	zip $@ $^ programs/*.aesl answers/*.aesl
+	zip $@ $^ programs/*.aesl answers/*.aesl authors.txt
 	cd readmes/$* && zip ../../$@ *
 
 all:	$(targets)

@@ -63,7 +63,17 @@ an event occurs that causes the robot to move forward.
 The Thymio-II robot does not have a steering wheel like a car or a
 handlebar like a bicycle. So how can it turn? The robot uses
 \emph{differential drive}, which is familiar from tracked vehicles like
-bulldozers (Figure~\ref{fig.bull}).
+bulldozers (Figure~\ref{fig.bull}). Instead of turning a handlebar the
+desired direction, the left and right tracks or wheels are driven by
+individual motors at \emph{different} speeds. If the right track moves
+faster than the left one, the vehicle turns left, and if the left track
+moves faster than the right one, the vehicle turns right.
+
+The greater the difference between the speeds, the tighter the turn. To
+achieve a large difference of speeds, you can drive one track forward
+and one track backwards. In fact, if one track moves forward at a
+certain speed, while the other track moves backwards at the \emph{same}
+speed, the vehicle turns in place.
 
 \begin{figure}
 \begin{center}
@@ -72,20 +82,20 @@ bulldozers (Figure~\ref{fig.bull}).
 \end{center}
 \end{figure}
 
-If the right track moves faster than the left one, the vehicle turns
-left, and if the left track moves faster than the right one, the vehicle
-turns right. The greater the difference between the speeds, the tighter
-the turn. If one track moves forward at a certain speed while the other
-track moves backwards at the same speed, the vehicle will turn in place.
+In VPL you can implement differential drive on the Thymio-II robot by
+setting the left and right sliders of a motor action block are set to
+different values. In the block \blk{differential}, the left slider has
+been set for fast speed backwards, while the right slider has been set
+for fast speed forwards. The result is that the robot will make a tight
+left turn, as indicated by the small image of the robot within the motor
+action block.
 
-The robot will turn if the left and right sliders of a motor action
-block are set to different values. Experiment with an event-action pair
-such as \blk{turning}. Set the left and right sliders, run the program
+Experiment with an event-action pair such as \blk{turning}.
+
+Set the left and right sliders, run the program
 and touch the center button; to stop the robot click on \blksm{stop}.
 Now you can change the sliders and try again.
 
-Note how the small image of the robot within the motor action block
-changes to indicate the direction in which the robot will turn.
 
 \sect{The robot likes you}
 
@@ -138,6 +148,14 @@ of light is reflected from the surface}.
 
 \end{itemize}
 }
+
+As explained in Chapter~\ref{c.moving}, a lot of light will be reflected
+from a white surface, while very little light will be reflected from a
+black surface. You will have to experiment to determine when to click on
+a white square and when on a red square, depending on the floor or
+table where you place the robot.
+
+\newpage
 
 \sect{The robot doesn't like you}
 

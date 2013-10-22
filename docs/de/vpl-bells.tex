@@ -1,0 +1,92 @@
+\chap{Bells and Whistles}\label{ch.bells}
+
+Let us take a time out from complicated tasks like line following and
+have some fun with the robot. We show how you can:
+\begin{itemize}
+\item Compose music for the robot;
+\item Have the robot respond to a sound;
+\item Have the robot respond when it is tapped.
+\end{itemize}
+
+\sect{Playing music}
+
+The Thymio-II robot contains a sound synthesizer and you can program it
+to play simple tunes using the music action block \blk{action-music}.
+
+
+{\raggedleft \hfill Program file \bu{bells.aesl}}
+
+You won't become a new Beethoven---there are only six notes, each of
+which can be one of five tones and two lengths---but you can compose a
+tune that will make your robot stand out. Figure~\ref{fig.music} shows
+two event-action pairs that respond with a tune when the front or back
+button is touched. There is a different tune associated with each event.
+
+\begin{figure}
+\begin{center}
+\gr{music}{.4}
+\caption{Playing a tune}\label{fig.music}
+\end{center}
+\end{figure}
+
+The small circles are the six notes. A white note is a long note
+and a black note is a short note; to change from one length to the
+other, click on the circle. There are five colored horizontal bars,
+representing five tones. To move a circle to one of bars, click on the
+\emph{bar} above or below the circle. (Don't try to drag and drop the
+circle; it won't work.)
+
+\sect{Exercise \thechapter.1}
+Write a program that will enable you to send a message is Morse code.
+Letters in Morse code are encoded in sequences of long tones
+(\emph{dashes}) and short tones (\emph{dots}). For example, the letter
+\emph{V} is encoded by three dots followed by one dash.
+
+
+\sect{Controlling your robot by sound}
+
+The Thymio-II has a microphone. The event \blk{event-clap} will occur
+when the microphone senses a loud noise, for example, from clapping your
+hands. The event-action pair \blk{clap} will turn on the bottom lights
+when you clap your hands.
+
+\centeredbox{In a noisy environment, you may not be able to use this
+event, because the sound level will always be high and cause repeated
+events.}
+
+\sect{Exercise \thechapter.2}
+
+Write a program that causes the robot to move when you clap
+your hands and to stop when you touch a button.
+
+Write a program that does the opposite: starts when you touch a button
+and stops when you clap your hands.
+
+
+\sect{Good job, robot}
+
+Pets don't always do what we ask them to do. Sometimes they need a pat
+on the head to encourage them. You can do the same with your robot. The
+Thymio-II contains a tap sensor that causes the event \blk{event-tap} to
+occur in response to a quick touch on the top of the robot. For example,
+the event-action pair \blk{touch} causes the top lights to turn on when
+you tap the top of the robot.
+
+Construct a program from this event-action pair and the pair \blk{clap}
+that turns on the bottoms lights when you clap your hands.
+
+{\raggedleft \hfill Program file \bu{whistles.aesl}}
+
+Can you turn on just the top lights? This is difficult to do: a tap
+causes a sound that can be loud enough to cause the bottom lights to be
+turned on as well. With a little practice I was able to tap the robot
+gently enough so that the sound was not considered an event.
+
+\sect{Exercise \thechapter.3}
+
+Write a program that causes the robot to move forward until it hits a
+wall.
+
+\textbf{Warning!} Make sure that the robot moves slowly so that it
+doesn't damage itself.
+

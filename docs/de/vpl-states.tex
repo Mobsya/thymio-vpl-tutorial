@@ -1,0 +1,214 @@
+\chap{States: Don't Always Do the Same Thing (Advanced)}\label{ch.states}
+
+A program in VPL is a list of event-action pairs. All the events are
+checked one after another and the appropriate actions are taken. Then
+the check begins again. We want is a way to specify that certain
+event-action pairs are active at a certain time, while others are not.
+For example, in Chapter~\ref{ch.line}, when the robot ran off the tape,
+we wanted it to turn left or right in order to search for the tape with
+the direction depending on which side it ran off.
+
+States are supported in the \emph{advanced} mode of VPL. Click on
+\blk{advanced} before beginning to work on the following projects.
+
+\sect{Tap, tap}
+
+In many programs, we used one button to start the robot's behavior and
+another to stop it. Consider, though, the power switch on my computer
+\blksm{power-button}: The same switch is used to turn the light on and
+off; the switch remembers whether it is in the state \bu{on} or the
+state \bu{off}. The switch includes a small green light which indicates
+its current state.
+
+
+Write a program that turns the robot's lights on when it is tapped and
+turns them off when tapped again.
+
+{\raggedleft \hfill Program file \bu{tap-on-off.aesl}}
+
+It is convenient to display the required behavior in a state diagram:
+
+\begin{center}
+\begin{picture}(240,45)
+%\put(0,0){\framebox(240,40){}}
+\put(20,20){\circle{40}}
+\put(0,0){\makebox(40,40){\textsf{off}}}
+\put(220,20){\circle{40}}
+\put(200,0){\makebox(40,40){\textsf{on}}}
+\put(40,10){\vector(1,0){160}}
+\put(0,10){\makebox(240,10){\textsf{tap $\rightarrow$ turn on}}}
+\put(200,30){\vector(-1,0){160}}
+\put(0,30){\makebox(240,10){\textsf{tap $\rightarrow$ turn off}}}
+\end{picture}
+\end{center}
+
+In the diagram there are two states indicated by circles labeled with
+the names of the states \bu{off} and \bu{on}. From state \bu{off} the
+robot can go to state \bu{on} and back, but only by following the
+instructions on the arrows. They are event-action pairs and mean:
+
+\begin{itemize}
+
+\item \emph{When} in state \bu{off} \textbf{\textit{and}} \emph{tap}
+occurs $\rightarrow$ turn the lights \emph{on} \textbf{\textit{and}} go
+to state \bu{on}.
+
+\item \emph{When} in state \bu{on} \textbf{\textit{and}} \emph{tap}
+occurs $\rightarrow$ turn the lights \emph{off} \textbf{\textit{and}} go
+to state \bu{off}.
+
+\end{itemize} The event of an event-action pair occurs only if the robot
+is in its associated state and the action can include changing the
+state. The same event \emph{tap} appears in two event-action pairs, but
+only one occurs at any time, depending on the state of the robot.
+
+The program is shown in Figures~\ref{fig.turn-on-off1}
+and~\ref{fig.turn-on-off2}. Let us look at the event-action pairs
+one-by-one.
+
+\begin{figure}
+\begin{center}
+\gr{tap-on-off1}{0.4}
+\caption{Tap to turn on and off}\label{fig.turn-on-off1}
+\end{center}
+\end{figure}
+
+In the event-action pair \blk{tap-turn-on}, the event is composed of the
+tap block together with an indication of the state.
+
+A state is indicated by four quarters of a circle, each of which can be
+either on (orange) or off (white). We will use the left-front quarter to
+indicate whether the lights are off or on. In this pair, the left-front
+quarter is colored white, meaning that it is off. The meaning of
+\blk{tap-turn-on} is: if the robot is tapped and the light is off, turn
+it on.
+
+Similarly, the event-action pair \blk{tap-turn-off} means: if the robot
+is tapped and the light is on, turn it off. The quarter is colored
+orange, meaning that it is on.
+
+If you look again at the description of the behavior of the robot, you
+will see that only half the job is done. When turning the light on or
+off, we also have to change the state of the robot from \bu{off} to
+\bu{on} or from \bu{on} to \bu{off}. For that we write two
+additional event-action pairs using the state action block
+\blk{action-states} (Figure~\ref{fig.turn-on-off2}).
+
+\begin{figure}
+\begin{center}
+\gr{tap-on-off2}{0.4}
+\caption{Tap to change the state}\label{fig.turn-on-off2}
+\end{center}
+\end{figure}
+
+The meaning of \blk{tap-state-on} is: \emph{when} the robot is tapped
+\emph{and} the state is \bu{off}, change the state to \bu{on}.
+Similarly, the meaning of \blk{tap-state-off} is \emph{when} the robot
+is tapped \emph{and} the state is \bu{on}, change the state to \bu{off}.
+
+Referring the complete program consisting of the four pairs in
+Figures~\ref{fig.turn-on-off1} and~\ref{fig.turn-on-off2}, we see that
+each event causes both an action on the light and a change of the state
+of the robot. Both the action and the change of state depend on the
+current state.
+
+\sect{How many states can the robot be in?}
+
+The state is indicated by a circle divided into four quarters. Each state can be:
+\begin{itemize}
+\item Gray: the part is not taken into account;
+\item White: the quarter is \emph{off};
+\item Orange: the quarter is \emph{on}.
+\end{itemize}
+
+In \blksm{states}, the left-front and right-rear quarters are on, the
+right-front one is off and the left-rear one is not taken into account,
+meaning that if \blksm{states} is associated with an event block, the
+event will occur if the state is either \blk{states1} or \blk{states2}.
+
+Since each of the four quarters can be either on or off, there are 16
+possible states:
+\begin{quote}
+\bu{(off, off, off, off)\\(off, off, off, on)\\(off, off, on, off)\\
+\mbox{}\hspace{3em}\ldots\\
+(on, on, on, off)\\
+(on, on, on, on)}.
+\end{quote}
+
+When the state of the robot is set using the block \blk{action-states},
+the state is displayed in the ring of lights on top of the robot.
+
+Figure~\ref{fig.state-leds} shows the robot in the state \bu{(on, on,
+on, on)}.
+
+\centeredbox{When a program is run, the initial state is
+\bu{(off, off, off, off)}: \blksm{state-all-off}.}
+
+\begin{figure}
+\begin{center}
+\gr{state-leds}{0.4}
+\caption{Light indicating the state}\label{fig.state-leds}
+\end{center}
+\end{figure}
+
+\sect{Get the mouse}
+
+Write a program that causes the robot to turn from right to left,
+searching for a mouse. If it detects a mouse with its leftmost sensor it
+continues the search until the mouse is detected by its rightmost
+sensor. Then, it positions itself facing the mouse
+(Figure~\ref{fig.cat-mouse}).
+
+{\raggedleft \hfill Program file \bu{mouse.aesl}}
+
+
+\begin{figure}
+\begin{center}
+\gr{cat-mouse}{0.4}
+\caption{The cat has found the mouse}\label{fig.cat-mouse}
+\end{center}
+\end{figure}
+
+The event-action pair \blk{mouse1} causes the robot to turn left. This
+only occurs when the left-front quarter is off, but initially all
+quarters of the state are off.
+
+The first event-action pair in Figure~\ref{fig.mouse2} waits until the
+mouse is detected at the leftmost sensor. Note that the small square
+next to it is colored white so that the event occurs only when the
+rightmost sensor alone detects the mouse. The second event-action pair
+in the Figure changes the state.
+
+\begin{figure}
+\begin{center}
+\gr{mouse2}{0.4}
+\caption{Searching for the mouse at the rightmost sensor}\label{fig.mouse2}
+\end{center}
+\end{figure}
+
+The final event-action pair in the program is \blk{mouse3} which halts
+the robot when the mouse is directly facing the center
+sensor.\footnote{You will have to experiment with the position of the
+mouse. If it is too close to the robot, the sensors on either side of
+the central sensor will also detect the mouse, while the event requires
+that they \emph{not} detect it.}
+
+Why does the event in this pair need to depend on the state? The reason
+is that the central sensor will also detect the mouse in its initial
+scan from right to left. We want the robot to perform a full scan
+before returning to the position of the mouse, so it is necessary that
+this first detection of the mouse be ignored. This is achieved by
+stopping the scan only when the state is \bu{on} and this is set only
+when the full scan has been completed.
+
+\sect{Exercise \thechapter.1}
+
+Write a program that causes the robot to dance: it turns left in
+place for two seconds and then turns right in place for three seconds.
+These movements are repeated indefinitely.
+
+\sect{Exercise \thechapter.2 (Difficult)}
+
+Modify the line-following program from Chapter~\ref{ch.line} so that the
+robot turns left when it leaves the right-hand side of the line and
+turns right when it leaves the left-hand side of the line.

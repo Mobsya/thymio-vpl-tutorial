@@ -1,4 +1,4 @@
-targets=thymio-vpl-tutorial-en.zip
+targets=thymio-vpl-tutorial-en.zip thymio-vpl-tutorial-de.zip
 deps=$(wildcard */*/*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) vpl.sty authors.txt
 
 thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(deps) Makefile build
@@ -22,6 +22,7 @@ clean: buildclean
 
 build:
 	mkdir -p build/en
+	mkdir -p build/de
 
 buildclean:
 	rm -rf build *~ */*~ 

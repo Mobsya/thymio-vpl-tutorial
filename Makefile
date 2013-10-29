@@ -30,4 +30,4 @@ distclean: clean
 	rm -f *.pdf $(targets)
 
 .PHONY: clean buildclean distclean all dist
-.PRECIOUS: build
+.PRECIOUS: build/

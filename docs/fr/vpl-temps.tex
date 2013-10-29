@@ -1,0 +1,32 @@
+\chap{Tout passe avec le temps}
+
+Vous commencez à maîtriser Thymio, maintenant nous allons essayer de lui donner un comportement un peu plus complexe. En effet, Thymio va se vexer!
+
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait que Thymio soit content et devienne tout vert si vous touchez son bouton avant et qui se vexe en devenant tout rouge et en reculant durant quelques secondes si vous lui donnez une petite tape! Mais attention, au bout de quelques secondes, il doit vous avoir pardonné, s'être arrêté et être redevenu tout vert!
+\end{bclogo}
+
+{\raggedleft \hfill Programme \bu{vexe.aesl}}
+
+Vous savez déjà comment faire faire devenir Thymio tout vert si vous appuyez sur son bouton avant. Vous savez aussi comment le faire devenir tout rouge et le faire reculer si vous lui donner une petite tape. Ce qui pose problème, c'est de le faire s'arrêter et redevenir tout vert \textit{après quelques secondes}.
+
+Pour faire faire quelque chose à Thymio \textit{après quelques secondes}, il va falloir deux paires événement-action. Comme lorsque vous cuisiner et que vous ne voulez pas faire brûler votre gâteau, Thymio peut régler une alarme! 
+
+Pour cela, il suffit d'utiliser le bloc alarme: \blk{action-timer}. Cette alarme est, en fait, un compte à rebours qui peut aller jusqu'à 4 secondes. Cette action peut-être déclenchée après n'importe quel type d'événement, par exemple après que Thymio ait ressenti une tape. Pour régler la durée du compte à rebours, vous pouvez cliquer dans le cadran de l'alarme et une petite animation vous montre combien de temps le compte à rebours va durer.
+
+Si vous regardez les événements à gauche de la fenêtre du VPL, vous verrez un réveil qui sonne: \blk{event-timer}. Cet événement se déclanche dès qu'un compte à rebours arrive à zéro.
+
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}En robotique, ce genre de compte à rebours s'appelle des \textit{timers}. Ils sont extrêmement utiles dans de nombreuses situations et vous verrez très vite à quel point!
+\end{bclogo}
+
+En déclenchant le compte à rebours lors d'un événement, comme une tape sur Thymio, et en associant une action, comme devenir vert, à l'événement de fin du compte à rebours, il est possible de créer un comportement qui se déclenche \textit{après quelques secondes}.
+
+\Cref{fig.paire-timer} montre deux paires événement-action qui permettent d'allumer Thymio en vert quelques secondes après qu'on lui ait donné une petite tape.
+
+\begin{figure}
+\begin{center}
+\gr{paire-timer}{.4}
+\caption{Thymio s'allume en vert quelques secondes après avoir reçu une petite tape}\label{fig.paire-timer}
+\end{center}
+\end{figure}
+
+Vous avez maintenant toute les clés en main pour réaliser le challenge de ce chapitre!

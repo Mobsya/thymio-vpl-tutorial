@@ -1,0 +1,50 @@
+<!DOCTYPE aesl-source>
+<network>
+
+
+<!--list of global events-->
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">mic.threshold = 250
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent mic
+	motor.left.target = 400
+	motor.right.target = 400
+
+onevent tap
+	call leds.top(32,12,10)
+	motor.left.target = 0
+	motor.right.target = 0
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot>
+<settings advanced-mode="false" color-scheme="0"/>
+
+<buttonset action-name="move" event-name="clap" state="-1" ab0="400" ab1="400"/>
+
+<buttonset action-name="colortop" event-name="tap" state="-1" ab0="32" ab1="12" ab2="10"/>
+
+<buttonset action-name="move" event-name="tap" state="-1" ab0="0" ab1="0"/>
+
+<buttonset/>
+
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+
+
+</network>

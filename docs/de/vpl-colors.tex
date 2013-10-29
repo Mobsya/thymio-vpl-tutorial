@@ -1,14 +1,14 @@
 \sect{Zeige Farben an}
 
 Konstruiere ein VPL Programm, das zwei verschiedene Farben oben auf dem Roboter
-anzeigt, wenn der Vorwärts- oder der Rückwärts-Knopf gedrückt wird. Wenn die
-Links- und Rechts-Knöpfe gedrückt werden, sollen unten am Roboter zwei andere
+anzeigt, wenn der Vorwärts- oder der Rückwärts-Knopf berührt wird. Wenn die
+Links- und Rechts-Knöpfe berührt werden, sollen unten am Roboter zwei andere
 Farben angezeigt werden.
 
 {\raggedleft \hfill Beispielprogramm \bu{colors.aesl}}
 
 Dazu brauchen wir vier Ereignis-Aktions-Paare, da es vier verschiedene
-Ereignisse (das drücken der vier Knöpfe) gibt, auf die der Roboter reagieren
+Ereignisse (das Berühren der vier Knöpfe) gibt, auf die der Roboter reagieren
 soll. Sei vorsichtig: es gibt zwei verschiedene Aktions-Blöcke, um die obere
 und untere Farbe des Roboters zu ändern (\blk{action-colors-up} und
 \blk{action-colors-down}). Im Block für die unteren Lichter sind zusätzlich die
@@ -31,7 +31,7 @@ Wie kannst du Orange erstellen?
 \sect{Schalte die Lichter aus}
 
 Lass uns nun das Programm so verändern, dass alle Lichter ausgehen, wenn der
-mittlere Knopf gedrückt wird. Wir brauchen also zwei neue
+mittlere Knopf berührt wird. Wir brauchen also zwei neue
 Ereignis-Aktions-Paare. Eines um die oberen Lichter zu löschen und ein zweites,
 um die unteren aus zu machen. Damit die Lichter ausgehen, müssen wir alle drei
 Farbbalken ganz links einstellen.
@@ -56,7 +56,7 @@ nämlich der mittlere Knopf.
 \begin{figure}[htb]
 \begin{center}
 \gr{colors1}{0.4}
-\caption{Die Farben verändern sich, wenn ein Knopf gedrückt wird.}\label{fig.colors}
+\caption{Die Farben verändern sich, wenn ein Knopf berührt wird.}\label{fig.colors}
 \end{center}
 \end{figure}
 

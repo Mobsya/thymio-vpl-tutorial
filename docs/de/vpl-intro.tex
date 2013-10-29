@@ -5,12 +5,12 @@
 Verbinde deinen Thymio-II Roboter mit einem USB Kabel mit dem Computer. Der
 Roboter spielt eine kleine Tonabfolge ab und  ein grünen Licht leuchtet auf dem
 Roboter. Falls der Roboter ausgeschaltet ist, schalte ihn an, indem du fünf
-Sekunden auf den mittleren Knopf drückst. Starte nun VPL; mache dazu einen
+Sekunden den mittleren Knopf berührst. Starte nun VPL; mache dazu einen
 Doppelklick auf das VPL Symbol \blk{thymiovpl}. VPL wird gestartet und das
 Fenster in Bild~\ref{fig.connect} wird nun angezeigt. Wähle die Box
 \bu{Serial}, klicke auf \bu{Thymio-II Robot \ldots} darunter, wähle eine
 Sprache und klicke dann auf \bu{Connect}.\footnote{Abhängig von der
-Konfiguration deines Computers und des Betriebssystems, das du brauchst, kann es
+Konfiguration deines Computers und des Betriebssystems, das du verwendest, kann es
 sein, dass das Fenster etwas anders ausschaut.}
 
 
@@ -25,7 +25,7 @@ sein, dass das Fenster etwas anders ausschaut.}
 
 Das Bild~\ref{fig.front} zeigt den Roboter von vorne. Oben sieht den Knopf in
 der Mitte und die vier Richtungsknöpfe. Hinter den Knöpfen wird der
-Batteriestand in grün angezeigt. Dahinter sieht man die Rücklichter, die auf
+Batteriestand in grün angezeigt. Dahinter sieht man die zwei oberen Lichter, die auf
 rot eingestellt sind. Der Roboter hat unten weitere solche Lichter, die auf
 grün eingestellt sind (Bild~\ref{fig.bottom}). Die schwarzen Rechtecke vorne
 sind Sensoren, die du im Kapitel~\ref{ch.pet} kennenlernst.
@@ -46,8 +46,8 @@ Die Benutzeroberfläche von VPL (Bild~\ref{fig.gui}) hat vier Bereiche:
 \begin{itemize}
 \item Oben hat sie eine Symbolleiste mit Symbolen, um Programme zu öffnen, zu
     speichern und auszuführen.
-\item Unterhalb der Symbolleiste in der man Programme für den Roboter
-    konstruieren kann.
+\item Unterhalb der Symbolleiste befindet sich er Bereich, in dem man Programme 
+    für den Roboter konstruieren kann.
 \item Links und rechts des Programmbereichs sind Bereiche mit Aktions- und
     Ereignisblöcken.
 \item Ganz rechts wird das konstruierte Programm in ein Textprogramm für den
@@ -69,7 +69,7 @@ Programm zu starten klicke auf \blksm{new}.
 Ein VPL Programm besteht aus mehreren (oder auch nur einem) Paar von Ereignis
 und Aktionsblöcken. Ein Beispiel: Das Paar \blk{e-a-pair} verursacht, dass das
 obere Licht auf dem Roboter rot leuchtet, sobald der Vorwärts-Knopf des
-Roboters gedrückt wird.
+Roboters berührt wird.
 
 \centeredbox{Die Bedeutung eines Ereignis-Aktions-Paars ist:\\ \centering
 \textbf{\textit{Wenn das Ereignis eintritt, wird die Aktion durchgeführt.}}}
@@ -81,21 +81,21 @@ Quadrat für die Aktion. Du kannst nun das Knopf-Ereignis \blk{event-buttons}
 von der linken Ereignis-Auswahl in das linke Quadrat ziehen. Wähle nun den
 Aktionsblock für die oberen Farben \blk{action-colors-up} aus der rechten
 Auswahl und ziehe ihn in das rechte Quadrat. Du hast nun dein erstes
-Ereignis-Aktions-Paar ersetllt.
+Ereignis-Aktions-Paar erstellt.
 
 Jetzt können wir das Ereignis und die Aktion so verändern, dass sie machen was
 wir wollen. Beim Ereignis kannst du zum Beispiel auf dem Vorwärts-Knopf
 klicken; er wird dann rot.
 
 Das bedeutet, dass \textbf{ein Ereignis passiert, wenn der Vorwärts-Knopf
-gedrückt wird}.
+berührt wird}.
 
 Der Farb-Aktions-Block hat drei Balken mit den Grundfarben Rot, Grün und Blau.
 Jeder dieser Balken hat ganz links ein weisses Quadrat, mit dem du diese Farbe
 einstellen kannst. Wenn du die weissen Quadrate verstellst, verändert sich die
 Hintergrundfarbe des Blocks und zeigt so die Farbe an, die der Roboter anzeigt.
 Schiebe das Quadrat im roten Balken ganz nach rechts \blk{red}; der Roboter
-leuchtet nun rot, wenn du auf den Vorwärts-Knopf drückst. 
+leuchtet nun rot, wenn du den Vorwärts-Knopf berührst. 
 
 \sect{Speichere das Programm}
 
@@ -107,7 +107,7 @@ was das Programm macht (zum Beispiel: \bu{rot-leuchten}).
 \sect{Führe das Programm aus}
 
 Um das Programm auszuführen, musst du auf das Symbol \blksm{run} klicken. Jetzt
-kannst du den Vorwärts-Knopf auf den Roboter drücken und dann sollte der
+kannst du den Vorwärts-Knopf auf den Roboter berühren und dann sollte der
 Roboter rot leuchten.
 
 \sect{Schalte den Roboter aus}

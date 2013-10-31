@@ -1,14 +1,14 @@
 \chap{Une petite pause}\label{ch.bells}
 
-Faisons une pause avec les tâches compliquées et jouons un peu avec Thymio. Dans ce chapitre, nous vous montrerons que Thymio peut jouer de la musique, répondre à un son et répondre lorsqu'on lui donne une tape amicale!
+Faisons une pause avec les tâches compliquées et jouons un peu avec Thymio. Dans ce chapitre, nous vous montrerons que Thymio peut jouer de la musique, répondre à un son ou à un petite tape amicale!
 
 \sect{Thymio mélomane}
 
-Thymio possède un synthétiseur de son, il permet de jouer des notes de musique! Vous pouvez le programmer simplement en utilisant le bloc action \blk{action-music}.
+Thymio possède un synthétiseur de sons qui lui permet de jouer des notes de musique! Vous pouvez le programmer simplement en utilisant le bloc action \blk{action-music}.
 
 {\raggedleft \hfill Programme \bu{bells.aesl}}
 
-Thymio peut jouer six notes différentes, chaque note peut-être placée sur une barre de couleur représentant un ton. Il suffit de cliquer avec votre souris sur la barre de couleur de votre choix au niveau de la note que vous souhaitez modifier et voilà! Ensuite, vous pouvez choisir entre jouer une noir, un temps, et une blanche, deux temps, en cliquant sur la note que vous souhaitez modifier.
+Thymio peut jouer six notes différentes, chaque note doit être placée sur une barre de couleur représentant un ton. Il suffit de cliquer avec votre souris sur la barre de couleur de votre choix au niveau de la note que vous souhaitez modifier et voilà! Ensuite, vous pouvez choisir entre jouer une noire, un temps, et une blanche, deux temps, en cliquant sur la note que vous souhaitez modifier.
 
 \Cref{fig.music} illustre deux chansons jouées par Thymio lorsque vous appuyez sur le bouton avant ou arrière.
 
@@ -24,18 +24,18 @@ Thymio peut jouer six notes différentes, chaque note peut-être placée sur une
 
 \sect{Thymio! Par ici!}
 
-Thymio a un microphone, il peut donc réagir à un son! L'événement \blk{event-clap} se déclenche si Thymio entend un son fort, comme quelqu'un qui tape dans ses mains. 
+Thymio a un microphone, il peut donc réagir à un son! L'événement \blk{event-clap} se déclenche si Thymio entend un son fort, comme par exemple quelqu'un qui tape dans ses mains. 
 
 En utilisant une paire événement-action avec l'événement \blk{event-clap} et le bloc d'action moteur, vous pouvez sans problème réaliser un programme qui fait avancer Thymio lorsque vous tapez dans vos mains.
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Si vous vous trouvez dans un environnement bruyant, il sera difficile pour Thymio de vous entendre. Essayez cette fonctionnalité dans un environnement calme.
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Si vous vous trouvez dans un environnement bruyant, il sera difficile pour Thymio de vous entendre.N'utilisez cette fonctionnalité que dans un environnement calme.
 \end{bclogo}
 
 \sect{C'est bien Thymio!}
 
 Il est important de récompenser votre animal de compagnie quand il est gentil, c'est pareil avec Thymio! Il peut vous détecter si vous lui donner une petite tape sur la tête grâce à  l'événement: \blk{event-tap}. 
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait approcher Thymio quand vous taper dans vos mains et qui s'arrête et devient rose si vous lui donner une petite tape sur la tête. Avec un seul microphone, Thymio n'arrivera pas à repérer l'origine du son, alignez-le donc dans votre direction.
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fasse s'approcher Thymio quand vous tapez dans vos mains et qui s'arrête et devienne rose si vous lui donner une petite tape sur la tête. Avec un seul microphone, Thymio n'arrivera pas à repérer l'origine du son, alignez-le donc dans votre direction.
 \end{bclogo}
 
 {\raggedleft \hfill Programme \bu{aux-pieds.aesl}}

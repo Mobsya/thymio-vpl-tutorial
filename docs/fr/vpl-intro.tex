@@ -4,14 +4,14 @@ Aseba est un environnement de programmation pour le robot Thymio-II. Le VPL, ou 
 
 Durant la suite du texte, le robot Thymio-II sera souvent nommé Thymio. Il s'agira toujours de la version II du robot.
 
-\sect{Connecter le robot et démarrer Aseba et VPL}
+\sect{Connecter le robot, démarrer Aseba et lancer VPL}
 
-Pour commencer, connectez Thymio à votre ordinateur à l'aide du câble USB fourni avec le robot. Le robot va ensuite jouer quelques notes et il se mettra à pulser d'une couleur verte. S'il est éteint, appuyez simplement sur son bouton central durant quelques secondes.
+Pour commencer, connectez Thymio à votre ordinateur à l'aide du câble USB fourni avec le robot. Si la connection est réussie, le robot jouera quelques notes et il se mettra à pulser d'une couleur verte. S'il est éteint, appuyez simplement sur son bouton central durant quelques secondes.
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}N'importe quel câble USB-microUSB convient! Avec un chargeur pour téléphone adéquat, le robot se rechargera plus vite!
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}N'importe quel câble USB-microUSB convient! Avec un chargeur pour téléphone portable adéquat, le robot se rechargera plus vite!
 \end{bclogo}
 
-Sur votre ordinateur, lancez Aseba Studio. Si vous ne l'avez pas encore installé, il est disponible gratuitement sur \url{https://aseba.wikidot.com/fr:downloadinstall}. La fenêtre illustrée sur \cref{fig.connect} devrait apparaître. Cochez la case \bu{Port série}, cliquez sur \bu{Thymio-II Robot \ldots}, sélectionnez Français et cliquez sur \bu{Connecter}. \footnote{En fonction de la configuration de votre ordinateur, il peut y avoir plusieurs entrées dans la liste des ports série. En tout les cas, il faut choisir Thymio-II}
+Sur votre ordinateur, lancez Aseba Studio. Si vous ne l'avez pas encore installé, il est disponible gratuitement sur \url{https://aseba.wikidot.com/fr:downloadinstall}. La fenêtre illustrée sur \cref{fig.connect} devrait apparaître. Cochez la case \bu{Port série}, cliquez sur \bu{Thymio-II Robot \ldots}, sélectionnez Français et cliquez sur \bu{Connecter}. \footnote{En fonction de la configuration de votre ordinateur, il peut y avoir plusieurs entrées dans la liste des ports série. Dans tout les cas, il faut choisir Thymio-II}
 
 \begin{figure}
 \begin{center}
@@ -20,18 +20,18 @@ Sur votre ordinateur, lancez Aseba Studio. Si vous ne l'avez pas encore install�
 \end{center}
 \end{figure} 
 
-Dès que vous avez appuyé sur \bu{Connecter}, Aseba devrait démarrer et la fenêtre représentée sur \cref{fig.Aseba} devrait s'ouvrir. Ceci est l'environnement de base d'Aseba, là où il est possible de programmer Thymio textuellement. Ce guide ne traite pas de cette fonctionnalité mais du VPL. Vous pouvez donc cliquer sur le bouton en bas à gauche de la fenêtre nommé \bu{Charger VPL}.
+Dès que vous avez appuyé sur \bu{Connecter}, Aseba devrait démarrer et la fenêtre représentée sur \cref{fig.Aseba} devrait s'ouvrir. Ceci est l'environnement de base d'Aseba où il est possible de programmer Thymio textuellement. Ce guide ne traite pas de cette fonctionnalité mais du VPL. Vous pouvez donc cliquer sur le bouton en bas à gauche de la fenêtre nommé \bu{Charger VPL}.
 
 \begin{figure}
 \begin{center}
-\gr{aseba}{.9}
+\gr{print-screen-aseba-studio}{.9}
 \caption{La fenêtre de base d'Aseba et le bouton \bu{Charger VPL}}\label{fig.Aseba}
 \end{center}
 \end{figure} 
 
 \sect{Faire connaissance avec Thymio}
 
-\Cref{fig.front} montre l'avant et le dessus de Thymio. Vous pouvez voir le bouton central rond, entouré de quatre boutons triangulaires. Ce sont des boutons tactile, un simple effleurement suffit à les activer. Juste derrière ces boutons se trouve un indicateur en forme de pile. Une, deux ou trois petites barres de lumière verte affichent l'état de charge du robot. Un peu plus loin, nous pouvons voir deux points de lumière (rouge sur cette photo). Ces lumières sont réglables et peuvent montrer le mode du robot. Les petits rectangles noirs à l'avant du robot sont des capteurs infrarouge de distance, vous allez les découvrir dans \cref{ch.pet}.
+\Cref{fig.front} montre l'avant et le dessus de Thymio. Vous pouvez voir le bouton central rond, entouré de quatre boutons triangulaires. Ce sont des boutons tactiles, un simple effleurement suffit à les activer. Juste derrière ces boutons se trouve un indicateur en forme de pile. Une, deux ou trois petites barres de lumière verte affichent l'état de charge du robot. Un peu plus loin, nous pouvons voir deux points de lumière (rouge sur cette photo). Ces lumières sont réglables et peuvent montrer le mode du robot. Les petits rectangles noirs à l'avant du robot sont des capteurs infrarouge de distance, vous en saurez plus dans \cref{ch.pet}.
 
 \begin{figure}[h]
 \begin{center}
@@ -42,7 +42,7 @@ Dès que vous avez appuyé sur \bu{Connecter}, Aseba devrait démarrer et la fen
 
 \sect{L'interface VPL}
 
-L'interface VPL est illustrée sur \cref{fig.gui}. Elle est composée de trois zones intéressantes:
+L'interface VPL est illustrée sur \cref{fig.gui}. Elle est composée de trois zones:
 
 \begin{itemize}
 	\item Une barre tout en haut avec les icônes pour créer un nouveau programme, en ouvrir un existant, sauvegarder, lancer le programme\ldots
@@ -55,12 +55,12 @@ L'interface VPL est illustrée sur \cref{fig.gui}. Elle est composée de trois z
 \caption{L'interface VPL d'Aseba pour Thymio}\label{fig.gui}
 \end{figure}
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Dès que vous créez un programme en utilisant le VPL, le code qui sera chargé dans le robot apparaît dans la fenêtre principale d'Aseba. Les plus téméraires peuvent comparer le travail qu'ils ont fourni dans le VPL avec le code généré automatiquement pour essayer de comprendre le langage de Thymio!
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}Dès que vous créez un programme en utilisant le VPL, le code qui sera chargé dans le robot apparaît dans la fenêtre principale d'Aseba. Les plus téméraires peuvent comparer le travail qu'ils ont fait dans le VPL avec le code généré automatiquement pour essayer de comprendre le langage de Thymio!
 \end{bclogo}
 
 \sect{Écrire un nouveau programme}
 
-Au départ, votre Thymio n'est programmé qu'avec ses modes de base, vous pouvez maintenant lui ajouter un autre mode en le programmant avec le VPL. Au centre de l'interface se trouve la zone de programmation, c'est là que vous programmerez votre robot. Pour avoir une nouvelle zone de programmation vide, vous pouvez cliquer sur  \blksm{new}.
+Au départ, votre Thymio n'est programmé qu'avec ses modes de base, vous pouvez maintenant lui ajouter un autre mode en le programmant avec le VPL. Au centre de l'interface se trouve la zone de programmation, c'est là que vous programmerez votre robot. Pour avoir une nouvelle zone de programmation vide, vous devez cliquer sur  \blksm{new}.
 
 Un programme avec VPL consiste en une ou plusieurs \textit{paires événement-action} construites grâce à un bloc événement et à un bloc action. Par exemple, la paire \blk{e-a-pair} fait s'allumer Thymio en rouge lorsque le bouton avant est touché.
 
@@ -71,27 +71,27 @@ Un programme avec VPL consiste en une ou plusieurs \textit{paires événement-ac
 
 Construisons une paire événement-action ensemble! 
 
-Vous pourrez voir un canevas pour la construction de la paire événement-action dans la fenêtre de programmation: \blk{event-action-pair-empty}. Le bloc de gauche, en bleu, accueillera l'événement. Le bloc de droite, en rose, accueillera l'action.
+Vous pourrez voir un canevas pour la construction de la paire événement-action dans la \mbox{fenêtre} de programmation: \blk{event-action-pair-empty}. Le bloc de gauche, en bleu, accueillera l'événement. Le bloc de droite, en rose, accueillera l'action.
 
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Pour amener un bloc dans la zone de programmation, vous pouvez simplement cliquer sur le bloc désiré ou alors le glisser jusqu'au canevas en maintenant le bouton gauche de la souris enfoncé et en tirant le bloc jusqu'au centre de l'écran.
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}Pour amener un bloc dans la zone de programmation, vous pouvez simplement cliquer sur le bloc désiré ou alors le glisser jusqu'au canevas en maintenant le bouton gauche de la souris enfoncé et en tirant le bloc jusqu'au centre de l'écran.
 \end{bclogo}
 
 Commencez par amener le bloc \blk{event-buttons} dans la zone de programmation, sur le carré bleu. Ensuite, prenez le bloc \blk{action-colors-up} depuis la droite de l'interface et amenez le dans le carré rose. Et voilà! Vous avez construit une paire événement-action!
 
-Ensuite, nous allons modifier ces blocs. Cliquez avec le bouton gauche de la souris sur le triangle supérieur du bloc de gauche (bouton avant sur Thymio), il va devenir rouge. \blk{forward} Cela signifie donc désormais:  \textbf{un événement se produit lorsque le bouton avant est touché}.
+Nous allons maintenant modifier ces blocs. Cliquez avec le bouton gauche de la souris sur le triangle supérieur du bloc de gauche (bouton avant sur Thymio), il va devenir rouge. \blk{forward} Cela signifie donc désormais:  \textbf{un événement se produit lorsque le bouton avant est touché}.
 
-Le bloc d'action couleur contient trois barres, la rouge, la verte et la bleue. En mélangeant ces trois couleurs primaires, toute les couleurs peuvent être créées. Vous pouvez faire glisser les petits blocs blancs le long des barres de couleurs pour choisir combien de rouge, de vert et de bleu vous voulez afficher sur Thymio. Ces blocs sont appelés des \textit{sliders}. Essayez de bouger le \textit{slider} de la ligne rouge tout à droite en laissant les autres tout à gauche \blk{red}, Thymio deviendra donc rouge.
+Le bloc d'action couleur contient trois barres, la rouge, la verte et la bleue. En mélangeant ces trois couleurs primaires, toute les couleurs peuvent être créées. Vous pouvez faire glisser les petits blocs blancs le long des barres de couleurs pour choisir quelle quantité de rouge, de vert et de bleu vous voulez afficher sur Thymio. Ces blocs sont appelés des \textit{sliders}. Essayez de bouger le \textit{slider} de la ligne rouge tout à droite en laissant les autres tout à gauche \blk{red}, Thymio deviendra donc rouge.
 
-Vous avez créer le programme suivant:
+Vous avez créé le programme suivant:
 
 \begin{center}
-	\textbf{Lorsque le bouton avant est pressé, Thymio devient rouge}
+	\textbf{Lorsque le bouton avant est appuyé, Thymio devient rouge}
 \end{center}
 
 \sect{Sauvegarder le programme}
 
-Avant de programmer Thymio, il vous faut sauvegarder le programme sur votre ordinateur. Cliquez sur l'icône: \blksm{save} de la barre du haut. Vous devrez choisir un nom pour votre programme, par exemple \textit{Thymio-rouge}. Choisissez l'endroit où vous voulez sauvegarder le programme, sur le bureau par exemple, et cliquez sur Sauvegarder.
+Afin de finaliser la programmation de Thymio, il vous faut sauvegarder le programme sur votre ordinateur. Cliquez sur l'icône: \blksm{save} de la barre du haut. Vous devrez choisir un nom pour votre programme, par exemple \textit{Thymio-rouge}. Choisissez l'endroit où vous voulez sauvegarder le programme, sur le bureau par exemple, et cliquez sur Sauvegarder.
 
 \sect{Lancer le programme}
 
@@ -122,11 +122,11 @@ En cas de problème de connection, essayez de débrancher et rebrancher le câbl
 
 \sect{Ouvrir un programme existant}
 
-Si vous voulez continuer un programme que vous aviez commencer il y a quelques temps, il suffit de l'ouvrir avec l'interface VPL pour le modifier ou l'améliorer. Cliquez sur l'icône \blk{open} et sélectionnez le programme que vous voulez ouvrir, par exemple \textit{Thymio-rouge}. Les paires événement-action du programme vont être affichées à nouveau dans l'interface. Vous pourrez ensuite les modifier, les supprimer, en ajouter d'autres\ldots
+Si vous voulez continuer un programme que vous aviez commencer précédemment, il suffit de l'ouvrir avec l'interface VPL pour le modifier ou l'améliorer. Cliquez sur l'icône \blk{open} et sélectionnez le fichier que vous voulez ouvrir, par exemple \textit{Thymio-rouge}. Les paires événement-action du programme vont être affichées dans l'interface. Vous pouvez les modifier, les supprimer, en ajouter d'autres\ldots
 
 \sect{Les autres possibilités de l'interface VPL}
 
-Voici une liste des différents icônes que nous n'avions pas vu jusqu'à maintenant:
+Voici une liste des différents icônes que nous n'avions pas encore vu:
 
 \begin{itemize}
 

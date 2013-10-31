@@ -2,16 +2,18 @@
 
 \sect{En avant, en arrière}
 
-Thymio a deux moteurs, un sur chaque roue. Ils peuvent tourner dans les deux sens, permettant à Thymio d'avancer, de reculer et de tourner. Commençons par un petit programme qui vous apprendrez à contrôler les moteurs.
+Thymio a deux moteurs, un sur chaque roue. Ils peuvent tourner dans les deux sens, permettant à Thymio d'avancer, de reculer et de tourner. Commençons par un petit programme qui vous apprendra à contrôler les moteurs.
 
-Le bloc d'action des moteurs représente Thymio entouré de deux \textit{sliders}: \blk{action-motors}.Chaque \textit{slider} contrôle un moteur. En les faisant glisser vers l'avant, Thymio avancera, à l'inverse, en les faisant glisser vers l'arrière, Thymio reculera. Pour arrêter le moteur, il suffit de glisser les \textit{sliders} au centre des barres. Finalement, pour faire tourner Thymio, il suffit de faire avancer les moteurs avec des vitesse différentes!
+Le bloc d'action des moteurs représente Thymio entouré de deux \textit{sliders}: \blk{action-motors} 
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait avancer Thymio lorsque le bouton avant est pressé et qui le fait reculer si vous appuyer sur le bouton arrière!
+Chaque \textit{slider} contrôle un moteur. En les faisant glisser vers l'avant, Thymio avancera, à l'inverse, en les faisant glisser vers l'arrière, Thymio reculera. Pour arrêter le moteur, il suffit de glisser les \textit{sliders} au centre des barres. Finalement, pour faire tourner Thymio, il suffit de faire avancer les moteurs avec des vitesse différentes!
+
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fasse avancer Thymio lorsque le bouton avant est pressé et qui le fait reculer si vous appuyer sur le bouton arrière!
 \end{bclogo}
 
 {\raggedleft \hfill Programme \bu{moving.aesl}}
 
-Nous allons avoir besoin de deux paires événement-action. Une pour faire avancer Thymio, l'autre pour le faire reculer, comme sur \cref{fig.nostop}. Faites glisser les blocs correspondants dans le canevas, réglez quel bouton vous souhaitez utiliser et ajuster les \textit{sliders} des moteurs pour faire avancer Thymio dans un cas et pour le faire reculer dans l'autre. Plus vous tirerez les \textit{sliders} vers l'avant ou l'arrière, plus les moteurs tourneront vite. Essayez d'abord avec une vitesse moyenne.
+Nous allons avoir besoin de deux paires événement-action. Une pour faire avancer Thymio, l'autre pour le faire reculer, comme sur \cref{fig.nostop}. Faites glisser les blocs correspondants dans le canevas, réglez le bouton que vous souhaitez utiliser et ajustez les \textit{sliders} des moteurs pour faire avancer Thymio dans un cas et pour le faire reculer dans l'autre. Plus vous tirerez les \textit{sliders} vers l'avant ou l'arrière, plus les moteurs tourneront vite. Essayez d'abord avec une vitesse moyenne.
 
 Démarrez maintenant le programme en cliquant sur \blksm{run} et touchez les boutons avant et arrière pour voir si Thymio avance et recule!
 
@@ -26,19 +28,19 @@ Démarrez maintenant le programme en cliquant sur \blksm{run} et touchez les bou
 
 Avec ce programme, Thymio ne veut plus s'arrêter. Nous allons arranger cela en ajoutant une paire événement-action dans le programme. Avec ces deux blocs, Thymio s'arrêtera lorsqu'on presse son bouton centrale: \blk{stop-motors}. Lorsque vous ajoutez un bloc moteur dans le programme, il vient directement avec les \textit{sliders} réglés pour que les moteurs s'arrêtent.
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Thymio s'arrêtera si vous cliquez sur \blksm{stop}
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}Thymio s'arrêtera si vous cliquez sur \blksm{stop}
 \end{bclogo}
 
 \sect{Ne tombe pas de la table}
 
-Si Thymio se trouve sur le sol, au pire, il rentrera dans un mur ou se débranchera tout seul de votre ordinateur, mais s'il est sur une table, il risque de tomber! Nous allons créer un petit programme qui lui permettra de s'arrêter s'il arriver au bord de la table.
+Si Thymio se trouve sur le sol, au pire, il rentrera dans un mur ou se débranchera tout seul de votre ordinateur, mais s'il est sur une table, il risque de tomber! Nous allons créer un petit programme qui lui permettra de s'arrêter s'il arrive au bord de la table.
 
 \begin{bclogo}[couleur = green!30, arrondi = 0.1, logo = \bctakecare, ombre = true]{Attention!}Si Thymio roule sur une table, tenez vous toujours prêt à le rattraper s'il arrive près du bord de la table!
 \end{bclogo}
 
-Tournez Thymio sur son dos. Vous verrez deux petits rectangles noirs qui contiennent des éléments optiques, comme nous le voyons sur le haut de \cref{fig.bottom}. Ce sont les \textbf{détecteurs de sol}! Ils mesurent si peu ou beaucoup de lumière est réfléchie proche d'eux. Si Thymio est posé sur une table de couleur claire, beaucoup de lumière sera réfléchie, alors que s'il n'est posé sur rien, comme sur \cref{fig.bottom} ou s'il dépasse le bord de la table, peu de lumière sera réfléchie. Nous allons donc utiliser ces capteurs pour dire à Thymio de s'arrêter lorsqu'il arrive au bord de la table.
+Tournez Thymio sur son dos. Vous verrez deux petits rectangles noirs qui contiennent des éléments optiques, comme nous le voyons sur le haut de \cref{fig.bottom}. Ce sont les \textbf{détecteurs de sol}! Ils envoyent une impulsion de lumière et mesure la quantité de lumière qui leur est réféchie. Si Thymio est posé sur une table de couleur claire, beaucoup de lumière sera réfléchie, alors que s'il est sur le dos, comme sur \cref{fig.bottom}, ou qu'il dépasse le bord de la table, peu de lumière sera réfléchie. Nous allons donc utiliser ces capteurs pour dire à Thymio de s'arrêter lorsqu'il arrive au bord de la table.
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Évitez les tables en verre transparent, elle ne réfléchiront pas la lumière et Thymio croira qu'il n'est pas sur une table!
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}Évitez les tables en verre transparent, elle ne réfléchiront pas la lumière et Thymio croira qu'il n'est pas sur une table!
 \end{bclogo}
 
 Tirez le bloc \textbf{détecteur de sol} sur le canevas pour commencer: \blk{event-ground}. Les deux petits carrés gris représentent les détecteurs de sol. En cliquant sur ces carré, ils passent de gris à rouge, à blanc puis à nouveau à gris, etc. Ces couleurs signifient:
@@ -61,10 +63,10 @@ Pour faire en sorte que Thymio s'arrête au bord de la table, il faut ajouter au
 \end{center}
 \end{figure}
 
-Placez Thymio près d'un bord d'une table, le moins parallèle au bord possible, et appuyez sur le bouton avant. Il devrait avancer jusqu'au bord et s'y arrêter. 
+Placez Thymio près d'un bord d'une table de façon à ce qu'il fasse face au bord et appuyez sur le bouton avant. Il devrait avancer jusqu'au bord et s'y arrêter. 
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Si vous voulez arrêter le Thymio un peu avant le bord de la table, vous pouvez placer une feuille noir, ou du scotch noir, là où vous voulez qu'il s'arrête! 
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Trucs et astuces!}Si vous voulez arrêter le Thymio un peu avant le bord de la table, vous pouvez placer une feuille noir, ou du scotch noir, là où vous souhaitez qu'il s'arrête! 
 \end{bclogo}
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Jouez avec le contrôle des moteurs de Thymio. À vitesse maximale, est-il toujours capable de s'arrêter avant le bord de la table?
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Jouez avec le contrôle des moteurs de Thymio. À sa vitesse maximale, est-il toujours capable de s'arrêter avant le bord de la table?
 \end{bclogo}

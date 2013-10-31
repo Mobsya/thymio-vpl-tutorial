@@ -2,16 +2,16 @@
 
 Un programme VPL est composé d'une série de paires événement-action. Tous les événements sont vérifiés à tout moment et les actions appropriées sont effectuées. Ensuite, les événements sont vérifiés à nouveau, etc\ldots
 
-Pour pouvoir programmer Thymio d'une façon un peu plus riche, il serait bien de pouvoir choisir quels événements sont à vérifier quand. Ainsi, il serait possible de créer des \textit{modes}. Thymio pourrait être en mode "recherche d'une ligne" ou en mode "suivi d'une ligne". Cela nous permettrait de programmer Thymio de deux façons différent en une seul fois. Gardons cet exemple de la ligne. Si Thymio perd de vue la ligne, il pourrait se mettre à parcourir la région dans laquelle il se trouve en évitant d'éventuels obstacles jusqu'à ce qu'il la retrouve. Dès lors, il se remettrait en mode "suivi de ligne" et continuerai son chemin. Cela permettrait d'avoir une assurance pour qu'en cas de problème Thymio se débrouille tout seul!
+Pour pouvoir programmer Thymio d'une façon un peu plus riche, il serait bien de pouvoir choisir quels événements sont à vérifier quand. Ainsi, il serait possible de créer des \textit{modes}. Thymio pourrait être en mode "recherche d'une ligne" ou en mode "suivi d'une ligne". Cela nous permettrait de programmer Thymio de deux façons différentes en une seule fois. Gardons cet exemple de la ligne. Si Thymio perd de vue la ligne, il pourrait se mettre à parcourir la région dans laquelle il se trouve en évitant d'éventuels obstacles jusqu'à ce qu'il la retrouve. Dès lors, il se remettrait en mode "suivi de ligne" et continuerait son chemin. Cela permettrait d'avoir une assurance pour qu'en cas de problème Thymio se débrouille tout seul!
 
 Pour jouer avec les modes, commencez par cliquer sur le symbole avancé du VPL:   \blk{advanced}.
 
 
 \sect{Toc, toc}
 
-Dans les programmes que nous avons réalisé jusqu'ici, nous avons souvent \emph{démarré} Thymio en appuyant sur un de ces boutons et \emph{arrêté} Thymio en appuyant sur un autre. Mais regardez votre ordinateur. Normalement, il n'a qu'un seul bouton pour l'allumer ou l'éteindre. Il serait possible de faire deux actions avec un seul bouton si Thymio pouvait se souvenir si vous avez déjà appuyé ou non sur son bouton.
+Dans les programmes que nous avons réalisé jusqu'ici, nous avons souvent \emph{démarré} Thymio en appuyant sur un de ces boutons et \emph{arrêté} Thymio en appuyant sur un autre. Mais regardez votre ordinateur. Normalement, il n'a qu'un seul bouton pour l'allumer ou l'éteindre. Il serait possible de faire deux actions avec un seul bouton si Thymio pouvait se souvenir que vous avez déjà appuyé ou non sur son bouton.
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait que Thymio s'allume en rose si vous lui donnez une petite tape et qui fait que Thymio s'éteigne si vous lui donnez une autre tape.
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fasse que Thymio s'allume en rose si vous lui donnez une petite tape et qui fasse que Thymio s'éteigne si vous lui donnez une autre tape.
 \end{bclogo}
 
 {\raggedleft \hfill Programme \bu{tap-on-off.aesl}}
@@ -20,7 +20,7 @@ Nous allons décrire ce programme en utilisant un \textit{diagramme d'états}, c
 
 \begin{figure}
 \begin{center}
-\gr{diagramme_modes}{0.3}
+\gr{modes_diagramm}{0.3}
 \caption{Diagramme d'état, \textit{allumé - éteint}}\label{fig.turn-on-off}
 \end{center}
 \end{figure}
@@ -55,9 +55,9 @@ Vous remarquerez le symbole \blk{states_icon} présent à côté de chaque évé
 	\item Une case \textbf{grise} signifie \textit{n'importe quel état}, \textit{blanc} ou \textit{orange}
 \end{itemize}
 
-Ainsi, sur \cref{fig.state-changing-a}, la première paire d'événement action est déclenchée si Thymio est en \textit{mode éteint} avec le cadran équivalent [\textit{blanc, gris, gris, gris}]. En suivant ce concept, la deuxième paire d'événement-action action est déclenchée seulement si Thymio est en \textit{mode allumé} avec le cadran équivalent [\textit{orange, gris, gris, gris}]. 
+Ainsi, sur \cref{fig.state-changing-a}, la première paire d'événement-action est déclenchée si Thymio est en \textit{mode éteint} avec le cadran équivalent [\textit{blanc, gris, gris, gris}]. En suivant ce concept, la deuxième paire d'événement-action action est déclenchée seulement si Thymio est en \textit{mode allumé} avec le cadran équivalent [\textit{orange, gris, gris, gris}]. 
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}C'est à vous de choisir les modes de Thymio et d'y associer un état du cadran. Nous aurions très bien pu associé le \textit{mode allumé} à l'état  [\textit{orange, blanc, blanc, orange}] et le \textit{mode éteint} à l'état [\textit{blanc, orange, blanc, orange}]. Il aurait simplement fallu rester cohérent dans tout le programme. Mais avouez que les états du cadran que nous avons choisi sont plus simple. Essayez toujours de rester le plus simple possible!
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}C'est à vous de choisir les modes de Thymio et d'y associer un état du cadran. Nous aurions très bien pu associé le \textit{mode allumé} à l'état  [\textit{orange, blanc, blanc, orange}] et le \textit{mode éteint} à l'état [\textit{blanc, orange, blanc, orange}]. Il aurait simplement fallu rester cohérent dans tout le programme. Mais avouez que les états du cadran que nous avons choisi sont plus simples. Essayez toujours de rester le plus simple possible!
 \end{bclogo}
 
 Pour que le programme soit complet, il ne faut pas simplement avoir des lumières qui s'allument ou s'éteignent en fonction du mode de Thymio mais il faut aussi changer le mode de Thymio! C'est là que \cref{fig.state-changing-b} entre en jeu. La première paire événement-action signifie: \textit{Si Thymio reçoit une tape et qu'il est en \textbf{mode éteint}, alors passer en \textbf{mode allumé}}. De même, la deuxième paire événement action signifie: \textit{Si Thymio reçoit une tape et qu'il est en \textbf{mode allumé}, alors passer en \textbf{mode éteint}}.
@@ -82,7 +82,7 @@ Le mode de Thymio est physiquement illustré par des arcs de cercles lumineux. L
 
 \sect{Tête chercheuse}
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait que Thymio tourne sur lui-même, dans le sens inverse des aiguilles d'une montre, à la recherche d'un objet. Lorsqu'il le repère avec son capteur tout à droite, Thymio doit tourner dans l'autre sens et s'aligner sur l'objet.
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fasse que Thymio tourne sur lui-même, dans le sens inverse des aiguilles d'une montre, à la recherche d'un objet. Lorsqu'il le repère avec son capteur tout à droite, Thymio doit tourner dans l'autre sens et s'aligner sur l'objet.
 \end{bclogo}
 
 {\raggedleft \hfill Programme \bu{tete-chercheuse.aesl}}
@@ -116,12 +116,12 @@ En suivant toutes ces indications, nous pouvons construire le programme illustr�
 
 \begin{figure}[h]
     \centering
-    \subfigure[]{\includegraphics[width = 0.35\textwidth]{prog_tete_chercheuse1}} 
+    \subfigure[]{\includegraphics[width = 0.35\textwidth]{homing_thymio}} 
     \hspace{1cm}
-    \subfigure[]{\includegraphics[width = 0.35\textwidth]{prog_tete_chercheuse2}}
+    \subfigure[]{\includegraphics[width = 0.35\textwidth]{homing_thymio2}}
     \caption{Thymio tête chercheuse}
     \label{fig.prog_tete_chercheuse}
 \end{figure}
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fait que Thymio suive une ligne en étant bleu et, s'il la perd, qu'il devienne rouge et la recherche à gauche et à droite jusqu'à ce qu'il la retrouve.
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui fasse que Thymio devienne bleu lorsqu'il suit une ligne et qu'en cas de perte de la ligne, il devienne rouge et parte à sa recherche et ceci jusqu'à ce qu'il la retrouve.
 \end{bclogo}

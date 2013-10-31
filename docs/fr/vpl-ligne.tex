@@ -1,21 +1,23 @@
-\chap{Thymio est sur un piste}\label{ch.line}
+\chap{Thymio est sur une piste}\label{ch.line}
 
-Imaginez un entrepôt gigantesque. Des robots sont désignés pour aller chercher ou déposer du matériel à l'intérieur. Il leur faut un moyen de retrouver leur chemin. Nous pourrions peindre des lignes sur le sol pour les guider!
+Une promenade en montagne  peut sembler être une activité très simple. Il suffit d'enfiler une paire de chaussures de marche et de suivre le chemin. Pour un robot, suivre un chemin peut être très utile! Mais pour suivre un chemin, il faut encore le voir\ldots
 
-\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui permet à Thymio de suivre une ligne noir sur une table blanche!
+\begin{bclogo}[couleur = pink!30, arrondi = 0.1, logo = \bccrayon, ombre = true]{Challenge!}Écrivez un programme en utilisant VPL qui permet à Thymio de suivre une ligne noire sur une table blanche!
 \end{bclogo}
 
 {\raggedleft \hfill Programme \bu{follow-line.aesl}}
 
-Suivre une ligne sur le sol est un bon exemple du genre de difficultés rencontrées en robotique. La ligne peut-être mal dessinée, de la poussière ou de la saleté peut la recouvrir, le robot peut rencontrer des obstacles... Il faut donc créer, ce que nous appelons,  un contrôleur. Il aura pour tâche de dicter la vitesse du robot, sa direction, etc...
+Suivre une ligne sur le sol est un bon exemple du genre de difficultés rencontrées en robotique. La ligne peut-être mal dessinée, de la poussière ou de la saleté peuvent la recouvrir, le robot peut rencontrer des obstacles... Il faut donc créer, ce que nous appelons,  un contrôleur. Il aura pour tâche de dicter la vitesse du robot, sa direction, etc...
 
 \sect{Quel genre de ligne}
 
-Pour suivre une ligne, nous allons utiliser les détecteurs de sol que nous avons déjà utilisé dans \cref{Chap.Thymio.bouge}. Rappelons qu'il s'agit des même capteurs que ceux qui se trouve à l'avant et à l'arrière de Thymio. Ils envoient de la lumière infrarouge (invisible pour l'oeil humain) et regarde combien de cette lumière est renvoyée.
+Pour suivre une ligne, nous allons utiliser les détecteurs de sol que nous avons déjà utilisés dans \cref{Chap.Thymio.bouge}. Rappelons qu'il s'agit des mêmes capteurs que ceux qui se trouvent à l'avant et à l'arrière de Thymio. Ils envoient de la lumière infrarouge (invisible pour l'oeil humain) et analysent la quantité de lumière renvoyée.
 
-Si vous poser Thymio sur une table blanche, ou du moins de couleur claire, beaucoup de lumière sera réfléchie, donc cet événement sera déclenché: \blk{lots-of-light}. Au contraire, si Thymio se trouve sur une surface foncée, noir par exemple, seulement un peu de lumière sera réfléchie, c'est donc cet événement-ci qui sera déclenché: \blk{little-light}.
+Si vous poser Thymio sur une table blanche, ou du moins de couleur claire, beaucoup de lumière sera réfléchie, donc cet événement sera déclenché: \blk{lots-of-light}. Au contraire, si Thymio se trouve sur une surface foncée, noire par exemple, un peu de lumière sera réfléchie, c'est donc cet événement-ci qui sera déclenché: \blk{little-light}.
 
-Pour détecter une ligne, Thymio doit donc suivre une trace sombre sur un environnement claire, ou l'inverse. Vous pouvez donc dessiner ou peindre une ligne noire sur une feuille blanche. Vous pouvez également utiliser un gros scotch noir que vous coller sur une table blanche, par exemple. La ligne devrait faire au minimum 5 centimètres de large pour que les deux capteurs sous Thymio puisse la détecter. Vous pouvez voir un exemple sur \cref{fig.tape}.
+Pour détecter une ligne, Thymio doit donc suivre une trace sombre sur un environnement claire, ou l'inverse. Ce qui est important, c'est le contraste entre les deux environnements. Vous pouvez donc dessiner ou peindre une ligne noire sur une feuille blanche. Vous pouvez également utiliser un gros scotch noir que vous coller sur une table blanche ou un scotch blanc sur une table noir\ldots 
+
+La ligne doit faire au minimum 5 centimètres de large pour que les deux capteurs sous Thymio puisse la détecter correctement. Vous pouvez voir un exemple sur \cref{fig.tape}.
 
 \begin{figure}
 \begin{center}
@@ -25,12 +27,12 @@ Pour détecter une ligne, Thymio doit donc suivre une trace sombre sur un enviro
 \end{figure}
 
 
-\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Pour profiter pleinement de Thymio, assurez-vous d'avoir un câble USB assez long, des rallonges peuvent être trouvées dans tous les magasins d'informatique.
+\begin{bclogo}[couleur = blue!30, arrondi = 0.1, logo = \bcinfo, ombre = true]{Truc et astuce!}Pour profiter pleinement des potentialités de Thymio, assurez-vous d'avoir un câble USB assez long, des rallonges peuvent être trouvées dans tous les magasins d'informatique.
 \end{bclogo}
 
 \sect{Thymio s'arrête, Thymio avance}
 
-Le premier pas pour faire suivre une ligne à Thymio est de le faire avancer s'il est sur la ligne et de le faire s'arrêter s'il ne se trouve pas sur cette dernière. Comme expliqué précédemment, si Thymio se trouve sur une surface blanche, donc à côté de la ligne, beaucoup de lumière sera réfléchie sur ses capteurs inférieurs. Il faut donc qu'il s'arrête puisqu'il n'est pas sur la ligne. Ensuite, si Thymio se trouve sur la ligne, peu de lumière sera réfléchie sur ses capteurs inférieurs. Il faut donc le faire avancer s'il ne détecte que peu de lumière. Nous avons donc deux paires événement-action qui sont illustrée sur \cref{fig.start-stop}.
+Le premier pas pour faire suivre une ligne à Thymio est de le faire avancer s'il est sur la ligne et de le faire s'arrêter s'il ne se trouve pas sur cette dernière. Comme expliqué précédemment, si Thymio se trouve sur une surface blanche, donc à côté de la ligne, beaucoup de lumière sera réfléchie sur ses capteurs inférieurs. Il faut donc qu'il s'arrête puisqu'il n'est pas sur la ligne. Ensuite, si Thymio se trouve sur la ligne, peu de lumière sera réfléchie sur ses capteurs inférieurs. Il faut donc le faire avancer s'il ne détecte que peu de lumière. Nous avons donc deux paires événement-action qui sont illustrées sur \cref{fig.start-stop}.
 
 \begin{figure}[h]
 \begin{center}
@@ -52,7 +54,7 @@ Comme nous avons deux conditions, il nous faut deux paires événement-action, c
 
 \begin{figure}[h]
     \centering
-    \subfigure[Thymio à moitié sur la ligne, vue du dessus]{ \label{fig.too-right} \includegraphics[width = 0.3\textwidth]{thymio_ligne}}
+    \subfigure[Thymio à moitié sur la ligne, vue du dessus]{ \label{fig.too-right} \includegraphics[width = 0.3\textwidth]{thymio_half_on_line}}
     \hspace{1cm}
     \subfigure[Trop à droite\ldots Trop à gauche]{ \label{fig.follow-line} \includegraphics[width = 0.36\textwidth]{line-controller}}
     \caption{Un contrôleur pour suivre une ligne}
@@ -60,13 +62,13 @@ Comme nous avons deux conditions, il nous faut deux paires événement-action, c
 
 \sect{Régler les paramètres}
 
-Il est assez facile de comprendre que Thymio doit tourner à gauche s'il est trop à droite de la ligne et vis-versa. La vraie question est plutôt de combien doit-il tourner? Doit-il s'arrêter et tourner sur lui-même? Doit-il simplement corriger légèrement? Ou au contraire de manière plus sèche? C'est tout l'art de la création de contrôleur que de \textit{régler les paramètres} de ce contrôleur.
+Il est assez facile de comprendre que Thymio doit tourner à gauche s'il est trop à droite de la ligne et vis-versa. La vraie question est plutôt de combien doit-il tourner? Doit-il s'arrêter et tourner sur lui-même? Doit-il simplement corriger légèrement sa trajectoire? Ou au contraire le faire de manière plus sèche? C'est tout l'art de la création d'un contrôleur que de \textit{régler les paramètres} de ce contrôleur.
 
-Mais qu'est que sont ces \textit{paramètres}?
+Mais quels sont ces \textit{paramètres}?
 
-Ils varient totalement d'une application à une autre. Ils sont des entités que le créateur du contrôleur doit choisir afin d'obtenir le comportement désiré. Dans notre cas, il s'agit de la vitesses des roues dans les différents cas possibles. 
+Ils varient totalement d'une application à une autre. Ils sont des entités que le créateur du contrôleur doit choisir afin d'obtenir le comportement désiré. Dans notre cas, il s'agit de la vitesse des roues dans les différents cas possibles. 
 
-Thymio doit-il aller vite lorsqu'il est sur la ligne ou, au contraire, lentement? En allant vite, vous améliorerez son efficacité pour se déplacer d'un point à un autre mais vous risquez de le faire quitter la ligne avant qu'il ne se rende compte qu'il est en train de sortir, un peu comme si vous allez trop vite en voiture dans un virage serré. Pour ce \textit{paramètre}, il faudra trouver un bon compromis.
+Thymio doit-il aller vite lorsqu'il est sur la ligne ou, au contraire, lentement? En allant vite, vous améliorerez son efficacité pour se déplacer d'un point à un autre mais vous risquez de le faire quitter la ligne avant qu'il ne s'en rende compte, un peu comme si vous allez trop vite en voiture dans un virage serré. Il faudra donc trouver un bon compromis pour le paramètre vitesse.
 
 Une fois que Thymio remarque qu'il quitte la ligne, que doit-il faire? S'il s'arrête complètement et tourne sur lui-même, vous vous assurez qu'il ne quitte pas la ligne mais ses mouvements seront très saccadés. S'il corrige simplement sa trajectoire en diminuant la vitesse d'une roue, il se déplacera avec fluidité, mais il risque de quitter complètement la ligne\ldots 
 

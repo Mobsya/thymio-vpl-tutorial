@@ -1,4 +1,4 @@
-\chap{Let's Get Moving}
+\chap{Let's Get Moving}\label{c.moving}
 
 \sect{Move forwards and backwards}
 
@@ -54,10 +54,6 @@ reaches the end of a table.
 \centeredbox{\textbf{Warning! Whenever the robot moves on a table, be
 ready to catch it in case it does fall off.}}
 
-We assume that the table is colored with a light color (my desk is light
-gray). If your table is colored with a dark color, you will have to
-modify the program.
-
 Turn the Thymio-II on its back. You will see at the front two small
 black rectangles with optical elements inside (Figure~\ref{fig.bottom}).
 These are the \emph{ground sensors} that can detect if the amount of
@@ -65,6 +61,10 @@ reflected light is large or small. On a light-colored table, there is a
 lot of reflected light, but when the front of the robot goes past the
 end of the table, there will be much less reflected light. When this is
 detected we want the robot to stop.
+
+\centeredbox{\textbf{We assume that the table is colored with a light
+color. If your table is colored with a dark color, you will have to
+modify the program.}}
 
 Drag the ground sensor event \blk{event-ground} into the program. There
 are two small squares at the top of the icon. Clicking the squares
@@ -101,4 +101,6 @@ edge of the desk.
 \sect{Exercise \thechapter.1}
 
 Experiment with the speed of the robot. At maximum speed, is the robot
-still able to stop and not fall off the table?
+still able to stop and not fall off the table? If not, at what speed
+does the robot start to fall off? Can you stop the robot from falling
+off when it is going backwards?

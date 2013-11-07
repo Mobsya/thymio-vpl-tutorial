@@ -3,7 +3,9 @@ targets=$(patsubst %,thymio-vpl-tutorial-%.zip,$(langs))
 zipdeps=authors.txt $(wildcard programs/*.aesl) $(wildcard answers/*.aesl)
 texdeps=$(wildcard images/*.png) vpl.sty 
 
-thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(wildcard docs/%/*.tex) $(texdeps) Makefile build/%
+# TODO: fix $(wildcard docs/*/*.tex), find why $(wildcard docs/%/*.tex) does not work
+
+thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(wildcard docs/*/*.tex) $(texdeps) Makefile build/%
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
 	mv build/$*/vpl.pdf $@

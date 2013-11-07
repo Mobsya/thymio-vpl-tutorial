@@ -1,24 +1,27 @@
-targets=thymio-vpl-tutorial-en.zip thymio-vpl-tutorial-de.zip
-deps=$(wildcard */*/*.tex) $(wildcard images/*.png) $(wildcard programs/*.aesl) vpl.sty authors.txt
+langs=en de
+targets=$(patsubst %,thymio-vpl-tutorial-%.zip,$(langs))
+zipdeps=authors.txt $(wildcard programs/*.aesl) $(wildcard answers/*.aesl)
+texdeps=$(wildcard images/*.png) vpl.sty 
 
-thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(deps) Makefile build/%
+thymio-vpl-tutorial-%.pdf: docs/%/vpl.tex $(wildcard docs/%/*.tex) $(texdeps) Makefile build/%
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
 	cd build/$* && TEXINPUTS=../../docs/$*:${TEXINPUTS} pdflatex ../../$<
-	cp build/$*/vpl.pdf $@
+	mv build/$*/vpl.pdf $@
 
-thymio-vpl-tutorial-answers-%.pdf: answers/%/vpl-answers.tex $(deps) Makefile build/%
+thymio-vpl-tutorial-answers-%.pdf: answers/%/vpl-answers.tex $(texdeps) Makefile build/%
 	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
 	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
-	cp build/$*/vpl-answers.pdf $@
+	mv build/$*/vpl-answers.pdf $@
 
-thymio-vpl-ref-card-child-%.pdf: ref-card-child/%/vpl-ref-card-child.tex $(deps) Makefile build/%
+thymio-vpl-ref-card-child-%.pdf: ref-card-child/%/vpl-ref-card-child.tex $(texdeps) Makefile build/%
 	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
 	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
-	cp build/$*/vpl-ref-card-child.pdf $@
+	mv build/$*/vpl-ref-card-child.pdf $@
 
-thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf
+thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf readmes/%/readme.txt $(zipdeps)
 	rm -f thymio-vpl-tutorial-$*.zip
-	zip $@ $^ programs/*.aesl answers/*.aesl authors.txt
+	touch thymio-vpl-tutorial-$*.pdf thymio-vpl-tutorial-answers-$*.pdf
+	zip $@ thymio-vpl-tutorial-$*.pdf thymio-vpl-tutorial-answers-$*.pdf $(zipdeps)
 	cd readmes/$* && zip ../../$@ *
 
 build/%:
@@ -35,4 +38,4 @@ distclean: clean
 	rm -f *.pdf $(targets)
 
 .PHONY: clean buildclean distclean all dist
-.PRECIOUS: build/
+.PRECIOUS: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf thymio-vpl-ref-card-child-%.pdf build/%

@@ -1,223 +1,216 @@
-%\chap{A Pet Robot}\label{ch.pet}
-\chap{Ein Roboterhaustier}\label{ch.pet}
+\chap{Ein Roboterhaustier}
+\label{ch.pet}
 
-%The robots we build in this chapter are called \emph{autonomous robots}.
-%They display independent behavior that is normally associated with
-%living things like cats and dogs. The behavior is achieved by
-%\textit{feedback}: the robot will sense that something occurs in the
-%world and modify its behavior accordingly.
-In diesem Kapitel machen wir den Thymio-II zu einem \emph{autonomen Roboter}.
+In diesem Kapitel machen wir den Thymio-II zu eimen \emph{autonomen Roboter}.
 Wir programmieren ihn so, dass er unabhängige Verhalten hat, wie zum Beispiel
-Katzen oder Hunde. Diese Verhalten können wir mittels \textit{Rückführung}
+Katzen oder Hunde. Diese Verhalten können wir mittels \textit{Rückkkoppelung}
 erreichen: Der Roboter nimmt ein Ereignis in der Umwelt mit seinen Sensoren
 wahr und verändert seine Aktionen entsprechend.
 
-%\sect{The robot obeys you}
 \sect{Der Roboter gehorcht dir}
 
-%First, we will train the robot to obey. Normally, the robot stays in
-%place without moving; when it detects your hand in front of it, it will
-%move towards your hand.
-Zuerst lernen wir dem Roboter zu gehorchen. Und zwar so, das er sich
-normalerweise nicht bewegt; wenn er aber deine Hand vor sich wahrnimmt, soll er
+Zuerst lehren wir den Roboter, uns zu gehorchen. 
+Und zwar so, dass er sich normalerweise nicht bewegt; 
+wenn er aber deine Hand vor sich wahrnimmt, soll er
 zu deiner Hand fahren.
 
-%There are five horizontal distance sensors on the front of the Thymio-II
-%robot and two on the rear of the robot.\footnote{The technical term is
-%\emph{proximity sensor}, but we will use the simpler term
-%\emph{horizontal distance sensor}.} Bring your hand slowly towards the
-%sensors; when it gets close, a red light will appear around the sensors
-%that detect your hands (Figure~\ref{fig.detect}).
 Der Roboter vorne hat fünf horizontale Distanzsensoren\footnote{Der richtige
  (technische) Ausdruck ist \emph{Näherungssensor}, aber wir verwenden hier
- das einfachere Wort \emph{Distanzsensor}}. Führe deine Hand langsam näher an
+ das einfachere Wort \emph{Distanzsensor} oder nur Sensor. Führe deine Hand langsam näher an
  den Roboter. Wenn deine Hand nahe genug ist, leuchtet ein kleines, rotes
-Licht neben dem Sensor auf und zeigt somit an, dass die Hand erkannt wurde.
+Licht neben dem Sensor auf und zeigt somit an, dass die Hand erkannt wurde.}
 und an seiner Hinterseite zwei. 
 
 \begin{figure}
 \begin{center}
 \gr{detect}{.6}
-%\caption{The front of the Thymio-II. Two sensors detect the fingers.}
 \caption{Die Vorderseite des Thymio-II. Zwei Distanzsensoren haben die Finger
 erkannt.}
 \label{fig.detect}
 \end{center}
 \end{figure}
 
-The block \blk{event-prox} is used to sense if something is close to the
-sensor or not. In either case it causes an event to occur. The small
-gray squares (five on the front and two on the rear) are used to specify
-when an event occurs. Clicking on a square will change it from gray to
-white to red and back to gray.
+Der Block \blk{event-prox} wird gebraucht, 
+um zu erfahren, ob etwas nahe am Sensor ist oder nicht. 
+Beide Fälle werden als Ereignis gewertet. 
+Die schmalen, grauen Quadrate (fünf vorne und zwei hinten) können wahrnehmen,
+ wann ein Ereignis stattfindet. 
+ Indem auf ein Quadrat gedrückt wird, 
+ ändert sich dieses von Grau zu Weiss, 
+ von Weiss zu Rot und zurück auf Grau.
 
 \begin{itemize}
-\item \textbf{Gray}: The value of the sensor does not influence the
-program.
-\item \textbf{Red}: An event occurs when the sensor detects an object
-close to it.
-\item \textbf{White}: An event occurs when the sensor detects that there
-is \emph{no} object close to it.
+\item \textbf{Grau}: Der Sensor beeinflusst das Programm nicht.
+\item \textbf{Rot}: Eine Aktion wird ausgelöst, falls ein Objekt im Bereich des Sensors angegeben wird.
+\item \textbf{Weiss}: Eine Aktion wird gestartet, falls \emph{kein} Objekt im Bereich des Sensors angegeben wird.
 \end{itemize}
 
-To implement the behavior, we need the two event-action pairs shown in
-Figure~\ref{fig.follow-hand}. In the first pair, the center front sensor
-is white and the associated action is that the motors are off.
-Therefore, when the robot sits on the table it will not move, and it
-will stop if it had been moving. In the second pair, the center front
-sensor is red and the associated action is that both motors run quite
-fast. Therefore, when you bring your hand near the front of the robot,
-an event occurs that causes the robot to move forward.
+Damit  ein bestimmtes Verhalten des Roboters ausgelöst wird, 
+brauchen wir die beiden Ereignis-Aktions Paare, 
+wie in der Figure~\ref{fig.follow-hand} gezeigt. 
+Das erste Paar besteht aus dem zentralen vorderen Sensor mit der Einstellung weiss. 
+Die dazugehörige Aktion ist, dass die Motoren ausgeschaltet werden. 
+Somit wird der Roboter stehen bleiben, falls er schon still gestanden ist oder anhalten, 
+falls er in Bewegung war. 
+Das zweite Paar besteht aus dem zentralen vorderen Sensor mit der Einstellung rot. 
+Die dazugehörige Aktion ist, dass beide Motoren schnell laufen. 
+Falls Du nun deine Hand vor den Roboter hältst, wird eine Aktion ausgelöst, die bewirkt, 
+dass sich der Roboter auf die Hand zubewegt.
 
 \begin{figure}
 \begin{center}
 \gr{likes-forward}{.4}
-\caption{Moving towards your hand}\label{fig.follow-hand}
+\caption{Bewegung zu der Hand hin}
+\label{fig.follow-hand}
 \end{center}
 \end{figure}
 
+\sect{Steuere den Thymio-II Roboter}
 
-\sect{Steering the Thymio-II robot}
+Der Thymio-II Roboter hat kein Steuerrad wie ein Auto oder ein Lenker wie ein Fahrrad.
+Wie kann der Roboter nun gelenkt werden? Der Roboter benutzt ein \emph{Differentialgetriebe},
+welches ähnlich funktioniert wie bei Raupenfahrzeuge z.B. einem Bulldozer (Figure~\ref{fig.bull}).
+Die gewünschte Richtung wird anstelle eines Steuerrads mit \emph{unterschiedlichen} Geschwindigkeiten
+des linken und des rechten Rades bzw. der Raupe erreicht. Dreht das rechte Rad schneller als das linke,
+biegt das Fahrzeug nach links ab und dreht das linke Rad schneller als das rechte, biegt das Fahrzeug rechts ab.
 
-The Thymio-II robot does not have a steering wheel like a car or a
-handlebar like a bicycle. So how can it turn? The robot uses
-\emph{differential drive}, which is familiar from tracked vehicles like
-bulldozers (Figure~\ref{fig.bull}). Instead of turning a handlebar the
-desired direction, the left and right tracks or wheels are driven by
-individual motors at \emph{different} speeds. If the right track moves
-faster than the left one, the vehicle turns left, and if the left track
-moves faster than the right one, the vehicle turns right.
-
-The greater the difference between the speeds, the tighter the turn. To
-achieve a large difference of speeds, you can drive one track forward
-and one track backwards. In fact, if one track moves forward at a
-certain speed, while the other track moves backwards at the \emph{same}
-speed, the vehicle turns in place.
+Je grösser der Unterschied in den Geschwindigkeiten,
+desto enger  wird die Kurve. Indem die Räder in unterschiedliche Richtungen drehen,
+wird ein möglichst grosser Unterschied der Geschwindigkeiten erreicht. 
+Tatsächlich dreht sich das Fahrzeug auf der Stelle, 
+falls sich die Räder mit der genau \emph{gleichen} 
+Geschwindigkeit in entgegengesetzter Richtung bewegen.
 
 \begin{figure}
 \begin{center}
 \gr{bulldozer}{0.35}
-\caption{A bulldozer with tracks for differential drive}\label{fig.bull}
+\caption{Ein Bulldozer mit Raupenantrieb} 
+\label{fig.bull}
 \end{center}
 \end{figure}
 
-In VPL you can implement differential drive on the Thymio-II robot by
-setting the left and right sliders of a motor action block are set to
-different values. In the block \blk{differential}, the left slider has
-been set for fast speed backwards, while the right slider has been set
-for fast speed forwards. The result is that the robot will make a tight
-left turn, as indicated by the small image of the robot within the motor
-action block.
+Mit VPL kann das Differentialgetriebe des Thymio-II Roboters ausgeführt werden,
+indem die Regler für den linken und den rechten Motor im Aktionsblock auf verschiedene Werte eingestellt werden.
+Im Aktionsblock \blk{differential} wird der linke Regler auf schnelle Geschwindigkeit rückwärts 
+und der rechte Regler auf schnelle Geschwindigkeit vorwärts eingestellt. 
+Als Resultat wird der Roboter eine enge Linkskurve vollführen, 
+wie dies auf dem kleinen Bild des Roboter bzw. des Motoraktionsblocks dargestellt ist.
 
-Experiment with an event-action pair such as \blk{turning}.
+Experimentiere mit dem Ereignis-Aktions Paar \blk{turning}.
 
-Set the left and right sliders, run the program
-and touch the center button; to stop the robot click on \blksm{stop}.
-Now you can change the sliders and try again.
+Stelle den linken und den rechten Regler ein.
+Lass das Programm laufen und berühre den zentralen Schalter.
+Um den Roboter zu stoppen, klicke auf \blksm{stop}.
+Nun kannst Du die Regler ändern und es erneut ausprobieren.
 
+\sect{Der Roboter mag dich}
 
-\sect{The robot likes you}
-
-A real pet follows you around. To make the robot follow your hand, add
-two additional event-action pairs: if the robot detects an object in
-front of its left-most sensor, it turns to the left, while if it detects
-an object in front of its right-most sensor, it turns to the right.
+Ein echtes Haustier folgt dir.
+Damit der Roboter deiner Hand folgt,
+musst du zwei weitere Ereignis-Aktions Paare hinzufügen.
+Falls der Roboter ein Objekt vor seinem
+ganz links platzierten Distanzsensor wahrnimmt,
+soll er nach links und falls er ein er ein Objekt
+vor seinem ganz rechts platzierten Distanzsensor wahrnimmt, soll er nach rechts abbiegen.
 
 {\raggedleft \hfill Program file \bu{likes.aesl}}
 
-The program for the robot that likes you consists of two event-action
-pairs (Figure~\ref{fig.likes}). Experiment with the sliders on each
-motor action block.
+Das Programm für "der Roboter mag Dich" besteht aus zwei Ereignis-Aktions Paaren
+(Figure~\ref{fig.likes}).
+Probiere die Regler an jedem Motoraktionsblock aus!
 
 \begin{figure}
 \begin{center}
 \gr{likes-turns}{0.4}
-\caption{The robot likes you}\label{fig.likes}
+\caption{Der Roboter mag dich}
+\label{fig.likes}
 \end{center}
 \end{figure}
 
-\sect{Exercise \thechapter.1}
+\sect{Übung \thechapter.1}
 
-Modify the pet robot so that it starts moving forward when the program
-is run and stops when it detects the edge of a table (or a strip of
-tape).
+Modifiziere den Haustierroboter so,
+dass er vorwärts fährt, falls das Programm am laufen ist
+und dass er stoppt, falls er das Ende des Tisches (oder ein Klebeband) wahrnimmt.
 
-\sect{Exercise \thechapter.2}
+\sect{Übung \thechapter.2}
 
-What happens if you change the order of
-the event-action pairs that you used in the previous exercise?
-
+Was passiert, falls Du die Reihenfolge des Ereignis-Aktions Paares änderst, 
+welches Du in der vorangegangenen Übung verwendet hast?
 
 \centeredbox{
 \begin{center}
-\textbf{Ground sensors and horizontal sensors}
+\textbf{Horizontale Sensoren und Bodensensoren}
+
 \end{center}
-Be careful not to confuse the behavior of the horizontal
-sensors with the behavior of the ground sensors.
+
+Pass auf, dass du das Verhalten
+der horizontalen Sensoren und der Bodensensoren nicht verwechselst.
+
 \begin{itemize}
 
-\item For the horizontal sensors, the white square specifies that an
-event will occur if there is \emph{nothing nearby}, while the red square
-specifies that an event will occur if there is \emph{something nearby}.
+\item Bei den horizontalen Sensoren bedeutet das weisse Quadrat, 
+dass ein Ereignis stattfinden wird, falls \emph{Nichts} in der Nähe ist, 
+während das rote Quadrat bedeutet, dass ein Ereignis stattfinden wird, 
+falls \emph{Etwas} in der Nähe ist.
 
-\item For the ground sensors, the white square specifies that an event
-will occur if \emph{only a little light is reflected from the surface},
-while the red square specifies that an event will occur \emph{if a lot
-of light is reflected from the surface}.
+\item Für die Bodensensoren, bedeutet das weisse Quadrat, dass ein Ereignis stattfinden wird, 
+falls \emph{nur ein wenig Licht, von der Oberfläche reflektiert wird}, 
+während das rote Quadrat bedeutet, dass ein Ereignis stattfindet, 
+falls \emph{viel Licht von der Oberfläche reflektiert wird}.
 
 \end{itemize}
 }
 
-As explained in Chapter~\ref{c.moving}, a lot of light will be reflected
-from a white surface, while very little light will be reflected from a
-black surface. You will have to experiment to determine when to click on
-a white square and when on a red square, depending on the floor or
-table where you place the robot.
+Wie im Kapitel~\ref{c.moving} erklärt,
+wird viel Licht von einer weissen Oberfläche
+und wenig Licht von einer schwarzen Oberfläche reflektiert.
+Je nach Boden oder Tisch musst du entscheiden,
+wann du auf das weisse oder das rote Quadrat drückst,
+abhängig vom Boden oder Tisch auf den du den Roboter setztst.
 
 \newpage
 
-\sect{The robot doesn't like you}
+\sect{Der Roboter mag dich nicht}
 
+Manchmal mag dein Roboterhaustier in schlechter Laune sein und von deiner Hand zurückweichen. Erstelle ein Programm, welches dieses Verhalten auslöst.
 Sometimes your pet may be in a bad mood and turn away from your hand.
 Write a program that causes this behavior in the robot.
 
 {\raggedleft \hfill Program file \bu{does-not-like.aesl}}
 
-Open the program for the pet that likes you and exchange the association
-of the events with the actions. Detection of an obstacle by the left
-sensor causes the robot to turn right, while detection of an obstacle by
-the right sensor causes the robot to turn left (Figure~\ref{fig.hates}).
+Öffne das Programm für den Haustierroboter, 
+der Dich mag und ändere die Zusammenhänge für die Ereignisse mit den Aktionen. 
+Das Erkennen eines Hindernisses beim linken Sensor bewirkt, 
+dass der Roboter nach rechts abbiegt, 
+während das Erkennen eines Hindernisses beim rechten Sensor bewirkt, 
+dass der Roboter nach links abbiegt (Figure~\ref{fig.hates}).
 
 \begin{figure}[htb]
 \begin{center}
 \gr{hates}{0.4}
-\caption{The robot doesn't you}\label{fig.hates}
+\caption{Der Roboter mag Dich nicht}
+\label{fig.hates}
 \end{center}
 \end{figure}
 
-\sect{Exercise \thechapter.3}
+\sect{Übung \thechapter.3}
 
-Experiment with the sensors. Instead of using sensors 0 and
-4:\footnote{The front horizontal sensors are numbered 0, 1, 2, 3, 4 from
-the left of the robot to its right. The rear sensors are numbered 5 for
-the left one and 6 for the right one.}
+Experimentiere mit der Auswahl der Sensoren.
+Verwende andere Sensoren anstelle von den Sensoren 0 und 4.
+:\footnote{Die horizontalen Sensoren werden vorne von links nach rechts wie folgt nummeriert 0,1,2,3,4.
+Die hinteren Sensoren sind Sensor Nummer 5 auf der linken und Sensor Nummer 6 auf der rechten Seite.}
 
 \begin{itemize}
-\item Use sensors 1 and 3 to turn the robot left and right,
-respectively.
-\item Use both sensors 0 and 1 to turn the robot left and both sensors 3
-and 4 to turn the robot right.
-\item Add event-action pairs for the rear sensors 5 and 6.
+
+\item Benutze Sensor 1 bzw. Sensor 3, um den Roboter nach links bzw. nach rechts abbiegen zu lassen.
+\item Benutze Sensoren 0 und 1 bzw. 3 und 4, um den Roboter nach links bzw. nach rechts abbiegen zu lassen.
+\item Füge Ereignis-Aktions Paare für die hinteren Sensoren 5 und 6 hinzu.
 \end{itemize}
 
-\sect{Setting the slides precisely (advanced)}
+\sect{Stelle die Regler genau ein (fortgeschritten)}
 
-It is difficult to set the sliders precisely so that, for example, both
-motors run at the same speed. By looking at the translation of the
-event-action pairs into a textual program you can improve the precision.
-The text is shown at the right of the VPL window.
-Here is the translation of the program where the
-pet likes you and follows you around.
+Es ist schwierig die Regler so präzise zu setzten, dass die Motoren z.B. mit exakt derselben Geschwindigkeit laufen. Indem die Übersetzung der Ereignis-Aktions Paare im Texteditor betrachtet werden, kann die Genauigkeit erhöht werden. Der Text ist auf der Rechten Seite des VPL Fensters angezeigt. Hier die Übersetzung des Programms, welches bewirkt, dass der Haustierroboter dich mag und Dir folgt. 
 
 \begin{small}
 \begin{verbatim}
@@ -241,16 +234,21 @@ onevent prox
 \end{verbatim}
 \end{small}
 
-The line \p{onevent prox} means: whenever the event of sampling the
-horizontal distance sensors (the \emph{proximity} sensors) occurs (it
-occurs 10 times a second), the lines that follow will be run. Values are
-read from the sensors and compared with a low value of 400 and a high
-value of 500. According to the results of the comparisons, the motor
-speeds are changed. For example, if the center sensor 2 senses a value
-higher than 500 (meaning that something is near it), the target speeds
-of both the left and right motors will be set to 300.
+Die Zeile \p{onevent prox} bedeutet:
+Immer wenn das Ereignis "Messen der horizontalen Distanz" des Sensors
+(des \emph{Näherungssensors} stattfindet (dies findet 10 mal pro Sekunde statt),
+die folgenden Zeilen des Programms ausgeführt werden.
+Die gemessenen Werte werden mit einem tiefen Wert von 400
+und einem hohen Wert von 500 verglichen. Die Geschwindigkeit des Motors wird
+nun anhand des Resultats dieses Vergleiches angepasst.
+Falls der zentrale Sensor 2 z.B. einen Wert höher als 500 misst
+(dies bedeutet, dass Etwas in der Nähe ist),
+werden die Geschwindigkeiten für beide Motoren links und rechts auf 300 eingestellt.
 
-Experiment with moving the sliders on the motor action blocks. You will
-see that the target speeds of the motors jump by 50 in the range $-$500
-to 500. By moving the sliders carefully, you can set the speeds to any
-of these values.
+Experimentiere mit den Einstellungen
+der Regler des Aktionsblocks Motor. Du wirst sehen,
+dass die Geschwindigkeit der Motoren in 50iger Schritten von $-$500
+bis 500 verändert werden kann.
+Indem die Regler vorsichtig eingestellt werden,
+kannst Du sehen, dass Du die Geschwindigkeit
+beliebig auf diese Werte einstellen kannst.

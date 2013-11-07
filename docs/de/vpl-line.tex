@@ -1,74 +1,86 @@
-\chap{The Robot Finds Its Way by Itself}\label{ch.line}
+\chap{Der Roboter findet seinen Weg selbst}
+\label{ch.line}
 
-In this chapter we program the robot to solve a real-world problem:
-\emph{line following}. Consider a warehouse with robotic carts that
-bring objects to a central dispatching area. There are lines painted on
-the floor of the warehouse and the robot receives instructions to follow
-certain lines until it reaches the storage bin of the desired object.
+In diesem Kapitel programmieren wir den Roboter so,
+wie Roboter auch zur Lösung echter Probleme benutzt werden:
+\emph{Der Roboter folgt der Linie}.
+Stell Dir ein Lagerhaus mit Roboterwagen vor,
+welche Gegenstände von einer zentralen Verteilstelle herbringen.
+Dazu werden Linien auf den Boden des Lagerhauses gezeichnet
+und die Roboter erhalten die Anweisung bestimmten Linien zu folgen,
+bis diese den Lagerplatz für den gewünschten Gegenstand erreichen.
 
-Write a program that causes the robot to follow a line on the floor.
+Schreibe ein Programm, welches den Roboter einer Linie auf dem Boden folgen lässt.
 
 {\raggedleft \hfill Program file \bu{follow-line.aesl}}
 
-The line-following task brings out all the uncertainty of constructing
-robots in the real world. The line might not be perfectly straight, dust
-may obscure part of the line, dirt may cause one wheel to move more
-slowly than the other one. To follow a line, the robot must use a
-\emph{controller} that decides how much power to apply to each motor
-depending on the data received from the sensors.
+Die Aufgabe "Der Roboter folgt der Linie" bringt
+alle Unsicherheiten der Konstruktion von Robotern in der echten Welt zutage.
+Die Linie mag nicht perfekt gerade sein,
+Staub kann auf der Linie liegen und diese abdecken,
+Dreck führt eventuell dazu, dass ein Rad weniger schnell ist wie das Andere.
+Damit der Roboter der Linie folgt, benötigt der Roboter eine
+\emph{Steuereinheit} die entscheidet wie viel Leistung jeder Motor benötigt,
+abhängig von den Daten, die von den Sensoren geliefert werden.
 
-\sect{Setup}
+\sect{Vorbereitung}
 
-If the floor is light-colored, the sensor will detect a lot of reflected
-light and the event \blk{lots-of-light} will occur. We need a line
-that will cause an event to occur when there is little reflected light
-\blk{little-light}. This is easy to do by placing black
-electrician's tape on the floor (Figure~\ref{fig.tape}). The tape must
-be wide enough so that both ground sensors will sense black when the
-robot is successfully following the tape. A tape of width of 5
-centimeters is sufficient for the robot to follow the line even if there
-are small deviations.
+Falls der Boden von heller Farbe ist,
+wird der Sensor viel reflektiertes Licht wahrnehmen und das Ereignis  \blk{lots-of-light} wird ausgelöst.
+Somit brauchen wir eine Linie, die eine Ereignis auslöst, 
+falls wenig Licht reflektiert wird \blk{little-light}.
+Das lässt sich einfach mit dem Anbringen eines schwarzen
+Isolierklebebandes auf den Boden bewerkstelligen.
+Das Klebeband muss breit genug sein,
+dass beide Bodensensoren schwarz erkennen,
+solange der Roboter erfolgreich dem Klebeband folgt.
+Ein Klebeband mit der Breite von 5 Zentimetern genügt dem Roboter,
+um dem Klebeband folgen zu können sogar mit geringen Abweichungen.
 
 \begin{figure}
 \begin{center}
 \gr{blacktape}{.6}
-\caption{The Thymio-II robot following a line of tape}\label{fig.tape}
+\caption{Der Thymio-II Roboter folgt der Klebebandlinie}
+\label{fig.tape}
 \end{center}
 \end{figure}
 
-Make sure that you use a USB cable that is long enough (say, two
-meters), so that the Thymio-II can stay connected to the computer even
-as it moves.
+Versichere dich,
+dass das USB Kabel lange genug ist (ca. die 2m),
+damit der Thymio-II auch in Bewegung mit dem Computer verbunden bleibt.
 
-\sect{Start and stop the robot}
+\sect{Starte und Stoppe den Roboter}
 
-The robot must move forward whenever \emph{both} sensors detect the
-black tape and stop whenever \emph{both} sensors detect the floor. The
-event-pairs are shown in Figure~\ref{fig.start-stop}. The first pair
-stops the motor when both ground sensors detect the floor, while the
-second pair causes the robot to move forwards when both sensors detect
-the tape.
+Der Roboter muss sich vorwärts bewegen,
+falls \emph{beide} Sensoren das schwarze Klebeband erkennen
+und stoppen, falls \emph{beide} Sensoren den Boden erkennen.
+Die Ereignis-Aktions Paare sind in der Folgenden Figure~\ref{fig.start-stop} gezeigt.
+Das erste Paar stoppt die Motoren, falls beide Sensoren den Boden erkennen,
+während das zweite Paar den Roboter veranlasst sich vorwärts zu bewegen,
+falls beide Sensoren das Klebeband erkennen.
 
 \begin{figure}
 \begin{center}
 \gr{line-forward}{.4}
-\caption{Start and stop the robot}\label{fig.start-stop}
+\caption{Starte und stoppe den Roboter}
+\label{fig.start-stop}
 \end{center}
 \end{figure}
 
-The next step is to program the controller that follows the line:
+Der nächste Schritt besteht im Programmieren der Steuerungseinheit,
+die den Roboter der Linie folgen lässt.
+
 \begin{itemize}
 
-\item If the robot moves off the tape to the \emph{left}, the
-\emph{left} sensor will detect the floor while the \emph{right} sensor
-is still detecting the tape; in that case the robot should turn slightly
-to the \emph{right} (Figure~\ref{fig.one-off}).
+\item Falls der Roboter nach der \emph{linken} Seite vom Klebeband abkommt,
+wird der \emph{linke} Sensor den Boden erkennen,
+während der \emph{rechte} Sensor immer noch das Klebeband erkennt.
+In diesem Fall soll der Roboter ein wenig nach \emph{rechts} abbiegen
 
-\item If the robot moves off the tape to the \emph{right}, the
-\emph{right} ground sensor will detect the floor while the \emph{left}
-sensor is still detecting the tape; in that case the robot should turn
-slightly to the \emph{left}.
-
+\item Falls der Roboter nach der \emph{rechten} Seite vom Klebeband abkommt,
+wird der \emph{rechte} Sensor den Boden erkennen,
+während der \emph{linke} Sensor immer noch das Klebeband erkennt.
+In diesem Fall soll der Roboter ein wenig nach \emph{links} abbiegen (Figure~\ref{fig.one-off}).
 \end{itemize}
 
 
@@ -95,92 +107,110 @@ slightly to the \emph{left}.
 \put(25,75){\vector(1,1){20}}
 }
 \end{picture}
-\caption{The left sensor is off the tape and the right sensor is on the tape}
+\caption{Der linke Sensor ist nicht auf dem Klebeband, der rechte Sensor ist auf dem Klebeband}
 \label{fig.one-off}
 \end{center}
 \end{figure}
 
-Two event-action pairs are needed (Figure~\ref{fig.follow-line}).
+Zwei Ereignis-Aktions Paare werden gebraucht  (Figure~\ref{fig.follow-line}).
 
-\sect{Setting the parameters}
+\sect{Setzen der Parameter}
 
-It is easy to see that if the robot runs off the left edge of the tape
-as shown in Figure~\ref{fig.one-off}, it has to turn to the right, but
-how tight should the turn be? If the turn is too gentle, the right
-sensor might \emph{also} run off the tape before the robot turns back;
-if the turn is too aggressive, it might cause the robot to run off the
-other end of the tape. In any case, aggressive turns can be dangerous to
-the robot and whatever it is carrying.
+Es ist einfach zu erkennen,
+dass der Roboter, falls er von der linken Seite des Klebebands abkommt,
+wie in Figur (Figure~\ref{fig.follow-line}) nach rechts drehen muss,
+aber wie weit nach rechts? Falls die Drehung zu gering ausfällt,
+wird der rechte Sensor eventuell \emph{auch} vom Klebeband abkommen,
+bevor der Roboter auf die Spur zurückgelangt.
+Falls der Roboter jedoch zu stark nach rechts dreht,
+riskiert der Roboter die Klebeband Spur auf der anderen Seite zu verlieren.
+In jedem fall sind starke Drehungen gefährlich für den Roboter und jegliches Gut,
+welches er transportiert.
 
 \centeredbox{\begin{center} \textbf{Parameters} \end{center}
-\emph{Parameters} are values that can be changed without affecting the
-overall structure of the event-action pairs that form the program.}
+\emph{Parameter} sind Werte,
+welche geändert werden können
+ohne die Gesamtstruktur der Ereignis-Aktions Paare zu verändern,
+die das Programm bilden.}
 
 \begin{figure}
 \begin{center}
 \gr{line-controller}{.4}
-\caption{Following the line}\label{fig.follow-line}
+\caption{Folge der Linie}
+\label{fig.follow-line}
 \end{center}
 \end{figure}
 
-The parameters that you can set in this program are the speeds of the
-left and right motors in each motor action block. You will need to
-experiment with these values until the robot runs \emph{reliably}. Here,
-reliably means that the robot can successfully follow the line if you
-run the program several times. Since each time you place the robot on
-the line you might place it at a slightly different position and
-pointing in a slightly different direction, it is not enough to test the
-program only once.
+Die Parameter, welche in diesem Programm verändert werden können,
+sind die Geschwindigkeiten des linken und des rechten Motors auf jedem Aktionsblock der Motoren.
+Experimentiere solange mit diesen Werten,
+bis der Roboter \emph{zuverlässig} läuft.
+Zuverlässig heisst hier, dass der Roboter mit den selben Programmeinstellungen mehrmals erfolgreich der Linie folgt.
+Platziere bei jedem Versuch den Roboter ein wenig anders in Bezug auf die Richtung und Position zum Klebeband.
+Das Programm muss mehrmals getestet werden, um die Zuverlässigkeit zu überprüfen.
 
-Surprisingly, the forward speed of the robot on the tape is also an
-important parameter. If it is too fast, the robot can run off the tape
-before the turning actions can affect its direction. However, if the
-speed is too slow, no one will buy your robot to use in a warehouse.
+Überraschenderweise ist die vorwärtsgerichtete Geschwindigkeit entlang des Klebebands ebenfalls ein wichtiger Parameter. 
+Ist der Roboter zu schnell,
+ist dieser schon vom Klebeband weggefahren,
+bevor die Drehbewegung die Richtung des Roboters verändern konnte.
+Ist der Roboter jedoch zu langsam, wird Dir natürlich  niemand deinen Roboter abkaufen
+und in einem Lagerhaus einsetzen.
 
-There are many ways to set the parameters of the motor action blocks
-that control the turns. You can make one motor go slightly faster than
-the other, or you can have one motor go forward and one go backwards.
+Es gibt verschiedene Arten,
+wie die Parameter der Aktionsblöcke der Motoren gesetzt werden können,
+um die  Drehung zu kontrollieren.
+Du kannst einen Motor etwas schneller als den Anderen laufen lassen
+oder Du kannst den einen Motor vorwärts und den Anderen rückwärts laufen lassen.
 
-\sect{Exercise \thechapter.1}
+\sect{Übung \thechapter.1}
 
-The robot stops when both ground sensors detect that they are off the
-tape. Modify the program so that the robot makes a gentle left turn in
-an attempt to find the tape again. Try it on a tape with a left turn
-like the one shown in Figure~\ref{fig.tape}. Try increasing the forward
-speed of the robot. What happens when the robot gets to the end of the
-tape?
+Der Roboter stoppt,
+falls beide Sensoren erkennen,
+dass sie vom Klebeband abgekommen sind.
+Verändere das Programm so,
+dass der Roboter eine geringe Drehung nach Links vollführt mit der Absicht das Klebeband wiederzufinden.
+Versuche es auf einem Klebeband mit einer Linkskurve,
+wie in Figure~\ref{fig.tape}.  angezeigt.
+Versuche die Vorwärtsgeschwindigkeit des Roboters zu erhöhen.
+Was passiert, wann der Roboter das Ende des Klebebandes erreicht hat?
 
-\sect{Exercise \thechapter.2}
+\sect{Übung \thechapter.2}
 
-Modify the program from the previous exercise so that
-the robot turns right when it runs off the tape. What happens?
+Verändere das Programm aus der vorangehenden Übung so,
+dass der Roboter nach rechts dreht,
+falls er vom Klebeband abkommt.
+Was passiert?
 
-It would be nice if we could \emph{remember} which sensor was the last
-one to lose contact with the tape in order to cause the robot turn in
-the correct direction to find the tape again. In Chapter~\ref{ch.states}
-we will learn how to remember information.
+Es wäre wünschenswert,
+wenn der Roboter  \emph{speichern} könnte,
+welchen Sensor als letzter den Kontakt zum Klebeband verloren hat,
+um den Roboter in die korrekte Richtung zu führen,
+um das Klebeband wieder zubinden.
+In Kapitel ~\ref{ch.states} werden wir lernen,
+wie Informationen gespeichert werden können.
 
-\sect{Exercise \thechapter.3}
+\sect{Übung \thechapter.3}
 
-Experiment with different arrangements of the lines of tapes:
+Experimentiere mit unterschiedlichen Anordnungen des Klebebandes:
+
 \begin{itemize}
-\item Gentle turns;
-\item Sharp turns;
-\item Zigzagging lines;
-\item Wider lines (use an overlapping double line of tape);
-\item Narrow lines (cut the tape lengthwise before placing it on the floor).
+\item weiten Kurven
+\item engen Kurven
+\item zickzack Linien
+\item breiteren Linien (benutze dazu die doppelte Klebebandbreite)
+\item schmaleren Linien ( schneide dazu das Klebeband in zwei Hälften)
 \end{itemize}
 
-Run competitions with your friends: Whose robot successfully follows the
-most lines? For each line, whose robot follows it in the shortest time?
+Veranstalte Roboterrennen mit deinen Freunden:
+Welcher Roboter folgt erfolgreich den meisten Linien?
+Welcher Roboter fährt am schnellsten eine Linie ab?
 
-\sect{Exercise \thechapter.4}
+\sect{Übung \thechapter.4}
 
-Discuss what effect the following modifications to the Thymio-II would
-have on the ability of the robot to follow a line:
+Bespreche den Effekt der folgenden Veränderungen  auf den Thymio-II Roboter und dessen Fähigkeit der Linie zu folgen.
 
 \begin{itemize}
-\item Ground sensing events occur more often or less often than 10 times a second;
-\item The sensors are further apart or closer together;
-\item There are more than two ground sensors on the bottom of the robot.
+\item Die Messereignisse der Bodensensoren erfolgen öfters bzw. weniger oft als 10 mal pro Sekunde.
+\item Die Sensoren sind weiter auseinander bzw. näher beisammen.
+\item Es gibt mehr als zwei Bodensensoren am Boden des Roboters.
 \end{itemize}

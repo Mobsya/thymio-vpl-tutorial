@@ -1,65 +1,42 @@
-\chap{A Time to Like}
+\chap{Angenehme Zeit}
 
-In Chapter~\ref{ch.pet} we programmed a pet robot who either did or did
-not like us. Let us consider a more advanced behavior: a shy pet who
-can't make up its mind whether it likes us or dislikes us. Initially,
-the pet will turn towards our outreached hand, but then it will turn
-away. After a while, it will reconsider and turn back in the direction
-of our hand.
+Im Kapitel ~\ref{ch.pet} haben wir ein Roboterhaustier programmiert,
+das uns entweder mag oder nicht mag.
+Nun stellen wir uns ein etwas komplizierteres  Verhalten vor:
+ein schüchternes Haustier, welches sich nicht entscheiden kann,
+ob es uns mag oder nicht. Anfänglich wird das Haustier sich unserer Hand zuwenden,
+dann aber zurückweichen und schlussendlich sich wieder zu unserer Hand hinbewegen.
 
 {\raggedleft \hfill Program file \bu{shy.aesl}}
 
-The behavior of the robot is as follows. When the right button is
-touched the robot turns to the right. When it detects your hand, it
-turns to the left but after a while it regrets its decision and turns
-back. We know how to construct event-action pairs for the initial turn
-\blk{start-turn} and for turning away when your hand is detected
-\blk{turn-away}.
+Das Verhalten des Roboters ist wie folgt. Falls der Rechte Schalter berührt wird, bewegt sich der Roboter nach rechts, falls er deine Hand wahrnimmt, bewegt er sich nach links, aber nach einer Weile bereut er die Entscheidung und bewegt sich wieder zurück. Wir wissen wie wir die Ereignis-Aktions Paare für die erste Bewegung erstellen \blk{start-turn} und wie für das Zurückbewegen, falls deine Hand erkannt wird \blk{turn-away}.
 
-The behavior of turning back ``after a while'' can be broken down into
-two event-action pairs:
+Das Verhalten des Zurückweichen nach einer Weile kann in zwei Ereignis-Aktions Paare zerlegt werden.
 
 \begin{itemize}
 
-\item \emph{When} the robot starts to turn away $\rightarrow$
-\emph{start a timer} for two seconds.
+\item \emph{Falls} der Roboter sich wegbewegt $\rightarrow$
+\emph{starte eine Timer} für zwei Sekunden.
 
-\item \emph{When} the timer runs down to zero $\rightarrow$ \emph{turn}
-to the right.
+\item \emph{Falls} der Timer null erreicht $\rightarrow$ \emph{drehe}
+nach rechts ab.
 
 \end{itemize}
 
-We need a new \emph{action} for the first behavior and a new
-\emph{event} for the second behavior.
+Wir brauchen eine neue \emph{Aktion} für das erste Verhalten und ein neues \emph{Ereignis} für das zweite Verhalten.
 
-The action is to set an \emph{timer}, which is like an alarm clock
-\blk{action-timer}. Normally, we set an alarm clock to an absolute time,
-but when I set the alarm clock in my smartphone to an absolute time like
-07:00, it tells me the relative time: ``Alarm set for 11 hours, and 23
-minutes from now.'' The timer block works the same way: you set the
-timer for a certain number of seconds from when the event occurs and the
-action happens. The timer can be set for up to four seconds. Click
-anywhere within the black circle showing the face of the clock (but not
-on the black circle itself). There will be a short animation and then
-the amount of time until the alarm will be colored blue.
+Die Aktion ist ein \emph{Timer} einzustellen, welcher wie ein Wecker funktioniert \blk{action-timer}.  Normalerweise stellen wir den Wecker auf eine bestimmte Zeit ein, aber falls ich den Wecker auf meinem Smartphone auf eine bestimmte Zeit einstelle, wird mir diese als Zeitdauer angegeben: "Wecker läutet in 11 Stunden und 23 Minuten". Der Timerblock arbeitet auf die selbe Art und Weise. Der Timer wird auf eine bestimmte Anzahl Sekunden eingestellt, sobald das Ereignis stattfindet und die Aktion ausgelöst wird. Der Timer kann auf bis zu vier Sekunden eingestellt werden. Klicke irgendwo innerhalb des schwarzen Kreises, wo die Oberfläche der Uhr gezeigt wird (aber nicht auf den schwarzen Kreis selber). Nach einer kleinen Animation wir die Zeitdauer des Timers (bis der Alarm ausgelöst wird) in blauer Farbe angezeigt.
 
-The event-action pair for the first behavior above is
-\blk{turn-clock}.
+Das Ereignis-Aktions Paar für das erste, oben beschriebene Verhalten ist \\ \blk{turn-clock}.
 
-The timer is set for two seconds. When the event of detecting your
-hand occurs, there will be two actions: turning the robot to the left
-and setting the timer.
+Der Timer ist auf zwei Sekunden eingestellt. Falls das Ereignis Handerkennung stattfindet, werden zwei Aktionen ausgelöst: Drehung des Roboters nach links und Starten des Timers.
 
-The second behavior needs an event that occurs when the alarm goes off,
-that is, when the amount of time set on the timer runs down to zero. The
-event block \blk{event-timer} shows a ringing alarm clock.
+Das zweite Verhalten benötigt ein Ereignis, das stattfindet, falls der Alarm ausgelöst wird. Dieses tritt ein, falls die eingestellte Zeit auf Null abgelaufen ist. Der Ereignisblock \blk{event-timer}  zeigt dann einen klingelnden Wecker.
 
-The event-action pair is \blk{turn-back}, where the robot turns back to
-the right when the timer runs down.
+Das Ereignis-Aktions Paar ist \blk{turn-back}, dass der Roboter zurück nach rechts dreht, wenn der Timer abgelaufen ist.
 
 \sect{Exercise \thechapter.1}
 
-Write a program that causes the robot to move forward at top speed for
-three seconds when the forward button is touched; then it runs
-backwards. Add an event-action pair to stop the run by touching the
-center button.
+\sect{Übung \thechapter.1}
+
+Schreibe ein Programm, welches den Roboter bei Höchstgeschwindigkeit für drei Sekunden vorwärts fahren und danach wieder zurückkehren lässt, falls der Vorwärtsschalter gedrückt wird. Füge ein Ereignis-Aktions Paar hinzu, dass die Fahrt des Roboters stoppt, falls der zentrale Schalter gedrückt wird.

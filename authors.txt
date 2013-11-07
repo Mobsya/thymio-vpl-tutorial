@@ -1,3 +1,4 @@
 Moti Ben-Ari, http://www.weizmann.ac.il/sci-tea/benari/, original version
 Stéphane Magnenat, http://stephane.magnenat.net, minor editing and formatting
 Gregory Hitz, http://www.asl.ethz.ch/people/hitzg, first part of German translation
+Lukas Bühler, second part of German translation

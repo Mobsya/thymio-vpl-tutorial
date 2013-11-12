@@ -90,22 +90,22 @@ Die Zustände werden durch die Viertel eines Kreises angezeigt. Jeder Zustand ka
 
 Bei \blksm{states} sind das linke obere und das rechte untere Viertel im Zustand eingeschaltet. Das Viertel rechts oben ist auf dem Zustand ausgeschaltet und das Viertel links unten wird nicht berücksichtigt. Das bedeutet, dass falls \blksm{states} mit dem Ereignisblock verbunden ist, ein Ereignis stattfindet, falls die Zustände entweder \blk{states1} oder \blk{states2} sind.
 
-Da jedes der vier Viertel entweder ein- oder ausgeschaltet sein kann, sind 16 verschiedene Zustände möglich (on=eingeschalter, off=ausgeschaltet).
+Da jedes der vier Viertel entweder ein- oder ausgeschaltet sein kann, sind 16 verschiedene Zustände möglich.
 
 \begin{quote}
-\bu{(off, off, off, off)\\(off, off, off, on)\\(off, off, on, off)\\
+\bu{(aus, aus, aus, aus)\\(aus, aus, aus, ein)\\(aus, aus, ein, aus)\\
 \mbox{}\hspace{3em}\ldots\\
-(on, on, on, off)\\
-(on, on, on, on)}.
+(ein, ein, ein, aus)\\
+(ein, ein, ein, ein)}.
 \end{quote}
 
 Werden die Zustände des Roboters mit dem Block \blk{action-states} gesetzt, werden die Zustände auf der Oberfläche des Roboters als Lichtring angezeigt.
 
-Die Figur~\ref{fig.state-leds} zeigt den Roboter mit den Zuständen \bu{(on, on,
-on, on)}.
+Die Figur~\ref{fig.state-leds} zeigt den Roboter mit den Zuständen \bu{(ein, ein,
+ein, ein)}.
 
 \centeredbox{Wird ein Programm gestartet, sind die ursprünglichen Zustände
-\bu{(off, off, off, off)}: \blksm{state-all-off}.}
+\bu{(aus, aus, aus, aus)}: \blk{state-all-off}.}
 
 \begin{figure}
 \begin{center}

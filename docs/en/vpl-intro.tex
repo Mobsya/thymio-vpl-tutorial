@@ -1,120 +1,148 @@
 \chap{Your First Robotics Project}
 
-\sect{Connect the robot and run VPL}
+\sect{Getting to know your Thymio II}
 
-Connect your Thymio-II robot to the computer with a USB cable. The robot
-will play a sequence of tones and green lights on top of the robot will
-flash. If the robot is turned off, turn it on by touching the center
-button for five seconds. Run VPL by double-clicking on the icon
-\blk{thymiovpl}. The window shown in Figure~\ref{fig.connect} will be
-displayed. Check the box next to \bu{Serial}, click on \bu{Thymio-II
-Robot \ldots} below it, select a language, and then click
-\bu{Connect}.\footnote{Depending on the configuration of your computer
-and the operating system that you are using, there may be several
-entries in this table and the data following \bu{Thymio-II} may be
-different from what is shown in the Figure.}
-
-\begin{figure}
-\begin{center}
-\gr{connect}{.3}
-\caption{Connecting the Thymio-II to the VPL environment}\label{fig.connect}
-\end{center}
-\end{figure} 
-
-\sect{Getting to know your Thymio-II}
-
-Figure~\ref{fig.front} shows the front and top of the Thymio-II. On the
+\Cref{fig.front} shows the front and top of Thymio II. On the
 top you can see the center circular button and four directional buttons.
 Behind the buttons, the green light shows how much charge remains in the
 battery. At the back are the top lights which have been set to red.
 There are similar lights on the bottom which have been set to green
-(Figure~\ref{fig.bottom}). The small black rectangles are sensors which
-you will learn about in Chapter~\ref{ch.pet}. You can ignore the small
+(\cref{fig.bottom}). The small black rectangles are sensors which
+you will learn about in \cref{ch.pet}. You can ignore the small
 red lights for now.
+
+\begin{figure}[h]
+\begin{center}
+\gr{front}{.8}
+\caption{The top and front of the Thymio-II robot}\label{fig.front}
+\end{center}
+\end{figure}
+
+\pagebreak
+
+\sect{Connect the robot and run VPL}
+
+Connect your Thymio-II robot to your computer with a USB cable; the robot will play a sequence of tones.
+If the robot is turned off, turn it on by touching the center
+button for five seconds. Run VPL by double-clicking on the icon
+\blksm{thymiovpl} (visible in big in the right margin).
+
+VPL may connect automatically to your robot.
+If not, the window shown in \cref{fig.connect} will be
+displayed. Check the box next to \bu{Serial}, click on \bu{Thymio-II
+Robot} below it, select a language, and then click
+\bu{Connect}.
+Depending on the configuration of your computer
+and the operating system that you are using, there may be several
+entries in this table and the data following \bu{Thymio-II} may be
+different from what is shown in the Figure.
+
+\vfill
+
+\trickbox{It is also possible to access VPL from Aseba Studio, the text-based programming environment, through the VPL plugin found in the \textit{Tool} area at the bottom left of the screen.}
 
 \begin{figure}
 \begin{center}
-\gr{front}{.5}
-\caption{The top and front of the Thymio-II robot}\label{fig.front}
+\gr{connect}{.4}
+\caption{Connect to Thymio-II, through serial port (USB)}\label{fig.connect}
 \end{center}
-\end{figure} 
+\end{figure}
 
-\clearpage
+\vfill
+
+\pagebreak
 
 \sect{The VPL user interface}
 
-The user interface of VPL is shown in Figure~\ref{fig.gui}
-There are four areas in the interface:
+The user interface of VPL is shown below.
+There are six areas in the interface:
+\begin{enumerate}[noitemsep,nosep]
+\item A toolbar with icons for opening, saving, running a program, etc.
+\item A program area where programs for controlling the robot are constructed.
+\item An indication whether the program you are creating is well-formulated or not.
+\item A column with available event blocks to construct your program.
+\item A column with available action blocks to construct your program.
+\item The text translation of the program (see at the bottom of this page).
+\end{enumerate}
+The event and action blocks will be described in the course of this document.
 
-\begin{itemize}
-\item At the top is a toolbar with icons for opening, saving and running
-a program. 
-\item Below the toolbar is an area where programs for controlling
-the robot are written.
-\item To the left and right of the program area are columns of blocks
-for events and actions, respectively.
-\item The area at the right shows the translation of the visual
-program into a textual program. You can ignore this for now.
-\end{itemize}
-
-\begin{figure}[hbt]
-\gr{gui}{.8}
-\caption{VPL user interface}\label{fig.gui}
+\plainfloat
+\begin{figure}[h]
+\gr{gui}{1}
+\vskip -1em
+\caption{The VPL window}\label{fig.vplgui}
 \end{figure}
+\framedfloat
 
-%\clearpage
+\vfill
 
-\sect{Write a new program}
+\trickbox[To go further]{
+When you construct a program using VPL, the text program that will be loaded into the robot appears in the right part of the window.
+If you are curious and wish to understand this language, you can read the \href{https://aseba.wikidot.com/en:thymiotutoriel}{text mode tutorial} (\url{http://aseba.wikidot.com/en:thymiotutoriel}).
+}
 
-When you open VPL, a blank programming area is displayed; should you
-ever wish to obtain a new blank programming area, click \blksm{new}.
+\pagebreak
 
-A program in VPL consists of one or more event-action pairs constructed
-from an event block and an action block. For example, the pair
-\blk{e-a-pair} causes the top light of the robot to display red when the
-front button on the robot is touched.
+\sect{Write a program}
 
-\centeredbox{The meaning of an event-action pair is:\\ \centering
-\textbf{\textit{When the event occurs, run the action.}}}
+When you start VPL, a blank program area is displayed; if, after having built a piece of program, you wish to clear the content of the program area, click \blksm{new}.
+A program in VPL consists of one or more event-action pairs, each constructed
+from an event block and an action block. For example, the pair:
+\blkc{e-a-pair} causes the top light of the robot to display red when one touches the
+front button on the robot.
 
-Let us construct an event-action pair. In the program area you will see
-a template for constructing an event-action pair:
-\blk{event-action-pair-empty}. The left, light blue, square is for the
-event; the right, light purple square is for the action.\footnote{The
-actual colors are \textit{cyan} (a mixture of blue and green) and
-\textit{magenta} (a mixture of red and blue).} Start by dragging the
-button event block \blk{event-buttons} from the left column and dropping
-it in the blue square. Now, drag the top color action block
-\blk{action-colors-up} from the right column and drop it in the purple
-square. You have constructed an event-action pair.
+\importantbox{
+The meaning of an event-action pair is:\\
+\textbf{When the event occurs, the robot runs the action.}
+}
+
+Let us construct an event-action pair.
+In the program area you see this:
+\blkc{event-action-pair-empty} 
+%It is a template for constructing the event-action pair.
+The left, light blue, square is the space for the
+event; the right, pink square is the space for the action. %\footnote{The actual colors are \textit{cyan} (a mixture of blue and green) and \textit{magenta} (a mixture of red and blue).}
+To bring a block to the program area from the sides (areas 4 and 5 of \cref{fig.vplgui}), you can click on it or drag it into the corresponding square by holding the left mouse button pressed.
+
+Start by bringing the button event block \blksm{event-buttons} into the blue square.
+Now, bring the top color action block \blksm{action-colors-up} into the pink square.
+You have constructed an event-action pair!
 
 Next we have to modify the event and the action to do what we want. For
 the event, click on the front button (the top triangle); it will turn
-red: \blk{forward}.
-
-This specifies that \textbf{an event occurs when the front button is touched}.
+red: \blkc{forward}
+This specifies that \textbf{an event will occur when the front button of Thymio will be touched}.
 
 The color action block contains three bars with the primary colors red,
 green, blue; at the left end of each bar is a white square. The colored
 bar with its white square is called a \emph{slider}. Drag a white square
 to the right and then back to the left, and you will see that the
-background color of the block changes. Move the red slider until the
+background color of the block changes.
+All colors can be made by mixing these three primary colors: red, green and blue.
+Now move the red slider until the
 square is at the far right, and move the green and blue sliders until
-they are at the far left. The color will be all red and no blue or
-green: \blk{red}.
+they are at the far left. The color will be all red with no blue nor
+green: \blkc{red}
 
 \sect{Save the program}
 
-Before running the program, save it. Click on the icon \blksm{save}
+Before running the program, save it on your computer.
+Click on the icon \blksm{save}
 in the toolbar. You will be asked to give the program a name; choose a
 name that will help you remember what the program does, perhaps,
 \bu{display-red}.
+Choose the location where you want to save your program, on the desktop for instance, and click on Save.
 
 \sect{Run the program}
 
 To run the program, click on \blksm{run} in the toolbar. Touch
 the front button on the robot; the light on top of the robot should
 change to red.
+
+\infobox{Congratulation!}{
+You have created and executed your first program, that does:\\
+\textbf{When one touches the forward button of Thymio, it becomes red.}
+}{yellow!10}{\bcetoile}
 
 \sect{Turn the robot off}
 
@@ -123,9 +151,12 @@ off by touching and holding the center button for four seconds until
 you hear a sequence of descending tones. The battery in the robot will
 continue charging as long as it is connected to a working computer. A
 red light next to the USB cable connector means that the robot is
-charging; it turns blue when the charging is completed. You can
-disconnect the cable when you will be away for a long time
-(Figure~\ref{fig.back}).
+charging; it turns blue when the charging is completed, like in \cref{fig.back}.
+You can disconnect the cable when you do not use the robot.
+
+\trickbox{
+If you wish to recharge the robot faster, you can connect it to a main plug through a mobile phone charger featuring a micro-USB plug.
+}
 
 \begin{figure}
 \begin{center}
@@ -135,23 +166,17 @@ disconnect the cable when you will be away for a long time
 \end{center}
 \end{figure}
 
-Should the USB cable become disconnect, VPL will wait for the connection
-to be made again. Check both ends of the cable, reconnect and see if VPL
-is working. If you have a problem, you can always close VPL, reconnect
-the robot and open VPL again.
+Should the USB cable disconnect during programming, VPL will wait for the connection to be made again.
+Check both ends of the cable, reconnect and see if VPL is working.
+If you have a problem, you can always close VPL, reconnect the robot and open VPL again.
 
 \sect{Modify a program}
 
 \begin{itemize}
 
-\item To delete an event-action pair, click \blksm{x} which
-appears next to each pair.
-
-\item To add an event-action pair, click \blksm{plus}
-which appears between every two pairs and at the end of the program.
-
-\item To move an event-action pair to another position in the
-program, drag and drop it.
+\item To delete an event-action pair, click \blksm{x}, at the top-right of the pair.
+\item To add an event-action pair, click \blksm{plus}, available below every pair.
+\item To move an event-action pair to another position in the program, drag it and drop it at the desired location.
 
 \end{itemize}
 
@@ -159,35 +184,37 @@ program, drag and drop it.
 
 Suppose that you have saved your program, and turned off the robot and
 the computer, but later you wish to continue to work on the program.
-Connect the robot and run VPL as described above. Click on the icon
-\blk{open} and select the program you want to open, for example,
+Connect the robot and run VPL as described previously. Click on the icon
+\blksm{open} and select the program you want to open, for example,
 \bu{display-red}. The event-action pairs of the program will be displayed in
-the program area and you can modify the program.
+the program area, and you can continue modifying it.
 
 \sect{Additional operations in the VPL user interface}
 
+In the toolbar, you will find further features:
+
 \begin{itemize}
 
-\item \textbf{Save as} \blk{saveas}: Click on this icon to save the
-current program with a \emph{different name}. Use it when you have a
-working program and you want to try something new without changing the
-existing program.
+\item \textbf{Save as} \blksm{saveas}:
+Click on this icon to save the current program with a \emph{different name}.
+Use it when you have a working program and you want to try something new without changing the existing program.
 
 \item \textbf{Stop} \blksm{stop}: This stops the program that is running
 and sets the speed of the motors to zero. Use it when the program asks
 the robot to move but does not include an event-action pair that can
 stop the motor.
 
-\item \textbf{Change color scheme} \blk{scheme}: You can select a
-different pair of colors for the event and action blocks.
+\item \textbf{Change color scheme} \blksm{scheme}: You can select a
+different pair of colors for the background of the event and action blocks.
 
-\item \textbf{Advanced mode} \blk{advanced}: The advanced mode enables
-the use of state variables as described in Chapter~\ref{ch.states}.
+\item \textbf{Advanced mode} \blksm{advanced}: The advanced mode enables
+the use of state variables as described in \cref{ch.states}.
 
-\item \textbf{Help} \blk{info1}: Displays the VPL documentation in
-your browser.
-
-The documentation is located at
+\item \textbf{Help} \blksm{info1}: Displays the VPL documentation in
+your browser (an Internet connection is required).
+This documentation is located at
 \url{https://aseba.wikidot.com/en:thymiovpl}.
 
 \end{itemize}
+
+

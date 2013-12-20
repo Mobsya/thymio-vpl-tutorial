@@ -1,11 +1,18 @@
-\documentclass[12pt,a4paper]{report}
+\documentclass[12pt,a4paper,english]{report}
 \usepackage{../../vpl}
-\usepackage[english]{babel}
 \graphicspath{{../../images/}}
 
+% localized boxes
+\newcommand*{\trickbox}[2][Trick]{\infobox{#1}{#2}{blue!10}{\bclampe}}
+\newcommand*{\importantbox}[2][Important information]{\infobox{#1}{#2}{yellow!10}{\bcinfo}}
+\newcommand*{\yourturnbox}[1]{\infobox{Your turn}{#1}{orange!10}{\bccrayon}}
+\newcommand*{\exercisebox}[2]{\infobox{Exercise #1}{#2}{orange!10}{\bccrayon}}
+\newcommand*{\warningbox}[1]{\infobox{Warning!}{#1}{orange!10}{\bcattention}}
 
 \begin{document}
 \include{vpl-front}
+\tableofcontents
+\thispagestyle{empty}
 \include{vpl-preface}
 \include{vpl-intro}
 \include{vpl-colors}

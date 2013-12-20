@@ -1,6 +1,6 @@
 \chap{A Time to Like}
 
-In Chapter~\ref{ch.pet} we programmed a pet robot who either did or did
+In \cref{ch.pet} we programmed a pet robot who either did or did
 not like us. Let us consider a more advanced behavior: a shy pet who
 can't make up its mind whether it likes us or dislikes us. Initially,
 the pet will turn towards our outreached hand, but then it will turn
@@ -12,9 +12,9 @@ of our hand.
 The behavior of the robot is as follows. When the right button is
 touched the robot turns to the right. When it detects your hand, it
 turns to the left but after a while it regrets its decision and turns
-back. We know how to construct event-action pairs for the initial turn
-\blk{start-turn} and for turning away when your hand is detected
-\blk{turn-away}.
+back. We know how to construct event-action pairs for the initial turn:
+\blkc{start-turn} and for turning away when your hand is detected:
+\blkc{turn-away}
 
 The behavior of turning back ``after a while'' can be broken down into
 two event-action pairs:
@@ -29,11 +29,11 @@ to the right.
 
 \end{itemize}
 
-We need a new \emph{action} for the first behavior and a new
-\emph{event} for the second behavior.
+We need a new \emph{action} for the first part of the behavior and a new
+\emph{event} for the second part.
 
-The action is to set an \emph{timer}, which is like an alarm clock
-\blk{action-timer}. Normally, we set an alarm clock to an absolute time,
+The action is to set a \emph{timer}, which is like an alarm clock
+\blksm{action-timer}. Normally, we set an alarm clock to an absolute time,
 but when I set the alarm clock in my smartphone to an absolute time like
 07:00, it tells me the relative time: ``Alarm set for 11 hours, and 23
 minutes from now.'' The timer block works the same way: you set the
@@ -43,23 +43,28 @@ anywhere within the black circle showing the face of the clock (but not
 on the black circle itself). There will be a short animation and then
 the amount of time until the alarm will be colored blue.
 
-The event-action pair for the first behavior above is
-\blk{turn-clock}.
+\newpage
+The event-action pair for this first part of the behavior is:
+\blkc{turn-clock}
 
 The timer is set for two seconds. When the event of detecting your
 hand occurs, there will be two actions: turning the robot to the left
 and setting the timer.
 
-The second behavior needs an event that occurs when the alarm goes off,
+The second part of the behavior needs an event that occurs when the alarm goes off,
 that is, when the amount of time set on the timer runs down to zero. The
-event block \blk{event-timer} shows a ringing alarm clock.
+event block \blksm{event-timer} shows a ringing alarm clock.
 
-The event-action pair is \blk{turn-back}, where the robot turns back to
-the right when the timer runs down.
+The event-action pair to turn the robot anew to
+the right when the timer runs down is: \blkc{turn-back}
 
-\sect{Exercise \thechapter.1}
-
+\exercisebox{\thechapter.1}{
 Write a program that causes the robot to move forward at top speed for
 three seconds when the forward button is touched; then it runs
 backwards. Add an event-action pair to stop the run by touching the
 center button.
+}
+
+\trickbox{
+The concept of timer is extremely useful in many situations in robotics, you will see that quickly when doing your own behaviors for Thymio.
+}

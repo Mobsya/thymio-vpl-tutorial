@@ -1,5 +1,6 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{babel}
 \usepackage{graphicx,url}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
@@ -11,6 +12,7 @@
 \usepackage[tikz]{bclogo}
 \usepackage{framed}
 
+\usepackage{floatrow}
 
 \usepackage{libertine}
 \renewcommand*\familydefault{\sfdefault}
@@ -18,11 +20,11 @@
 
 \usepackage{subfigure}
 
-\usepackage{cleveref}
+\usepackage[capitalise,noabbrev]{cleveref}
 
 % End of packages
 
-\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\baselinestretch}{1.05}
 \setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
 \parindent=0pt
 
@@ -43,11 +45,28 @@
 \newcommand*{\blksm}[1]{\raisebox{-.2em}%
 {\includegraphics[height=1em,keepaspectratio=true]{#1}}\marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]{\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
 
+% Inline graphics
+\newcommand*{\blksmpure}[1]{\raisebox{-.2em}%
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}}
+
 % Centered image
 \newcommand*{\gr}[2]%
 {\begin{center}
 \includegraphics[width=#2\textwidth,keepaspectratio=true]{#1}
 \end{center}}
+
+% Figures
+\DeclareFloatVCode{grayruleabove}%
+{{\color{black!20}\par\rule\hsize{2.2pt}\vskip4pt\par}}
+\DeclareFloatVCode{grayrulebelow}%
+{{\color{black!20}\par\vskip4pt\rule\hsize{2.2pt}}}
+\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}
+
+\newcommand{\framedfloat}{\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}}
+\newcommand{\plainfloat}
+{\floatsetup{style=plain}}
+
+\framedfloat
 
 % Box
 \newenvironment{gbar}[1]{%
@@ -112,7 +131,7 @@
 \usepackage{listings}
 \lstdefinelanguage{aseba}
 {
-	morekeywords={var,if,then,else,do,end,while,ontimer,onevent,emit,call,when,for,in,step,and,or,not}
+morekeywords={var,if,then,else,do,end,while,ontimer,onevent,emit,call,when,for,in,step,and,or,not}
 }
-\lstset{basicstyle=\ttfamily,language=aseba,tabsize=2,keywordstyle=\bfseries,aboveskip=0.2em,belowskip=0.2em}
+\lstset{basicstyle=\ttfamily,language=aseba,tabsize=4,keywordstyle=\color{blue},aboveskip=0.2em,belowskip=0.2em}
 %\newfloat{Listing}{tbp}{lst}[chapter]

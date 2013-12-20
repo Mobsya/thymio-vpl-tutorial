@@ -1,10 +1,9 @@
-\documentclass[12pt,a4paper]{report}
-\usepackage[ngerman]{babel}
+\documentclass[12pt,a4paper,ngerman]{report}
 \usepackage{../../vpl}
 \graphicspath{{../../images/}}
 
 % localized boxes
-\newcommand*{\trickbox}[1]{\infobox{Trick}{#1}{blue!10}{\bclampe}}
+\newcommand*{\trickbox}[2][Trick]{\infobox{#1}{#2}{blue!10}{\bclampe}}
 \newcommand*{\importantbox}[1]{\infobox{Wichtige Information}{#1}{yellow!10}{\bcinfo}}
 \newcommand*{\yourturnbox}[1]{\infobox{Ihre Umdrehung}{#1}{orange!10}{\bccrayon}}
 \newcommand*{\exercisebox}[2]{\infobox{Übung #1}{#2}{orange!10}{\bccrayon}}

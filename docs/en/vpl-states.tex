@@ -1,3 +1,5 @@
+% !TeX root = vpl.tex
+
 \chap{States: Don't Always Do the Same Thing (Advanced)}\label{ch.states}
 
 A program in VPL is a list of event-action pairs. All the events are
@@ -186,19 +188,20 @@ event will occur if the state is either set to:
 
 Since each of the four quarters can be either on or off, there are 2 $\times$ 2 $\times$ 2 $\times$ 2 = 16 possible states:
 \begin{quote}
-\bu{(off, off, off, off)\\(off, off, off, on)\\(off, off, on, off)\\
+\bu{(off, off, off, off), (off, off, off, on), (off, off, on, off),\\
 \mbox{}\hspace{3em}\ldots\\
-(on, on, on, off)\\
-(on, on, on, on)}.
+(on, on, off, on), (on, on, on, off), (on, on, on, on)}.
 \end{quote}
 \Cref{fig.all-states} enumerates graphically all these states.
-The current state of the robot is always displayed on the top of the robot by bright circle arcs, for instance, \cref{fig.state-leds} shows the robot in the state \bu{(on, on, on, on)}.
+
+\importantbox{The current state of the robot is displayed
+in the circle LEDs on the top of the robot. \cref{fig.state-leds} shows the robot in the state \bu{(on, on, on, on)}.}
 
 \trickbox{When a program is run, the initial state is
 \bu{(off, off, off, off)}:\quad \blk{state-all-off}}
 
 \trickbox{If you do not use all possible 16 states, but for instance only 2 or 4, you are free to decide which quarters you use to represent your state.
-Also, if for instance you have two different things you want to encode in the state, and each of them have two possible values, you can use two quarters independenly.
+Also, if for instance you have two different things you want to encode in the state, and each of them have two possible values, you can use two quarters independently.
 That is why the ability to \emph{ignore} a quarter is very useful!
 Try to always stay as simple as possible.
 }
@@ -254,8 +257,6 @@ before returning to the position of the mouse, so it is necessary that
 this first detection of the mouse be ignored. This is achieved by
 stopping the scan only when the state is \bu{on} and this is set only
 when the full scan has been completed.
-
-\vfill
 
 \trickbox{
 You will have to experiment with the position of the

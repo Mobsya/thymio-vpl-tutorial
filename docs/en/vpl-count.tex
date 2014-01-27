@@ -6,13 +6,13 @@ In this chapter we show how states of the Thymio robot can be used to
 count numbers and even perform simple arithmetic.
 
 The design and implementation of the projects will not be presented
-in detail. We assume that you have enough experience by now to developthem yourself. The source code of working programs is included in the
+in detail. We assume that you have enough experience by now to develop
+them yourself. The source code of working programs is included in the
 archive, but don't look at them unless you really have difficulties
 solving a problem.
 
-These projects use the \emph{clap} event to change states and the
-the default behaviour of the circle LEDs to display
-the state:
+These projects use the \emph{clap} event to change states and
+the default behaviour of the circle LEDs to display the state:
 
 \importantbox{The current state of the robot is displayed
 in the circle LEDs on the top of the robot.
@@ -31,6 +31,8 @@ Touching the center button will reset to even
 since zero is an even number.
 \end{quote}
 
+{\raggedleft \hfill Program file \bu{count-to-two.aesl}}
+
 Our method of counting demonstrates the concept of
 \emph{modulo 2 arithmetic}.
 We count starting from 0 to 1 and then back to 0.
@@ -47,7 +49,13 @@ Instead of counting from 0 to 1 and then from 1 to 2,
 we \emph{cycle} back to the beginning:
 0, 1, 0, 1, \ldots.
 
-{\raggedleft \hfill Program file \bu{count-to-two.aesl}}
+These concepts are very familiar because they are used in clocks.
+Minutes and seconds are computed modulo 60 and hours are computed modulo
+12 or 24. Thus, the second after 59 is not 60; instead, we cycle around
+and start counting from 0 again. Similarly, the hour after 23 is not 24,
+but 0. If the time is 23:00 and we agree to meet after 3 hours,
+then the time set for the meeting is 26 modulo 24, which is 02:00 in the
+morning.
 
 \sect{Counting in unary}
 
@@ -109,14 +117,18 @@ The rightmost digit represents the number of 1's, the next digit
 represents the number of 1$\times$2=2's, the third digit represents
 the number of 1$\times$2$\times$2=4's, and the leftmost digit
 represents the
-numbers of 1$\times$2$\times$2$\times$2-8's.
+numbers of 1$\times$2$\times$2$\times$2=8's.
 Therefore, 1101 represents 1+0+4+8, which is thirteen,
 represented in base 10 as 13.
+
+\newpage
 
 \begin{quote}
 \textbf{Program}\\
 Modify the program for counting modulo 4 to use binary representation
 \end{quote}
+
+{\raggedleft \hfill Program file \bu{count-to-four-binary.aesl}}
 
 We only need two quarters of the state to represent the numbers
 0--3 in base 2.
@@ -132,8 +144,6 @@ There are four transitions $0\rightarrow 1, 1\rightarrow 2, 2
 \rightarrow 3, 3\rightarrow 0$, so four event-action pairs
 are needed, in addition to a pair to reset the program
 when the center button is touched.
-
-{\raggedleft \hfill Program file \bu{count-to-four-binary.aesl}}
 
 \medskip
 

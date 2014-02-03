@@ -1,9 +1,11 @@
+% !TeX root = vpl.tex
+
 \chap{Changing Colors}
 
 \sect{Display colors}
 
 Create a program that causes two different colors to be displayed on
-the top of the Thymio-II robot when the front and back buttons are
+the top of the Thymio robot when the front and back buttons are
 touched, and two other colors to be displayed on the bottom of the robot
 when the left and right buttons are touched.
 
@@ -26,10 +28,11 @@ for the other two colors are moved to the left edge and are not mixed
 in. Therefore, these actions display pure red, blue and green,
 respectively. The action associated with the left button mixes red and
 green giving yellow.
-You can see the background of the color action changes depending on the sliders' positions, and shows you which color your Thymio II will be.
+You can see that the background of the color action changes depending on the
+sliders' positions; the background shows you which color your Thymio will display.
 
 Run the program (icon \blksm{run}) and check that touching buttons changes the robot's color.
-\Cref{fig.front} shows the Thymio-II displaying red on
+\Cref{fig.front} shows the Thymio displaying red on
 the top and \cref{fig.bottom} shows it displaying green on the
 bottom.
 
@@ -43,10 +46,11 @@ Let us modify the program so that the lights are turned off when the
 center button is touched. We need two event-action pairs, one to turn
 off the top light and the other to turn off the bottom light.
 By moving all three sliders in the color action block to the left, as in \cref{fig.colors-b}, no colors are displayed and the light is turned off.
-The event is the same in both pairs---touching the center button---but
-the actions are different---turning off the top or bottom light. 
+The \emph{event is the same} in both pairs---touching the center button---but
+the \emph{actions are different}---turning off the top or bottom light. 
+
 Do not forget to click on the icon \blksmpure{run} to run the program.
-In the future, it will be implicit that you will have to run every program by clicking on that icon, we will not tell you again.
+In the future, we will not remind you to click this icon to run a program.
 
 \vfill
 
@@ -73,6 +77,6 @@ You will not be able to run the program as long as there are errors.
 		\label{fig.colors-b}
 		\includegraphics[width = 0.4\textwidth]{colors2}
 	}
-    \caption{Play with the lights of Thymio II}
+    \caption{Play with the lights of Thymio}
     \label{fig.colors}
 \end{figure}

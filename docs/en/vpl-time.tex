@@ -1,6 +1,8 @@
+% !TeX root = vpl.tex
+
 \chap{A Time to Like}
 
-In \cref{ch.pet} we programmed a pet robot who either did or did
+In \cref{ch.pet} we programmed a pet robot which either did or did
 not like us. Let us consider a more advanced behavior: a shy pet who
 can't make up its mind whether it likes us or dislikes us. Initially,
 the pet will turn towards our outreached hand, but then it will turn
@@ -17,7 +19,7 @@ back. We know how to construct event-action pairs for the initial turn:
 \blkc{turn-away}
 
 The behavior of turning back ``after a while'' can be broken down into
-two event-action pairs:
+two parts:
 
 \begin{itemize}
 
@@ -29,7 +31,7 @@ to the right.
 
 \end{itemize}
 
-We need a new \emph{action} for the first part of the behavior and a new
+We need a new \emph{action} for the first part and a new
 \emph{event} for the second part.
 
 The action is to set a \emph{timer}, which is like an alarm clock
@@ -37,7 +39,7 @@ The action is to set a \emph{timer}, which is like an alarm clock
 but when I set the alarm clock in my smartphone to an absolute time like
 07:00, it tells me the relative time: ``Alarm set for 11 hours, and 23
 minutes from now.'' The timer block works the same way: you set the
-timer for a certain number of seconds from when the event occurs and the
+timer for a certain number of seconds from when the event occurs and then the
 action happens. The timer can be set for up to four seconds. Click
 anywhere within the black circle showing the face of the clock (but not
 on the black circle itself). There will be a short animation and then
@@ -55,16 +57,12 @@ The second part of the behavior needs an event that occurs when the alarm goes o
 that is, when the amount of time set on the timer runs down to zero. The
 event block \blksm{event-timer} shows a ringing alarm clock.
 
-The event-action pair to turn the robot anew to
-the right when the timer runs down is: \blkc{turn-back}
+Here is the event-action pair to turn the robot anew to
+the right when the timer runs down: \blkc{turn-back}
 
 \exercisebox{\thechapter.1}{
 Write a program that causes the robot to move forward at top speed for
 three seconds when the forward button is touched; then it runs
-backwards. Add an event-action pair to stop the run by touching the
+backwards. Add an event-action pair to stop the robot by touching the
 center button.
-}
-
-\trickbox[Information]{
-The concept of timer is extremely useful in many situations in robotics, you will see that quickly when doing your own behaviors for Thymio.
 }

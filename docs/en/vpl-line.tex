@@ -1,8 +1,10 @@
+% !TeX root = vpl.tex
+
 \chap{The Robot Finds Its Way by Itself}\label{ch.line}
 
-A hike in a mountain seems a simple activity.
-One should just get a pair of hiking shoes and follow the way.
-For a robot, following a way on the ground can also be very useful.
+A hike in a mountain is a simple activity:
+get a pair of hiking shoes and follow a path.
+For a robot, following a path on the ground can also be very useful.
 Consider a warehouse with robotic carts that bring objects to a central dispatching area.
 There are lines painted on the floor of the warehouse and the robot receives instructions to follow
 certain lines until it reaches the storage bin of the desired object.
@@ -12,8 +14,9 @@ Let us write a program that causes the robot to follow a line on the floor.
 {\raggedleft \hfill Program file \bu{follow-line.aesl}}
 
 The line-following task brings out all the uncertainty of constructing
-robots in the real world, the robot must face uncertainty in its perceptions of and its actions on the world.
-For instance, the line might not be perfectly straight, dust may obscure part of the line, dirt may cause one wheel to move more slowly than the other one.
+robots in the real world: The robot must deal with uncertainty in its perceptions
+and its actions.
+For instance, the line might not be perfectly straight, dust may obscure part of the line, or dirt may cause one wheel to move more slowly than the other one.
 To follow a line, the robot must use a
 \emph{controller} that decides how much power to apply to each motor
 depending on the data received from the sensors.
@@ -27,25 +30,27 @@ depending on the data received from the sensors.
 	\caption{Thymio on a black tape}
 \end{figure}
 
-To follow a line, we will use the same ground sensors we have already used in \cref{c.moving}.
+To follow a line, we use the ground sensors (\cref{c.moving}).
 Remember that these work by sending infrared light (invisible to human eye) and measuring how much is reflected back.
 If the floor is light-colored, the sensor will detect a lot of reflected
 light and the event \blksm{lots-of-light} will occur. We need a line
 that will cause an event to occur when there is little reflected light
 \blksm{little-light}. This is easy to do by printing a black line, by painting it or by placing black
-electrician's tape on the floor, as in \cref{fig.tape}. The line must
+electrician's tape on the floor (\cref{fig.tape}). The line must
 be wide enough so that both ground sensors will sense black when the
 robot is successfully following the line. A width of 5
 centimeters is sufficient for the robot to follow the line even if there
 are small deviations.
 
-The first step to follow a line is to let Thymio move forward whenever \emph{both} sensors detect dark (the line) and stop whenever \emph{both} sensors detect a light surface (not the line).
+First, we cause the Thymio to move forward whenever \emph{both} sensors detect
+a dark surface (it is on the line) and stop whenever \emph{both} sensors detect a
+light surface (it is not the line).
 The event-action pairs are shown in \cref{fig.start-stop}.
 
 \trickbox{Make sure that you use a USB cable that is long enough (say, two
-meters), so that the Thymio-II can stay connected to the computer even
+meters), so that the Thymio can stay connected to the computer even
 as it moves.
-You will find extensions in any computer shop.}
+You can find extension cables in any computer shop.}
 
 
 \begin{figure}
@@ -66,7 +71,7 @@ is still detecting the tape; in that case the robot should turn slightly
 to the \emph{right}.
 
 \item If the robot moves off the tape to the \emph{right}, the
-\emph{right} ground sensor will detect the floor while the \emph{left}
+\emph{right} sensor will detect the floor while the \emph{left}
 sensor is still detecting the tape; in that case the robot should turn
 slightly to the \emph{left}.
 
@@ -90,15 +95,18 @@ experiment with these values until the robot runs \emph{reliably}. Here,
 reliably means that the robot can successfully follow the line several times.
 Since each time you place the robot on
 the line you might place it at a slightly different position and
-pointing in a slightly different direction, you have to test several times to make sure that the program works.
+pointing in a slightly different direction, you need to run
+several tests to make sure that the program works.
 
 There are many ways to configure the motor action blocks.
 The forward speed of the robot on the line is an important parameter.
 If it is too fast, the robot can run off the line before the turning actions can affect its direction. However, if the speed is too slow, no one will buy your robot to use in a warehouse.
-Furthermore, if Thymio notices that it runs off the line, what should it do?
-If in that case one motor goes forward and one goes backwards, the robot does not risk to loose the line, but its movements will be very jerky.
-If one the contrary one motor goes slightly faster than the other, the robot will move smoothly but risks to loose the line.
-Hence you have to find good compromises.
+
+If the Thymio runs off the line, what should it do?
+If it makes a sharp turn (one motor goes forward and the other backwards),
+the robot will return quickly to the line, but its movements will be very jerky.
+On the other hand, if the robot makes a gentle turn (one motor goes slightly faster than the other), the robot will move smoothly but it may lose the line.
+You will have to experiment to find good compromises.
 
 \exercisebox{\thechapter.1}{
 The robot stops when both ground sensors detect that they are off the
@@ -139,7 +147,7 @@ most lines? For each line, whose robot follows it in the shortest time?
 \vfill
 
 \exercisebox{\thechapter.4}{
-Discuss what effect the following modifications to the Thymio-II would
+Discuss what effect the following modifications to the Thymio would
 have on the ability of the robot to follow a line:
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item Ground sensing events occur more often or less often than 10 times a second;

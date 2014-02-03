@@ -19,9 +19,9 @@ States are supported in the \emph{advanced} mode of VPL. Click on
 In many programs, we used one button to start the robot's behavior and
 another to stop it. Consider, though, the power switch on my computer:
 %\blksm{power-button}:
-The same switch is used to turn the light on and
+The same switch is used to turn the computer on and
 off; the switch \emph{remembers} whether it is in the state \bu{on} or the
-state \bu{off}. The switch often includes a small green light which indicates
+state \bu{off}. The switch includes a small green light which indicates
 its current state.
 
 Write a program that turns the robot's lights on when it is tapped and
@@ -65,7 +65,7 @@ the \emph{tap} event occurs $\rightarrow$ turn the lights \emph{off}
 \end{itemize}
 
 The emphasized word ``\textbf{\textit{and}}'' before the arrow~$\rightarrow$
-means there are two conditions that must be true in order for the
+means that there are \emph{two conditions} that must be true in order for the
 transition to be taken. (a) The robot must be in a certain state and (b)
 the event must occur. When both conditions are true, the transition is taken,
 causing both the state to change and the action written after the arrow~$\rightarrow$ to be performed.
@@ -119,10 +119,8 @@ action, the red light is turned on, and a change to a different state, \textbf{o
 
 \sect{Implementing state diagrams with event-action pairs}
 
-We show how to implement the behavior described by a state diagram as event-action pairs.
-To implement means to create a program that will do what the state diagram describes.
-The program is shown in \cref{fig.turn-on-off}. Let us look
-at the event-action pairs one-by-one.
+\cref{fig.turn-on-off} shows the implementation of the behavior described
+in the state machine as event-action pairs.
 
 \begin{figure}
 	\subfigure[Tap to turn on and off]{
@@ -165,7 +163,8 @@ The meaning of the first one is: \emph{when} the robot is tapped
 Similarly, the meaning of the second one is \emph{when} the robot
 is tapped \emph{and} the state is \bu{on}, change the state to \bu{off}: \blkc{tap-state-off}
 
-Referring the complete program consisting of the four pairs in \cref{fig.turn-on-off}, we see that
+Referring the complete program with four event-action
+pairs in \cref{fig.turn-on-off}, we see that
 each event causes both an action on the light and a change of the state
 of the robot. Both the action and the change of state depend on the state the robot is in, called \emph{current state}.
 
@@ -174,7 +173,7 @@ of the robot. Both the action and the change of state depend on the state the ro
 \sect{How many states can the robot be in?}
 
 The state is indicated by a circle divided into four quarters.
-When used with an event or in the state action block, each quarter can be:
+When used in an event or in the state action block, each quarter can be:
 \begin{itemize}
 \item \textbf{White}: the quarter is \emph{off};
 \item \textbf{Orange}: the quarter is \emph{on};
@@ -203,10 +202,12 @@ in the circle LEDs on the top of the robot. \cref{fig.state-leds} shows the robo
 \trickbox[Information]{When a program is run, the initial state is
 \bu{(off, off, off, off)}:\quad \blk{state-all-off}}
 
-\trickbox{If you do not use all possible 16 states, but for instance only 2 or 4, you are free to decide which quarters you use to represent your state.
-Also, if for instance you have two different things you want to encode in the state, and each of them have two possible values, you can use two quarters independently.
+\trickbox{If you do not use all possible 16 states, but only 2 or 4, for example,
+you are free to decide which quarters you use to represent your state.
+In addition, if you have two different things you want to encode,
+and each of them has two possible values,
+you can use two quarters independently.
 That is why the ability to \emph{ignore} a quarter is very useful!
-Try to always stay as simple as possible.
 }
 
 \begin{figure}

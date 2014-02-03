@@ -1,6 +1,8 @@
+% !TeX root = vpl.tex
+
 \chap{Your First Robotics Project}
 
-\sect{Getting to know your Thymio II}
+\sect{Getting to know your Thymio}
 
 \Cref{fig.front} shows the front and top of Thymio II. On the
 top you can see the center circular button and four directional buttons.
@@ -14,7 +16,7 @@ red lights for now.
 \begin{figure}[h]
 \begin{center}
 \gr{front}{.8}
-\caption{The top and front of the Thymio-II robot}\label{fig.front}
+\caption{The top and front of the Thymio robot}\label{fig.front}
 \end{center}
 \end{figure}
 
@@ -22,29 +24,30 @@ red lights for now.
 
 \sect{Connect the robot and run VPL}
 
-Connect your Thymio-II robot to your computer with a USB cable; the robot will play a sequence of tones.
+Connect your Thymio robot to your computer with a USB cable; the robot will play a sequence of tones.
 If the robot is turned off, turn it on by touching the center
 button for five seconds. Run VPL by double-clicking on the icon
-\blksm{thymiovpl} (visible in big in the right margin).
+\blksm{thymiovpl}.
+
+\importantbox{When a small icon appears in the text,
+a larger image is displayed in the margin.}
 
 VPL may connect automatically to your robot.
 If not, the window shown in \cref{fig.connect} will be
-displayed. Check the box next to \bu{Serial}, click on \bu{Thymio-II
+displayed. Check the box next to \bu{Serial}, click on \bu{Thymio
 Robot} below it, select a language, and then click
 \bu{Connect}.
 Depending on the configuration of your computer
 and the operating system that you are using, there may be several
-entries in this table and the data following \bu{Thymio-II} may be
+entries in this table and the data following \bu{Thymio} may be
 different from what is shown in the Figure.
-
-\vfill
 
 \trickbox{It is also possible to access VPL from Aseba Studio, the text-based programming environment, through the VPL plugin found in the \textit{Tool} area at the bottom left of the screen.}
 
 \begin{figure}
 \begin{center}
 \gr{connect}{.4}
-\caption{Connect to Thymio-II, through serial port (USB)}\label{fig.connect}
+\caption{Connect to Thymio, through serial port (USB)}\label{fig.connect}
 \end{center}
 \end{figure}
 
@@ -59,7 +62,7 @@ There are six areas in the interface:
 \begin{enumerate}[noitemsep,nosep]
 \item A toolbar with icons for opening, saving, running a program, etc.
 \item A program area where programs for controlling the robot are constructed.
-\item An indication whether the program you are creating is well-formulated or not.
+\item An indication whether the program you are creating is well-formed or not.
 \item A column with available event blocks to construct your program.
 \item A column with available action blocks to construct your program.
 \item The text translation of the program (see at the bottom of this page).
@@ -86,10 +89,11 @@ If you are curious and wish to understand this language, you can read the \href{
 \sect{Write a program}
 
 When you start VPL, a blank program area is displayed; if, after having built a piece of program, you wish to clear the content of the program area, click \blksm{new}.
-A program in VPL consists of one or more event-action pairs, each constructed
+
+A program in VPL consists of one or more \emph{event-action pairs},
+each constructed
 from an event block and an action block. For example, the pair:
-\blkc{e-a-pair} causes the top light of the robot to display red when one touches the
-front button on the robot.
+\blkc{e-a-pair} causes the top light of the robot to display red when one touches the front button on the robot.
 
 \importantbox{
 The meaning of an event-action pair is:\\
@@ -97,12 +101,13 @@ The meaning of an event-action pair is:\\
 }
 
 Let us construct an event-action pair.
-In the program area you see this:
+In the program area you see an outline of a pair:
 \blkc{event-action-pair-empty} 
 %It is a template for constructing the event-action pair.
 The left, light blue, square is the space for the
-event; the right, pink square is the space for the action. %\footnote{The actual colors are \textit{cyan} (a mixture of blue and green) and \textit{magenta} (a mixture of red and blue).}
-To bring a block to the program area from the sides (areas 4 and 5 of \cref{fig.vplgui}), you can click on it or drag it into the corresponding square by holding the left mouse button pressed.
+event; the right, pink, square is the space for the action. %\footnote{The actual colors are \textit{cyan} (a mixture of blue and green) and \textit{magenta} (a mixture of red and blue).}
+To bring a block to the program area from the sides (areas 4 and 5 of \cref{fig.vplgui}), you can click on it or drag it into the corresponding square by holding the left mouse button pressed and releasing it when the block is
+in its place.
 
 Start by bringing the button event block \blksm{event-buttons} into the blue square.
 Now, bring the top color action block \blksm{action-colors-up} into the pink square.
@@ -111,7 +116,7 @@ You have constructed an event-action pair!
 Next we have to modify the event and the action to do what we want. For
 the event, click on the front button (the top triangle); it will turn
 red: \blkc{forward}
-This specifies that \textbf{an event will occur when the front button of Thymio will be touched}.
+This specifies that \textbf{an event will occur when the front button of Thymio is touched}.
 
 The color action block contains three bars with the primary colors red,
 green, blue; at the left end of each bar is a white square. The colored
@@ -140,28 +145,27 @@ the front button on the robot; the light on top of the robot should
 change to red.
 
 \infobox{Congratulations!}{
-You have created and executed your first program, that does:\\
-\textbf{When one touches the forward button of Thymio, it becomes red.}
+You have created and executed your first program. Its behavior is:\\
+\textbf{When you touch the forward button of the Thymio, it becomes red.}
 }{yellow!10}{\bcetoile}
 
 \sect{Turn the robot off}
 
-When you have finished working with the Thymio-II robot, you can turn it
+When you have finished working with the Thymio robot, you can turn it
 off by touching and holding the center button for four seconds until
 you hear a sequence of descending tones. The battery in the robot will
 continue charging as long as it is connected to a working computer. A
 red light next to the USB cable connector means that the robot is
-charging; it turns blue when the charging is completed, like in \cref{fig.back}.
+charging; it turns blue when the charging is completed (\cref{fig.back}).
 You can disconnect the cable when you do not use the robot.
 
 \trickbox{
-If you wish to recharge the robot faster, you can connect it to a main plug through a mobile phone charger featuring a micro-USB plug.
-}
+You can recharge the robot faster by using a mobile phone charger with a micro-USB connector.}
 
 \begin{figure}
 \begin{center}
 \gr{back}{.6}
-\caption{The back of the Thymio-II showing the USB cable and the
+\caption{The back of the Thymio showing the USB cable and the
  charging light}\label{fig.back}
 \end{center}
 \end{figure}
@@ -174,15 +178,15 @@ If you have a problem, you can always close VPL, reconnect the robot and open VP
 
 \begin{itemize}
 
-\item To delete an event-action pair, click \blksm{x}, at the top-right of the pair.
-\item To add an event-action pair, click \blksm{plus}, available below every pair.
+\item To delete an event-action pair, click \blksm{x} at the top-right of the pair.
+\item To add an event-action pair, click \blksm{plus} available below every pair.
 \item To move an event-action pair to another position in the program, drag it and drop it at the desired location.
 
 \end{itemize}
 
 \sect{Open an existing program}
 
-Suppose that you have saved your program, and turned off the robot and
+Suppose that you have saved your program and turned off the robot and
 the computer, but later you wish to continue to work on the program.
 Connect the robot and run VPL as described previously. Click on the icon
 \blksm{open} and select the program you want to open, for example,

@@ -1,17 +1,20 @@
+% !TeX root = vpl.tex
+
 \chap{Bells and Whistles}\label{ch.bells}
 
-Let us take a time out from complicated tasks like line following and
+Let us take time out from complicated tasks like line following and
 have some fun with the robot.
-We show how Thymio can play music, respond to a sound or respond when it is tapped.
+We show how the Thymio can play music, respond to a sound or react when it is tapped.
 
 \sect{Playing music}
 
-The Thymio-II robot contains a sound synthesizer and you can program it
+The Thymio robot contains a sound synthesizer and you can program it
 to play simple tunes using the music action block: \blkc{action-music}
 
 {\raggedleft \hfill Program file \bu{bells.aesl}}
 
-You won't become a new Beethoven---one can only play a set of six notes, on five tones and of two different lengths---but you can compose a
+You won't become a new Beethoven---you can only play a sequence of notes,
+on five tones and of two different lengths---but you can compose a
 tune that will make your robot stand out. \Cref{fig.music} shows
 two event-action pairs that respond with a tune when the front or back
 button is touched. There is a different tune associated with each event.
@@ -39,12 +42,12 @@ Letters in Morse code are encoded in sequences of long tones
 
 \sect{Controlling your robot by sound}
 
-The Thymio-II has a microphone. The event \blksm{event-clap} will occur
+The Thymio has a microphone. The event \blksm{event-clap} will occur
 when the microphone senses a loud noise, for example, from clapping your
 hands. The following event-action pair will turn on the bottom lights
 when you clap your hands: \blkc{clap}
 
-\trickbox{In a noisy environment, you may not be able to use this
+\trickbox{In a noisy environment you may not be able to use this
 event, because the sound level will always be high and cause repeated
 events.}
 
@@ -61,13 +64,13 @@ and stops when you clap your hands.
 
 Pets don't always do what we ask them to do. Sometimes they need a pat
 on the head to encourage them. You can do the same with your robot. The
-Thymio-II contains a tap sensor that causes the event \blksm{event-tap} to
-occur in response to a quick touch on the top of the robot. For example,
+Thymio contains a tap sensor that causes the event \blksm{event-tap} to
+occur in response to a quick tap on the top of the robot. For example,
 the following event-action pair causes the top lights to turn on when
 you tap the top of the robot: \blkc{touch}
 
 Construct a program from this event-action pair and the following pair
-that turns on the bottoms lights when you clap your hands: \blkc{clap}
+that turns on the bottom lights when you clap your hands: \blkc{clap}
 
 {\raggedleft \hfill Program file \bu{whistles.aesl}}
 

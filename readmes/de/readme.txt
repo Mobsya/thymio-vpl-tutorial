@@ -26,8 +26,9 @@ den Thymio-II und Aseba, siehe: https://aseba.wikidot.com/.
 
 Es gibt zwei Dokumente und zwei Adressen in diesem Archiv;
 
-thymio-vpl-tutorial-en.pdf:             Das Tutorial.
-thymio-vpl-tutorial-answers-en.pdf:     Antworten zu den Fragen.
+thymio-vpl-tutorial-de.pdf:             Das Tutorial.
+thymio-vpl-tutorial-answers-de.pdf:     Antworten zu den Fragen.
+thymio-vpl-ref-card-de.pdf:             Eine A4 Seite Referenzkarte.
 
 programs:     Die Aseba/VPL Programme zu den Beispielen im Tutorial.
 answers:      Die Aseba/VPL Programme zu den Antworten im Tutorial. 

@@ -20,10 +20,11 @@ en assemblant des blocs de couleurs. Cette archive contient un tutoriel
 sur l'utilisation du robot Thymio II avec VPL. Pour plus d'information
 sur le Thymio II et Aseba, voir : https://aseba.wikidot.com/.
 
-Il y a deux documents et deux répertoires dans cette archive :
+Il y a trois documents et deux répertoires dans cette archive :
 
 thymio-vpl-tutorial-fr.pdf:             Le tutoriel
 thymio-vpl-tutorial-answers-fr.pdf:     Les réponses aux questions
+thymio-vpl-ref-card-fr.pdf:             Une page A4 carte de référence
 
 programs:     Les programmes Aseba/VPL pour les exemples du tutoriel
 answers:      Les programmes Aseba/VPL pour les réponses

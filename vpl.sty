@@ -56,15 +56,19 @@
 \end{center}}
 
 % Figures
-\DeclareFloatVCode{grayruleabove}%
-{{\color{black!20}\par\rule\hsize{2.2pt}\vskip4pt\par}}
-\DeclareFloatVCode{grayrulebelow}%
-{{\color{black!20}\par\vskip4pt\rule\hsize{2.2pt}}}
-\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}
+%\DeclareFloatVCode{grayruleabove}%
+%{{\color{black!20}\par\rule\hsize{2.2pt}\vskip4pt\par}}
+%\DeclareFloatVCode{grayrulebelow}%
+%{{\color{black!20}\par\vskip4pt\rule\hsize{2.2pt}}}
+%
+% commands to switch on and off framing
+%\newcommand{\framedfloat}{\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}}
 
-\newcommand{\framedfloat}{\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}}
-\newcommand{\plainfloat}
-{\floatsetup{style=plain}}
+\DeclareColorBox{mycolorbox}{\fcolorbox{black!20}{white}}
+
+\newcommand{\framedfloat}{\floatsetup{style=plain,framestyle=colorbox,framefit=yes,heightadjust=all,framearound=all,frameset={\fboxrule3pt\fboxsep4pt},colorframeset=mycolorbox}}
+
+\newcommand{\plainfloat}{\floatsetup{style=plain}}
 
 \framedfloat
 

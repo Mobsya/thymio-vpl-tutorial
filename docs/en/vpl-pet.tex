@@ -8,12 +8,13 @@ world and modify its behavior accordingly.
 
 \sect{The robot obeys you}
 
-First, we will train the robot to obey. Normally, the robot will stay in
+First, we will program the robot to obey. Normally, the robot will stay in
 place without moving; when it will detect your hand in front of it, it will
 move towards your hand.
 
 There are five horizontal distance sensors on the front of the Thymio-II
 robot and two on the rear of the robot.
+They are similar to the ones under Thymio that we have used in \cref{c.moving}.
 %\footnote{The technical term is \emph{proximity sensor}, but we will use the simpler term \emph{horizontal distance sensor}.}
 Bring your hand slowly towards the
 sensors; when it gets close, a red light will appear around the sensors
@@ -31,6 +32,7 @@ sensor or not. In either case it causes an event to occur. The small
 gray squares (five on the front and two on the rear) are used to specify
 when an event occurs. Clicking on a square will change it from gray to
 white to red and back to gray.
+For this block, the meaning of these colors are:
 
 \begin{itemize}
 \item \textbf{Gray}: The value of the sensor does not influence the
@@ -41,7 +43,20 @@ close to it.
 is \emph{no} object nearby.
 \end{itemize}
 
-\newpage
+\importantbox[Ground sensors and horizontal sensors]{
+Be careful not to confuse the behavior of the horizontal
+sensors with the behavior of the ground sensors.
+\begin{itemize}[noitemsep,nosep,leftmargin=*]
+\item For the horizontal sensors, the white square specifies that an
+event will occur if there is \emph{nothing nearby}, while the red square
+specifies that an event will occur if there is \emph{something nearby}.
+\item For the ground sensors, the white square specifies that an event
+will occur if \emph{only a little light is reflected from the surface},
+while the red square specifies that an event will occur \emph{if a lot
+of light is reflected from the surface}.
+\end{itemize}
+The physical principle of these two types of sensors is similar, but because of their different placement, their behavior is different.
+}
 
 To implement the behavior, we need the two event-action pairs shown in
 \cref{fig.follow-hand}. In the first pair, the center front sensor
@@ -52,24 +67,15 @@ sensor is red and the sliders of the motor block are dragged to the top.
 Therefore, when you bring your hand near the front of the robot, an event occurs that causes both motors to run quite fast and the robot to move forward.
 
 \begin{figure}
-	\subfigure[Moving towards your hand]{
-		\label{fig.follow-hand}
-		\includegraphics[width=.4\textwidth]{likes-forward}
-	}
-	\hfill
-	\subfigure[A bulldozer with tracks]{
-		\label{fig.bull}
-		\includegraphics[width=.35\textwidth]{bulldozer}
-	}
-	\caption{Thymio is a differential-drive vehicle}
+\begin{floatrow}
+	\ffigbox
+	{\caption{Moving towards your hand}\label{fig.follow-hand}}
+	{\includegraphics[width=.4\textwidth]{likes-forward}}
+	\ffigbox
+	{\caption{A bulldozer with tracks}\label{fig.bull}}
+	{\includegraphics[width=.35\textwidth]{bulldozer}}
+\end{floatrow}
 \end{figure}
-
-% \begin{figure}
-% \begin{center}
-% \gr{likes-forward}{.4}
-% \caption{Moving towards your hand}\label{fig.follow-hand}
-% \end{center}
-% \end{figure}
 
 
 \sect{Steering the Thymio-II robot}
@@ -83,26 +89,18 @@ individual motors at \emph{different} speeds. If the right track moves
 faster than the left one, the vehicle turns left, and if the left track
 moves faster than the right one, the vehicle turns right.
 
+In VPL you can implement differential drive on the Thymio-II robot by
+setting the left and right sliders of a motor action block, and therefore the wheel speeds, to
+different values.
 The greater the difference between the speeds, the tighter the turn. To
 achieve a large difference of speeds, you can drive one track forward
 and one track backwards. In fact, if one track moves forward at a
 certain speed, while the other track moves backwards at the \emph{same}
-speed, the vehicle turns in place.
-
-% \begin{figure}
-% \begin{center}
-% \gr{bulldozer}{0.35}
-% \caption{A bulldozer with tracks for differential drive}\label{fig.bull}
-% \end{center}
-% \end{figure}
-
-In VPL you can implement differential drive on the Thymio-II robot by
-setting the left and right sliders of a motor action block are set to
-different values. In the block \blksm{differential}, the left slider has
+speed, Thymio turns in place.
+For instance, in the motor action block \blksm{differential}, the left slider has
 been set for fast speed backwards, while the right slider has been set
-for fast speed forwards. The result is that the robot will make a left turn on itself, as indicated by the small image of the robot within the motor action block.
-
-\newpage
+for fast speed forwards.
+The result is that the robot will turn on itself to the left, as indicated by the small image of the robot.
 
 Experiment with an event-action pair such as: \blkc{turning}
 
@@ -110,7 +108,7 @@ Set the left and right sliders, run the program
 and touch the center button; to stop the robot click on \blksm{stop}.
 Now you can change the sliders and try again.
 
-\trickbox{The motor action block shows an animation of Thymio's movement when you move the sliders.}
+\trickbox{The icon of Thymio in the center of the motor action block shows an animation of the movement of the robot when you move the sliders.}
 
 
 \sect{The robot likes you}
@@ -138,13 +136,6 @@ Experiment with the sliders on each motor action block.
 	\caption{Programs for pet robot}
 \end{figure}
 
-% \begin{figure}
-% \begin{center}
-% \gr{likes-turns}{0.4}
-% \caption{The robot likes you}\label{fig.likes}
-% \end{center}
-% \end{figure}
-
 \exercisebox{\thechapter.1}{
 Modify the behaviour of the pet robot so that it starts moving forward when the program
 is run and stops when it detects the edge of a table (or a strip of black tape). \\
@@ -157,21 +148,6 @@ You will have to experiment with the horizontal sensor block to determine when t
 \exercisebox{\thechapter.2}{
 What happens if you change the order of
 the event-action pairs that you used in the previous exercise?
-}
-
-\importantbox[Ground sensors and horizontal sensors]{
-Be careful not to confuse the behavior of the horizontal
-sensors with the behavior of the ground sensors.
-\begin{itemize}[noitemsep,nosep,leftmargin=*]
-\item For the horizontal sensors, the white square specifies that an
-event will occur if there is \emph{nothing nearby}, while the red square
-specifies that an event will occur if there is \emph{something nearby}.
-\item For the ground sensors, the white square specifies that an event
-will occur if \emph{only a little light is reflected from the surface},
-while the red square specifies that an event will occur \emph{if a lot
-of light is reflected from the surface}.
-\end{itemize}
-The physical principle of these two types of sensors is similar, but because of their different placement, their behavior is different.
 }
 
 
@@ -196,7 +172,10 @@ the right sensor causes the robot to turn left, as shown in \cref{fig.hates}.
 
 \exercisebox{\thechapter.3}
 {
-Experiment with the sensors. Instead of using sensors 0 and 4 as until now:
+Experiment with the sensors.
+The front horizontal sensors are numbered 0, 1, 2, 3, 4 from the left of the robot to its right.
+The rear sensors are numbered 5 for the left one and 6 for the right one.
+Instead of using sensors 0 and 4 as until now:
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item Use sensors 1 and 3 to turn the robot left and right,
 respectively.
@@ -204,8 +183,6 @@ respectively.
 and 4 to turn the robot right.
 \item Add event-action pairs for the rear sensors 5 and 6.
 \end{itemize}
-{\small The front horizontal sensors are numbered 0, 1, 2, 3, 4 from the left of the robot to its right.
-The rear sensors are numbered 5 for the left one and 6 for the right one.}
 }
 
 \sect{Setting the slides precisely (advanced)}
@@ -262,9 +239,10 @@ Hence it corresponds to an event-action pair:
 	\item tests if there is something at right ; if that is true, Thymio turns right.
 \end{enumerate}
 Finally, once Thymio has read all these sensors, it waits the next event \p{prox} et starts over these tests, indefinitely.
+To learn how to edit the text mode, see \cref{ch.next}.
 
-\trickbox{Experiment with moving the sliders on the motor action blocks. You will
+\trickbox{By moving the sliders on the motor action blocks, you will
 see that the target speeds of the motors (\p{moter.X.target}) jump by steps of 50 in the range $-$500
-to 500. By moving the sliders carefully, you can set the speeds to any
-of these values.
+to 500.
+By moving the sliders carefully, you can set the speeds to any of these values.
 }

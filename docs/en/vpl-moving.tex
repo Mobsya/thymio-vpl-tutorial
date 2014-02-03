@@ -25,11 +25,11 @@ right motors, half-way up for forward and half-way down for backwards.
 \begin{figure}
 \begin{center}
 \gr{no-stop-motors}{.4}
-\caption{Moving forward and backwards}\label{fig.nostop}
+\caption{Moving forward or backwards}\label{fig.nostop}
 \end{center}
 \end{figure}
 
-Run the program by clicking \blksm{run} and touch the buttons to
+Run the program and touch the buttons to
 make the robot go forwards and backwards.
 
 \newpage
@@ -62,21 +62,21 @@ lot of reflected light, but when the front of the robot goes past the
 end of the table, there will be much less reflected light. When this is
 detected we want the robot to stop.
 
-\trickbox{We assume that the table is colored with a light color.
-If your table is colored with a dark color, you will have to modify the program.
-Avoid transparent glass tables, as they will likely not reflect the light and Thymio-II will believe that it is not on a table!
+\trickbox{Use a table colored with a light color and avoid transparent glass tables, as they will likely not reflect the light and Thymio-II will believe that it is not on a table!
 }
 
 Drag the ground sensor event \blksm{event-ground} into the program. There
 are two small squares at the top of the icon. Clicking the squares
-changes them from gray to white to red and finally back to gray. These
-meanings of the colors are:
+changes them from gray to white to red and finally back to gray.
+For this block, the meanings of these colors are:
 
 \begin{itemize}
 \item \textbf{Gray}: The sensor is not used.
 \item \textbf{Red}: An event occurs when there is a lot of reflected light.
 \item \textbf{White}: An event occurs when there is little reflected light.
 \end{itemize}
+
+\trickbox[Information]{The color of a bloc is arbitrary, the ones we chose seemed indicative to us, but others could have been chosen.}
 
 To cause the robot to stop at the border of the table, when there is little reflected light, click
 the squares until they are white and create the following event-action pair:

@@ -12,7 +12,7 @@ Let us write a program that causes the robot to follow a line on the floor.
 {\raggedleft \hfill Program file \bu{follow-line.aesl}}
 
 The line-following task brings out all the uncertainty of constructing
-robots in the real world.
+robots in the real world, the robot must face uncertainty in its perceptions of and its actions on the world.
 For instance, the line might not be perfectly straight, dust may obscure part of the line, dirt may cause one wheel to move more slowly than the other one.
 To follow a line, the robot must use a
 \emph{controller} that decides how much power to apply to each motor
@@ -31,11 +31,11 @@ To follow a line, we will use the same ground sensors we have already used in \c
 Remember that these work by sending infrared light (invisible to human eye) and measuring how much is reflected back.
 If the floor is light-colored, the sensor will detect a lot of reflected
 light and the event \blksm{lots-of-light} will occur. We need a line
-that will cause an event to occur when there is little reflected light:
+that will cause an event to occur when there is little reflected light
 \blksm{little-light}. This is easy to do by printing a black line, by painting it or by placing black
 electrician's tape on the floor, as in \cref{fig.tape}. The line must
 be wide enough so that both ground sensors will sense black when the
-robot is successfully following the tape. A width of 5
+robot is successfully following the line. A width of 5
 centimeters is sufficient for the robot to follow the line even if there
 are small deviations.
 
@@ -84,11 +84,7 @@ if the turn is too aggressive, it might cause the robot to run off the
 other end of the tape. In any case, aggressive turns can be dangerous to
 the robot and whatever it is carrying.
 
-\importantbox[Parameters]{
-\emph{Parameters} are values that can be changed without affecting the
-overall structure of the event-action pairs that form the program.}
-
-The parameters that you can set in this program are the speeds of the
+In this program, you can set the speeds of the
 left and right motors in each motor action block. You will need to
 experiment with these values until the robot runs \emph{reliably}. Here,
 reliably means that the robot can successfully follow the line several times.
@@ -96,15 +92,13 @@ Since each time you place the robot on
 the line you might place it at a slightly different position and
 pointing in a slightly different direction, you have to test several times to make sure that the program works.
 
-The forward speed of the robot on the tape is also an important parameter.
-If it is too fast, the robot can run off the tape before the turning actions can affect its direction. However, if the speed is too slow, no one will buy your robot to use in a warehouse.
-Hence you have to find a good compromise.
-
-There are many ways to set the parameters of the motor action blocks that control the turns.
-For instance, if Thymio notices that it run off the line, what should it do?
+There are many ways to configure the motor action blocks.
+The forward speed of the robot on the line is an important parameter.
+If it is too fast, the robot can run off the line before the turning actions can affect its direction. However, if the speed is too slow, no one will buy your robot to use in a warehouse.
+Furthermore, if Thymio notices that it runs off the line, what should it do?
 If in that case one motor goes forward and one goes backwards, the robot does not risk to loose the line, but its movements will be very jerky.
 If one the contrary one motor goes slightly faster than the other, the robot will move smoothly but risks to loose the line.
-Here as well you have to find a good compromise.
+Hence you have to find good compromises.
 
 \exercisebox{\thechapter.1}{
 The robot stops when both ground sensors detect that they are off the
@@ -124,7 +118,7 @@ the robot turns right when it runs off the tape. What happens?
 It would be nice if we could \emph{remember} which sensor was the last
 one to lose contact with the tape in order to cause the robot turn in
 the correct direction to find the tape again. In \cref{ch.states}
-we will learn how to remember information.
+we will learn how Thymio can remember information.
 }
 
 \vfill

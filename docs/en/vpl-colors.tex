@@ -2,22 +2,23 @@
 
 \sect{Display colors}
 
-Write a VPL program that causes two different colors to be displayed on
+Create a program that causes two different colors to be displayed on
 the top of the Thymio-II robot when the front and back buttons are
 touched, and two other colors to be displayed on the bottom of the robot
 when the left and right buttons are touched.
 
 {\raggedleft \hfill Program file \bu{colors.aesl}}
 
-We need four event-action pairs. There are four events---touching the
-four buttons---and an action is associated with each event. Note the
+We need four event-action pairs.
+There are four events---touching the
+four buttons---and a color action is associated with each event. Note the
 difference between the action blocks \blksm{action-colors-up-white} and
 \blksm{action-colors-down-white}. The first block changes the color
 displayed on the top of the robot, while the second changes the color on
 the bottom of the robot. The block for the bottom has two black marks
 that represent the wheels.
 
-The program is shown in \cref{fig.colors-a}.
+This program is shown in \cref{fig.colors-a}.
 
 What colors are displayed? In the first three actions, the slider for
 one color is moved to the right edge and displayed, while the sliders
@@ -27,7 +28,7 @@ respectively. The action associated with the left button mixes red and
 green giving yellow.
 You can see the background of the color action changes depending on the sliders' positions, and shows you which color your Thymio II will be.
 
-Run the program and check that touching buttons changes the robot's color.
+Run the program (icon \blksm{run}) and check that touching buttons changes the robot's color.
 \Cref{fig.front} shows the Thymio-II displaying red on
 the top and \cref{fig.bottom} shows it displaying green on the
 bottom.
@@ -44,6 +45,8 @@ off the top light and the other to turn off the bottom light.
 By moving all three sliders in the color action block to the left, as in \cref{fig.colors-b}, no colors are displayed and the light is turned off.
 The event is the same in both pairs---touching the center button---but
 the actions are different---turning off the top or bottom light. 
+Do not forget to click on the icon \blksmpure{run} to run the program.
+In the future, it will be implicit that you will have to run every program by clicking on that icon, we will not tell you again.
 
 \vfill
 
@@ -52,9 +55,10 @@ the actions are different---turning off the top or bottom light.
 \item When a program is run, all the event-action pairs in the program
 are run.
 \item It is possible for several pairs to have the same event as
-long as they have different actions.
-\item If one event-action pair is the same as another one, VPL will
-display an error message.
+long as they have different associated action blocks.
+\item If the event and the action block are similar in several pairs, VPL will
+display an error message (area 3 in \cref{fig.vplgui}).
+You will not be able to run the program as long as there are errors.
 \end{itemize}
 }
 

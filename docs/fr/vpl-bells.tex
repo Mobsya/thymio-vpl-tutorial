@@ -10,8 +10,8 @@ Vous pouvez le programmer simplement en utilisant le bloc action :\blkc{action-m
 
 {\raggedleft \hfill Programme \bu{bells.aesl}}
 
-Vous ne deviendrez pas le nouveau Beethoven --- il n'y a que six notes, et chacune ne peut être que de cinq tons et deux longueurs --- mais vous pouvez composer une petite musique qui donnera de la personalité à votre robot.
-La \cref{fig.music} illustre deux chansons différentes jouées par Thymio lorsque vous appuyez sur les boutons avant ou arrière.
+Vous ne deviendrez pas le nouveau Beethoven --- on ne peut jouer qu'un ensemble de six notes, sur cinq hauteurs et deux longueurs différentes --- mais vous pouvez composer une petite musique qui donnera de la personalité à votre robot.
+La \cref{fig.music} illustre deux chansons différentes jouées par Thymio lorsque vous touchez les boutons avant ou arrière.
 
 \begin{figure}
 \begin{center}
@@ -21,10 +21,11 @@ La \cref{fig.music} illustre deux chansons différentes jouées par Thymio lorsq
 \end{figure}
 
 Les petits cercles sont les six notes.
-Chaque note doit être placée sur une barre de couleur représentant un ton.
+Chaque note doit être placée sur une barre de couleur représentant une hauteur.
 Il suffit de cliquer avec votre souris sur la barre de couleur de votre choix au niveau de la note que vous souhaitez modifier et voilà !
-Ensuite, vous pouvez choisir entre jouer une noire, un temps, et une blanche, deux temps, en cliquant sur la note que vous souhaitez modifier.
+Ensuite, vous pouvez choisir entre jouer une noire (courte), et une blanche (deux fois plus longue), en cliquant sur la note que vous souhaitez modifier.
 N'essayez pas de glisser/déplacer une note, ça ne fonctionnera pas.
+
 
 \exercisebox{\thechapter.1}{
 Écrivez un programme qui vous permet d'envoyer un \href{http://fr.wikipedia.org/wiki/Morse_(alphabet)}{code Morse}.
@@ -32,10 +33,12 @@ Les lettres dans les codes Morse sont encodées par des séquences de longs sons
 Par exemple, la lettre \emph{V} est encodée par trois points suivis par un trait.
 }
 
+
 \sect{Contrôllez votre robot par le son}
 
 Thymio a un microphone, il peut donc réagir à un son! L'événement \blksm{event-clap} se déclenche si Thymio entend un son fort, comme par exemple quelqu'un qui tape dans ses mains.
 La paire événement-action suivante allumera les lumières en dessous du robot lorsque vous tapez dans vos mains: \blkc{clap}
+
 
 \trickbox{Si vous vous trouvez dans un environnement bruyant, vous ne pourrez pas utiliser cet événement, car le niveau sonore sera toujours haut et l'événement s'activera à répétition.}
 
@@ -45,11 +48,13 @@ La paire événement-action suivante allumera les lumières en dessous du robot 
 Puis écrivez un programme qui fasse l'opposé : démarrer lorsque vous touchez un bouton et s'arrêter lorsque vous tapez dans vos mains.
 }
 
+\newpage
+
 \sect{C'est bien Thymio!}
 
 Il est important de récompenser votre animal de compagnie quand il est gentil, c'est pareil avec Thymio !
 Il peut vous détecter si vous lui donner une petite tape sur la tête grâce à l'événement \blksm{event-tap}.
-Par exemple, la paire événement-action suivante allument les lumières du haut du lorsque vous lui donner une petite tape : \blkc{touch}
+Par exemple, la paire événement-action suivante allume les lumières du haut lorsque vous lui donner une petite tape : \blkc{touch}
 
 Construisez un programme avec cette paire événement-action et la paire suivante qui allume les lumières du bas du robot lorsque vous tapez dans vos mains : \blkc{clap}
 

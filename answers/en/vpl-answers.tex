@@ -23,7 +23,7 @@ Answers to the Exercises
 
 \end{Large}
 
-Version 1.0
+Version 1.0=3
 
 \bigskip
 
@@ -34,7 +34,7 @@ Version 1.0
 
 \bigskip
 
-\copyright{}\  2013 by Moti Ben-Ari and other contributors.
+\copyright{}\  2013-14 by Moti Ben-Ari and other contributors.
 
 This work is licensed under the Creative Commons
 Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -341,5 +341,44 @@ in that case, we arbitrary choose to turn right \blk{follow2}.
 \end{center}
 \end{figure}
 
+\section{Counting}
+
+\textbf{\thesection.1}:
+You can count to four because there are four quarters of the state
+each of which can be set \textbf{on} to count an object.
+
+\textbf{\thesection.2}:
+The lower left quarter of the state icon will be used to represent the
+number of 4's in a binary number. If all quarters are off, the number represented
+is 0; if all quarters are on, the number represented is 4+2+1=7.
+Eight event-action pairs are needed, one for each transition between $n$ and
+$n+1$ (modulo 8).
+
+{\raggedleft \hfill Program file \bu{count-to-eight.aesl}}
+
+
+\textbf{\thesection.3}:
+There are four quarters in the state. We can use one quarter to count
+each of the number of 1's, 2's, 4's and 8's. Therefore, we can count
+from 0 to 8+4+2+1=15.
+
+
+\textbf{\thesection.4}:
+This program is a mirror image of the program for adding.
+For example, if the binary number is xyz1,
+then subtracting one gives xyz0, whatever the values of xyz.
+If the number is xyz0, you will have to borrow a binary digit,
+and there will be different event-action pairs depending on the value
+of xyz. Finally, subtracting one from 0000=0 gives 1111=15 in cyclic
+arithmetic.
+
+{\raggedleft \hfill Program file \bu{subtraction.aesl}}
+
+\textbf{\thesection.5}:
+An event-action pair is needed to count each strip of tape.
+For example, the following 
+pair \blk{count3} changes the count from 2 to 3 when a tape is detected.
+
+{\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
 
 \end{document}

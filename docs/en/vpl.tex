@@ -1,15 +1,20 @@
-\documentclass[11pt,a4paper]{report}
-\usepackage{mathpazo}
-\usepackage{graphicx,url}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
+\documentclass[12pt,a4paper,english]{report}
 \usepackage{../../vpl}
 \graphicspath{{../../images/}}
+
+% localized boxes
+\newcommand*{\trickbox}[2][Trick]{\infobox{#1}{#2}{blue!10}{\bclampe}}
+\newcommand*{\importantbox}[2][Important information]{\infobox{#1}{#2}{yellow!10}{\bcinfo}}
+\newcommand*{\yourturnbox}[1]{\infobox{Your turn}{#1}{orange!10}{\bccrayon}}
+\newcommand*{\exercisebox}[2]{\infobox{Exercise #1}{#2}{orange!10}{\bccrayon}}
+\newcommand*{\warningbox}[1]{\infobox{Warning!}{#1}{orange!10}{\bcattention}}
 
 %\includeonly{}
 
 \begin{document}
 \include{vpl-front}
+\tableofcontents
+\thispagestyle{empty}
 \include{vpl-preface}
 \include{vpl-intro}
 \include{vpl-colors}
@@ -19,5 +24,6 @@
 \include{vpl-bells}
 \include{vpl-time}
 \include{vpl-states}
+\include{vpl-count}
 \include{vpl-next}
 \end{document}

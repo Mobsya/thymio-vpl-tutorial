@@ -1,0 +1,120 @@
+\chap{Thymio est sur une piste}\label{ch.line}
+
+Une promenade en montagne peut sembler être une activité très simple.
+Il suffit d'enfiler une paire de chaussures de marche et de suivre le chemin.
+Pour un robot, suivre un chemin peut être très utile.
+Considérez un entrepôt avec des charriots robotiques qui transportent des objets.
+Il y a des lignes peintes sur le sol de l'entrepôt et le robot recoit comme instructions de suivre certaines lignes jusqu'à ce qu'il arrive à la zone de stockage de l'objet qu'il transporte.
+Écrivons un programme qui permette à Thymio de suivre une ligne noire sur une table blanche.
+
+{\raggedleft \hfill Programme \bu{follow-line.aesl}}
+
+Suivre une ligne sur le sol illustre le genre de difficultés rencontrées en robotique, dues à l'incertitude de la perception du monde et de la méconnaissance de l'action du robot dans le monde.
+Par exemple, la ligne peut être mal dessinée, de la saleté peut la recouvrir, ou de la poussière peut faire tourner une des roues du robot plus vite que l'autre.
+Pour suivre une ligne malgré ces difficultés, le robot doit utiliser un \emph{contrôleur}, qui aura pour tâche de définir la puissance à appliquer à chaque moteur en fonction des données reçues par les capteurs.
+
+\sect{La ligne et le robot}
+
+\begin{figure}
+	\subfigure[Thymio suit une ligne]{ \label{fig.tape} \includegraphics[height=0.35\textwidth]{blacktape}}
+	\hfill
+	\subfigure[Le capteur gauche est hors de la ligne, le capteur droite est sur la ligne]{ \label{fig.one-off} \includegraphics[height=0.35\textwidth]{thymio_half_on_line}}
+	\caption{Thymio sur une ligne de ruban adhésif noir}
+\end{figure}
+
+
+Pour suivre une ligne, nous allons utiliser les détecteurs de sol que nous avons déjà utilisé dans le \cref{c.moving}.
+Rappelons qu'ils fonctionnent en envoyant de la lumière infrarouge (invisible pour l'oeil humain) et en mesurant la quantité de lumière renvoyée.
+Si vous poser Thymio sur une couleur claire, beaucoup de lumière sera réfléchie, et donc l'événement \blksm{lots-of-light} sera déclenché.
+Nous avons donc besoin d'une ligne qui déclenchera un événement quand peu de lumière sera réfléchie \blksm{little-light}.
+Ceci est facile à réaliser en imprimant une bande noir, en la peignant ou en utilisant du ruban adhésif noir comme sur la \cref{fig.tape}.
+La ligne doit être assez large pour que les deux capteurs de sol voient du noir quand le robot suit la ligne correctement.
+Une largeur de 5 centimètres est suffisante pour que le robot suive la ligne même s'il y a de petites déviations.
+
+Le premier pas pour faire suivre une ligne à Thymio est de le faire avancer s'il est sur la ligne (les \emph{deux} capteurs de sol détectent du foncé), et de le faire s'arrêter s'il ne se trouve pas sur la ligne (les \emph{deux} capteurs de sol détectent du clair).
+Les paires événement-action qui sont illustrées sur \cref{fig.start-stop}.
+
+\trickbox{Assurez-vous d'avoir un câble USB assez long (disons, deux mètres) pour que le robot reste connecté même quand il bouge.
+Vous trouverez des rallonges dans les magasins d'informatique.}
+
+\begin{figure}
+	\subfigure[Thymio s'arrête ou avance]{ \label{fig.start-stop} \includegraphics[width=0.4\textwidth]{line-forward}}
+	\hfill
+	\subfigure[Thymio Corrige les déviations]{ \label{fig.follow-line} \includegraphics[width=0.4\textwidth]{line-controller}}
+	\caption{Un programme pour suivre une ligne}
+\end{figure}
+
+\sect{Votre premier contrôleur}
+
+Le prochain pas consiste à programmer le contrôleur qui suit la ligne :
+
+\begin{itemize}
+	\item Si le robot sort de la ligne à \emph{gauche}, comme sur la \cref{fig.one-off}, le capteur \emph{gauche} détectera le sol alors que le capteur \emph{droite} continuera de détecter la ligne ; dans ce cas le robot doit tourner légèrement à \emph{droite}.
+
+	\item Si le robot sort de la ligne à \emph{droite}, le capteur \emph{droite} détectera le sol alors que le capteur \emph{gauche} continuera de détecter la ligne ; dans ce cas le robot doit tourner légèrement à \emph{gauche}.
+	
+\end{itemize}
+
+Comme nous avons deux conditions, il nous faut deux paires événement-action, comme illustré sur la \cref{fig.follow-line}.
+
+\sect{Régler les paramètres}
+
+Il est assez facile de comprendre que si Thymio sort de la ligne à gauche, il doit tourner à droite, comme dans la \cref{fig.one-off}.
+La vraie question est plutôt: de combien doit-il tourner ?
+Si la rotation est trop douce, le capteur droit pourrait aussi sortir de la ligne avant que le robot ne tourne assez ; si au contraire le tour est trop serré, le robot pourrait sortir de la ligne de l'autre côté.
+Dans tous les cas, des tours trop forts peuvent être dangereux pour le robot et ce qu'il transporte.
+
+Dans ce programme, vous pouvez définir la vitesse des roues gauche et droite dans chaque bloc d'action moteur.
+Vous devrez expérimenter avec ces valeurs jusqu'à ce que le robot bouge de manière \emph{fiable}.
+Par fiable, nous entendons que le robot peut réussir plusieurs fois l'expérience de suivi de ligne.
+Comme à chaque expérience vous placez le robot sur la ligne à différentes positions et pointant dans differentes directions, il faut tester plusieurs fois pour être convaincu que le programme fonctionne.
+
+Il y a plein de façons différentes de configurer les blocs d'action moteur.
+Thymio doit-il aller vite lorsqu'il est sur la ligne ou, au contraire, lentement ?
+En allant vite, vous améliorerez son efficacité pour se déplacer d'un point à un autre mais il risquera de sortir de la ligne avant de pouvoir corriger sa direction.
+À l'inverse, s'il va trop lentement, personne n'achètera votre robot pour l'utiliser dans en entrepôt.
+De plus, une fois que Thymio remarque qu'il quitte la ligne, que doit-il faire ?
+S'il fait tourner un moteur dans un sens et l'autre dans le sens oppposé, vous vous assurez qu'il ne quittera pas la ligne mais ses mouvements seront très saccadés.
+S'il corrige simplement sa trajectoire en diminuant la vitesse d'une roue, il se déplacera avec fluidité, mais il risquera de quitter complètement la ligne.
+Ainsi, il faudra trouver de bons compromis.
+
+\exercisebox{\thechapter.1}{
+Thymio s'arrête complètement s'il ne détecte plus du tout la ligne.
+Modifiez le programme pour qu'il tourne lentement sur lui même vers la gauche jusqu'à ce qu'il retrouve la ligne.
+Essayez le sur une ligne avec un virage à gauche comme sur la \cref{fig.tape}.
+Essayer d'augmenter la vitesse en avant du robot.
+Que se passe-t-il lorsque le robot arrive à la fin de la ligne ?
+}
+
+\exercisebox{\thechapter.2}{
+Modifiez le programme de l'exercice précédent pour que le robot tourne à droite quand il arrive au bout de la ligne.
+Que se passe-t-il ?
+\vspace{.5em}\\
+Il serait bien si on pouvait se \emph{rappeller} quel capteur était le dernier à perdre le contact avec la ligne afin de tourner le robot dans la bonne direction pour retrouver la ligne.
+Dans le \cref{ch.states}, nous apprendrons à permettre à Thymio de se des informations.
+}
+
+\exercisebox{\thechapter.3}{
+Jouez avec différentes formes de parcours :
+\begin{itemize}[noitemsep,nosep,leftmargin=*]
+\item Virages doux
+\item Virages serrés
+\item Zig-zag
+\item Ligne plus large
+\item Ligne plus étroite
+\end{itemize}
+Faites la course avec vos amis :
+Quel robot suit le plus de lignes différentes avec succès ?
+Pour chaque ligne, quel robot la suit dans le moins de temps ?
+}
+
+\exercisebox{\thechapter.4}{
+Discutez les effets que les modifications suivantes au Thymio auraient sur les capacités du robot à suivre une ligne :
+\begin{itemize}[noitemsep,nosep,leftmargin=*]
+\item L'événement de lecture des capteurs de sol arrive plus ou moins souvent que 10 fois par seconde ;
+\item Les capteurs sont plus éloignés ou proche l'un de l'autre ;
+\item Il y a plus que deux capteurs de sol sous le robot.
+\end{itemize}
+}
+
+% TODO

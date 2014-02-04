@@ -1,0 +1,216 @@
+\chap{Der Roboter findet seinen Weg selbst}
+\label{ch.line}
+
+In diesem Kapitel programmieren wir den Roboter so,
+wie Roboter auch zur Lösung echter Probleme benutzt werden:
+\emph{Der Roboter folgt der Linie}.
+Stell Dir ein Lagerhaus mit Roboterwagen vor,
+welche Gegenstände von einer zentralen Verteilstelle herbringen.
+Dazu werden Linien auf den Boden des Lagerhauses gezeichnet
+und die Roboter erhalten die Anweisung bestimmten Linien zu folgen,
+bis diese den Lagerplatz für den gewünschten Gegenstand erreichen.
+
+Schreibe ein Programm, welches den Roboter einer Linie auf dem Boden folgen lässt.
+
+{\raggedleft \hfill Program file \bu{follow-line.aesl}}
+
+Die Aufgabe "Der Roboter folgt der Linie" bringt
+alle Unsicherheiten der Konstruktion von Robotern in der echten Welt zutage.
+Die Linie mag nicht perfekt gerade sein,
+Staub kann auf der Linie liegen und diese abdecken,
+Dreck führt eventuell dazu, dass ein Rad weniger schnell ist wie das Andere.
+Damit der Roboter der Linie folgt, benötigt der Roboter eine
+\emph{Steuereinheit} die entscheidet wie viel Leistung jeder Motor benötigt,
+abhängig von den Daten, die von den Sensoren geliefert werden.
+
+\sect{Vorbereitung}
+
+Falls der Boden von heller Farbe ist,
+wird der Sensor viel reflektiertes Licht wahrnehmen und das Ereignis  \blk{lots-of-light} wird ausgelöst.
+Somit brauchen wir eine Linie, die eine Ereignis auslöst, 
+falls wenig Licht reflektiert wird \blk{little-light}.
+Das lässt sich einfach mit dem Anbringen eines schwarzen
+Isolierklebebandes auf den Boden bewerkstelligen.
+Das Klebeband muss breit genug sein,
+dass beide Bodensensoren schwarz erkennen,
+solange der Roboter erfolgreich dem Klebeband folgt.
+Ein Klebeband mit der Breite von 5 Zentimetern genügt dem Roboter,
+um dem Klebeband folgen zu können sogar mit geringen Abweichungen.
+
+\begin{figure}
+\begin{center}
+\gr{blacktape}{.6}
+\caption{Der Thymio-II Roboter folgt der Klebebandlinie}
+\label{fig.tape}
+\end{center}
+\end{figure}
+
+Versichere dich,
+dass das USB Kabel lange genug ist (ca. die 2m),
+damit der Thymio-II auch in Bewegung mit dem Computer verbunden bleibt.
+
+\sect{Starte und Stoppe den Roboter}
+
+Der Roboter muss sich vorwärts bewegen,
+falls \emph{beide} Sensoren das schwarze Klebeband erkennen
+und stoppen, falls \emph{beide} Sensoren den Boden erkennen.
+Die Ereignis-Aktions Paare sind in der Folgenden Figure~\ref{fig.start-stop} gezeigt.
+Das erste Paar stoppt die Motoren, falls beide Sensoren den Boden erkennen,
+während das zweite Paar den Roboter veranlasst sich vorwärts zu bewegen,
+falls beide Sensoren das Klebeband erkennen.
+
+\begin{figure}
+\begin{center}
+\gr{line-forward}{.4}
+\caption{Starte und stoppe den Roboter}
+\label{fig.start-stop}
+\end{center}
+\end{figure}
+
+Der nächste Schritt besteht im Programmieren der Steuerungseinheit,
+die den Roboter der Linie folgen lässt.
+
+\begin{itemize}
+
+\item Falls der Roboter nach der \emph{linken} Seite vom Klebeband abkommt,
+wird der \emph{linke} Sensor den Boden erkennen,
+während der \emph{rechte} Sensor immer noch das Klebeband erkennt.
+In diesem Fall soll der Roboter ein wenig nach \emph{rechts} abbiegen
+
+\item Falls der Roboter nach der \emph{rechten} Seite vom Klebeband abkommt,
+wird der \emph{rechte} Sensor den Boden erkennen,
+während der \emph{linke} Sensor immer noch das Klebeband erkennt.
+In diesem Fall soll der Roboter ein wenig nach \emph{links} abbiegen (Figure~\ref{fig.one-off}).
+\end{itemize}
+
+
+\begin{figure}
+\begin{center}
+\begin{picture}(200,100)
+%\put(0,0){\framebox(200,100)}
+\thicklines
+\put(0,20){\line(1,0){200}}
+\put(0,70){\line(1,0){200}}
+\thinlines
+\put(80,0){
+\put(0,0){\line(1,1){50}}
+\put(0,0){\line(-1,1){50}}
+\put(50,50){\line(-1,1){50}}
+\put(-50,50){\line(1,1){50}}
+\put(20,55){\framebox(10,10){}}
+\put(5,72){\framebox(10,10){}}
+\put(-5,95){\line(1,0){10}}
+\put(45,45){\line(0,1){10}}
+\put(80, 0){\makebox(40,10)[l]{\bu{Floor}}}
+\put(80, 40){\makebox(40,10)[l]{\bu{Tape}}}
+\put(80, 80){\makebox(40,10)[l]{\bu{Floor}}}
+\put(25,75){\vector(1,1){20}}
+}
+\end{picture}
+\caption{Der linke Sensor ist nicht auf dem Klebeband, der rechte Sensor ist auf dem Klebeband}
+\label{fig.one-off}
+\end{center}
+\end{figure}
+
+Zwei Ereignis-Aktions Paare werden gebraucht  (Figure~\ref{fig.follow-line}).
+
+\sect{Setzen der Parameter}
+
+Es ist einfach zu erkennen,
+dass der Roboter, falls er von der linken Seite des Klebebands abkommt,
+wie in Figur (Figure~\ref{fig.follow-line}) nach rechts drehen muss,
+aber wie weit nach rechts? Falls die Drehung zu gering ausfällt,
+wird der rechte Sensor eventuell \emph{auch} vom Klebeband abkommen,
+bevor der Roboter auf die Spur zurückgelangt.
+Falls der Roboter jedoch zu stark nach rechts dreht,
+riskiert der Roboter die Klebeband Spur auf der anderen Seite zu verlieren.
+In jedem fall sind starke Drehungen gefährlich für den Roboter und jegliches Gut,
+welches er transportiert.
+
+\centeredbox{\begin{center} \textbf{Parameters} \end{center}
+\emph{Parameter} sind Werte,
+welche geändert werden können
+ohne die Gesamtstruktur der Ereignis-Aktions Paare zu verändern,
+die das Programm bilden.}
+
+\begin{figure}
+\begin{center}
+\gr{line-controller}{.4}
+\caption{Folge der Linie}
+\label{fig.follow-line}
+\end{center}
+\end{figure}
+
+Die Parameter, welche in diesem Programm verändert werden können,
+sind die Geschwindigkeiten des linken und des rechten Motors auf jedem Aktionsblock der Motoren.
+Experimentiere solange mit diesen Werten,
+bis der Roboter \emph{zuverlässig} läuft.
+Zuverlässig heisst hier, dass der Roboter mit den selben Programmeinstellungen mehrmals erfolgreich der Linie folgt.
+Platziere bei jedem Versuch den Roboter ein wenig anders in Bezug auf die Richtung und Position zum Klebeband.
+Das Programm muss mehrmals getestet werden, um die Zuverlässigkeit zu überprüfen.
+
+Überraschenderweise ist die vorwärtsgerichtete Geschwindigkeit entlang des Klebebands ebenfalls ein wichtiger Parameter. 
+Ist der Roboter zu schnell,
+ist dieser schon vom Klebeband weggefahren,
+bevor die Drehbewegung die Richtung des Roboters verändern konnte.
+Ist der Roboter jedoch zu langsam, wird Dir natürlich  niemand deinen Roboter abkaufen
+und in einem Lagerhaus einsetzen.
+
+Es gibt verschiedene Arten,
+wie die Parameter der Aktionsblöcke der Motoren gesetzt werden können,
+um die  Drehung zu kontrollieren.
+Du kannst einen Motor etwas schneller als den Anderen laufen lassen
+oder Du kannst den einen Motor vorwärts und den Anderen rückwärts laufen lassen.
+
+\sect{Übung \thechapter.1}
+
+Der Roboter stoppt,
+falls beide Sensoren erkennen,
+dass sie vom Klebeband abgekommen sind.
+Verändere das Programm so,
+dass der Roboter eine geringe Drehung nach Links vollführt mit der Absicht das Klebeband wiederzufinden.
+Versuche es auf einem Klebeband mit einer Linkskurve,
+wie in Figure~\ref{fig.tape}.  angezeigt.
+Versuche die Vorwärtsgeschwindigkeit des Roboters zu erhöhen.
+Was passiert, wann der Roboter das Ende des Klebebandes erreicht hat?
+
+\sect{Übung \thechapter.2}
+
+Verändere das Programm aus der vorangehenden Übung so,
+dass der Roboter nach rechts dreht,
+falls er vom Klebeband abkommt.
+Was passiert?
+
+Es wäre wünschenswert,
+wenn der Roboter  \emph{speichern} könnte,
+welchen Sensor als letzter den Kontakt zum Klebeband verloren hat,
+um den Roboter in die korrekte Richtung zu führen,
+um das Klebeband wieder zubinden.
+In Kapitel ~\ref{ch.states} werden wir lernen,
+wie Informationen gespeichert werden können.
+
+\sect{Übung \thechapter.3}
+
+Experimentiere mit unterschiedlichen Anordnungen des Klebebandes:
+
+\begin{itemize}
+\item weiten Kurven
+\item engen Kurven
+\item zickzack Linien
+\item breiteren Linien (benutze dazu die doppelte Klebebandbreite)
+\item schmaleren Linien ( schneide dazu das Klebeband in zwei Hälften)
+\end{itemize}
+
+Veranstalte Roboterrennen mit deinen Freunden:
+Welcher Roboter folgt erfolgreich den meisten Linien?
+Welcher Roboter fährt am schnellsten eine Linie ab?
+
+\sect{Übung \thechapter.4}
+
+Bespreche den Effekt der folgenden Veränderungen  auf den Thymio-II Roboter und dessen Fähigkeit der Linie zu folgen.
+
+\begin{itemize}
+\item Die Messereignisse der Bodensensoren erfolgen öfters bzw. weniger oft als 10 mal pro Sekunde.
+\item Die Sensoren sind weiter auseinander bzw. näher beisammen.
+\item Es gibt mehr als zwei Bodensensoren am Boden des Roboters.
+\end{itemize}

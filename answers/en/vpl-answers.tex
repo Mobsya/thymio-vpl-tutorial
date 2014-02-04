@@ -1,8 +1,4 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage{mathpazo}
-\usepackage{graphicx,url}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
+\documentclass[12pt,a4paper,english]{article}
 \usepackage{../../vpl}
 \graphicspath{{../../images/}}
 
@@ -11,6 +7,8 @@
 
 \begin{center}
 \begin{bfseries}
+
+\begin{Large}
 First Steps in Robotics
 
 with the
@@ -23,20 +21,20 @@ Aseba/VPL Environment
 
 Answers to the Exercises
 
+\end{Large}
+
 Version 1.0
 
 \bigskip
 
-Moti Ben-Ari
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari} and other contributors
 
-\url{http://www.weizmann.ac.il/sci-tea/benari/}
 \end{bfseries}
 \end{center}
 
+\bigskip
 
-\begin{center}
-\copyright{}\  2013 by Moti Ben-Ari. 
-\end{center}
+\copyright{}\  2013 by Moti Ben-Ari and other contributors.
 
 This work is licensed under the Creative Commons
 Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -44,11 +42,14 @@ of this license, visit
 \url{http://creativecommons.org/licenses/by-sa/3.0/}
 or send a letter to Creative Commons, 444 Castro Street, Suite 900,
 Mountain View, California, 94041, USA.
-\hspace{6pt}\includegraphics[width=.1\textwidth]{../images/by-sa}
 
+\begin{center}
+\hspace{6pt}\includegraphics[width=.2\textwidth]{../images/by-sa}
+\end{center}
 
 \section{Your First Robotics Project}
 
+No exercise.
 
 \section{Changing Colors}
 
@@ -191,9 +192,7 @@ as well as the highest tones.
 \end{figure}
 
 
-\textbf{\thesection.2}:
-
-The program in Figure~\ref{fig.clap-to-start} turns the motors on when
+\textbf{\thesection.2}: The program in Figure~\ref{fig.clap-to-start} turns the motors on when
 the clap event occurs and turns them off when the center button is
 touched.
 
@@ -242,7 +241,8 @@ tap event occurs.
 
 \section{A Time to Like}
 
-\textbf{\thesection.1} See Figure~\ref{fig.three}. When the front button
+\textbf{\thesection.1}:
+See Figure~\ref{fig.three}. When the front button
 is touched the motors are turned on and a three-second timer is started.
 When the timer expires, the motors are reversed. Finally, when the
 center button is touched, the motors are stopped.
@@ -260,8 +260,7 @@ center button is touched, the motors are stopped.
 
 \section{States: Don't Always Do the Same Thing}
 
-\textbf{\thesection.1} 
-
+\textbf{\thesection.1}:
 There will be two states: state \emph{left} \blksm{state-left} when the
 robot turns to the left and state \emph{right} \blksm{state-right} when
 the robot turns to the right. Initially, touching the forward button in
@@ -299,8 +298,7 @@ These two behaviors are run repeatedly, so you will have to click
 \end{center}
 \end{figure}
 
-\textbf{\thesection.2}
-
+\textbf{\thesection.2}:
 I was not able to solve this problem. I had assumed that it would be
 possible to detect the event when \emph{one sensor} no longer detect the
 tape \emph{before} the event when \emph{both sensors} no longer detect

@@ -1,0 +1,68 @@
+\chap{Zeige Farben an}
+
+Konstruiere ein VPL Programm, das zwei verschiedene Farben oben auf dem Roboter
+anzeigt, wenn der Vorwärts- oder der Rückwärts-Knopf berührt wird. Wenn die
+Links- und Rechts-Knöpfe berührt werden, sollen unten am Roboter zwei andere
+Farben angezeigt werden.
+
+{\raggedleft \hfill Beispielprogramm \bu{colors.aesl}}
+
+Dazu brauchen wir vier Ereignis-Aktions-Paare, da es vier verschiedene
+Ereignisse (das Berühren der vier Knöpfe) gibt, auf die der Roboter reagieren
+soll. Sei vorsichtig: es gibt zwei verschiedene Aktions-Blöcke, um die obere
+und untere Farbe des Roboters zu ändern (\blk{action-colors-up} und
+\blk{action-colors-down}). Im Block für die unteren Lichter sind zusätzlich die
+schwarzen Räder abgebildet.
+
+Das fertige Programm ist im Bild~\ref{fig.colors} dargestellt.
+
+Welche Farben werden angezeigt? In den ersten drei Ereignis-Aktions-Paaren ist
+jeweils eine Grundfarbe alleine gewählt. Die weissen Quadrate für die anderen
+beiden Farben sind jeweils ganz links. Diese drei Aktionen werden also reines
+Rot, Blau oder Grün anzeigen. Beim letzten Ereignis-Aktions-Paar werden aber
+zwei Farben gemischt: die weissen Quadrate sind bei Rot und Grün ganz rechts.
+Es wird also Rot und Grün gemischt. Welche Farbe entsteht daraus?
+
+\sect{Aufgabe \thechapter.1}
+
+Spiele mit dem Farbbalken und finde heraus welche Farben du anzeigen kannst.
+Wie kannst du Orange erstellen?
+
+\sect{Schalte die Lichter aus}
+
+Lass uns nun das Programm so verändern, dass alle Lichter ausgehen, wenn der
+mittlere Knopf berührt wird. Wir brauchen also zwei neue
+Ereignis-Aktions-Paare. Eines um die oberen und ein zweites,
+um die unteren Lichter aus zu schalten. Damit die Lichter ausgehen, müssen wir alle drei
+Farbbalken ganz links einstellen.
+
+Das Ereignis ist jetzt für beide der neuen Ereignis-Aktions-Paare dasselbe,
+nämlich der mittlere Knopf.
+
+\centeredbox{
+\begin{center}
+\textbf{Mehrere Ereignis-Aktions-Paare}
+\end{center}
+\begin{itemize}
+\item Wenn ein Programm ausgeführt wird, werden alle Ereignis-Aktions-Paare
+    gleichzeitig ausgeführt.
+\item Man kann mehrere Ereignis-Aktions-Paare mit dem gleichen Ereignis
+    konstruieren, solange sie verschiedene Aktionen haben.
+\item Sind zwei Ereignis-Aktions-Paare gleich (gleiches Ereignis und gleiche
+    Aktion), zeigt VPL eine Fehlermeldung an.
+\end{itemize}
+}
+
+\begin{figure}[htb]
+\begin{center}
+\gr{colors1}{0.4}
+\caption{Die Farben verändern sich, wenn ein Knopf berührt wird.}\label{fig.colors}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\gr{colors2}{0.4}
+\caption{Lösche die Lichter mit dem mittleren Knopf.}\label{fig.colors-off}
+\end{center}
+\end{figure}

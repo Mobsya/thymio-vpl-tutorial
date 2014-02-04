@@ -1,0 +1,168 @@
+\chap{Dein erstes Robotikprojekt}
+
+\sect{Den Roboter verbinden und VPL starten}
+
+Verbinde deinen Thymio-II Roboter mit einem USB Kabel mit dem Computer. Der
+Roboter spielt eine kleine Tonabfolge ab und  ein grünen Licht leuchtet auf dem
+Roboter. Falls der Roboter ausgeschaltet ist, schalte ihn an, indem du fünf
+Sekunden den mittleren Knopf berührst. Starte nun VPL; mache dazu einen
+Doppelklick auf das VPL Symbol \blksm{thymiovpl}. VPL wird gestartet und das
+Fenster in Bild~\ref{fig.connect} wird nun angezeigt. Wähle die Box
+\bu{Serial}, klicke auf \bu{Thymio-II Robot \ldots} darunter, wähle eine
+Sprache und klicke dann auf \bu{Connect}.\footnote{Abhängig von der
+Konfiguration deines Computers und des Betriebssystems, das du verwendest, kann es
+sein, dass das Fenster etwas anders ausschaut.}
+
+
+\begin{figure}
+\begin{center}
+\gr{connect}{.3}
+\caption{Den Roboter und die VPL Umgebung verbinden}\label{fig.connect}
+\end{center}
+\end{figure} 
+
+\sect{Thymio-II kennenlernen}
+
+Das Bild~\ref{fig.front} zeigt den Roboter von vorne. Oben sieht man einen Knopf in
+der Mitte und die vier Richtungsknöpfe. Hinter den Knöpfen wird der
+Batteriestand in grün angezeigt. Dahinter sieht man die zwei oberen Lichter, die auf
+rot eingestellt sind. Der Roboter hat unten weitere solche Lichter, die auf
+grün eingestellt sind (Bild~\ref{fig.bottom}). Die schwarzen Rechtecke vorne
+sind Sensoren, die du im Kapitel~\ref{ch.pet} kennenlernen wirst.
+
+\begin{figure}
+\begin{center}
+\gr{front}{.5}
+\caption{Der Thymio-II Roboter von vorne}\label{fig.front}
+\end{center}
+\end{figure} 
+
+\clearpage
+
+\sect{Die VPL Bedienungsoberfläche}
+
+Die Benutzeroberfläche von VPL (Bild~\ref{fig.gui}) hat vier Bereiche:
+
+\begin{itemize}
+\item Oben hat sie eine Symbolleiste mit Symbolen, um Programme zu öffnen, zu
+    speichern und auszuführen.
+\item Unterhalb der Symbolleiste befindet sich er Bereich, in dem man Programme 
+    für den Roboter konstruieren kann.
+\item Links und rechts des Programmbereichs sind Bereiche mit Aktions- und
+    Ereignisblöcken.
+\item Ganz rechts wird das konstruierte Programm in ein Textprogramm für den
+    Roboter übersetzt.
+\end{itemize}
+
+\begin{figure}[hbt]
+\gr{gui}{1.}
+\caption{VPL Benutzeroberfläche}\label{fig.gui}
+\end{figure}
+
+%\clearpage
+
+\sect{Konstruiere ein neues Programm}
+
+Wenn du VPL öffnest, ist der Programmierungsbereich leer. Um einen neues leeres
+Programm zu starten klicke auf \blksm{new}.
+
+Ein VPL Programm besteht aus mehreren (oder auch nur einem) Paar von Ereignis
+und Aktionsblöcken. Ein Beispiel: Das Paar \blkc{e-a-pair} verursacht, dass das
+obere Licht auf dem Roboter rot leuchtet, sobald der Vorwärts-Knopf des
+Roboters berührt wird.
+
+\importantbox{
+Die Bedeutung eines Ereignis-Aktions-Paars ist:\\
+\textbf{\textit{Wenn das Ereignis eintritt, wird die Aktion durchgeführt.}}
+}
+
+Lass uns nun ein Ereignis-Aktions-Paar erstellen. Im Programmierbereich siehst
+du eine Vorlage, um ein Paar zu erstellen: \blkc{event-action-pair-empty} Das
+linke, hellblaue Quadrat ist für das Ereignis und das rechte, hell-violette
+Quadrat für die Aktion. Du kannst nun das Knopf-Ereignis \blksm{event-buttons}
+von der linken Ereignis-Auswahl in das linke Quadrat ziehen. Wähle nun den
+Aktionsblock für die oberen Farben \blksm{action-colors-up} aus der rechten
+Auswahl und ziehe ihn in das rechte Quadrat. Du hast nun dein erstes
+Ereignis-Aktions-Paar erstellt.
+
+Jetzt können wir das Ereignis und die Aktion so verändern, dass sie machen was
+wir wollen. Beim Ereignis kannst du zum Beispiel auf den Vorwärts-Knopf
+klicken; er wird dann rot.
+
+Das bedeutet, dass \textbf{ein Ereignis stattfindet, wenn der Vorwärts-Knopf
+berührt wird}.
+
+Der Farb-Aktions-Block hat drei Balken mit den Grundfarben Rot, Grün und Blau.
+Jeder dieser Balken hat ganz links ein weisses Quadrat, mit dem du diese Farbe
+einstellen kannst. Wenn du die weissen Quadrate verstellst, verändert sich die
+Hintergrundfarbe des Blocks und zeigt so die Farbe an, die der Roboter anzeigt.
+Schiebe das Quadrat im roten Balken ganz nach rechts \blkc{red} der Roboter
+leuchtet nun rot, wenn du den Vorwärts-Knopf berührst. 
+
+\sect{Speichere das Programm}
+
+Bevor du dein erstes Programm ausführen kannst, musst du es speichern. Klicke
+auf das Symbol \blksm{save} in der Symbolleiste. Du musst dem Programm nun
+einen Namen geben; wähle einen Namen, der dir später hilft, dich zu erinnern
+was das Programm macht (zum Beispiel: \bu{rot-leuchten}).
+
+\sect{Führe das Programm aus}
+
+Um das Programm auszuführen, musst du auf das Symbol \blksm{run} klicken. Jetzt
+kannst du den Vorwärts-Knopf auf den Roboter berühren und dann sollte der
+Roboter rot leuchten.
+
+\sect{Schalte den Roboter aus}
+
+Wenn du nicht mehr mit dem Thymio-II Roboter spielen möchtest, kannst du ihn
+ausschalten. Drücke dazu den mittleren Knopf für fünf Sekunden bis du einige
+Töne hörst. Die Batterie des Roboters wird weiter aufgeladen, solange das Kabel
+an den Computer angeschlossen ist (und er Computer läuft). Die Batterie lädt,
+wenn das kleine Licht neben dem USB Stecker rot ist. Wenn es blau ist, ist die
+Batterie vollständig aufgeladen (Bild~\ref{fig.back}).
+
+\begin{figure}
+\begin{center}
+\gr{back}{.6}
+\caption{Die Rückseite des Thymio-II Roboters mit dem USB Kabel und der
+Ladeanzeige (blaues Licht)}\label{fig.back}
+\end{center}
+\end{figure}
+
+\sect{Verändere ein Programm}
+
+\begin{itemize}
+\item Um ein Ereignis-Aktions-Paar zu löschen, klicke auf \blksm{x}, das neben
+    jedem Paar angezeigt wird.
+\item Um ein weiteres Ereignis-Aktions-Paar hinzuzufügen, klicke auf
+    \blksm{plus}, das zwischen den Paaren und ganz unten angezeigt wird.
+\item Um ein Ereignis-Aktions-Paar zu verschieben, kannst du es einfach an die
+    neue Position ziehen.
+\end{itemize}
+
+\sect{Öffne ein Programm}
+
+Angenommen du hast dein Programm gespeichert und den Roboter ausgeschaltet,
+möchtest aber später wieder an deinem Programm weiter arbeiten. Verbinde den
+Roboter wie beschrieben und klicke dann auf öffnen \blksm{open} und wähle das
+Programm das du öffnen möchtest (zum Beispiel \bu{rot-leuchten}). Das Programm
+wird jetzt im Programmierbereich angezeigt und du kannst es verändern.
+
+\sect{Weitere Funktionen der VPL Benutzeroberfläche}
+
+\begin{itemize}
+\item \textbf{Speichern unter} \blksm{saveas}: Klicke auf dieses Symbol, um einem
+    Programm einen neuen Namen zu geben. Das ist nützlich, wenn du ein Programm
+    kopieren möchtest, um etwas auszuprobieren.
+\item \textbf{Stopp} \blksm{stop}: Dieses Symbol stoppt das Programm das gerade
+    auf dem Roboter ausgeführt wird. Das kannst du zum Beispiel brauchen, wenn
+    der Roboter nicht mehr selbst stoppt.
+\item \textbf{Farbpalette ändern} \blksm{scheme}: Hier kannst du auswählen,
+    welche Farbe dir besser gefällt.
+\item \textbf{Fortgeschrittener Modus} \blksm{advanced}: Im fortgeschrittene
+    Modus kannst du Zustandvariablen brauchen. Diese lernst du im
+    Kapitel~\ref{ch.states} kennen.
+\item \textbf{Hilfe} \blksm{info1}: Zeigt die VPL Dokumentation in deinem Browser
+    an. Die Dokumentation findest du hier: 
+    \url{https://aseba.wikidot.com/de:thymiovpl}.
+\end{itemize}

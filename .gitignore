@@ -1,2 +1,5 @@
 build/
-thymio-vpl-tutorial-en.zip
+thymio-vpl-tutorial-*.zip
+thymio-vpl-tutorial-*.pdf
+thymio-vpl-tutorial-answers-*.pdf
+*.swp

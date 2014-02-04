@@ -1,15 +1,35 @@
-\topmargin=0pt
-\marginparwidth=0pt
-\renewcommand{\baselinestretch}{1.1}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{graphicx,url}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
+\usepackage{microtype}
+\usepackage[a4paper,top=3cm,bottom=3cm,inner=2.5cm,outer=4cm]{geometry}
+\usepackage{enumitem}
+
+% for boxes
+\usepackage[tikz]{bclogo}
+\usepackage{framed}
+
+\usepackage{floatrow}
+
+\usepackage{libertine}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\usepackage{subfigure}
+
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% End of packages
+
+\renewcommand{\baselinestretch}{1.05}
 \setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
 \parindent=0pt
-\oddsidemargin=8mm
-\evensidemargin=8mm
-\textwidth=150mm
-\textheight=220mm
 
 % Font for buttons and menus
-\newcommand*{\bu}[1]{\texttt{#1}}
+\newcommand*{\bu}[1]{\textbf{#1}}
 
 % Font for program entities
 \newcommand*{\p}[1]{\texttt{\textup{#1}}}
@@ -18,9 +38,16 @@
 \newcommand*{\blk}[2][-15]{\raisebox{#1pt}%
 {\includegraphics[height=40pt,keepaspectratio=true]{#2}}}
 
+% Centered inline graphics
+\newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}{\includegraphics[height=4em]{#1}}}\vskip .3em}
+
 % Inline graphics
-\newcommand*{\blksm}[2][-10]{\raisebox{#1pt}%
-{\includegraphics[height=30pt,keepaspectratio=true]{#2}}}
+\newcommand*{\blksm}[1]{\raisebox{-.2em}%
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}\marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]{\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
+
+% Inline graphics
+\newcommand*{\blksmpure}[1]{\raisebox{-.2em}%
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}}
 
 % Centered image
 \newcommand*{\gr}[2]%
@@ -28,7 +55,41 @@
 \includegraphics[width=#2\textwidth,keepaspectratio=true]{#1}
 \end{center}}
 
+% Figures
+%\DeclareFloatVCode{grayruleabove}%
+%{{\color{black!20}\par\rule\hsize{2.2pt}\vskip4pt\par}}
+%\DeclareFloatVCode{grayrulebelow}%
+%{{\color{black!20}\par\vskip4pt\rule\hsize{2.2pt}}}
+%
+% commands to switch on and off framing
+%\newcommand{\framedfloat}{\floatsetup{framefit=yes,heightadjust=all,framearound=all,rowprecode=grayruleabove,rowpostcode=grayrulebelow}}
+
+\DeclareColorBox{mycolorbox}{\fcolorbox{black!20}{white}}
+
+\newcommand{\framedfloat}{\floatsetup{style=plain,framestyle=colorbox,framefit=yes,heightadjust=all,framearound=all,frameset={\fboxrule3pt\fboxsep4pt},colorframeset=mycolorbox}}
+
+\newcommand{\plainfloat}{\floatsetup{style=plain}}
+
+\framedfloat
+
 % Box
+\newenvironment{gbar}[1]{%
+\def\FrameCommand {{\color {#1}\vrule width 13 pt }}%
+\MakeFramed {\advance\hsize -\width \FrameRestore }}%
+{\endMakeFramed}
+
+\newcommand*{\infobox}[4]{%
+\vskip .2em%
+\begin{bclogo}[couleur = #3, epBord = .5, arrondi = 0.1, logo = #4, ombre = false, barre = none, marge = 8]{\ #1}%
+\begin{gbar}{#3}%
+\vspace{.3em}%
+#2%
+\end{gbar}%
+\end{bclogo}%
+\vskip .2em%
+}
+
+% TODO: remove that
 \newcommand{\centeredbox}[1]{%
 \begin{center}%
 \fbox{%
@@ -69,3 +130,12 @@
     \vskip 10\p@
   }}
 \makeatother
+
+% Listings
+\usepackage{listings}
+\lstdefinelanguage{aseba}
+{
+morekeywords={var,if,then,else,do,end,while,ontimer,onevent,emit,call,when,for,in,step,and,or,not}
+}
+\lstset{basicstyle=\ttfamily,language=aseba,tabsize=4,keywordstyle=\color{blue},aboveskip=0.2em,belowskip=0.2em}
+%\newfloat{Listing}{tbp}{lst}[chapter]

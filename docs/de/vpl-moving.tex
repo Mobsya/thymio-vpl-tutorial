@@ -1,0 +1,105 @@
+\chap{Los, Thymio-II bewege dich}\label{c.moving}
+
+\sect{Vorwärts und Rückwärts fahren}
+
+Der Thymio-II Roboter hat zwei Motoren mit denen er seine zwei Räder antreiben
+kann. Beide Motoren können vorwärts und rückwärts drehen. Dadurch kann der
+Roboter vorwärts und rückwärts fahren. Lass uns ein kleines Projekt machen, mit
+dem du lernen kannst, wie du die Motoren steuern kannst.
+
+Der Aktions-Block für die Motoren \blk{action-motors} zeigt ein kleines Bild
+des Roboters in der Mitte und zwei Balken. Mit den beiden Balken kannst du die
+Geschwindigkeit der beiden Motoren einstellen. Mit dem linken Balken die des
+linken Motors und mit dem rechten Balken die des rechten Motors. Wenn das
+weisse Quadrat in der Mitte ist, dreht der Motor nicht. Wenn du das Quadrat
+nach oben schiebst, dreht der Motor immer schneller vorwärts. Schiebst du es
+nach unten, dreht der Motor rückwärts.
+
+Konstruiere ein Programm, um den Roboter vorwärts fahren zu lassen, wenn der
+Vorwärts-Kopf berührt wird und rückwärts, wenn der Rückwärts-Knopf berührt
+wird.
+
+{\raggedleft \hfill Beispielprogramm \bu{moving.aesl}}
+
+Wir brauchen zwei Ereignis-Aktions-Paare (Bild~\ref{fig.nostop}). Erstelle die
+beiden Paare und stelle bei den Motoren die gleiche Geschwindigkeit ein.
+
+Führe das Programm aus, indem du auf \blksm{run} klickst. Jetzt kannst du den
+Vorwärts- und Rückwärts-Knopf berühren. Was macht der Roboter?
+
+\begin{figure}
+\begin{center}
+\gr{no-stop-motors}{.4}
+\caption{Vorwärts und rückwärts fahren}\label{fig.nostop}
+\end{center}
+\end{figure}
+
+\sect{Stoppe den Roboter}
+
+\textbf{Hilfe!} Ich kann den Roboter nicht mehr stoppen!
+
+Klicke auf das Symbol \blksm{stop}, um den Roboter zu stoppen.
+
+Wie können wir dieses Problem beheben? Lass uns ein neues Ereignis-Aktions-Paar
+hinzufügen, das beide Motoren stoppt, wenn du den mittleren Knopf berührst.
+Hier musst du beim Aktions-Block für die Motoren die Balken in der Mitte
+lassen.
+
+\sect{Falle nicht vom Tisch}
+
+Wenn der Roboter auf dem Boden fährt, kann er im schlimmsten Fall in eine Wand
+fahren, oder sein USB Kabel ausziehen. Aber wenn der Roboter auf einem Tisch
+fährt, kann er auf den Boden fallen und kaputt gehen! Lass uns den Roboter so
+programmieren, dass das nicht passieren kann.
+
+\centeredbox{\textbf{Achtung! Wenn der Roboter auf einem Tisch fährt, musst du
+bereit sein, um ihn aufzufangen falls er runter fällt.}}
+
+Drehe deinen Thymio-II auf den Rücken. Nun siehst du, dass er unten zwei
+kleine, schwarze Rechtecke mit optischen Elementen hat (Bild~\ref{fig.bottom}).
+Das sind \emph{Bodensensoren}, die Licht aussenden, und erkennen können, ob
+viel oder wenig Licht zurückkommt. Wenn etwas unter dem Roboter ist (zum
+Beispiel der Tisch) wird viel Licht reflektiert. Wenn aber die Spitze des
+Roboters über den Tisch hinausragt, geht das Licht weit weg und nur sehr wenig
+kommt zurück. Wenn das passiert, möchten wir den Roboter stoppen.
+
+\centeredbox{\textbf{Hier nehmen wir an, das dein Tisch eine helle Farbe hat.
+Wenn du einen sehr dunklen Tisch hast, musst du das Programm ändern.}}
+
+Ziehe das Bodensensor-Ereignis \blk{event-ground} in dein Programm. Oben hat
+dieser Block zwei kleine Quadrate. Wenn du sie anklickst, werden sie weiss, rot
+und dann wieder grau. Die Farben haben verschiedene Bedeutungen:
+
+\begin{itemize}
+\item \textbf{Grau}: Der Sensor wird nicht gebraucht.
+\item \textbf{Rot}: Ein Ereignis passiert, wenn viel Licht reflektiert wird.
+\item \textbf{Weiss}: Ein Ereignis passiert, wenn wenig Licht reflektiert wird. 
+\end{itemize}
+
+Klicke auf die Quadrate bis beide weiss sind, um den Roboter zu stoppen, wenn
+wenig Licht reflektiert wird. Erstelle so das Ereignis-Aktions-Paar
+\blk{dont-fall}.
+
+\begin{figure}
+\begin{center}
+\gr{bottom}{0.6}
+\caption{Unten hat der Thymio-II Roboter zwei Bodensensoren.}\label{fig.bottom}
+\end{center}
+\end{figure}
+
+Stelle den Roboter nahe an die Tischkante und berühre den Vorwärts-Knopf. Der
+Roboter sollte bis zur Tischkante fahren und dann stoppen.
+
+Als ich das Programm ausprobiert habe, ist der Roboter heruntergefallen. Das ist
+passiert, weil mein Tisch eine runde Kante hat. Als der Roboter die Kante
+richtig bemerkt hat, war es schon zu spät und er ist runter gefallen. Ich habe
+ein Stück schwarzes Klebeband an die Tischkante geklebt, damit hat es dann
+funktioniert.
+
+\sect{Aufgabe \thechapter.1}
+
+Probiere verschiedene Geschwindigkeiten mit dem Roboter aus. Kann der Roboter
+auch bei der schnellsten Geschwindigkeit noch rechtzeitig stoppen, um nicht vom
+Tisch zu fallen? Falls nicht, wie schnell kannst du ihn einstellen, damit er
+noch rechtzeitig stoppen kann?
+

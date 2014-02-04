@@ -1,0 +1,240 @@
+% !TeX root = vpl.tex
+
+\chap{Counting (Advanced)}\label{ch.counting}
+
+In this chapter we show how states of the Thymio robot can be used to
+count numbers and even perform simple arithmetic.
+
+The design and implementation of the projects will not be presented
+in detail. We assume that you have enough experience by now to develop
+them yourself. The source code of working programs is included in the
+archive, but don't look at them unless you really have difficulties
+solving a problem.
+
+These projects use the \emph{clap} event to change states and
+the default behaviour of the circle LEDs to display the state:
+
+\importantbox{The current state of the robot is displayed
+in the circle LEDs on the top of the robot.
+\cref{fig.state-leds} shows the robot in the state
+\bu{(on, on, on, on)}.}
+
+Feel free to change either of these behaviours.
+
+\sect{Odd and even}
+
+\begin{quote}
+\textbf{Program}\\Choose one of the quarters of the state.
+It will be \bu{off} (white) if the number of claps
+is even and \bu{on} (orange) if the number of claps is odd.
+Touching the center button will reset to even
+(since zero is an even number).
+\end{quote}
+
+{\raggedleft \hfill Program file \bu{count-to-two.aesl}}
+
+Our method of counting demonstrates the concept of
+\emph{modulo 2 arithmetic}.
+We count starting from 0 to 1 and then back to 0.
+The term \emph{modulo} is like the term \emph{remainder}:
+if there have been 7 claps, then dividing 7 by 2 gives 3 and
+remainder 1.
+We only keep the remainder 1.
+
+In modulo 2 arithmetic, 0 and 1 are often called even and odd,
+respectively.
+
+Another term for the same concept is \emph{cyclic arithmetic}.
+Instead of counting from 0 to 1 and then from 1 to 2,
+we \emph{cycle} back to the beginning:
+0, 1, 0, 1, \ldots.
+
+These concepts are very familiar because they are used in clocks.
+Minutes and seconds are computed modulo 60 and hours are computed modulo
+12 or 24. Thus, the second after 59 is not 60; instead, we cycle around
+and start counting from 0 again. Similarly, the hour after 23 is not 24,
+but 0. If the time is 23:00 and we agree to meet after 3 hours,
+then the time set for the meeting is 26 modulo 24, which is 02:00 in the
+morning.
+
+\sect{Counting in unary}
+
+\begin{quote}
+Modify the program to count modulo 4.
+There are four possible remainders, 0, 1, 2, 3.
+Choose three quarters, one each to
+represent the values 1, 2 and 3; the value 0 will be represented
+by setting all quarters to \bu{off}.
+\end{quote}
+
+This method of representing numbers is called
+\emph{unary representation}
+because different elements of a state represent different numbers.
+We often use unary representation to keep track of the count
+of some objects; for example,
+\begin{picture}(35,10)
+\multiput(5,0)(5,0){4}{\put(0,0){\line(0,1){10}}}
+\put(0,0){\line(3,1){25}}
+\put(32,0){\line(0,1){10}}
+\end{picture}
+represents 6.
+
+{\raggedleft \hfill Program file \bu{count-to-four.aesl}}
+
+\exercisebox{\thechapter.1}{How high can we count on the Thymio using
+unary representation?}
+
+\sect{Counting in binary}
+
+We are very familiar with \emph{based representation},
+in particular base 10 (decimal) representation.
+The symbols 256 in base 10 representation don't represent three
+different objects.
+Instead, the 6 represents the number of 1's, the 5 represents the
+number of 10$\times$1=10's, and the 2 represents the number of
+10$\times$10$\times$1=100's. Adding these factors gives the number
+two hundred and fifty-six. Using base 10 representation,
+we can write very large
+numbers in a compact representation.
+Furthermore, arithmetic on large numbers
+is relatively easy using the methods we learned at school.
+
+We use base 10 representation because we have 10 fingers
+so it is easy to learn to use the representation.
+Computers, however, have two ``fingers'' (\bu{off} and \bu{on})
+so base 2 arithmetic is used in
+computation. Base 2 arithmetic looks
+strange at first; while we use the familiar symbols 0 and 1
+also used in base 10, the rules for counting are cyclic at 2
+instead of cyclic at 10:
+\begin{displaymath}
+0, 1, 10, 11, 100, 101, 110, 111, 1000, \ldots
+\end{displaymath}
+
+Given a base 2 number such as 1101, we compute its value from right
+to left just as in base 10.
+The rightmost digit represents the number of 1's, the next digit
+represents the number of 1$\times$2=2's, the third digit represents
+the number of 1$\times$2$\times$2=4's, and the leftmost digit
+represents the
+numbers of 1$\times$2$\times$2$\times$2=8's.
+Therefore, 1101 represents 1+0+4+8, which is thirteen,
+represented in base 10 as 13.
+
+\newpage
+
+\begin{quote}
+\textbf{Program}\\
+Modify the program for counting modulo 4 to use binary representation
+\end{quote}
+
+{\raggedleft \hfill Program file \bu{count-to-four-binary.aesl}}
+
+We only need two quarters of the state to represent the numbers
+0--3 in base 2.
+Let the upper right quarter represent the number of 1's,
+\bu{off} (white) for none and \bu{on} (orange) for one,
+and let the upper left quarter represent the number of 2's.
+For example, \blksm{state-right} represents the number 1 and
+\blksm{state-left} represents the number 2.
+If both quarters are white, the state represents 0, and if both
+quarters are orange, the state represents 3.
+
+There are four transitions $0\rightarrow 1, 1\rightarrow 2, 2
+\rightarrow 3, 3\rightarrow 0$, so four event-action pairs
+are needed, in addition to a pair to reset the program
+when the center button is touched.
+
+\medskip
+
+\trickbox{The two bottom quarters are not used, so they are left gray
+and are ignored by the program.}
+
+\medskip
+
+\exercisebox{\thechapter.2}{Extend the program so that it counts
+modulo 8. The lower left quarter will represent the number of 4's.}
+
+{\raggedleft \hfill Program file \bu{count-to-eight.aesl}}
+
+\exercisebox{\thechapter.3}{How high can we count on the Thymio using
+binary representation?}
+
+\sect{Adding and subtracting}
+
+Writing the program to count to 8 is quite tedious because you had to
+program 8 event-action pairs, one for each transition from $n$ to $n+1$
+(modulo 8). Of course, that is not how we count in a based
+representation;
+instead, we have methods for performing addition by adding the digits
+in each place and carrying to the next place. In base 10
+representation:
+\begin{displaymath}
+\begin{array}{r}
+387\\
++426\\
+\rule[1pt]{1.5em}{1pt}\\
+813\\
+\end{array}
+\end{displaymath}
+and similarly in base 2 notation:
+\begin{displaymath}
+\begin{array}{r}
+0011\\
++1011\\
+\rule[1pt]{2em}{1pt}\\
+1110\\
+\end{array}
+\end{displaymath}
+When adding 1 to 1, instead of 2, we get 10.
+The 0 is written in the same column and we carry the 1 to the next
+column to the left.
+The example above shows the addition of 3 (=0011) and 11 (=1011)
+to obtain 14 (=1110).
+
+\begin{quote}
+\textbf{Program}\\
+Write a program that starts with a representation of 0.
+Each clap adds 1 to the number.
+The addition is modulo 16, so adding 1 to 15 results in 0.
+\end{quote}
+
+Guidance:
+
+\begin{itemize}
+\item The lower right quarter will be used to represent the number of 8's.
+\item If the upper right quarter representing the number
+of 1's shows 0 (white),
+simply change it to 1 (orange). Do this regardless of what the other
+quarters show.
+\item If the upper right quarter representing the number of 1's
+shows 1 (orange),
+change it to 0 (white) and then carry the 1.
+There will be three event-action pairs,
+depending on the location of the \emph{next} quarter showing 0
+(white).
+\item If all quarters show 1 (orange), the value of 15 is represented.
+Adding 1 to 15 modulo 16 results in 0, represented by all quarters
+showing 0 (white).
+\end{itemize}
+
+
+{\raggedleft \hfill Program file \bu{addition.aesl}}
+
+\exercisebox{\thechapter.4}{Modify the program so that it starts
+with the value 15 and subtracts one at each clap down to zero,
+and then cyclically back to 15.}
+
+{\raggedleft \hfill Program file \bu{subtraction.aesl}}
+
+\exercisebox{\thechapter.5}{Place a sequence of short segments of
+black tape on a light surface (or white tape on a dark surface).
+Write a program that causes the Thymio to move forward and stop
+when it has detected the fourth tape.}
+
+This exercise is not easy: the strips of tape have to be
+sufficiently wide so that the robot detects them,
+but not so wide that more than one event occurs per strip.
+You will also have to experiment with the speed of the robot.
+
+{\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}

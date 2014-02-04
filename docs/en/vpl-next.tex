@@ -1,10 +1,11 @@
-\chap{What Next?}
+% !TeX root = vpl.tex
 
-This tutorial has introduced the Thymio-II robot and the Aseba/VPL
+\chap{What Next?}\label{ch.next}
+
+This tutorial has introduced the Thymio robot and the Aseba/VPL
 environment. The VPL environment with its simple visual programming is
 intended for beginners. To develop more advanced programs for the robot,
-you will want to learn how to use the Aseba Studio environment
-(Figure~\ref{fig.studio}).
+you will want to learn how to use the Aseba Studio environment (\cref{fig.studio}).
 
 \begin{figure}[hbt]
 \begin{center}
@@ -14,20 +15,22 @@ you will want to learn how to use the Aseba Studio environment
 \end{figure}
 
 Programming in Aseba Studio is also based upon the concepts of events
-and actions but you have a lot more freedom because:
-
+and actions.
+Since VPL programs are translated into textual programs,
+everything you learned in this tutorial is available in Studio,
+but many other programming features are available:
 \begin{itemize}
 \item You can control precisely when an event causes an action, depending, for
-example, on the amount of reflected light from a ground sensor event or
-the distance to a horizontal sensor.
+example, on the amount of reflected light measured from a ground sensor or
+the distance from a horizontal sensor.
 \item You can specify that a single action consists of several different
 operations: controlling the motors, changing the state, setting
-thresholds, turning lights on and off.
+thresholds, turning lights on and off, etc.
 \item You have the flexibility of a full programming language with
 variables, expressions, and control statements.
 \end{itemize}
 
-Aseba Studio gives you access to features of the Thymio-II that are not
+Aseba Studio gives you access to features of the Thymio that are not
 available in VPL:
 
 \begin{itemize}
@@ -39,11 +42,17 @@ surrounding the buttons.
 can sense gravity and changes of speed in three dimensions.
 \item A remote control device can be used with the robot.
 \end{itemize}
-
 When you are working with Aseba Studio, you can open VPL by clicking on
-the button \bu{Launch VPL} at the bottom left. You can import VPL
-programs into Aseba Studio simply by opening the file.
+the button \bu{Launch VPL} in the \emph{Tools} tab at the bottom left of the window.
+You can import VPL programs into Aseba Studio simply by opening the file.
 
-\bigskip\bigskip\bigskip\bigskip
+To use Aseba Studio, start from the \emph{Programming Thymio II} page at:\\
+\url{https://aseba.wikidot.com/en:thymioprogram}\\
+and follow the link \emph{Text Programming Environment}.
 
-\centeredbox{\centering \mbox{}\\\textbf{Have fun and learn a lot!}\\\mbox{}}
+You can find many interesting projects at:\\ \url{https://aseba.wikidot.com/en:thymioexamples}.
+
+\vspace{4em}
+
+\infobox{Have fun and learn a lot!}{Thank you for reading this tutorial!}{yellow!10}{\bcetoile}
+

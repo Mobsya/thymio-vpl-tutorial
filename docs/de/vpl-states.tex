@@ -1,0 +1,156 @@
+\chap{Zustand: Mach nicht immer dasselbe (fortgeschritten)}\label{ch.states}
+
+Das Programm in VPL ist eine Liste von Ereignis-Aktions Paaren. Alle Ereignisse werde eins nach dem anderen überprüft, ob sie stattfinden und falls ja, wird die dazugehörige Aktion ausgelöst. Danach beginnt die Überprüfung von vorne. Wir möchten nun, dass einige Ereignis-Aktions Paare zu einer bestimmten Zeit aktiv sind und andere nicht. In Kapitel ~\ref{ch.line} zum Beispiel, falls der Roboter vom Klebeband abkommt, möchten wir, dass er nach links oder nach rechts dreht, um das Klebeband zu suchen je nach der Seite auf welcher er das Klebeband verloren hat.
+
+Zustände werden im \emph{fortgeschrittenen} VPL Modus ausgeführt. Klick auf \blk{advanced}  bevor Du mit den folgenden Projekten arbeitest.
+
+\sect{Klopf,klopf}
+
+In vielen Programmen haben wir ein Schalter benutzt, um ein Verhalten des Roboters auszulösen und einen anderen, um dieses wieder zu stoppen. Stell Dir nun den Startschalter deines Computer vor \blksm{power-button}: Hier wird derselbe Schalter benutzt, um diesen ein- oder auszuschalten. Der Schalter weiss in welchem Zustand er sich gerade befindet \bu{eingeschaltet} oder \bu{ausgeschaltet}. Der Schalter wird durch ein kleines grünes Licht erleuchtet, um anzuzeigen in welchem Zustand er sich gerade befindet.
+
+Schreibe ein Programm, dass die Lichter des Roboters anstellt, falls er berührt wird und wieder abstellt wenn er ein zweites Mal berührt wird.
+
+{\raggedleft \hfill Program file \bu{tap-on-off.aesl}}
+
+Das benötigte Verhalten wird in einem Zustandsdiagramm dargestellt:
+
+
+\begin{center}
+\begin{picture}(240,45)
+%\put(0,0){\framebox(240,40){}}
+\put(20,20){\circle{40}}
+\put(0,0){\makebox(40,40){\textsf{off}}}
+\put(220,20){\circle{40}}
+\put(200,0){\makebox(40,40){\textsf{on}}}
+\put(40,10){\vector(1,0){160}}
+\put(0,10){\makebox(240,10){\textsf{tap $\rightarrow$ turn on}}}
+\put(200,30){\vector(-1,0){160}}
+\put(0,30){\makebox(240,10){\textsf{tap $\rightarrow$ turn off}}}
+\end{picture}
+\end{center}
+
+Im Diagramm sind zwei Zustände durch Kreise angezeigt, die mit den Namen des Zustandes \bu{eingeschaltet} und \bu{ausgeschaltet} angeschrieben sind. Der Roboter kann von dem Zustand  \bu{eingeschaltet} zum Zustand \bu{ausgeschaltet} und zurück wechseln, aber nur durch das Befolgen der Instruktionen die auf den Pfeilen angegeben sind. Diese Ereignis-Aktions Paare bedeuten:
+
+\begin{itemize}
+
+\item \emph{Falls} im Zustand \bu{ausgeschaltet} ein \emph{Klopfen}
+sattfindet, $\rightarrow$ schalten die Lichter  \emph{ein} \textbf{\textit{und}} wechselt
+der Zustand auf \bu{eingeschaltet}.
+
+\item \emph{Falls} im Zustand \bu{eingeschaltet} ein \emph{Klopfen}
+sattfindet, $\rightarrow$ schalten die Lichter  \emph{aus} \textbf{\textit{und}} wechselt
+der Zustand auf \bu{ausgeschaltet}.
+
+\end{itemize} 
+
+Das Ereignis eines eines Ereignis-Aktions Paares findet nur statt, falls der Roboter sich in dem bestimmten Zustand befindet. Die Aktion kann zudem die Änderung des Zustandes beinhalten. Dasselbe Ereignis \emph{Klopfen} erscheint nun in zwei Ereignis-Aktions Paaren, aber nur eine Aktion wird zu einer bestimmten Zeit stattfinden je nach Zustand des Roboters.
+
+Das Programm ist in der Figure~\ref{fig.turn-on-off1} und~\ref{fig.turn-on-off2}. dargestellt. Lass uns die Ereignis-Aktions Paare einzeln betrachten.
+
+\begin{figure}
+\begin{center}
+\gr{tap-on-off1}{0.4}
+\caption{An- und Abschalten durch Klopfen}
+\label{fig.turn-on-off1}
+\end{center}
+\end{figure}
+
+Im Ereignis-Aktions Paar \blk{tap-turn-on}, ist das Ereignis zusammengesetzt aus dem Berührungsblock und der Anzeige des Zustandes.
+
+Die Zustände werden durch die Viertel eines Kreises angezeigt. Jedes Viertel kann entweder eingeschaltet (orange) oder ausgeschaltet (weiss) sein. Wir benützen das linke, obere Viertel, um anzuzeigen, ob die Lichter eingeschaltet oder ausgeschaltet sind. Bei diesem Paar ist das linke, obere Viertel weiss. Das bedeutet, dass der Zustand auf ausgeschaltet steht. Die Bedeutung von \blk{tap-turn-on} ist, dass falls der Roboter berührt wird und die Lichter ausgeschaltet sind, diese eingeschaltet werden.
+
+Das Ereignis-Aktions Paar \blk{tap-turn-off} bedeutet, dass falls der Roboter berührt wird und die Lichter an sind, diese abgeschaltet werden. Das Viertel ist dabei orange, was bedeutet, dass der Zustand auf eingeschaltet steht.
+
+Wenn Du die Beschreibung des Verhaltens des Roboters betrachtest, wirst Du bemerken, dass erst die Hälfte der Arbeit erledigt ist. Beim Ein- und Ausschalten der Lichter müssen ebenfalls die Zustände des Roboters geändert werden von \bu{eingeschaltet} auf  \bu{ausgeschaltet}. Dazu schreiben wir zwei zusätzliche Ereignis-Aktions Paare und benutzen dazu den Aktionsblock Zustand \blk{action-states} (Figure~\ref{fig.turn-on-off2}).
+
+\begin{figure}
+\begin{center}
+\gr{tap-on-off2}{0.4}
+\caption{Ändern des Zustand durch Berührung}
+\label{fig.turn-on-off2}
+\end{center}
+\end{figure}
+
+Die Bedeutung von \blk{tap-state-on} ist: \emph{Falls} der Roboter berührt wird
+im Zustand \bu{ausgeschaltet}, ändere den Zustand auf \bu{eingeschaltet}.
+Die Bedeutung von \blk{tap-state-off} ist: \emph{Falls} der Roboter berührt wird im Zustand \bu{eingeschaltet}, ändere den Zustand auf \bu{ausgeschaltet}.
+
+Bezogen auf das ganze Programm, welches aus den vier Paaren aus den Figuren~\ref{fig.turn-on-off1} and~\ref{fig.turn-on-off2} zusammengesetzt ist, sehen wir, dass jedes Ereignis zwei Aktionen auslöst: Einschalten des Lichts und Änderung des Zustandes des Roboters.
+
+\sect{In wie vielen verschiedenen Zuständen kann sich der  Roboter befinden?}
+
+Die Zustände werden durch die Viertel eines Kreises angezeigt. Jeder Zustand kann wie folgt definiert werden:
+\begin{itemize}
+
+\item Grau: das Viertel wird nicht berücksichtigt;
+\item Weiss: Das Viertel befindet sich im Zustand \emph{ausgeschaltet};
+\item Orange: Das Viertel befindet sich im Zustand \emph{eingeschaltet};
+
+\end{itemize}
+
+Bei \blksm{states} sind das linke obere und das rechte untere Viertel im Zustand eingeschaltet. Das Viertel rechts oben ist auf dem Zustand ausgeschaltet und das Viertel links unten wird nicht berücksichtigt. Das bedeutet, dass falls \blksm{states} mit dem Ereignisblock verbunden ist, ein Ereignis stattfindet, falls die Zustände entweder \blk{states1} oder \blk{states2} sind.
+
+Da jedes der vier Viertel entweder ein- oder ausgeschaltet sein kann, sind 16 verschiedene Zustände möglich.
+
+\begin{quote}
+\bu{(aus, aus, aus, aus)\\(aus, aus, aus, ein)\\(aus, aus, ein, aus)\\
+\mbox{}\hspace{3em}\ldots\\
+(ein, ein, ein, aus)\\
+(ein, ein, ein, ein)}.
+\end{quote}
+
+Werden die Zustände des Roboters mit dem Block \blk{action-states} gesetzt, werden die Zustände auf der Oberfläche des Roboters als Lichtring angezeigt.
+
+Die Figur~\ref{fig.state-leds} zeigt den Roboter mit den Zuständen \bu{(ein, ein,
+ein, ein)}.
+
+\centeredbox{Wird ein Programm gestartet, sind die ursprünglichen Zustände
+\bu{(aus, aus, aus, aus)}: \blk{state-all-off}.}
+
+\begin{figure}
+\begin{center}
+\gr{state-leds}{0.4}
+\caption{Zustände werden durch Licht angezeigt}
+\label{fig.state-leds}
+\end{center}
+\end{figure}
+
+\sect{Erwische die Maus}
+
+Schreibe ein Programm, dass den Roboter nach links und rechts drehen lässt, um eine Maus zu suchen. Wird eine Maus mit dem äussersten linken Sensor entdeckt, wird die Suche fortgesetzt, bis die Maus von dem äussersten rechten Sensor entdeckt wird. Nun ist die Position des Roboters genau gegenüber der Maus (Figur~\ref{fig.cat-mouse}).
+
+{\raggedleft \hfill Program file \bu{mouse.aesl}}
+
+
+\begin{figure}
+\begin{center}
+\gr{cat-mouse}{0.4}
+\caption{Die Katze hat die Maus gefunden}
+\label{fig.cat-mouse}
+\end{center}
+\end{figure}
+
+Das Ereignis-Aktions Paar \blk{mouse1} führt dazu, dass der Roboter nach links abdreht. Dies findet nur statt, falls das linke obere Viertel im Zustand ausgeschaltet ist. Am Anfang sind alle Zustände auf ausgeschaltet.
+
+
+Das erste Ereignis-Aktions Paar in Figure~\ref{fig.mouse2} wartet bis die Maus mit dem äussersten linken Sensor entdeckt wird. Beachte, dass das schmale Quadrat daneben weiss beleuchtet ist, sodass das Ereignis nur statt findet, falls nur der äusserste Rechte Sensor eine Maus erkennt. Das Zweite Ereignis-Aktions Paar in der Figur ändert den Zustand.
+
+\begin{figure}
+\begin{center}
+\gr{mouse2}{0.4}
+\caption{Suche die Maus mit dem äussersten rechten Sensor}
+\label{fig.mouse2}
+\end{center}
+\end{figure}
+
+Das letzte Ereignis-Aktions Paar im Programm ist \blk{mouse3}. Dieses bewirkt, dass der Roboter stoppt, falls die Maus direkt vor dem zentralen Sensor zu liegen kommt. \footnote{Experimentiere mit der Position der Maus. Ist diese zu nahe am Roboter, werden die Sensoren zu beiden Seiten die Maus ebenfalls erkennen. Das Ereignis findet jedoch nur statt, wenn die äusseren Sensoren die Maus  \emph{nicht} erkennen}.
+
+Warum muss das Ereignis dieses Paares von einem Zustand abhängig sein? Der Grund ist, dass der zentrale Sensor die Maus auch beim Scan von links nach rechts erkennen wird. Wir wollen, dass der Roboter jedoch einen vollen Scan vollbringt, bevor er zur Position der Maus zurückkehrt. Deshalb ist es notwendig, dass diese erste Entdeckung der Maus ignoriert wird. Dies wird erreicht, indem der Scan erst gestoppt wird, falls der Zustand auf \bu{eingeschaltet} und diese erst beim Abschluss des vollständigen Scans auf eingeschaltet geändert wird.
+
+\sect{Übung \thechapter.1}
+
+Schreibe ein Programm, das den Roboter tanzen lässt: Der Roboter soll für zwei Sekunden nach links drehen und dann für drei Sekunden nach rechts. Diese Bewegung soll unendlich wiederholt werden.
+
+\sect{Übung \thechapter.2 (Schwierig)}
+
+Verändere das Folge der Linie Program aus dem Kapitel~\ref{ch.line} so, dass der Roboter nach links dreht, falls dieser die Linie auf die rechte Seite verlässt und nach rechts dreht, falls dieser die Linie auf die linke Seite verlässt.

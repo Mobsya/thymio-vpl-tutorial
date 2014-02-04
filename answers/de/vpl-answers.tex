@@ -1,0 +1,264 @@
+\documentclass[12pt,a4paper,ngerman]{article}
+\usepackage{../../vpl}
+\graphicspath{{../../images/}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\begin{bfseries}
+
+\begin{Large}
+Erste Schritte in Robotik
+
+mit dem Thymio-II Roboter
+
+und der Abeba/VPL Umgebung
+
+\bigskip
+
+Antworten zu den Übungen
+
+\end{Large}
+
+Version 1.0
+
+\bigskip
+
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari} und andere Mitwirkende
+
+\end{bfseries}
+\end{center}
+
+\bigskip
+
+\copyright{}\  2013 by Moti Ben-Ari und andere Mitwirkende. 
+
+Dieser Inhalt ist unter der Creative-Commons-Lizenz vom Typ Namensnennung -
+Weitergabe unter gleichen Bedingungen 3.0 Unported lizenziert.
+Um eine Kopie dieser Lizenz einzusehen, besuchen Sie \url{http://creativecommons.org/licenses/by-sa/3.0/} oder schreiben Sie einen Brief an Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+\begin{center}
+\hspace{6pt}\includegraphics[width=.2\textwidth]{../images/by-sa}
+\end{center}
+
+
+\section{Dein erstes Roboter Projekt}
+
+keine Übung.
+
+\section{Verschiedene Farben}
+
+\textbf{\thesection.1}: 
+Beim Mischen der drei Farben des Thymio-II Roboters, kann jede Farbe einen Farbwert zwischen 0 (keine Farbe) und 32 (Farbmaximum). Deshalb gibt es $33  \times 33  \times 33=35,937$ verschiedene Farbtöne. Ziehen wir nur die Extreme keine Farbe und Farbmaximum in Betracht, sind die Farben: keine Farbe (alle Farben auf keine Farbe eingestellt), Weiss (alle Farben auf dem Farbmaximum), Rot, Grün, Blau (eine Farbe eingeschaltet), Gelb (Rot und Grün angeschaltet, Blau ausgeschaltet), Blau-Grün (Blau und Grün angeschaltet, Rot ausgeschaltet), Purpur (Rot und Blau eingeschaltet, Grün ausgeschaltet).
+
+\section{Los Thymio-II bewege dich}
+
+\textbf{\thesection.1}: 
+Der Roboter sollte fähig sein zu stoppen. Die Höchstgeschwindigkeit von Thymio-II ist 20 Zentimeter pro Sekunde. Da die Sensoren 10 Mal pro Sekunde messen, kann sich der Roboter maximal 2 Zentimeter weiterbewegen bevor er stoppt. Dies sollte genügend schnell sein, um zu verhindern, dass der Roboter vom Tisch fällt. Sei aber vorbereitet den Roboter trotzdem aufzufangen, nur für den Fall!
+
+
+\section{Ein Roboterhaustiert}
+
+\textbf{\thesection.1}:
+Ersetze die ersten zwei Ereignis-Aktions Paare mit den Paaren, wie sie in Figure~\ref{fig.answer1} gezeigt sind. Das erste Paar schaltet beide Motoren ein, falls \emph{kein} Sensor ein Hindernis entdeckt; das zweite Paar stoppt die Motoren, falls der Bodensensor das Ende des Tisches wahrnimmt.
+
+{\raggedleft \hfill Program file \bu{likes-and-stops.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{likes-and-stops}{0.4}
+\caption{Halte am Ende des Tisches an}\label{fig.answer1}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.2}:
+Ein Ereignis-Aktions Paar wird ausgelöst, falls ein Ereignis stattfindet. Ereignisse, wie das Drücken eines Knopfs finden statt, falls dieses Ereignis von aussen eingeleitet wird. Andere Ereignisse, wie das Messen der Distanzsensoren, finden zu bestimmten Zeitintervallen statt, wie z.B, 10 mal pro Sekunde. Wenn die Sensoren gemessen werden, finden alle Ereignisse des Sensors " zur selben Zeit " statt. Der Computer im Roboter kann in Wahrheit nicht alle Ereignis-Aktions Paare gleichzeitig laufen lassen. Die Ereignis-Aktions Paare werden eines nach dem anderen durchlaufen, \emph{in der Reihenfolge}, wie sie im Programm aufgelistet sind, von oben nach unten.
+
+Im Programm Figure~\ref{fig.answer1}, entdecken die horizontalen Sensoren kein Hindernis, weshalb die Motoren laufen gelassen werden; \emph{dann} entdecken die Bodensensoren das Klebeband und stoppen den Roboter.
+
+Im Programm in Figure~\ref{fig.change}, entdecken die Bodensensoren das Klebeband und versuchen den Motor zu stoppen, aber das zweite Ereignis-Aktions Paar lässt die Motoren eingeschaltet, bevor diese eine Möglichkeit haben den Roboter zu stoppen.
+
+{\raggedleft \hfill Program file \bu{likes-changed-order.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{likes-change-order}{0.4}
+\caption{Ändere die Reihenfolge der Ereignis-Aktions Paare}
+\label{fig.change}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.3}: 
+\begin{itemize}
+\item Benutze den Sensor 1 und 3: Der Roboter ist weniger empfindlich für die Anwesenheit deiner Hand auf der Seite des Roboters. Du musst die Hand mehr in die Mitte bewegen, um erkannt zu werden.
+\item Benutze beide Sensoren 0 und 1 , um den Roboter nach links und beide Sensoren 3 und 4, um den Roboter nach rechts drehen zu lassen. Die Empfindlichkeit des Roboters wird räumlich erweitert, deshalb muss deine Hand weniger genau in der Mitte oder auf der Seite platziert werden.
+\item Füge ein Ereignis-Aktions Paar für die hinteren Sensoren 5 und 6 hinzu: Du kannst nun den Roboter drehen lassen, indem Du deine Hand in die Nähe der Rückseite des Roboters hältst.
+\end{itemize}
+
+
+\section{Der Roboter findet seinen Weg selbst}
+
+\textbf{\thesection.1}:
+Das Ereignis-Aktions Paar  \blk{gentle-left} verursacht eine geringe Drehung nach links, falls der Bodensensor viel Licht wahrnimmt. Falls die Geschwindigkeit erhöht wird, kann sich der Roboter eventuell  zu weit vom Klebeband entfernen, um dies nach der Drehung wieder zu entdecken. Kommt der Roboter zum Ende des Klebebandes wird er ebenfalls eine geringe Linksdrehung vollführen.
+
+{\raggedleft \hfill Program file \bu{find-line.aesl}}
+
+\textbf{\thesection.2}: 
+Der Roboter wird sich natürlich vom Klebeband \emph{weg} bewegen.
+
+\textbf{\thesection.3}:
+\begin{itemize}
+\item In weiten Kurven kann der Roboter besser der Linie folgen.
+\item In engen Kurven kann der Roboter schlechter der Linie folgen.
+\item Bei Zickzack Linien findet der Roboter eventuell nicht auf das Klebeband zurück bevor das Klebeband die nächste Kurve beschreibt.
+\item Breitere Linien führen dazu, dass der Roboter die Linie weniger oft verliert.
+\item Schmalere Linien führen dazu, dass der Roboter die Linie öfter verliert. Dies führt zu öfteren Drehungen und ruckartigen Bewegungen.
+\end{itemize}
+
+
+\textbf{\thesection.4}:
+\begin{itemize}
+\item Falls die Messungen der Bodensensoren öfters erfolgen, wird der Roboter rascher auf das Verlassen des Klebebandes reagieren. Falls die Messungen weniger oft erfolgen, kann es sein, dass der Roboter das Klebeband schon vollständig verloren hat bevor er eine Abweichung erfasst.
+\item Falls die Sensoren weiter auseinanderliegen, ist ein breiteres Klebeband notwendig, aber die Wahrscheinlichkeit, dass das Verlassen des Klebebandes erkannt wird, wird grösser. Das Gegenteil trifft für näher beieinander liegenden Sensoren zu.
+\item Falls mehrere Sensoren eingesetzt werden, kann der Roboter präziser bewegt werden. Falls nur ein Sensor den Boden entdeckt, wird eine geringe Drehung eingeleitet. Falls mehrere Sensoren den Boden entdecken wird eine stärkere Drehung eingeleitet.
+\end{itemize}
+
+
+\section{Glocken und Pfeifen}
+
+\textbf{\thesection.1}:
+Im Morsecode ist ein Strich drei mal länger als ein Punkt. Die Aktion in Figure~\ref{fig.morse} benutzt drei weisse Kreise des höchsten Tones für den Strich und eine für den Punkt. Da immer genau sechs Noten gespielt werden, vervollständigen wir die Melodie mit kurzen Noten des tiefsten Tones, welcher nicht so gut wahrgenommen werden wird wie der höchste Ton.
+
+{\raggedleft \hfill Program file \bu{bells-morse.aesl}}
+
+\begin{figure}
+\begin{center}
+\gr{morse}{.4}
+\caption{Morsecode}\label{fig.morse}
+\end{center}
+\end{figure}
+
+
+\textbf{\thesection.2}:
+Das Programm in Figure~\ref{fig.clap-to-start} startet die Motoren, falls das Ereignis in die Händeklatschen erfolgt und schaltet die Motoren aus, falls der zentrale Knopf gedrückt wird.
+
+{\raggedleft \hfill Program file \bu{clap-start.aesl}}
+
+Für das gegenteilige Verhalten, scheint es offensichtlich, dass das Programm in Figure~\ref{fig.clap-to-stop} arbeiten sollte, aber es tut es nicht. DerGrund ist, dass das Ereignis, welches den Motor stoppen sollte, nicht ausschliesslich Klatschen ist, sondern \emph{irgendein} lautes Geräusch kann das Ereignis auslösen. Der Motor macht ein so lautes Geräusch, dass sobald die Motoren starten das laute Geräusch Ereignis stattfindet und die Motoren stoppen.
+
+Die Lektion die wir hier lernen können ist, dass wir nicht zu viel Vertrauen in einen visuellen Programmierblock setzten können!
+
+{\raggedleft \hfill Program file \bu{clap-stop.aesl}}
+
+\begin{figure}
+\begin{center}
+\gr{clap-to-start}{.4}
+\caption{Klatsche, um den Motor zu starten}
+\label{fig.clap-to-start}
+\end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{clap-to-stop}{.4}
+\caption{Klatsche, um den Motor zu stoppen}\label{fig.clap-to-stop}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.3}:
+Das Programm hat zwei Ereignis-Aktions Paare (Figure~\ref{fig.bump}): Eines um den Roboter losfahren zu lassen, falls ein Knopf gedrückt wird und eines, dass den Roboter stoppt, falls ein Klopp Ereignis stattfindet.
+
+{\raggedleft \hfill Program file \bu{bump.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{bump}{.4}
+\caption{Stope den Motor, falls der Roboter gegen die Wand fährt}\label{fig.bump}
+\end{center}
+\end{figure}
+
+
+\section{Angenehme Zeit}
+
+\textbf{\thesection.1}:
+Wenn der vordere Knopf gedrückt wird, werden beide Motoren eingeschaltet, wie auch ein drei Sekunden Timer gestartet wird, siehe Figure~\ref{fig.three}. Wenn der Timer abgelaufen ist, beginnen die Motoren in die entgegengesetzte Richtung (rückwärts) zu laufen. Zum Schluss, falls der zentrale Knopf gedrückt wird, stoppen die Motoren.
+
+{\raggedleft \hfill Program file \bu{run-three-seconds.aesl}}
+
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{run-three-seconds}{.4}
+\caption{Roboter, laufe drei Sekunden vorwärts und dann zurück}
+\label{fig.three}
+\end{center}
+\end{figure}
+
+
+\section{Zustand: Mach nicht immer dasselbe}
+
+
+\textbf{\thesection.1}:
+Es gibt zwei Zustände: Zustand \emph{links} \blksm{state-left}, falls der Roboter nach links dreht und Zustand \{emph{rechts} \blksm{state-right} , falls der Roboter nach rechts dreht. Am Anfang, wenn der Vorwärtsknopf gedrückt wird, befindet sich der Roboter in den Zuständen (ausgeschaltet, ausgeschaltet, ausgeschaltet, ausgeschaltet), startet einen ein Sekunden Timer und ändert den Zustand in Zustand \emph{links} (Figure~\ref{fig.dance-start}). Wenn der Timer abgelaufen ist im Zustand \emph{links}, dreht der Roboter nach Links, startet einen weiteren Timer für zwei Sekunden und ändert den Zustand in Zustand \emph{rechts} (Figure~\ref{fig.dance-left}). Wenn der Timer ablauft in Zustand \emph{rechts}, dreht der Roboter nach rechts, startet einen weiteren Timer für zwei Sekunden und ändert den Zustand in Zustand \emph{links} (Figure~\ref{fig.dance-right}). Diese zwei Verhalten werden unendlich wiederholt, um den Roboter zu stoppen, wirst Du \blksm{stop}drücken müssen.
+
+{\raggedleft \hfill Program file \bu{dance.aesl}}
+
+
+\begin{figure}
+\begin{center}
+\gr{dance-start}{0.4}
+\caption{Beginne den Tanz}
+\label{fig.dance-start}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{dance-left}{0.4}
+\caption{Tanze zwei Sekunden nach Links}
+\label{fig.dance-left}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{dance-right}{0.4}
+\caption{Tanze drei Sekunden nach Rechts}
+\label{fig.dance-right}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.2}:
+Leider war es mir nicht möglich dieses Problem zu lösen. Ich hatte angenommen, dass es möglich sein müsste das Ereignis wahrzunehmen, falls nur  \emph{ein Sensor} das Klebeband nicht mehr erkennt \emph{vor} dem Ereignis, falls \emph{beide Sensoren} das Klebeband nicht mehr erkennen. Dies würde dem Programm erlauben zu erkennen und zu erinnern von welcher Seite der Roboter vom Klebeband abgekommen ist. Dies hat sich als nicht möglich herausgestellt auch bei sehr langsamer Geschwindigkeit. 
+
+Was ich doch erreichen konnte, ist, dass das Programm sich erinnerte auf welcher Seite der Roboter das Mal davor vom Klebeband abgekommen ist, auch wenn dies schon viel früher stattgefunden hat.
+
+{\raggedleft \hfill Program file \bu{follow-line-and-find.aesl}}
+
+Der Roboter hat ein cooles Verhalten: Falls er zum Ende des Klebebandes kommt, dreht er sich langsam um 180° und folgt dem Klebeband nun wieder zurück.
+
+Zustand \emph{links} \blksm{state-left} erinnert, dass der Roboter das Klebeband nach links erfassen hat und Zustand \emph{rechts} \blksm{state-right} erinnert, dass der Roboter das Klebeband nach rechts verlassen hat.
+
+Falls beide Sensoren das Klebeband nicht mehr wahrnehmen, dreht der Roboter in die Richtung des aktuellen Zustandes (Figure~\ref{fig.follow1}).
+
+Es ist auch möglich, dass der Roboter das Klebeband verlässt ohne vorher je das Klebeband auf eine Seite verlassen zu haben. Alle Anfangszustände sind dabei \emph{ausgeschaltet}; In diesem Fall wählen wir willkürlich, dass der Roboter nach rechts dreht  \blk{follow2}.
+
+\begin{figure}
+\begin{center}
+\gr{follow3}{0.4}
+\caption{Verändere den Zustand, um die Richtung zu erinnern}
+\label{fig.follow3}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{follow1}{0.4}
+\caption{Suche nach links oder nach rechts}
+\label{fig.follow1}
+\end{center}
+\end{figure}
+
+
+\end{document}

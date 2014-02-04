@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,ngerman]{article}
+\documentclass[12pt,a4paper,english]{article}
 \usepackage{../../vpl}
 \graphicspath{{../../images/}}
 
@@ -9,180 +9,243 @@
 \begin{bfseries}
 
 \begin{Large}
-Erste Schritte in Robotik
+First Steps in Robotics
 
-mit dem Thymio-II Roboter
+with the
+Thymio-II Robot
 
-und der Abeba/VPL Umgebung
+and the
+Aseba/VPL Environment
 
 \bigskip
 
-Antworten zu den Übungen
+Answers to the Exercises
 
 \end{Large}
 
-Version 1.0
+Version 1.0=3
 
 \bigskip
 
-\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari} und andere Mitwirkende
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari} and other contributors
 
 \end{bfseries}
 \end{center}
 
 \bigskip
 
-\copyright{}\  2013 by Moti Ben-Ari und andere Mitwirkende. 
+\copyright{}\  2013-14 by Moti Ben-Ari and other contributors.
 
-Dieser Inhalt ist unter der Creative-Commons-Lizenz vom Typ Namensnennung -
-Weitergabe unter gleichen Bedingungen 3.0 Unported lizenziert.
-Um eine Kopie dieser Lizenz einzusehen, besuchen Sie \url{http://creativecommons.org/licenses/by-sa/3.0/} oder schreiben Sie einen Brief an Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy
+of this license, visit
+\url{http://creativecommons.org/licenses/by-sa/3.0/}
+or send a letter to Creative Commons, 444 Castro Street, Suite 900,
+Mountain View, California, 94041, USA.
 
 \begin{center}
 \hspace{6pt}\includegraphics[width=.2\textwidth]{../images/by-sa}
 \end{center}
 
+\section{Your First Robotics Project}
 
-\section{Dein erstes Roboter Projekt}
+No exercise.
 
-keine Übung.
-
-\section{Verschiedene Farben}
-
-\textbf{\thesection.1}: 
-Beim Mischen der drei Farben des Thymio-II Roboters, kann jede Farbe einen Farbwert zwischen 0 (keine Farbe) und 32 (Farbmaximum). Deshalb gibt es $33  \times 33  \times 33=35,937$ verschiedene Farbtöne. Ziehen wir nur die Extreme keine Farbe und Farbmaximum in Betracht, sind die Farben: keine Farbe (alle Farben auf keine Farbe eingestellt), Weiss (alle Farben auf dem Farbmaximum), Rot, Grün, Blau (eine Farbe eingeschaltet), Gelb (Rot und Grün angeschaltet, Blau ausgeschaltet), Blau-Grün (Blau und Grün angeschaltet, Rot ausgeschaltet), Purpur (Rot und Blau eingeschaltet, Grün ausgeschaltet).
-
-\section{Los Thymio-II bewege dich}
+\section{Changing Colors}
 
 \textbf{\thesection.1}: 
-Der Roboter sollte fähig sein zu stoppen. Die Höchstgeschwindigkeit von Thymio-II ist 20 Zentimeter pro Sekunde. Da die Sensoren 10 Mal pro Sekunde messen, kann sich der Roboter maximal 2 Zentimeter weiterbewegen bevor er stoppt. Dies sollte genügend schnell sein, um zu verhindern, dass der Roboter vom Tisch fällt. Sei aber vorbereitet den Roboter trotzdem aufzufangen, nur für den Fall!
+When mixing the three colors of the Thymio-II robot, each color can have
+an intensity between 0 (off) and 32 (on maximum). Therefore, there are
+$33 \times 33 \times 33=35,937$ different colors. If we consider only
+the extremes of intensity off or on maximum, the colors are: off (all
+colors off), white (all colors on), red, green, blue (one color on),
+yellow (red and green on, blue off), cyan (blue and green on, red off),
+magenta (red and blue on, green off).
 
 
-\section{Ein Roboterhaustiert}
+\section{Let's Get Moving}
 
-\textbf{\thesection.1}:
-Ersetze die ersten zwei Ereignis-Aktions Paare mit den Paaren, wie sie in Figure~\ref{fig.answer1} gezeigt sind. Das erste Paar schaltet beide Motoren ein, falls \emph{kein} Sensor ein Hindernis entdeckt; das zweite Paar stoppt die Motoren, falls der Bodensensor das Ende des Tisches wahrnimmt.
+\textbf{\thesection.1}: The robot should be able to stop. The
+maximum speed of the Thymio-II is 20 centimeters per second. Since the
+sensors are sampled 10 times a second, the robot can move at most 2
+centimeters before it stops. That should be sufficiently fast to prevent
+the robot from falling off the table, but be prepared to catch it just
+in case!
+
+
+\section{A Pet Robot}
+
+\textbf{\thesection.1}: Replace the first two event-action pairs
+with the pairs shown in Figure~\ref{fig.answer1}. The first pair turns
+both motors on when all the sensors do \emph{not} detect an obstacle;
+the second pair stops the motors when the ground sensors detect the edge
+of the table.
 
 {\raggedleft \hfill Program file \bu{likes-and-stops.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{likes-and-stops}{0.4}
-\caption{Halte am Ende des Tisches an}\label{fig.answer1}
+\caption{Stop at the edge of the table}\label{fig.answer1}
 \end{center}
 \end{figure}
 
-\textbf{\thesection.2}:
-Ein Ereignis-Aktions Paar wird ausgelöst, falls ein Ereignis stattfindet. Ereignisse, wie das Drücken eines Knopfs finden statt, falls dieses Ereignis von aussen eingeleitet wird. Andere Ereignisse, wie das Messen der Distanzsensoren, finden zu bestimmten Zeitintervallen statt, wie z.B, 10 mal pro Sekunde. Wenn die Sensoren gemessen werden, finden alle Ereignisse des Sensors " zur selben Zeit " statt. Der Computer im Roboter kann in Wahrheit nicht alle Ereignis-Aktions Paare gleichzeitig laufen lassen. Die Ereignis-Aktions Paare werden eines nach dem anderen durchlaufen, \emph{in der Reihenfolge}, wie sie im Programm aufgelistet sind, von oben nach unten.
+\textbf{\thesection.2}: An event-action pair is run when its event
+occurs. Events like touching a button occur when this external event
+occurs. Other events, like sampling sensors, occur at fixed intervals
+such as 10 times a second. When the sensors are sampled, all events for
+the sensors occur ``at the same time.'' The computer in the robot cannot
+actually run all the event-action pairs simultaneously; instead, the
+event-action pairs are run one-by-one \emph{in the order} that they
+appear from top to bottom in the program.
 
-Im Programm Figure~\ref{fig.answer1}, entdecken die horizontalen Sensoren kein Hindernis, weshalb die Motoren laufen gelassen werden; \emph{dann} entdecken die Bodensensoren das Klebeband und stoppen den Roboter.
+In the program in Figure~\ref{fig.answer1}, the horizontal sensors
+do not detect an obstacle and keep the motors running; \emph{then} the
+ground sensors detect the tape and stop the robot.
 
-Im Programm in Figure~\ref{fig.change}, entdecken die Bodensensoren das Klebeband und versuchen den Motor zu stoppen, aber das zweite Ereignis-Aktions Paar lässt die Motoren eingeschaltet, bevor diese eine Möglichkeit haben den Roboter zu stoppen.
+In the program in Figure~\ref{fig.change}, the ground sensors
+detect the tape and try to stop the motors, but the second event-action
+pair keeps the motors on before they have a chance to stop.
 
 {\raggedleft \hfill Program file \bu{likes-changed-order.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{likes-change-order}{0.4}
-\caption{Ändere die Reihenfolge der Ereignis-Aktions Paare}
-\label{fig.change}
+\caption{Changing the order of the event-action pairs}\label{fig.change}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.3}: 
 \begin{itemize}
-\item Benutze den Sensor 1 und 3: Der Roboter ist weniger empfindlich für die Anwesenheit deiner Hand auf der Seite des Roboters. Du musst die Hand mehr in die Mitte bewegen, um erkannt zu werden.
-\item Benutze beide Sensoren 0 und 1 , um den Roboter nach links und beide Sensoren 3 und 4, um den Roboter nach rechts drehen zu lassen. Die Empfindlichkeit des Roboters wird räumlich erweitert, deshalb muss deine Hand weniger genau in der Mitte oder auf der Seite platziert werden.
-\item Füge ein Ereignis-Aktions Paar für die hinteren Sensoren 5 und 6 hinzu: Du kannst nun den Roboter drehen lassen, indem Du deine Hand in die Nähe der Rückseite des Roboters hältst.
+
+\item Use sensors 1 and 3: The robot is less sensitive the the presence
+of your hand on the side. You will have to move it closer to the center.
+
+\item Use both sensors 0 and 1 to turn the robot left and both sensors 3
+and 4 to turn the robot right: The robot senses a wider area in the
+front and side. You don't have to be as careful in placing your hand.
+
+\item Add event-action pairs for the rear sensors 5 and 6: You can now
+cause the robot to turn by placing your hand near the back of the robot.
+
 \end{itemize}
 
 
-\section{Der Roboter findet seinen Weg selbst}
+\section{The Robot Finds Its Way by Itself}
 
-\textbf{\thesection.1}:
-Das Ereignis-Aktions Paar  \blk{gentle-left} verursacht eine geringe Drehung nach links, falls der Bodensensor viel Licht wahrnimmt. Falls die Geschwindigkeit erhöht wird, kann sich der Roboter eventuell  zu weit vom Klebeband entfernen, um dies nach der Drehung wieder zu entdecken. Kommt der Roboter zum Ende des Klebebandes wird er ebenfalls eine geringe Linksdrehung vollführen.
+
+\textbf{\thesection.1}: The event-action pair \blk{gentle-left}
+will cause a gentle left turn when both ground sensors detect a lot of
+light. If you increase the speed, the robot might run too far off the
+tape and not detect it when turning. If the robot gets to the end of the
+tape it will also make a gentle left turn.
 
 {\raggedleft \hfill Program file \bu{find-line.aesl}}
 
-\textbf{\thesection.2}: 
-Der Roboter wird sich natürlich vom Klebeband \emph{weg} bewegen.
+\textbf{\thesection.2}: The robot will, of cousre, move \emph{away} from
+the tape.
 
 \textbf{\thesection.3}:
 \begin{itemize}
-\item In weiten Kurven kann der Roboter besser der Linie folgen.
-\item In engen Kurven kann der Roboter schlechter der Linie folgen.
-\item Bei Zickzack Linien findet der Roboter eventuell nicht auf das Klebeband zurück bevor das Klebeband die nächste Kurve beschreibt.
-\item Breitere Linien führen dazu, dass der Roboter die Linie weniger oft verliert.
-\item Schmalere Linien führen dazu, dass der Roboter die Linie öfter verliert. Dies führt zu öfteren Drehungen und ruckartigen Bewegungen.
+\item Gentle turns are easier to follow; 
+\item Sharp turns are harder to follow; 
+\item If the lines zigzag the robot might not return to the tape before
+the next turn is encountered;  
+\item Wider lines make it less likely that the robot will run off the tape; 
+\item Narrow lines make it more likely that a small deviation will cause
+the robot to run off the line. Therefore, there will be frequent turns
+and the movement will be jerky.
 \end{itemize}
 
 
 \textbf{\thesection.4}:
 \begin{itemize}
-\item Falls die Messungen der Bodensensoren öfters erfolgen, wird der Roboter rascher auf das Verlassen des Klebebandes reagieren. Falls die Messungen weniger oft erfolgen, kann es sein, dass der Roboter das Klebeband schon vollständig verloren hat bevor er eine Abweichung erfasst.
-\item Falls die Sensoren weiter auseinanderliegen, ist ein breiteres Klebeband notwendig, aber die Wahrscheinlichkeit, dass das Verlassen des Klebebandes erkannt wird, wird grösser. Das Gegenteil trifft für näher beieinander liegenden Sensoren zu.
-\item Falls mehrere Sensoren eingesetzt werden, kann der Roboter präziser bewegt werden. Falls nur ein Sensor den Boden entdeckt, wird eine geringe Drehung eingeleitet. Falls mehrere Sensoren den Boden entdecken wird eine stärkere Drehung eingeleitet.
+\item If the ground sensing events are more frequent, the robot will be
+more likely to respond to running off the tape; if they are less
+frequent, it might run completely off the tape before detection occurs.
+\item If the sensors are further apart a wider tape will be needed but
+it is more likely that leaving the tape will be detected before running
+off it completely; the opposite is true for sensors that are closer
+together.
+\item If there are more sensors, the robot can be more precise in its
+movements: gentle turns if only one sensor detects the floor and sharper
+turns if more than one sensor detects the floor.
 \end{itemize}
 
-
-\section{Glocken und Pfeifen}
+\section{Bells and Whistles}
 
 \textbf{\thesection.1}:
-Im Morsecode ist ein Strich drei mal länger als ein Punkt. Die Aktion in Figure~\ref{fig.morse} benutzt drei weisse Kreise des höchsten Tones für den Strich und eine für den Punkt. Da immer genau sechs Noten gespielt werden, vervollständigen wir die Melodie mit kurzen Noten des tiefsten Tones, welcher nicht so gut wahrgenommen werden wird wie der höchste Ton.
+In Morse code, a dash is three times longer than a dot. The actions in
+Figure~\ref{fig.morse} use three white circles at the highest tone for the
+dash and one for the dot. Since there must be exactly six tones, we fill
+out the tune with short notes at the lowest tone which will not be heard
+as well as the highest tones.
 
 {\raggedleft \hfill Program file \bu{bells-morse.aesl}}
 
 \begin{figure}
 \begin{center}
 \gr{morse}{.4}
-\caption{Morsecode}\label{fig.morse}
+\caption{Morse code}\label{fig.morse}
 \end{center}
 \end{figure}
 
 
-\textbf{\thesection.2}:
-Das Programm in Figure~\ref{fig.clap-to-start} startet die Motoren, falls das Ereignis in die Händeklatschen erfolgt und schaltet die Motoren aus, falls der zentrale Knopf gedrückt wird.
+\textbf{\thesection.2}: The program in Figure~\ref{fig.clap-to-start} turns the motors on when
+the clap event occurs and turns them off when the center button is
+touched.
 
 {\raggedleft \hfill Program file \bu{clap-start.aesl}}
 
-Für das gegenteilige Verhalten, scheint es offensichtlich, dass das Programm in Figure~\ref{fig.clap-to-stop} arbeiten sollte, aber es tut es nicht. DerGrund ist, dass das Ereignis, welches den Motor stoppen sollte, nicht ausschliesslich Klatschen ist, sondern \emph{irgendein} lautes Geräusch kann das Ereignis auslösen. Der Motor macht ein so lautes Geräusch, dass sobald die Motoren starten das laute Geräusch Ereignis stattfindet und die Motoren stoppen.
+For the opposite behavior, it seems obvious that the program in
+Figure~\ref{fig.clap-to-stop} should work, but it doesn't. The reason is
+that the event that causes the motor to stop is not specifically
+clapping; \emph{any} loud noise will cause the event to occur. The
+motors make so much noise that as soon as they start, the loud-noise
+event occurs and the motors stop.
 
-Die Lektion die wir hier lernen können ist, dass wir nicht zu viel Vertrauen in einen visuellen Programmierblock setzten können!
+The lesson to be learned is not to put
+too much trust in what is shown on a visual block!
 
 {\raggedleft \hfill Program file \bu{clap-stop.aesl}}
 
 \begin{figure}
 \begin{center}
 \gr{clap-to-start}{.4}
-\caption{Klatsche, um den Motor zu starten}
-\label{fig.clap-to-start}
+\caption{Clap to start the motor}\label{fig.clap-to-start}
 \end{center}
 \end{figure}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{clap-to-stop}{.4}
-\caption{Klatsche, um den Motor zu stoppen}\label{fig.clap-to-stop}
+\caption{Clap to stop the motor}\label{fig.clap-to-stop}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.3}:
-Das Programm hat zwei Ereignis-Aktions Paare (Figure~\ref{fig.bump}): Eines um den Roboter losfahren zu lassen, falls ein Knopf gedrückt wird und eines, dass den Roboter stoppt, falls ein Klopp Ereignis stattfindet.
+The program has two event-action pairs (Figure~\ref{fig.bump}): one to
+move the robot when a button is touched and the other to stop it when a
+tap event occurs.
 
 {\raggedleft \hfill Program file \bu{bump.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{bump}{.4}
-\caption{Stope den Motor, falls der Roboter gegen die Wand fährt}\label{fig.bump}
+\caption{Stop the motor when the robot bumps into a wall}\label{fig.bump}
 \end{center}
 \end{figure}
 
 
-\section{Angenehme Zeit}
+\section{A Time to Like}
 
 \textbf{\thesection.1}:
-Wenn der vordere Knopf gedrückt wird, werden beide Motoren eingeschaltet, wie auch ein drei Sekunden Timer gestartet wird, siehe Figure~\ref{fig.three}. Wenn der Timer abgelaufen ist, beginnen die Motoren in die entgegengesetzte Richtung (rückwärts) zu laufen. Zum Schluss, falls der zentrale Knopf gedrückt wird, stoppen die Motoren.
+See Figure~\ref{fig.three}. When the front button
+is touched the motors are turned on and a three-second timer is started.
+When the timer expires, the motors are reversed. Finally, when the
+center button is touched, the motors are stopped.
 
 {\raggedleft \hfill Program file \bu{run-three-seconds.aesl}}
 
@@ -190,17 +253,26 @@ Wenn der vordere Knopf gedrückt wird, werden beide Motoren eingeschaltet, wie a
 \begin{figure}[hbt]
 \begin{center}
 \gr{run-three-seconds}{.4}
-\caption{Roboter, laufe drei Sekunden vorwärts und dann zurück}
-\label{fig.three}
+\caption{Run three seconds and reverse}\label{fig.three}
 \end{center}
 \end{figure}
 
 
-\section{Zustand: Mach nicht immer dasselbe}
-
+\section{States: Don't Always Do the Same Thing}
 
 \textbf{\thesection.1}:
-Es gibt zwei Zustände: Zustand \emph{links} \blksm{state-left}, falls der Roboter nach links dreht und Zustand \{emph{rechts} \blksm{state-right} , falls der Roboter nach rechts dreht. Am Anfang, wenn der Vorwärtsknopf gedrückt wird, befindet sich der Roboter in den Zuständen (ausgeschaltet, ausgeschaltet, ausgeschaltet, ausgeschaltet), startet einen ein Sekunden Timer und ändert den Zustand in Zustand \emph{links} (Figure~\ref{fig.dance-start}). Wenn der Timer abgelaufen ist im Zustand \emph{links}, dreht der Roboter nach Links, startet einen weiteren Timer für zwei Sekunden und ändert den Zustand in Zustand \emph{rechts} (Figure~\ref{fig.dance-left}). Wenn der Timer ablauft in Zustand \emph{rechts}, dreht der Roboter nach rechts, startet einen weiteren Timer für zwei Sekunden und ändert den Zustand in Zustand \emph{links} (Figure~\ref{fig.dance-right}). Diese zwei Verhalten werden unendlich wiederholt, um den Roboter zu stoppen, wirst Du \blksm{stop}drücken müssen.
+There will be two states: state \emph{left} \blksm{state-left} when the
+robot turns to the left and state \emph{right} \blksm{state-right} when
+the robot turns to the right. Initially, touching the forward button in
+the initial state (off, off, off, off) sets a one-second timer and state
+\emph{left} (Figure~\ref{fig.dance-start}). When the timer runs down in
+state \emph{left}, the robot turns to the left, (re-)sets a timer for
+two seconds and goes to state \emph{right}
+(Figure~\ref{fig.dance-left}). When the timer runs down in state
+\emph{right}, the robot turns to the right, (re-)sets a timer for two
+seconds and goes to state \emph{left} (Figure~\ref{fig.dance-right}).
+These two behaviors are run repeatedly, so you will have to click
+\blksm{stop} to stop the robot.
 
 {\raggedleft \hfill Program file \bu{dance.aesl}}
 
@@ -208,57 +280,105 @@ Es gibt zwei Zustände: Zustand \emph{links} \blksm{state-left}, falls der Robot
 \begin{figure}
 \begin{center}
 \gr{dance-start}{0.4}
-\caption{Beginne den Tanz}
-\label{fig.dance-start}
+\caption{Starting the dance}\label{fig.dance-start}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{dance-left}{0.4}
-\caption{Tanze zwei Sekunden nach Links}
-\label{fig.dance-left}
+\caption{Dance two seconds to the left}\label{fig.dance-left}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{dance-right}{0.4}
-\caption{Tanze drei Sekunden nach Rechts}
-\label{fig.dance-right}
+\caption{Dance three seconds to the right}\label{fig.dance-right}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.2}:
-Leider war es mir nicht möglich dieses Problem zu lösen. Ich hatte angenommen, dass es möglich sein müsste das Ereignis wahrzunehmen, falls nur  \emph{ein Sensor} das Klebeband nicht mehr erkennt \emph{vor} dem Ereignis, falls \emph{beide Sensoren} das Klebeband nicht mehr erkennen. Dies würde dem Programm erlauben zu erkennen und zu erinnern von welcher Seite der Roboter vom Klebeband abgekommen ist. Dies hat sich als nicht möglich herausgestellt auch bei sehr langsamer Geschwindigkeit. 
+I was not able to solve this problem. I had assumed that it would be
+possible to detect the event when \emph{one sensor} no longer detect the
+tape \emph{before} the event when \emph{both sensors} no longer detect
+the tape. This would enable the program to identify and remember from
+which side the robot ran off the tape. This proved impossible even at
+low speeds.
 
-Was ich doch erreichen konnte, ist, dass das Programm sich erinnerte auf welcher Seite der Roboter das Mal davor vom Klebeband abgekommen ist, auch wenn dies schon viel früher stattgefunden hat.
+The best I could do is to have the program remember on which side the
+robot last ran off the tape, even if that occurred much earlier.
 
 {\raggedleft \hfill Program file \bu{follow-line-and-find.aesl}}
 
-Der Roboter hat ein cooles Verhalten: Falls er zum Ende des Klebebandes kommt, dreht er sich langsam um 180° und folgt dem Klebeband nun wieder zurück.
+The robot does have one cool behavior: When it gets to the end of the
+tape, it slowly turns completely around and heads back the other way
+along the tape!
 
-Zustand \emph{links} \blksm{state-left} erinnert, dass der Roboter das Klebeband nach links erfassen hat und Zustand \emph{rechts} \blksm{state-right} erinnert, dass der Roboter das Klebeband nach rechts verlassen hat.
+State \emph{left} \blksm{state-left} remembers that the robot left the
+left side of the tape and state \emph{right} \blksm{state-right}
+remembers that the robot ran off the right side of the tape
+(Figure~\ref{fig.follow3}).
 
-Falls beide Sensoren das Klebeband nicht mehr wahrnehmen, dreht der Roboter in die Richtung des aktuellen Zustandes (Figure~\ref{fig.follow1}).
+When both sensors fail to detect the tape, the robot turns in the
+direction indicated by the current state (Figure~\ref{fig.follow1}).
 
-Es ist auch möglich, dass der Roboter das Klebeband verlässt ohne vorher je das Klebeband auf eine Seite verlassen zu haben. Alle Anfangszustände sind dabei \emph{ausgeschaltet}; In diesem Fall wählen wir willkürlich, dass der Roboter nach rechts dreht  \blk{follow2}.
+It is also possible that the robot runs off the tape without ever having
+left one side so that the state is the initial state of all \emph{off};
+in that case, we arbitrary choose to turn right \blk{follow2}.
 
 \begin{figure}
 \begin{center}
 \gr{follow3}{0.4}
-\caption{Verändere den Zustand, um die Richtung zu erinnern}
-\label{fig.follow3}
+\caption{Change state to remember direction}\label{fig.follow3}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{follow1}{0.4}
-\caption{Suche nach links oder nach rechts}
-\label{fig.follow1}
+\caption{Search to the left or the right}\label{fig.follow1}
 \end{center}
 \end{figure}
 
+\section{Counting}
+
+\textbf{\thesection.1}:
+You can count to four because there are four quarters of the state
+each of which can be set \textbf{on} to count an object.
+
+\textbf{\thesection.2}:
+The lower left quarter of the state icon will be used to represent the
+number of 4's in a binary number. If all quarters are off, the number represented
+is 0; if all quarters are on, the number represented is 4+2+1=7.
+Eight event-action pairs are needed, one for each transition between $n$ and
+$n+1$ (modulo 8).
+
+{\raggedleft \hfill Program file \bu{count-to-eight.aesl}}
+
+
+\textbf{\thesection.3}:
+There are four quarters in the state. We can use one quarter to count
+each of the number of 1's, 2's, 4's and 8's. Therefore, we can count
+from 0 to 8+4+2+1=15.
+
+
+\textbf{\thesection.4}:
+This program is a mirror image of the program for adding.
+For example, if the binary number is xyz1,
+then subtracting one gives xyz0, whatever the values of xyz.
+If the number is xyz0, you will have to borrow a binary digit,
+and there will be different event-action pairs depending on the value
+of xyz. Finally, subtracting one from 0000=0 gives 1111=15 in cyclic
+arithmetic.
+
+{\raggedleft \hfill Program file \bu{subtraction.aesl}}
+
+\textbf{\thesection.5}:
+An event-action pair is needed to count each strip of tape.
+For example, the following 
+pair \blk{count3} changes the count from 2 to 3 when a tape is detected.
+
+{\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
 
 \end{document}

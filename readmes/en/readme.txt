@@ -22,10 +22,11 @@ dropping colorful blocks. This archive is a tutorial on using the
 Thymio-II robot with VPL. For more information on the Thymio-II and
 Aseba, see: https://aseba.wikidot.com/.
 
-There are two documents and two directories in this archive:
+There are three documents and two directories in this archive:
 
 thymio-vpl-tutorial-en.pdf:             The tutorial
 thymio-vpl-tutorial-answers-en.pdf:     The answers to the questions
+thymio-vpl-ref-card-en.pdf:             Single A4 page reference card
 
 programs:     The Aseba/VPL programs for the examples in the tutorial
 answers:      The Aseba/VPL programs for the answers

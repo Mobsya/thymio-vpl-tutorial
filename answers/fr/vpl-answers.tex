@@ -43,342 +43,241 @@ Pour voir une copie, de la license, visitez \url{http://creativecommons.org/lice
 \hspace{6pt}\includegraphics[width=.2\textwidth]{../images/by-sa}
 \end{center}
 
-\textbf{Les réponses ne sont disponibles qu'en anglais pour l'instant.
-Veuillez régulièrement regarder la page \url{https://aseba.wikidot.com/fr:thymioprogram} pour des mises à jour de ce document.}\\
-Merci pour votre patience.
 
-\section{Your First Robotics Project}
+\section{Votre premier projet de robotique}
 
-No exercise.
+Il n'y a pas d'exercices dans ce chapitre.
 
-\section{Changing Colors}
+\section{Changer les couleurs}
 
 \textbf{\thesection.1}: 
-When mixing the three colors of the Thymio-II robot, each color can have
-an intensity between 0 (off) and 32 (on maximum). Therefore, there are
-$33 \times 33 \times 33=35,937$ different colors. If we consider only
-the extremes of intensity off or on maximum, the colors are: off (all
-colors off), white (all colors on), red, green, blue (one color on),
-yellow (red and green on, blue off), cyan (blue and green on, red off),
-magenta (red and blue on, green off).
+Lorsque l'on mélange les trois couleurs de Thymio, chaque couleur peut être réglée à une intensité entre 0 (éteinte) et 32 (allumée au maximum). Donc, il y a $33 \times 33 \times 33=35,937$ couleurs différentes. Si l'on ne considère que les cas extrêmes, nous avons: éteint (toutes les couleurs éteintes), blanc (toutes les couleurs au maximum), jaune (rouge et vert allumés, bleu éteint), cyan (bleu et vert allumés, rouge éteint), magenta (rouge et bleu allumés, vert éteint) et bien sûr les cas où une seule LED est allumée.
 
 
-\section{Let's Get Moving}
+\section{Thymio en mouvement}
 
-\textbf{\thesection.1}: The robot should be able to stop. The
-maximum speed of the Thymio-II is 20 centimeters per second. Since the
-sensors are sampled 10 times a second, the robot can move at most 2
-centimeters before it stops. That should be sufficiently fast to prevent
-the robot from falling off the table, but be prepared to catch it just
-in case!
+\textbf{\thesection.1}: Le robot devrait pouvoir s'arrêter. La vitesse maximum de Thymio est d'environ 20 centimètres par seconde. Comme les capteurs de proximité sont actualisés 10 fois par seconde, Thymio peut faire au maximum 2 centimètres entre deux actualisations. Donc il parcours au pire 2 centimètres avant de s'arrêter, ce qui devrait suffir pour qu'il ne tombe pas de la table, mais soyez prêt à le rattraper au cas où !
 
 
-\section{A Pet Robot}
+\section{Un robot de compagnie}
 
-\textbf{\thesection.1}: Replace the first two event-action pairs
-with the pairs shown in Figure~\ref{fig.answer1}. The first pair turns
-both motors on when all the sensors do \emph{not} detect an obstacle;
-the second pair stops the motors when the ground sensors detect the edge
-of the table.
+\textbf{\thesection.1}: Remplacez les deux paires événement-action par celles montrées sur la figure~\ref{fig.answer1}. La première paire fait avancer Thymio si tous ses capteurs de proximité ne détecte pas d'obstacle. La deuxième paire arrête Thymio si les capteurs de proximité du sol ne voient plus la table.
 
-{\raggedleft \hfill Program file \bu{likes-and-stops.aesl}}
+{\raggedleft \hfill Programme \bu{likes-and-stops.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{likes-and-stops}{0.4}
-\caption{Stop at the edge of the table}\label{fig.answer1}
+\caption{Thymio s'arrête au bord de la table}\label{fig.answer1}
 \end{center}
 \end{figure}
 
-\textbf{\thesection.2}: An event-action pair is run when its event
-occurs. Events like touching a button occur when this external event
-occurs. Other events, like sampling sensors, occur at fixed intervals
-such as 10 times a second. When the sensors are sampled, all events for
-the sensors occur ``at the same time.'' The computer in the robot cannot
-actually run all the event-action pairs simultaneously; instead, the
-event-action pairs are run one-by-one \emph{in the order} that they
-appear from top to bottom in the program.
+\textbf{\thesection.2}: Une paire événement-action est lancée lorsque l'événement survient. Les événements comme ''toucher un bouton'' s'active grâce à une action externe. D'autres, comme l'actualisation des capteurs de proximité, surviennent à intervalles réguliers, 10 fois par seconde dans ce cas. Lorsque les capteurs sont actualisés, tous les événements sont censés être lancés ''en même temps''. En réalité, un ordinateur ne peut pas gérer plusieurs événements en même temps, au lieu de cela, les paires événement-action qui ont lieu en même temps sont traitées les unes après les autres dans l'ordre dans lequel elles apparaissent dans Aseba Studio.
 
-In the program in Figure~\ref{fig.answer1}, the horizontal sensors
-do not detect an obstacle and keep the motors running; \emph{then} the
-ground sensors detect the tape and stop the robot.
+Dans le programme de la figure~\ref{fig.answer1}, les capteurs de proximité horizontaux ne détectent pas d'obstacles et les moteurs continuent à rouler, \emph{ensuite} les capteurs de sol détectent le scotch et arrêtent le robot.
 
-In the program in Figure~\ref{fig.change}, the ground sensors
-detect the tape and try to stop the motors, but the second event-action
-pair keeps the motors on before they have a chance to stop.
+Dans le programme de la figure~\ref{fig.change}, les capteurs de sol détectent le scotch et essaient d'arrêter les moteurs, mais la deuxième paire événement-action garde les moteurs allumés avant qu'ils aient une chance d'être arrêtés.
 
-{\raggedleft \hfill Program file \bu{likes-changed-order.aesl}}
+{\raggedleft \hfill Programme \bu{likes-changed-order.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{likes-change-order}{0.4}
-\caption{Changing the order of the event-action pairs}\label{fig.change}
+\caption{En changeant l'ordre des paires événement-action, le comportement de Thymio peut changer}\label{fig.change}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.3}: 
 \begin{itemize}
 
-\item Use sensors 1 and 3: The robot is less sensitive the the presence
-of your hand on the side. You will have to move it closer to the center.
+\item Utiliser les capteurs 1 et 3: Thymio est moins sensible à la présence de votre main sur le côté. Vous devrez la bouger plus près du centre.
 
-\item Use both sensors 0 and 1 to turn the robot left and both sensors 3
-and 4 to turn the robot right: The robot senses a wider area in the
-front and side. You don't have to be as careful in placing your hand.
+\item Utiliser les capteurs 0 et 1 pour faire tourner le robot à gauche et les capteurs 3 et 4 pour le faire tourner à droite: Le robot est sensible dans une plus grande zone devant lui et sur ses côtés. Vous n'avez plus besoin d'être très précis avec le placement de votre main.
 
-\item Add event-action pairs for the rear sensors 5 and 6: You can now
-cause the robot to turn by placing your hand near the back of the robot.
+\item Ajouter une paire événement-action pour les capteurs arrières 5 et 6: Vous pouvez maintenant faire tourner le robot en plaçant votre main près de lui, depuis l'arrière.
 
 \end{itemize}
 
 
-\section{The Robot Finds Its Way by Itself}
+\section{Thymio est sur une piste}
 
 
-\textbf{\thesection.1}: The event-action pair \blk{gentle-left}
-will cause a gentle left turn when both ground sensors detect a lot of
-light. If you increase the speed, the robot might run too far off the
-tape and not detect it when turning. If the robot gets to the end of the
-tape it will also make a gentle left turn.
+\textbf{\thesection.1}: La paire événement-action de la figure~\ref{fig.turn_left_gentle} fera tourner Thymio lentement sur lui-même lorsque les deux détecteurs de sol verront beaucoup de lumière, donc si Thymio n'est plus sur la ligne noire. Si vous augmentez la vitesse, Thymio risque de tourner trop vite et de ne pas pouvoir détecter la ligne. 
 
-{\raggedleft \hfill Program file \bu{find-line.aesl}}
+{\raggedleft \hfill Programme \bu{find-line.aesl}}
 
-\textbf{\thesection.2}: The robot will, of cousre, move \emph{away} from
-the tape.
+\begin{figure}[hbt]
+\begin{center}
+\gr{gentle-left}{0.4}
+\caption{Thymio tourne lentement sur lui-même s'il n'est plus sur la ligne}\label{fig.turn_left_gentle}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.2}: Thymio va s'éloigner de la ligne.
 
 \textbf{\thesection.3}:
 \begin{itemize}
-\item Gentle turns are easier to follow; 
-\item Sharp turns are harder to follow; 
-\item If the lines zigzag the robot might not return to the tape before
-the next turn is encountered;  
-\item Wider lines make it less likely that the robot will run off the tape; 
-\item Narrow lines make it more likely that a small deviation will cause
-the robot to run off the line. Therefore, there will be frequent turns
-and the movement will be jerky.
+\item Des virages doux sont plus simples à suivre. 
+\item Des virages serrés sont plus difficiles à suivre.
+\item Si la ligne fait des zig zag, Thymio risque de ne pas réussir à se remettre complètement sur la ligne avant d'arriver au prochain virage.
+\item Des lignes plus larges rendent moins probable le fait que Thymio quitte la ligne.
+\item Des lignes fines augmenteront la probabilité que Thymio doive corriger sa trajectoire. Ses mouvements seront plus erratiques et saccadés.
 \end{itemize}
 
 
 \textbf{\thesection.4}:
 \begin{itemize}
-\item If the ground sensing events are more frequent, the robot will be
-more likely to respond to running off the tape; if they are less
-frequent, it might run completely off the tape before detection occurs.
-\item If the sensors are further apart a wider tape will be needed but
-it is more likely that leaving the tape will be detected before running
-off it completely; the opposite is true for sensors that are closer
-together.
-\item If there are more sensors, the robot can be more precise in its
-movements: gentle turns if only one sensor detects the floor and sharper
-turns if more than one sensor detects the floor.
+\item Si l'événement de mise à jour des capteurs de sol était plus fréquent, Thymio réagirait plus rapidement lorsqu'il quitte la ligne. S'ils étaient moins fréquents, il pourrait quitter complètement la ligne avant de se rendre compte qu'il a dévié.
+\item Si les capteurs étaient plus loin l'un de l'autre une ligne plus large serait nécessaire mais il serait plus probable que Thymio détecte qu'il commence à quitter la ligne avant d'être complètement hors de celle-ci. L'opposé est vrai si les capteurs étaient plus rapprochés l'un de l'autre.
+\item S'il y avait plus de capteurs, Thymio pourrait être plus précis dans ses mouvements et pourrait corriger sa trajectoire a différents niveaux (tourner un peu si un seul capteur sortait de la ligne, tourner plus rapidement si plusieurs sortaient de la ligne\ldots)
 \end{itemize}
 
-\section{Bells and Whistles}
+\section{Sons et chocs}
 
 \textbf{\thesection.1}:
-In Morse code, a dash is three times longer than a dot. The actions in
-Figure~\ref{fig.morse} use three white circles at the highest tone for the
-dash and one for the dot. Since there must be exactly six tones, we fill
-out the tune with short notes at the lowest tone which will not be heard
-as well as the highest tones.
+En code Morse, un trait est trois fois plus long qu'un point. Les paires événement-action de la figure~\ref{fig.morse} utilisent trois cercles blancs très aigus pour le trait et un seul cercle très aigu pour le point. Vu qu'il faut absolument avoir six notes, nous avons rempli le reste de l'action avec des courtes notes noires au plus bas ton que l'on entendra moins bien que les notes aiguës.
 
-{\raggedleft \hfill Program file \bu{bells-morse.aesl}}
+{\raggedleft \hfill Programme \bu{bells-morse.aesl}}
 
 \begin{figure}
 \begin{center}
 \gr{morse}{.4}
-\caption{Morse code}\label{fig.morse}
+\caption{Le code Morse}\label{fig.morse}
 \end{center}
 \end{figure}
 
 
-\textbf{\thesection.2}: The program in Figure~\ref{fig.clap-to-start} turns the motors on when
-the clap event occurs and turns them off when the center button is
-touched.
+\textbf{\thesection.2}: Le programme de la figure~\ref{fig.clap-to-start} allume les moteurs si l'événement 'clap' est lancé et arrête les moteurs lorsque l'on appuie sur le bouton central.
 
-{\raggedleft \hfill Program file \bu{clap-start.aesl}}
+{\raggedleft \hfill Programme \bu{clap-start.aesl}}
 
-For the opposite behavior, it seems obvious that the program in
-Figure~\ref{fig.clap-to-stop} should work, but it doesn't. The reason is
-that the event that causes the motor to stop is not specifically
-clapping; \emph{any} loud noise will cause the event to occur. The
-motors make so much noise that as soon as they start, the loud-noise
-event occurs and the motors stop.
+Pour le comportement opposé, il est évident que le programme dans la figure~\ref{fig.clap-to-stop} devrait fonctionner mais ce n'est pas le cas. La raison est que l'événement qui arrête les moteurs n'est pas forcément seulement de taper dans ses mains, n'importe quel son assez fort déclenche l'événement. Les moteurs font du bruit lorsqu'ils s'allument, ce qui déclenche l'événement et les stoppent directement.
 
-The lesson to be learned is not to put
-too much trust in what is shown on a visual block!
-
-{\raggedleft \hfill Program file \bu{clap-stop.aesl}}
+{\raggedleft \hfill Programme \bu{clap-stop.aesl}}
 
 \begin{figure}
 \begin{center}
 \gr{clap-to-start}{.4}
-\caption{Clap to start the motor}\label{fig.clap-to-start}
+\caption{Faites du bruit pour démarrer les moteurs}\label{fig.clap-to-start}
 \end{center}
 \end{figure}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{clap-to-stop}{.4}
-\caption{Clap to stop the motor}\label{fig.clap-to-stop}
+\caption{Faites du bruit pour arrêter les moteurs}\label{fig.clap-to-stop}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.3}:
-The program has two event-action pairs (Figure~\ref{fig.bump}): one to
-move the robot when a button is touched and the other to stop it when a
-tap event occurs.
+Ce programme a deux paires événement-action comme le montre la figure~\ref{fig.bump}. Une paire fait avancer Thymio lorsque le bouton central est pressé et une autre pour le faire s'arrêter lorsque l'événement 'tape' se produit.
 
-{\raggedleft \hfill Program file \bu{bump.aesl}}
+{\raggedleft \hfill Programme \bu{bump.aesl}}
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{bump}{.4}
-\caption{Stop the motor when the robot bumps into a wall}\label{fig.bump}
+\caption{Arrêter les moteurs lorsque Thymio rentre dans un mur}\label{fig.bump}
 \end{center}
 \end{figure}
 
 
-\section{A Time to Like}
+\section{Aimer pour un temps}
 
 \textbf{\thesection.1}:
-See Figure~\ref{fig.three}. When the front button
-is touched the motors are turned on and a three-second timer is started.
-When the timer expires, the motors are reversed. Finally, when the
-center button is touched, the motors are stopped.
+Voyez la figure ~\ref{fig.three} pour la solution complète. Lorsque le bouton avant est pressé, les moteurs se mettent en route et un timer de 3 secondes est lancé. Lorsque le timer arrive au bout des trois secondes, Thymio recule. La dernière paire événement-action arrête Thymio lorsque le bouton central est pressé.
 
-{\raggedleft \hfill Program file \bu{run-three-seconds.aesl}}
+{\raggedleft \hfill Programme \bu{run-three-seconds.aesl}}
 
 
 \begin{figure}[hbt]
 \begin{center}
 \gr{run-three-seconds}{.4}
-\caption{Run three seconds and reverse}\label{fig.three}
+\caption{Avance trois secondes puis recule}\label{fig.three}
 \end{center}
 \end{figure}
 
 
-\section{States: Don't Always Do the Same Thing}
+\section{États: Pour ne pas toujours faire la même chose (avancé)}
 
 \textbf{\thesection.1}:
-There will be two states: state \emph{left} \blksm{state-left} when the
-robot turns to the left and state \emph{right} \blksm{state-right} when
-the robot turns to the right. Initially, touching the forward button in
-the initial state (off, off, off, off) sets a one-second timer and state
-\emph{left} (Figure~\ref{fig.dance-start}). When the timer runs down in
-state \emph{left}, the robot turns to the left, (re-)sets a timer for
-two seconds and goes to state \emph{right}
-(Figure~\ref{fig.dance-left}). When the timer runs down in state
-\emph{right}, the robot turns to the right, (re-)sets a timer for two
-seconds and goes to state \emph{left} (Figure~\ref{fig.dance-right}).
-These two behaviors are run repeatedly, so you will have to click
-\blksm{stop} to stop the robot.
+Il y aura deux états dans ce cas: l'état \emph{gauche} \blksm{state-left} lorsque Thymio tourne à gauche et l'état \emph{droite} \blksm{state-right} lorsqu'il tourne à droite. Initialement, toucher le bouton avant dans l'état initial (off, off, off, off) règle un timer d'une seconde et passe l'état à \emph{gauche} (figure~\ref{fig.dance-start}). Lorsque le timer arrive à zéro dans l'état \emph{gauche}, Thymio tourne à gauche, règle un timer de deux secondes et passe en état \emph{droite} (figure~\ref{fig.dance-left}). Lorsque le nouveau timer arrive à zéro en état \emph{droite}, Thymio tourne à droite, règle un nouveau timer de deux secondes et retourne dans l'état \emph{gauche} (figure~\ref{fig.dance-right}). Ces deux comportements se répètent indéfiniment, vous devrez donc appuyer sur \blksm{stop} pour arrêter le robot ou ajouter une paire événement-action pour stopper Thymio, par exemple avec le bouton central.
 
-{\raggedleft \hfill Program file \bu{dance.aesl}}
+{\raggedleft \hfill Programme \bu{dance.aesl}}
 
 
 \begin{figure}
 \begin{center}
 \gr{dance-start}{0.4}
-\caption{Starting the dance}\label{fig.dance-start}
+\caption{Commencer à danser}\label{fig.dance-start}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{dance-left}{0.4}
-\caption{Dance two seconds to the left}\label{fig.dance-left}
+\caption{Danse pendant deux secondes à gauche}\label{fig.dance-left}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{dance-right}{0.4}
-\caption{Dance three seconds to the right}\label{fig.dance-right}
+\caption{Danse pendant trois secondes à droite}\label{fig.dance-right}
 \end{center}
 \end{figure}
 
 \textbf{\thesection.2}:
-I was not able to solve this problem. I had assumed that it would be
-possible to detect the event when \emph{one sensor} no longer detect the
-tape \emph{before} the event when \emph{both sensors} no longer detect
-the tape. This would enable the program to identify and remember from
-which side the robot ran off the tape. This proved impossible even at
-low speeds.
+Je n'ai pas été capable de résoudre ce problème. J'ai pensé qu'il serait possible de détecter l'événement lorsqu'\emph{un capteur} ne détecte plus la ligne \emph{avant} que l'événement \emph{les deux capteurs} ne voient plus la ligne. Ce programme permettrait d'identifier et de se rappeler de quel côté Thymio a quitté le scotch. Ceci s'est prouvé impossible, même à vitesse lente.
 
-The best I could do is to have the program remember on which side the
-robot last ran off the tape, even if that occurred much earlier.
+Le mieux que j'ai pu faire était d'avoir un programme qui se souvienne de quel côté Thymio à quitter le scotch pour la dernière fois, même si ça s'est passé bien avant.
 
-{\raggedleft \hfill Program file \bu{follow-line-and-find.aesl}}
+{\raggedleft \hfill Programme \bu{follow-line-and-find.aesl}}
 
-The robot does have one cool behavior: When it gets to the end of the
-tape, it slowly turns completely around and heads back the other way
-along the tape!
+Thymio a quand même un comportement intéressant: lorsqu'il arrive au bout du scotch, il tourne lentement sur lui-même complètement jusqu'à se retrouver à nouveau sur le scotch dans l'autre direction.
 
-State \emph{left} \blksm{state-left} remembers that the robot left the
-left side of the tape and state \emph{right} \blksm{state-right}
-remembers that the robot ran off the right side of the tape
-(Figure~\ref{fig.follow3}).
+L'état \emph{gauche} \blksm{state-left} se souvient que Thymio a quitté le scotch du côté gauche et l'état \emph{droite} \blksm{state-right} se souvient que Thymio a quitté le scotch du côté droit (figure~\ref{fig.follow3}).
 
-When both sensors fail to detect the tape, the robot turns in the
-direction indicated by the current state (Figure~\ref{fig.follow1}).
+Lorsque les deux capteurs ne détectent plus la ligne, Thymio tourne dans la direction indiquée pas l'état courant (figure~\ref{fig.follow1}). 
 
-It is also possible that the robot runs off the tape without ever having
-left one side so that the state is the initial state of all \emph{off};
-in that case, we arbitrary choose to turn right \blk{follow2}.
+Il est aussi possible que Thymio quitte le scotch sans qu'il n'ai jamais quitté la ligne ni à gauche, ni à droite. Dans ce cas, il est dans l'état complètement éteint et il tournera à droite \blk{follow2}. Le choix de tourner à droite plutôt qu'à gauche est complètement arbitraire.
 
 \begin{figure}
 \begin{center}
 \gr{follow3}{0.4}
-\caption{Change state to remember direction}\label{fig.follow3}
+\caption{Changer l'état pour se souvenir de la direction}\label{fig.follow3}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \gr{follow1}{0.4}
-\caption{Search to the left or the right}\label{fig.follow1}
+\caption{Cherche à gauche ou à droite}\label{fig.follow1}
 \end{center}
 \end{figure}
 
-\section{Counting}
+\section{Thymio apprend à compter}
 
 \textbf{\thesection.1}:
-You can count to four because there are four quarters of the state
-each of which can be set \textbf{on} to count an object.
+Vous pouvez compter jusqu'à 4 puisqu'il y a 4 quartiers. Chacun d'eux peut être allumé pour compter un objet.
 
 \textbf{\thesection.2}:
-The lower left quarter of the state icon will be used to represent the
-number of 4's in a binary number. If all quarters are off, the number represented
-is 0; if all quarters are on, the number represented is 4+2+1=7.
-Eight event-action pairs are needed, one for each transition between $n$ and
-$n+1$ (modulo 8).
+Le quartier d'en bas à gauche sera utilisé pour représenté le nombre de 4 dans le chiffre binaire. Si tous les quartiers sont éteints, le nombre représenté et 0. S'ils sont tous allumé, le nombre représenté est $4+2+1=7$. Huit paires événement-action sont nécessaires, une pour chaque transition entre $n$ et $n+1$ (modulo 8).
 
-{\raggedleft \hfill Program file \bu{count-to-eight.aesl}}
-
+{\raggedleft \hfill Programme \bu{count-to-eight.aesl}}
 
 \textbf{\thesection.3}:
-There are four quarters in the state. We can use one quarter to count
-each of the number of 1's, 2's, 4's and 8's. Therefore, we can count
-from 0 to 8+4+2+1=15.
+Il y a 4 quartiers en tout. Nous pouvons utiliser un quartier pour représenter le nombre de 1, un autre pour les 2, un autre pour les 4 et le dernier pour les 8. Si tous les quartiers sont allumés, nous avons donc: $8+4+2+1 = 15$.
 
 
 \textbf{\thesection.4}:
-This program is a mirror image of the program for adding.
-For example, if the binary number is xyz1,
-then subtracting one gives xyz0, whatever the values of xyz.
-If the number is xyz0, you will have to borrow a binary digit,
-and there will be different event-action pairs depending on the value
-of xyz. Finally, subtracting one from 0000=0 gives 1111=15 in cyclic
-arithmetic.
+Ce programme est l'image miroir du programme d'addition. Par exemple, si le nombre binaire est $xyz1$, soustraire 1 reviens à écrire $xyz0$, quelle que soit la valeur de $x$, $y$ ou $z$. Si le nombre est $xyz0$, vous devrez affecter $z$, voire même $y$ et $x$ suivant leur valeur. Finalement, soustraire 1 depuis 0000 donne 1111 (donc quinze).
 
-{\raggedleft \hfill Program file \bu{subtraction.aesl}}
+{\raggedleft \hfill Programme \bu{subtraction.aesl}}
 
 \textbf{\thesection.5}:
-An event-action pair is needed to count each strip of tape.
-For example, the following 
-pair \blk{count3} changes the count from 2 to 3 when a tape is detected.
+Une paire événement-action est nécessaire pour compter chaque bande de scotch. Par exemple, la paire suivante: \blk{count3} change le compte de 2 à 3 lorsque le scotch est détecté.
 
-{\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
+{\raggedleft \hfill Programme \bu{count-tapes-four.aesl}}
 
 \end{document}

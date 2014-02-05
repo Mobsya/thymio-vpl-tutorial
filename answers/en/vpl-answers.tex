@@ -23,7 +23,7 @@ Answers to the Exercises
 
 \end{Large}
 
-Version 1.0=3
+Version 1.3{\textasciitilde}pre1
 
 \bigskip
 
@@ -76,7 +76,7 @@ in case!
 \section{A Pet Robot}
 
 \textbf{\thesection.1}: Replace the first two event-action pairs
-with the pairs shown in Figure~\ref{fig.answer1}. The first pair turns
+with the pairs shown in \cref{fig.answer1}. The first pair turns
 both motors on when all the sensors do \emph{not} detect an obstacle;
 the second pair stops the motors when the ground sensors detect the edge
 of the table.
@@ -99,11 +99,11 @@ actually run all the event-action pairs simultaneously; instead, the
 event-action pairs are run one-by-one \emph{in the order} that they
 appear from top to bottom in the program.
 
-In the program in Figure~\ref{fig.answer1}, the horizontal sensors
+In the program in \cref{fig.answer1}, the horizontal sensors
 do not detect an obstacle and keep the motors running; \emph{then} the
 ground sensors detect the tape and stop the robot.
 
-In the program in Figure~\ref{fig.change}, the ground sensors
+In the program in \cref{fig.change}, the ground sensors
 detect the tape and try to stop the motors, but the second event-action
 pair keeps the motors on before they have a chance to stop.
 
@@ -135,24 +135,24 @@ cause the robot to turn by placing your hand near the back of the robot.
 \section{The Robot Finds Its Way by Itself}
 
 
-\textbf{\thesection.1}: The event-action pair \blk{gentle-left}
+\textbf{\thesection.1}: The event-action pair \blkc{gentle-left}
 will cause a gentle left turn when both ground sensors detect a lot of
 light. If you increase the speed, the robot might run too far off the
-tape and not detect it when turning. If the robot gets to the end of the
-tape it will also make a gentle left turn.
+line and not detect it when turning. If the robot gets to the end of the
+line it will also make a gentle left turn.
 
 {\raggedleft \hfill Program file \bu{find-line.aesl}}
 
-\textbf{\thesection.2}: The robot will, of cousre, move \emph{away} from
-the tape.
+\textbf{\thesection.2}: The robot will, of course, move \emph{away} from
+the line.
 
 \textbf{\thesection.3}:
 \begin{itemize}
 \item Gentle turns are easier to follow; 
 \item Sharp turns are harder to follow; 
-\item If the lines zigzag the robot might not return to the tape before
-the next turn is encountered;  
-\item Wider lines make it less likely that the robot will run off the tape; 
+\item If the lines zigzag the robot might not return to the line before
+the next turn is encountered;
+\item Wider lines make it less likely that the robot will run off the line; 
 \item Narrow lines make it more likely that a small deviation will cause
 the robot to run off the line. Therefore, there will be frequent turns
 and the movement will be jerky.
@@ -162,10 +162,10 @@ and the movement will be jerky.
 \textbf{\thesection.4}:
 \begin{itemize}
 \item If the ground sensing events are more frequent, the robot will be
-more likely to respond to running off the tape; if they are less
-frequent, it might run completely off the tape before detection occurs.
-\item If the sensors are further apart a wider tape will be needed but
-it is more likely that leaving the tape will be detected before running
+more likely to respond to running off the line; if they are less
+frequent, it might run completely off the line before detection occurs.
+\item If the sensors are further apart a wider line will be needed but
+it is more likely that leaving the line will be detected before running
 off it completely; the opposite is true for sensors that are closer
 together.
 \item If there are more sensors, the robot can be more precise in its
@@ -177,7 +177,7 @@ turns if more than one sensor detects the floor.
 
 \textbf{\thesection.1}:
 In Morse code, a dash is three times longer than a dot. The actions in
-Figure~\ref{fig.morse} use three white circles at the highest tone for the
+\cref{fig.morse} use three white notes at the highest tone for the
 dash and one for the dot. Since there must be exactly six tones, we fill
 out the tune with short notes at the lowest tone which will not be heard
 as well as the highest tones.
@@ -192,14 +192,14 @@ as well as the highest tones.
 \end{figure}
 
 
-\textbf{\thesection.2}: The program in Figure~\ref{fig.clap-to-start} turns the motors on when
+\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns the motors on when
 the clap event occurs and turns them off when the center button is
 touched.
 
 {\raggedleft \hfill Program file \bu{clap-start.aesl}}
 
 For the opposite behavior, it seems obvious that the program in
-Figure~\ref{fig.clap-to-stop} should work, but it doesn't. The reason is
+\cref{fig.clap-to-stop} should work, but it doesn't. The reason is
 that the event that causes the motor to stop is not specifically
 clapping; \emph{any} loud noise will cause the event to occur. The
 motors make so much noise that as soon as they start, the loud-noise
@@ -225,7 +225,7 @@ too much trust in what is shown on a visual block!
 \end{figure}
 
 \textbf{\thesection.3}:
-The program has two event-action pairs (Figure~\ref{fig.bump}): one to
+The program has two event-action pairs (\cref{fig.bump}): one to
 move the robot when a button is touched and the other to stop it when a
 tap event occurs.
 
@@ -242,7 +242,7 @@ tap event occurs.
 \section{A Time to Like}
 
 \textbf{\thesection.1}:
-See Figure~\ref{fig.three}. When the front button
+See \cref{fig.three}. When the front button
 is touched the motors are turned on and a three-second timer is started.
 When the timer expires, the motors are reversed. Finally, when the
 center button is touched, the motors are stopped.
@@ -265,12 +265,12 @@ There will be two states: state \emph{left} \blksm{state-left} when the
 robot turns to the left and state \emph{right} \blksm{state-right} when
 the robot turns to the right. Initially, touching the forward button in
 the initial state (off, off, off, off) sets a one-second timer and state
-\emph{left} (Figure~\ref{fig.dance-start}). When the timer runs down in
+\emph{left} (\cref{fig.dance-start}). When the timer runs down in
 state \emph{left}, the robot turns to the left, (re-)sets a timer for
 two seconds and goes to state \emph{right}
-(Figure~\ref{fig.dance-left}). When the timer runs down in state
+(\cref{fig.dance-left}). When the timer runs down in state
 \emph{right}, the robot turns to the right, (re-)sets a timer for two
-seconds and goes to state \emph{left} (Figure~\ref{fig.dance-right}).
+seconds and goes to state \emph{left} (\cref{fig.dance-right}).
 These two behaviors are run repeatedly, so you will have to click
 \blksm{stop} to stop the robot.
 
@@ -301,31 +301,31 @@ These two behaviors are run repeatedly, so you will have to click
 \textbf{\thesection.2}:
 I was not able to solve this problem. I had assumed that it would be
 possible to detect the event when \emph{one sensor} no longer detect the
-tape \emph{before} the event when \emph{both sensors} no longer detect
-the tape. This would enable the program to identify and remember from
-which side the robot ran off the tape. This proved impossible even at
+line \emph{before} the event when \emph{both sensors} no longer detect
+the line. This would enable the program to identify and remember from
+which side the robot ran off the line. This proved impossible even at
 low speeds.
 
 The best I could do is to have the program remember on which side the
-robot last ran off the tape, even if that occurred much earlier.
+robot last ran off the line, even if that occurred much earlier.
 
 {\raggedleft \hfill Program file \bu{follow-line-and-find.aesl}}
 
 The robot does have one cool behavior: When it gets to the end of the
-tape, it slowly turns completely around and heads back the other way
-along the tape!
+line, it slowly turns completely around and heads back the other way
+along the line!
 
 State \emph{left} \blksm{state-left} remembers that the robot left the
-left side of the tape and state \emph{right} \blksm{state-right}
-remembers that the robot ran off the right side of the tape
-(Figure~\ref{fig.follow3}).
+left side of the line and state \emph{right} \blksm{state-right}
+remembers that the robot ran off the right side of the line
+(\cref{fig.follow3}).
 
-When both sensors fail to detect the tape, the robot turns in the
-direction indicated by the current state (Figure~\ref{fig.follow1}).
+When both sensors fail to detect the line, the robot turns in the
+direction indicated by the current state (\cref{fig.follow1}).
 
-It is also possible that the robot runs off the tape without ever having
+It is also possible that the robot runs off the line without ever having
 left one side so that the state is the initial state of all \emph{off};
-in that case, we arbitrary choose to turn right \blk{follow2}.
+in that case, we arbitrary choose to turn right \blkc{follow2}
 
 \begin{figure}
 \begin{center}
@@ -376,8 +376,7 @@ arithmetic.
 
 \textbf{\thesection.5}:
 An event-action pair is needed to count each strip of tape.
-For example, the following 
-pair \blk{count3} changes the count from 2 to 3 when a tape is detected.
+For example, the following pair \blkc{count3} changes the count from 2 to 3 when a tape is detected.
 
 {\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
 

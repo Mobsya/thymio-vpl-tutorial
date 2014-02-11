@@ -40,76 +40,77 @@
 \colorlet{advancedmode}{orange!20}
 
 \begin{document}
+\thispagestyle{empty}
 
 \fontsize{15pt}{18pt}\selectfont
 
 \begin{center}
-{\Huge \textbf{VPL Reference Card}}
+{\Huge \textbf{VPL Referenzkarte}}
 \end{center}
 
 \bigskip
 
 \begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
 
-\multicolumn{2}{l}{\textbf{Events}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.4cm]
+\multicolumn{2}{l}{\textbf{Ereignisse}} & \multicolumn{2}{l}{\textbf{Aktionen}} \\[.4cm]
 
-\blk{event-buttons} & \textbf{Buttons touched}
+\blk{event-buttons}  & \textbf{Gedrückte Knöpfe}
 
-grey: ignore the button, red: must be touched &
+grau: beachte den Knopf nicht, rot: drücke den Knopf &
 
-\blk{action-motors} & \textbf{Set motor speeds}
+\blk{action-motors} & \textbf{Motorengeschwindigkeit}
 
-Set left and right motor and wheel speeds.%
+Geschwindigkeit des linken und rechten Motors.%
 %
 \\[.6cm]
 
-\blk{event-prox} & \textbf{Obstacle detectors}
+\blk{event-prox} & \textbf{Hinderniserkennung}
 
-grey: ignore detector, red: object close, white: object far&
+grau: ignorieren, rot: Nahes Objekt, weiss: Entferntes Obj. &
 
-\blk{action-colors-up} & \textbf{Set top colour}
+\blk{action-colors-up} & \textbf{Farbauswahl Oberseite}
 
-Set a mixture of red, green and blue to robot's top.%
+Farbmischung aus rot, grün, blau für die Oberseite%
 %
 \\[.6cm]
 
-\blk{event-ground} & \textbf{Ground detectors}
+\blk{event-ground} & \textbf{Bodensensoren}
 
-grey: ignore detector, red: ground, white: no ground&
+grau: Detektor ignorieren, rot: Boden, white: kein Boden &
 
-\blk{action-colors-down} & \textbf{Set bottom colour}
+\blk{action-colors-down} & \textbf{Farbauswahl Unterseite}
 
-Set a mixture of red, green and blue to robot's bottom.%
+Farbmischung aus rot, grün und blau für die Unterseite.%
 %
 \\[.6cm]
 
-\blk{event-tap} & \textbf{Robot tapped}
+\blk{event-tap} & \textbf{Klopfen auf den Roboter}
 
-Robot received a shock.&
+Der Roboter wird erschüttert&
 
-\blk{action-music} & \textbf{Play music}
+\blk{action-music} & \textbf{Spiele Musik}
 
-Choose pitch, white twice the duration of black.%
+ Linien:~Tonhöhe, Farbe:~Tonlänge. %
 %
 \\[.6cm]
 
-\blk{event-clap} & \textbf{Hand clapped}
+\blk{event-clap} & \textbf{Klatschen}
 
-Robot heard a strong noise.&
+Der Roboter erkennt laute Geräusche&
 
-\blk{action-timer} & \textbf{Start timer}
+\blk{action-timer} & \textbf{Starte den Timer}
 
-Timer elapsed event will occur after some duration.%
+Das Timerereignis findet nach der gesetzten Zeit statt.%
 %
 \\[.6cm]
 
-\blk{event-timer} & \textbf{Timer elapsed}
+\blk{event-timer} & \textbf{Abgelaufener Timer}
 
-The timer has timed out.&
+Timer ist abgelaufen.&
 
-\cellcolor{advancedmode} \blk{action-states} & \cellcolor{advancedmode} \textbf{Set robot's state}
+\cellcolor{advancedmode} \blk{action-states} & \cellcolor{advancedmode} \textbf{Zustand des Roboters}
 
-Set the 4-bit internal state of the robot.\\
+Wähle den 4-bit Zustand des Roboters.\\
 
 \end{tabularx}
 
@@ -117,11 +118,10 @@ Set the 4-bit internal state of the robot.\\
 
 \begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}L}
 
-\multicolumn{2}{l}{\textbf{Constructing your program}} \\[.4cm]
+\multicolumn{2}{l}{\textbf{Erstelle dein Programm}} \\[.4cm]
 
-\blkbig{event-action-pair-empty} & Drag and drop events to the left square, actions to the right square. 
 
-When event happens, the robot executes the action.
+\blkbig{event-action-pair-empty} & Ziehe (drag and drop) Ereignisse in das linke und Aktionen in das rechte Quadrat. Findet das Ereignis statt, führt der Roboter die Aktion aus.
 \\
 
 \end{tabularx}
@@ -130,11 +130,11 @@ When event happens, the robot executes the action.
 
 \begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}Ll}
 
-\multicolumn{2}{l}{\textbf{Sensors are combined with AND in an event}} & \\[.4cm]
+\multicolumn{3}{l}{\textbf{Sensoren werden mit einem Ereignis kombiniert UND sind Teil eines Ereignisses}} \\[.4cm]
 
-\blk{sensor-and-button} & If two sensors are selected, both conditions must be true for the event to happen.
+\blk{sensor-and-button} & Wenn zwei Sensoren ausgewählt werden, müssen beide Bedingungen wahr sein, damit das Ereignis stattfindet.
 
-Left \textbf{and} right must be touched or have an object close. &
+Links \textbf{und} rechts müssen gedrückt werden/ein Objekt erkennen. &
 
 \blk{sensor-and-prox}\\
 
@@ -142,6 +142,6 @@ Left \textbf{and} right must be touched or have an object close. &
 
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}\hfill\colorbox{advancedmode}{advanced mode feature}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}\hfill\colorbox{advancedmode}{Funktionen des fortgeschrittenen Modus}
 
 \end{document}

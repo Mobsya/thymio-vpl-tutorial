@@ -3,6 +3,7 @@ Stéphane Magnenat, http://stephane.magnenat.net, minor editing and formatting
 Gregory Hitz, http://www.asl.ethz.ch/people/hitzg, first part of German translation
 Lukas Bühler, second part of German translation
 Christophe Barraud, English to French translation
+Jacques Paul Grivaz, review of French version
 
 Third-party graphics:
 Color cube filled (c) Mike Horvath http://commons.wikimedia.org/wiki/File:RGBCube_b.svg

@@ -24,7 +24,7 @@ In diesem Archiv befindet sich ein Tutorial, welches sich mit dem
 Thymio-II Roboter mit VPL beschäftigt. Für mehr Informationen über
 den Thymio-II und Aseba, siehe: https://aseba.wikidot.com/.
 
-Es gibt zwei Dokumente und zwei Adressen in diesem Archiv;
+Es gibt drei Dokumente und zwei Adressen in diesem Archiv;
 
 thymio-vpl-tutorial-de.pdf:             Das Tutorial.
 thymio-vpl-tutorial-answers-de.pdf:     Antworten zu den Fragen.

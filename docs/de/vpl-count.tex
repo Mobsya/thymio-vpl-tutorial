@@ -1,0 +1,148 @@
+% !TeX root = vpl.tex
+
+\chap{Zählen (Fortgeschritten)}\label{ch.counting}
+
+In diesem Kapitel zeigen wir, wie die Zustände des Thymio Roboters benutzt werden können, um zu zählen und einfache Aritmetik zu betreiben.
+Das Design und die Einführung des Projektes wird nicht im Detail präsentiert. Wir nehmen an, dass du nun genügend Übung hast, um diese selbständig zu entwickeln. Der Quellcode eines funktionierenden Programms ist im Archiv abgelegt, aber schaue nicht nach, ausser du kommst wirklich nicht weiter, um ein Problem lösen zu können.
+Dieses Projekt benutzt das \emph{Klatsch}ereignis, um den Zustand zu ändern und 
+das voreingestellte Verhalten der LED Lichter, um die Zustände im Kreis anzuzeigen. 
+
+
+\importantbox{
+Der Ist-Zustand des Roboter wird im LED Kreis auf der Oberseite des Roboters angezeigt.
+\cref{fig.state-leds} zeigt den Roboter in den Zuständen
+\bu{(ein,ein,ein,ein)}.}
+
+Fühle dich frei, eines dieser Verhalten zu ändern.
+
+
+\sect{Grad und ungrade Zahlen}
+
+\begin{quote}
+\textbf{Programm}\\Wähle einen Viertel der Zustände. Es wird \bu{aus} (weiss) anzeigen, wenn du eine gerade Anzahl Mal in die Hände klatschst und \bu{ein} (orange) anzeigen, wenn du eine ungerade Anzahl Mal in die Hände klatschst. 
+Wenn du den mittleren Knopf drückst, wird der Zustand auf gerade zurückgestellt (0 ist ebenfalls eine gerade Zahl).
+\end{quote}
+
+{\raggedleft \hfill Programm file \bu{count-to-two.aesl}}
+
+Unsere Methode zu zählen, zeigt das Konzept \emph{modulo 2 Arithmetik} auf.
+
+Wir starten zu zählen von 0 bis 1 und wieder zurück zu 0.
+
+Der Ausdruck \emph{modulo} entspricht dem Ausdruck \emph{Rest}: Falls 7 Mal in die Hände geklatscht wurde, wird die 7 durch 2 geteilt, dies ergibt 3 Rest 1. Nun merken wir uns nur den Rest.
+
+In modulo 2 Arithmetik, werden 0 und 1 oft gerade und ungerade genannt.
+
+Ein anderer Ausdruck für das selbe Konzept ist die \emph{zyklische Arithmetik}. Gezählt wird anstelle von 0 zu 1 und dann von 1 zu 2, wird im \emph{Kreis} wieder zurück zum Anfang gezählt: 0, 1, 0, 1, \ldots.
+
+Diese Konzepte sind uns sehr vertraut, da sie auch in Uhren verwendet werden. Minuten und Sekunden werden modulo 60 gezählt und Stunden modulo 12 oder modulo 24. Deshalb ist die Sekunde nach der 59 Sekunde nicht die 60igste Sekunde sonder die 0te. Wir zählen im Kreis und beginnen wieder bei 0. Ähnlich die Stunden: Nach 23 kommt nicht 24, sondern 0. Wenn es 23:00 Uhr ist und wir abmachen uns in 3 Stunden zu treffen, dann ist die abgemachte Zeit für das Trefen 26 modulo 24, was 02:00 Uhr in der Nacht ist.
+
+\sect{Unäres Zählen}
+
+\begin{quote}
+Ändere das Programm, um mit modulo 4 zu zählen. Es gibt vier mögliche Reste: 0, 1, 2, 3. Wähle drei Viertel, jeder repräsentiert davon einen Wert von 1, 2 oder 3, der Wert 0 wird durch den Zustand alle Viertel auf \bu{aus} repräsentiert.
+\end{quote}
+
+Diese Methode die Zahlen zu repräsentieren wird \emph{unäre Repräsentation} genannt, dies durch die verschiedenen Elemente, die die Zustände der verschiedenen Nummern repräsentieren. Wir benützen oft unäre Repräsentation, um beim Zählen verschiedener Objekte mithalten zu können. Zum Beispiel:
+
+\begin{picture}(35,10)
+\multiput(5,0)(5,0){4}{\put(0,0){\line(0,1){10}}}
+\put(0,0){\line(3,1){25}}
+\put(32,0){\line(0,1){10}}
+\end{picture}
+repräsentiert 6.
+
+{\raggedleft \hfill Program file \bu{count-to-four.aesl}}
+
+\exercisebox{\thechapter.1}{
+Wie hoch können wir mit Thymio zählen, wenn wir unäre Repräsentation verwenden?}
+
+\sect{Binäres Zählen}
+
+Wir sind sehr vertraut mit \emph{Stellenwertsystemen oder Zahlensystemen}, speziell mit dem Dezimalsystem mit der Basis 10. Die Symbole 256 im Dezimalsystem repräsentieren nicht drei verschiedene Objekte. Stattdessen repräsentiert die 6 die Einer, die 5 die Zehner 10$\times$1=10's und 2 die Hunderter 10$\times$10$\times$1=100'. Erst durch das Hinzufügen dieser Faktoren erhalten wir die Zahl Zweihundertsechsunfüngzig. Indem wir die Basis 10 verwenden, können wir sehr grosse Nummern in einer kompakten Darstellung zusammenfassen. Zudem ist die Arithmetik mit grossen Zahlen relativ einfach, benutzt man die Methoden, die man in der Schule gelernt hat.
+
+Wir benutzen die 10er Repräsentation, weil wir 10 Finger haben. So ist es einfach diese Repräsentation zu lernen. Computer dagegen haben nur zwei "Finger"(\bu{aus} und \bu{ein}).
+Deshalb wird die Basis 2 Arithmetik beim Programmieren verwendet. Die Basis 2 oder Binäre Arithmetik ist uns am Anfang fremd, weil ähnliche Symbole 0 und 1 wie im Dezimalsystem zur Basis 10 benutzt werden. Die Kreiszählung beginnt nun aber schon bei 2 und nicht erst bei 10.
+
+\begin{displaymath}
+0, 1, 10, 11, 100, 101, 110, 111, 1000, \ldots
+\end{displaymath}
+
+Gibt man uns eine Binärnummer wie 1101, lesen wir sie von links nach rechts wie bei den Dezimalzahlen. Die rechteste Zahl repräsentiert die Zahl der 1er, die nächste Zahl die 1$\times$2=2er, danach die 1$\times$2$\times$2=4er und die Zahl am meisten links die 1$\times$2$\times$2$\times$2=8er.
+1101 repräsentiert deshalb die Zahl 1+0+4+8, was Dreizehn ergibt oder zur 10 Basis ausgedrückt 13.
+
+\newpage
+
+\begin{quote}
+\textbf{Programm}\\
+Verändere das Prgramm mit dem du in modulo 4 gezählt hast in ein binäres Repräsentationssystem.
+\end{quote}
+
+{\raggedleft \hfill Program Order \bu{count-to-four-binary.aesl}}
+
+Wir benötigen nur zwei Viertel der Zustände, um die Nummern 0--3 mit der Basis 2 auszudrücken. Lass das Viertel rechts oben die 1er repräsentieren, \bu{aus} (weiss) für Null und \bu{ein} (orange) für Eins und das Viertel links oben repräsentiert die 2er. So repräsentiert zum Beispiel der Zustand \blksm{state-right} die Nummern 1 und der Zustand \blksm{state-left} die Nummer 2.
+Falls beide Viertel weiss sind, repräsentiert der Zustand die Zahl 0 und wenn beide Viertel orange sind, repräsentieren die Zustände die Zahl 3.
+
+Es gibt vier Umschaltungen $0\rightarrow 1, 1\rightarrow 2, 2
+\rightarrow 3, 3\rightarrow 0$, so werden vier Ereignis-Aktions Paare benötigt und zusätzlich noch ein Paar, um das Programm in den Anfangszustand zurückzuversetzen, wenn der mittlere Knopf gedrückt wird.
+
+
+\medskip
+
+\trickbox{Die zwei unteren Viertel werden nicht benutzt, deshalb bleiben sie grau und werden durch das Programm ignoriert.}
+
+\medskip
+
+\exercisebox{\thechapter.2}{Erweitere das Programm, dass es in modulo 8 zählt. Das untere linke Viertel repräsentiert die 4er.}
+
+\exercisebox{\thechapter.3}{Wie hoch können wir mit dem Thymio zählen, wenn wir binäre Repräsentation verwenden?}
+
+\sect{Addition und Subtraktion}
+
+Ein Programm zu schreiben, um bis 8 zählen zu können ist ziemlich mühsam, da du 8 Ereignis-Aktions Paare programmieren musst, eines für jede Umschaltung von $n$ to $n+1$ (modulo 8). 
+Natürlich zählen wir nicht so in einem Basiszahlensystem, stattdessen haben wir Methoden um Additionen auszuführen, indem Ziffern zu jedem Platz zugefügt werden und von da zum nächsten Platz mitgenommen werden können.
+Im Zahlensystem mit der Basis 10 wird dies so dargestellt:
+\begin{displaymath}
+\begin{array}{r}
+387\\
++426\\
+\rule[1pt]{1.5em}{1pt}\\
+813\\
+\end{array}
+\end{displaymath}
+und ganz ähnlich im Zahlensystem mit der Basis 2:
+\begin{displaymath}
+\begin{array}{r}
+0011\\
++1011\\
+\rule[1pt]{2em}{1pt}\\
+1110\\
+\end{array}
+\end{displaymath}
+Indem wir 1 zu 1 addieren, ergibt das nicht 2 sondern 10. Die 0 wird in der selben Spalte geschrieben und die 1 wird in die Spalte nach links verschoben. Das Beispiel oben zeigt die Addition von 3 =(0011) und 11(=1011) was 14 ergibt (=1110).
+
+
+\begin{quote}
+\textbf{Programm}\\
+Schreibe ein Programm, das mit der Repräsentation von 0 beginnt. Jedes Mal in die Hände klatschen, fügt 1 zu der Nummer hinzu. Die Addition ist modulo 16, deshalb folgt auf 15 addiert mit 1 gleich 0.
+\end{quote}
+
+Anleitung:
+
+\begin{itemize}
+\item Das untere linke Viertel wird gebraucht, um die 8er zu repräsentieren.
+
+\item Wenn das rechte obere Viertel die 1er repräsentiert und 0 (weiss) anzeigt, ändere dies einfach auf 1 (orange). Mach dies egal was die anderen Viertel anzeigen.
+\item Wenn das obere rechte Viertel die 1er repräsentiert und 1 (orange) anzeigt, ändere dies auf 0 (weiss) und behalte dann 1. Das gibt drei Ereignis-Aktions Paare, abhängig von der Anordnung des  \emph{nächsten} Viertels, das 0 (weiss) anzeigt. 
+\item Wenn alle Viertel 1 anzeigen (orange) wird 15 repräsentiert, wird 1 zu 15 modulo 16 addiert, ergibt dies 0, repräsentiert indem alle Viertel 0 (weiss) anzeigen.
+\end{itemize}
+
+
+{\raggedleft \hfill Programm Ordner \bu{addition.aesl}}
+
+\exercisebox{\thechapter.4}{Ändere das Programm so, dass es mit 15 beginnt und mit jedem Mal Klatschen 1 substrahiert bis 0 und dann wieder bei 15 beginnt.}
+
+\exercisebox{\thechapter.5}{Platziere eine Sequenz mehrerer kurzer schwarzer Klebebänder auf eine helle Oberfläche (oder helles Klebeband auf eine dunkle Oberfläche).
+Schreibe ein Programm, dass den Thymio vorwärts bewegen lässt und stoppt sobald er das vierte Klebeband detektiert hat.}
+
+Diese Aufgabe ist nicht einfach: Die Klebebandstreifen müssen genügend weit auseinander plaziert werden, damit der Roboter sie entdeckt, aber nicht so weit, dass nicht mehr als ein Ereignis pro Streifen stattfindet. Du musst ebenfalls mit der Geschwindigkeit des Roboters experimentieren.

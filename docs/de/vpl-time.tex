@@ -1,6 +1,6 @@
 \chap{Angenehme Zeit}
 
-Im Kapitel ~\ref{ch.pet} haben wir ein Roboterhaustier programmiert,
+Im \cref{ch.pet} haben wir ein Roboterhaustier programmiert,
 das uns entweder mag oder nicht mag.
 Nun stellen wir uns ein etwas komplizierteres  Verhalten vor:
 ein schüchternes Haustier, welches sich nicht entscheiden kann,
@@ -10,8 +10,9 @@ dann aber zurückweichen und schlussendlich sich wieder zu unserer Hand hinbeweg
 {\raggedleft \hfill Program file \bu{shy.aesl}}
 
 Das Verhalten des Roboters ist wie folgt: Falls der Rechte Schalter berührt wird, bewegt sich der Roboter nach rechts, falls er deine Hand wahrnimmt, bewegt er sich nach links, aber nach einer Weile bereut er die Entscheidung und bewegt sich wieder zurück. Wir wissen, wie wir die Ereignis-Aktions Paare für die erste Bewegung erstellen
-\blk{start-turn} und wie für das Zurückbewegen, falls deine Hand erkannt wird
-\blk{turn-away}.
+\blkc{start-turn} 
+und wie für das Zurückbewegen, falls deine Hand erkannt wird
+\blkc{turn-away}
 
 Das Verhalten des Zurückweichens nach einer Weile kann in zwei Ereignis-Aktions Paare zerlegt werden.
 
@@ -27,18 +28,16 @@ nach rechts ab.
 
 Wir brauchen eine neue \emph{Aktion} für das erste Verhalten und ein neues \emph{Ereignis} für das zweite Verhalten.
 
-Die Aktion ist ein \emph{Timer} einzustellen, welcher wie ein Wecker funktioniert \blksm{action-timer}.  Normalerweise stellen wir den Wecker auf eine bestimmte Zeit ein, aber falls ich den Wecker auf meinem Smartphone auf eine bestimmte Zeit einstelle, wird mir diese als Zeitdauer angegeben: "Wecker läutet in 11 Stunden und 23 Minuten". Der Timerblock arbeitet auf die selbe Art und Weise. Der Timer wird auf eine bestimmte Anzahl Sekunden eingestellt, sobald das Ereignis stattfindet und die Aktion ausgelöst wird. Der Timer kann auf bis zu vier Sekunden eingestellt werden. Klicke irgendwo innerhalb des schwarzen Kreises, wo die Oberfläche der Uhr gezeigt wird (aber nicht auf den schwarzen Kreis selber). Nach einer kleinen Animation wir die Zeitdauer des Timers (bis der Alarm ausgelöst wird) in blauer Farbe angezeigt.
+Die Aktion ist ein \emph{Timer} einzustellen, welcher wie ein Wecker funktioniert \blksm{action-timer}.  Normalerweise stellen wir den Wecker auf eine bestimmte Zeit ein, aber falls ich den Wecker auf meinem Smartphone auf eine bestimmte Zeit einstelle, wird mir diese als Zeitdauer angegeben: ``Wecker läutet in 11 Stunden und 23 Minuten''. Der Timerblock arbeitet auf die selbe Art und Weise. Der Timer wird auf eine bestimmte Anzahl Sekunden eingestellt, sobald das Ereignis stattfindet und die Aktion ausgelöst wird. Der Timer kann auf bis zu vier Sekunden eingestellt werden. Klicke irgendwo innerhalb des schwarzen Kreises, wo die Oberfläche der Uhr gezeigt wird (aber nicht auf den schwarzen Kreis selber). Nach einer kleinen Animation wir die Zeitdauer des Timers (bis der Alarm ausgelöst wird) in blauer Farbe angezeigt.
 
-\newpage
-Das Ereignis-Aktions Paar für das erste, oben beschriebene Verhalten ist:
- \\ \blk{turn-clock}.
+Das Ereignis-Aktions Paar für das erste, oben beschriebene Verhalten ist: \blkc{turn-clock}
 
 Der Timer ist auf zwei Sekunden eingestellt. Falls das Ereignis Handerkennung stattfindet, werden zwei Aktionen ausgelöst: Drehung des Roboters nach links und Starten des Timers.
 
 Der zweite Teil dieses Verhaltens benötigt ein Ereignis, das stattfindet, falls der Alarm ausgelöst wird. Dieses tritt ein, falls die eingestellte Zeit auf Null abgelaufen ist. Der Ereignisblock \blksm{event-timer} zeigt dann einen klingelnden Wecker.
 
 Das Ereignis-Aktions Paar ist
-\blk{turn-back},
+\blkc{turn-back}
 dass der Roboter zurück nach rechts drehen lässt, wenn der Timer abgelaufen ist.
 
 

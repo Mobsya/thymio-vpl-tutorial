@@ -46,7 +46,7 @@ Die Beduetung der Farben ist für diesen Block:
 \end{itemize}
 
 %\importantbox[Boden- und horizontale Sensoren]{
-\importantbox{
+\importantbox[Boden- und horizontale Sensoren]{
 Achte darauf, das Verhalten der horizontalen Sensoren nicht mit dem Verhalten der Bodensensoren zu verwechseln.
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item Bei den horizontalen Sensoren bedeutet ein weisses Quadrat, dass ein Ereignis stattfindet, wenn \emph{nichts in der Nähe} ist. Während ein rotes Quadrat bedeutet, dass ein Ereignis stattfindet, wenn \emph{etwas in der Nähe} ist.
@@ -57,7 +57,7 @@ Das physikalische Prinzip dieser beiden Typen von Sensoren ist ähnlich. Wegen d
 
 Damit  ein bestimmtes Verhalten des Roboters ausgelöst wird, 
 brauchen wir die beiden Ereignis-Aktions Paare, 
-wie in der Abbildung~\ref{fig.follow-hand} gezeigt. 
+wie in der \cref{fig.follow-hand} gezeigt. 
 Das erste Paar besteht aus dem zentralen vorderen Sensor mit der Einstellung weiss. 
 Die dazugehörige Aktion ist, dass die Motoren ausgeschaltet werden. 
 Somit wird der Roboter stehen bleiben, falls er schon still gestanden ist oder anhalten, 
@@ -83,7 +83,7 @@ dass beiden Motoren rasch vorwärtsdrehen und  der Roboter sich vorwärts auf di
 
 Der Thymio Roboter hat kein Steuerrad wie ein Auto oder einen Lenker wie ein Fahrrad.
 Wie kann der Roboter nun gelenkt werden? Der Roboter benutzt ein \emph{Differentialgetriebe},
-welches ähnlich funktioniert wie bei Raupenfahrzeugen, z.B. einem Bulldozer (Figure~\ref{fig.bull}).
+welches ähnlich funktioniert wie bei Raupenfahrzeugen, z.B. einem Bulldozer (\cref{fig.bull}).
 Die gewünschte Richtung wird anstelle eines Steuerrads mit \emph{unterschiedlichen} Geschwindigkeiten
 des linken und des rechten Rades erreicht. Dreht das rechte Rad schneller als das linke,
 biegt das Fahrzeug nach links ab und dreht das linke Rad schneller als das rechte, biegt das Fahrzeug rechts ab.
@@ -102,7 +102,7 @@ und der rechte Regler auf schnelle Geschwindigkeit vorwärts eingestellt.
 Als Resultat wird der Roboter eine enge Linkskurve vollführen, 
 wie dies auf dem kleinen Bild des Roboter bzw. des Motoraktionsblocks dargestellt ist.
 
-Experimentiere mit dem Ereignis-Aktions Paar \blkc{turning}.
+Experimentiere mit dem Ereignis-Aktions Paar: \blkc{turning}
 
 Stelle den linken und den rechten Regler ein.
 Lass das Programm laufen und drücke den zentralen Schalter.
@@ -124,8 +124,8 @@ vor seinem ganz rechts platzierten Distanzsensor wahrnimmt, soll er nach rechts 
 
 {\raggedleft \hfill Program file \bu{likes.aesl}}
 
-Das Programm für "der Roboter mag dich"  besteht aus zwei Ereignis-Aktions Paaren
-(Figure~\cref{fig.likes}).
+Das Programm für ``der Roboter mag dich'' besteht aus zwei Ereignis-Aktions Paaren
+(\cref{fig.likes}).
 Probiere die Regler an jedem Motoraktionsblock aus!
 
 \begin{figure}
@@ -156,8 +156,6 @@ Was passiert, falls Du die Reihenfolge des Ereignis-Aktions Paares änderst,
 welches Du in der vorangegangenen Übung verwendet hast?
 }
 
-\newpage
-
 \sect{Der Roboter mag dich nicht}
 
 Manchmal mag dein Roboterhaustier in schlechter Laune sein und von deiner Hand zurückweichen. Erstelle ein Programm, welches dieses Verhalten auslöst.
@@ -169,7 +167,7 @@ der Dich mag und ändere die Zusammenhänge für die Ereignisse mit den Aktionen
 Das Erkennen eines Hindernisses beim linken Sensor bewirkt, 
 dass der Roboter nach rechts abbiegt, 
 während das Erkennen eines Hindernisses beim rechten Sensor bewirkt, 
-dass der Roboter nach links abbiegt (Figure~\ref{fig.hates}).
+dass der Roboter nach links abbiegt (\cref{fig.hates}).
 
 
 \exercisebox{\thechapter.3}{
@@ -212,12 +210,12 @@ onevent prox
   end
 \end{lstlisting}
 \end{minipage}
-\caption{A VPL program and the corresponding text program.}
+\caption{Ein VPL-Programm und die entsprechenden Textprogramm.}
 \label{fig.textcode}
 \end{figure}
 
 Die Zeile \p{onevent prox} bedeutet:
-Immer wenn das Ereignis "Messen der horizontalen Distanz"  des Distanzsensors (\emph{Näherungs}sensor: englisch proximity sensor, abgekürzt \emph{prox}) 
+Immer wenn das Ereignis ``Messen der horizontalen Distanz'' des Distanzsensors (\emph{Näherungs}sensor: englisch proximity sensor, abgekürzt \emph{prox}) 
 stattfindet (dies findet 10 mal pro Sekunde statt), wird
 die folgenden Zeilen des Programms ausgeführt:
 
@@ -240,7 +238,7 @@ Daher ist es mit einem Ereignis-Aktionspaar verbunden:
 
 Hat Thymio schlussendlich alle diese Sensoren ausgewertet, wartet er auf das nächste Ereignis \p{prox} und startet diese Tests von neuem undendlich oft.
 
-Benütze die AsebaStudio Umgebung(\cref{ch.next}), um Programme im Textmodus zu schreiben.
+Benütze die AsebaStudio (\cref{ch.next}), um Programme im Textmodus zu schreiben.
 
 
 \trickbox{Wenn du die Regler der Motorenaktionsblöcke bewegst, siehst du, dass du die Endgeschwindigkeit der Motoren (\p{moter.X.target}) in 50iger Schritten von $-$500

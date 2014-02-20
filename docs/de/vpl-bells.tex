@@ -11,7 +11,8 @@ Wir zeigen dir, wie der Roboter Musik spielen kann, auf Töne antwortet oder auf
 Der Thymio Roboter enthält ein Synthesizer
 und Du kannst diesen programmieren,
 um einfache Melodien zu spielen,
-indem du den Aktionsblock Musik benutzst: \blk{action-music}.
+indem du den Aktionsblock Musik benutzst: 
+\blkc{action-music}
 
 {\raggedleft \hfill Program file \bu{bells.aesl}}
 
@@ -19,7 +20,7 @@ Du wirst kein neuer Beethoven werden---da nur sechs Noten,
 in fünf Tonlagen und zwei Tonlängen
 zur Verfügung stehen---aber du kannst eine Melodie komponieren,
 die dein Roboter einzigartig macht. 
-Die Abbildung \Cref{fig.music} zeigt zwei Ereignis-Aktions Paare,
+Die \cref{fig.music} zeigt zwei Ereignis-Aktions Paare,
 welche mit einer Melodie antworten,
 falls der vordere oder der hintere Knopf gedrückt wird.
 Jedem Ereignis ist eine andere Melodie zugeordnet.
@@ -42,7 +43,7 @@ Klicke auf den \emph{Balken} über oder unter dem Kreis, um den Kreis zu bewegen
 
 \exercisebox{\thechapter.1}{
 Schreibe ein Programm,
-das dir erlaubt eine Morsebotschaft zu verschicken.
+das dir erlaubt eine \href{http://de.wikipedia.org/wiki/Morsezeichen}{Morsebotschaft} zu verschicken.
 Eine Morsebotschaft wird mit langen und kurzen Tönen kodiert.
 (\emph{Striche} für lange Töne und \emph{Punkte} für kurze Töne).
 Zum Beispiel wird der Buchstabe \emph{V} mit drei Punkten und einem Strich kodiert.
@@ -53,7 +54,8 @@ Zum Beispiel wird der Buchstabe \emph{V} mit drei Punkten und einem Strich kodie
 Der Thymio hat ein Mikrofon.
 Das Ereignis \blksm{event-clap} findet statt,
 wenn ein lautes Geräusch aufgenommen wird, wie z.B. Händeklatschen.
-Das Ereignis-Aktions Paar \\ \blk{clap} wird die Bodenlichter einschalten,
+Das Ereignis-Aktions Paar: \blkc{clap} 
+wird die Bodenlichter einschalten,
 wenn du in die Hände klatschst.
 
 \trickbox[Information]{In einer lauten Umgebung kann ein Geräusch eventuell nicht als Ereignis verwendet werden,
@@ -64,7 +66,7 @@ Schreibe ein Programm,
 dass den Roboter losfahren lässt,
 wenn du in die Hände klatschst und den Roboter stoppt,
 wenn du auf den Schalter drückst.
-\vspace{.5em}\\
+\vspace{-.5em}\\
 Schreibe ein Programm, das umgekehrt funktioniert:
 Der Roboter soll losfahren,
 wenn du auf den Schalter drückst und stoppen,
@@ -77,10 +79,12 @@ Haustiere machen nicht immer das,
 was wir von ihnen verlangen.
 Manchmal brauchen sie einen freundschaftlichen Klaps um sie zu ermutigen.
 Genau gleich funktioniert das mit deinem Roboter.
-Der Thymio enthält ein Berührungssensor, welcher ein Ereignis auslöst \blk{event-tap}, falls dem Roboter kurz auf seine Oberseite geklopft wird. So bewirkt zum Beispiel das Ereignis-Aktions Paar \blk{touch}, dass die Lichter angehen, falls auf die Oberseite des Roboters geklopft wird.
+Der Thymio enthält ein Berührungssensor, welcher ein Ereignis auslöst \blksm{event-tap}, falls dem Roboter kurz auf seine Oberseite geklopft wird. So bewirkt zum Beispiel das Ereignis-Aktions Paar 
+\blkc{touch}
+dass die Lichter angehen, falls auf die Oberseite des Roboters geklopft wird.
 
 Erstelle ein Programm für dieses Ereignis-Aktions Paar
-und eines für das folgende Paar\blksm{clap}, welches die Bodenlichter angehen lässt,
+und eines für das folgende Paar \blkc{clap} welches die Bodenlichter angehen lässt,
 wenn Du in die Hände klatschst.
 
 {\raggedleft \hfill Program file \bu{whistles.aesl}}
@@ -95,5 +99,5 @@ dass das Geräusch kein Ereignis auslöst.
 \exercisebox{\thechapter.3}{
 Schreibe ein Programm, dass den Roboter vorwärts fahren lässt bis er die Wand berührt. 
 \vspace{.5em}\\
-\textbf{Versichere dich}, dass der Roboter langsam fährt und sich dadurch nicht selbst beschädigt.
+\textbf{Versichere dich}, dass der Roboter \textbf{langsam} fährt und sich dadurch nicht selbst beschädigt.
 }

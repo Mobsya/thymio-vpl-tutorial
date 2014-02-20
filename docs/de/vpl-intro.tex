@@ -2,19 +2,19 @@
 
 \sect{Lerne Thymio kennen}
 
-Das Bild~\ref{fig.front} zeigt den Roboter von vorne. Oben sieht man einen Knopf in
-der Mitte und die vier Richtungsknöpfe. Hinter den Knöpfen wird der
-Batteriestand in grün angezeigt. Dahinter sieht man die zwei oberen Lichter, die auf
+Das Bild~\ref{fig.front} zeigt den Roboter von vorne. Oben sieht man einen runden Knopf in
+der Mitte (A) und die vier Richtungsknöpfe (B). Hinter den Knöpfen wird der
+Batteriestand in grün (C) angezeigt. Dahinter sieht man die zwei oberen Lichter (D), die auf
 rot eingestellt sind. Der Roboter hat unten weitere solche Lichter, die auf
-grün eingestellt sind (Bild~\ref{fig.bottom}). Die schwarzen Rechtecke vorne
+grün eingestellt sind (Bild~\ref{fig.bottom}). Die schmalen schwarzen Rechtecke (E) vorne
 sind Sensoren, die du im Kapitel~\ref{ch.pet} kennenlernen wirst. Beachte die kleinen roten Lichter fürs erste noch nicht.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
-\gr{front}{.5}
+\gr{front}{.8}
 \caption{Der Thymio Roboter von vorne}\label{fig.front}
 \end{center}
-\end{figure} 
+\end{figure}
 
 \pagebreak
 
@@ -34,7 +34,7 @@ Fenster in Bild~\ref{fig.connect} angezeigt. Wähle die Box
 Sprache und klicke dann auf \bu{Connect}.
 Abhängig von der
 Konfiguration deines Computers und des Betriebssystems, das du verwendest, kann es
-sein, dass das Fenster etwas anders ausschaut als in der Abbildung angezeigt.
+sein, dass die Einträge im Fenster und die folgenden Daten des \emph{Thymio} etwas anders ausschauen als in der Abbildung angezeigt.
 
 \trickbox{Es ist auch möglich VPL aus dem Aseba Studio (text basierte Programmierumgebeung) heraus zu öffnen. Das VPL Plug-in befindet sich unten links im Fenster unter \textit{Tool}.}
 
@@ -66,7 +66,7 @@ Die Ereignis und Aktionsblöcke werden im Verlauf dieses Dokumentes genauer besc
 
 \plainfloat
 \begin{figure}[h]
-\gr{gui}{1.}
+\gr{gui}{.9}
 \vskip -1em
 \caption{VPL Benutzeroberfläche}\label{fig.vplgui}
 \end{figure}
@@ -98,7 +98,9 @@ Die Bedeutung eines Ereignis-Aktions Paars ist:\\
 Lass uns nun ein Ereignis-Aktions-Paar erstellen. Im Programmierbereich siehst
 du eine Vorlage, um ein Paar zu erstellen: \blkc{event-action-pair-empty} Das
 linke, hellblaue Quadrat ist für das Ereignis und das rechte, hell-violette
-Quadrat für die Aktion. Um ein Block von der Seite ( Flächen 4 und 5 aus der Abbildung 1.3) in die Programmierumgebung zu verschieben, klickst du mit der linken Maustaste auf das entsprechende Feld und ziehst den Block mit gehaltener Maustaste in das gewünschte Feld. Durch das Loslassen der Maustaste wird der Block deponiert (drag and drop). Starte nun mit dem Knopf-Ereignis \blksm{event-buttons}, indem Du dieses
+Quadrat für die Aktion. Um ein Block von der Seite ( Flächen 4 und 5 aus der \cref{fig.vplgui}) in die Programmierumgebung zu verschieben, klickst du mit der linken Maustaste auf das entsprechende Feld und ziehst den Block mit gehaltener Maustaste in das gewünschte Feld. Durch das Loslassen der Maustaste wird der Block deponiert (drag and drop).
+
+Starte nun mit dem Knopf-Ereignis \blksm{event-buttons}, indem Du dieses
 von der linken Ereignis-Auswahl in das linke Quadrat ziehst. Wähle nun den
 Aktionsblock für die oberen Farben \blksm{action-colors-up} aus der rechten
 Auswahl und ziehe ihn in das rechte Quadrat. Du hast nun dein erstes
@@ -113,7 +115,7 @@ gedrückt wird}.
 
 Der Farbaktionsblock hat drei Balken mit den Grundfarben Rot, Grün und Blau.
 Jeder dieser Balken hat ganz links ein weisses Quadrat. Die farbigen Balken mit dem weissen Quadrat werden Schieberegler (slider) genannt. Verschiebe das Quadrat von links nach rechts und Du wirst sehen, wie sich die Hintergrundfarbe des Blocks verändert. Dieser zeigt die Farben so an, wie der Roboter leuchten wird. Alle Farben können durch Mischen der drei Grundfarben Rot, Grün und Blau erstellt werden.
-Schiebe das Quadrat im roten Balken nun ganz nach rechts und die Quadrate im grünen und blauen Balken ganz nach links. Die Farbe \blkc{red} des Roboters
+Schiebe das Quadrat im roten Balken nun ganz nach rechts und die Quadrate im grünen und blauen Balken ganz nach links. Die Farbe des Roboters
 leuchtet nun rot ohne blau und grün: \blkc{red}
 
 \sect{Speichere das Programm}

@@ -34,7 +34,7 @@ wird der Sensor viel reflektiertes Licht wahrnehmen und das Ereignis  \blksm{lot
 Somit brauchen wir eine Linie, die eine Ereignis auslöst, 
 falls wenig Licht reflektiert wird \blksm{little-light}.
 Das lässt sich einfach mit dem Aufmalen einer schwarzen Linie oder mit dem Anbringen eines schwarzen
-Isolierklebebandes auf den Boden bewerkstelligen(\cref{fig.tape}).
+Isolierklebebandes auf den Boden bewerkstelligen (\cref{fig.tape}).
 Das Klebeband muss breit genug sein,
 damit beide Bodensensoren die schwarze Fläche erkennen können,
 solange der Roboter erfolgreich dem Klebeband folgt.
@@ -44,7 +44,7 @@ um dem Klebeband folgen zu können. Die Breite kann auch ein wenig variieren.
 Zuerst bringen wir den Roboter dazu,  sich vorwärts zu bewegen,
 falls \emph{beide} Sensoren eine dunkle Oberfläche (das schwarze Klebeband) erkennen 
 und stoppen, falls \emph{beide} Sensoren eine helle Oberfläche (nicht das Klebeband, sondern den Boden) erkennen.
-Die Ereignis-Aktions Paare sind in der folgenden Abbildung \cref{fig.start-stop} gezeigt.
+Die Ereignis-Aktions Paare sind in der folgenden \cref{fig.start-stop} gezeigt.
 
 \trickbox{Versichere dich,
 dass das USB Kabel lange genug ist (ca. 2m),
@@ -75,13 +75,13 @@ während der \emph{linke} Sensor immer noch das Klebeband erkennt.
 In diesem Fall soll der Roboter ein wenig nach \emph{links} abbiegen.
 \end{itemize}
 
-Zwei Ereignis-Aktions Paare werden gebraucht  (Figure~\ref{fig.follow-line}).
+Zwei Ereignis-Aktions Paare werden gebraucht  (\cref{fig.follow-line}).
 
 \sect{Setzen der Parameter}
 
 Es ist einfach zu erkennen,
 dass der Roboter, falls er von der linken Seite des Klebebands abkommt,
-wie in Abbildung (Figure~\ref{fig.follow-line}) nach rechts drehen muss,
+wie in Abbildung \cref{fig.follow-line} nach rechts drehen muss,
 aber wie weit nach rechts? Falls die Drehung zu gering ausfällt,
 wird der rechte Sensor eventuell \emph{auch} vom Klebeband abkommen,
 bevor der Roboter auf die Spur zurückgelangt.
@@ -115,7 +115,7 @@ dass sie vom Klebeband abgekommen sind.
 Verändere das Programm so,
 dass der Roboter eine geringe Drehung nach links vollführt mit der Absicht das Klebeband wiederzufinden.
 Versuche es auf einem Klebeband mit einer Linkskurve,
-wie in der Abbildung \cref{fig.tape} angezeigt.
+wie in der \cref{fig.tape} angezeigt.
 Versuche die Vorwärtsgeschwindigkeit des Roboters zu erhöhen.
 Was passiert, wenn der Roboter das Ende des Klebebandes erreicht hat?
 }
@@ -132,7 +132,7 @@ wenn der Roboter \emph{sich erinnern} könnte,
 welchen Sensor als letzter den Kontakt zum Klebeband verloren hat,
 um den Roboter in die korrekte Richtung zu führen,
 um das Klebeband wieder zufinden.
-In Kapitel ~\cref{ch.states} werden wir lernen,
+In \cref{ch.states} werden wir lernen,
 wie Informationen gespeichert werden können.
 }
 
@@ -140,7 +140,7 @@ wie Informationen gespeichert werden können.
 
 \exercisebox{\thechapter.3}{
 Experimentiere mit unterschiedlichen Anordnungen des Klebebandes:
-\begin{itemize}
+\begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item weiten Kurven
 \item engen Kurven
 \item zickzack Linien
@@ -156,7 +156,7 @@ Welcher Roboter fährt am schnellsten eine Linie ab?
 
 \exercisebox{\thechapter.4}{
 Bespreche den Effekt der folgenden Veränderungen  auf den Thymio Roboter und dessen Fähigkeit der Linie zu folgen.
-\begin{itemize}
+\begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item Die Messereignisse der Bodensensoren erfolgen öfters bzw. weniger oft als 10 Mal pro Sekunde.
 \item Die Sensoren sind weiter auseinander bzw. näher beisammen.
 \item Es gibt mehr als zwei Bodensensoren am Boden des Roboters.

@@ -11,10 +11,10 @@ Farben angezeigt werden.
 
 Wir brauchen vier Ereignis-Aktions-Paare, da es vier verschiedene
 Ereignisse---das Drücken der vier Knöpfe---gibt. Mit jedem Ereignis ist eine Farbaktion verbunden. 
-Beachte den Unterschiede der Aktions-Blöcke für die obere Farben (\blksm{action-colors-up}) und 
-die untere Farben \blksm{action-colors-down}) des Roboters. Der erste Block ändert die Farben, die auf der Oberseite des Roboters liegen, während der zweite die Farben der Unterseite des Roboters ändert. Im Block für die unteren Lichter sind die Räder als schwarze Balken abgebildet.
+Beachte den Unterschiede der Aktions-Blöcke für die obere Farben (\blksm{action-colors-up-white}) und 
+die untere Farben \blksm{action-colors-down-white}) des Roboters. Der erste Block ändert die Farben, die auf der Oberseite des Roboters liegen, während der zweite die Farben der Unterseite des Roboters ändert. Im Block für die unteren Lichter sind die Räder als schwarze Balken abgebildet.
 
-Das fertige Programm ist im Bild~\ref{fig.colors} dargestellt.
+Das fertige Programm ist im \cref{fig.colors} dargestellt.
 
 Welche Farben werden angezeigt? In den ersten drei Ereignis-Aktions-Paaren ist
 jeweils eine Grundfarbe alleine gewählt. Die weissen Quadrate für die anderen
@@ -36,6 +36,12 @@ Lass das Programm (Icon \blksm{run}) laufen und überprüfe, ob sich durch das D
 Spiele mit dem Farbbalken und finde heraus welche Farben du anzeigen kannst.
 Wie kannst du orange mischen?}
 
+\trickbox[Information]{
+\gr{color-cubes-de}{1}
+Durch Mischen rot, grün und blau, können Sie jede Farbe machen!
+}
+
+
 \sect{Schalte die Lichter aus}
 
 Lass uns nun das Programm so verändern, dass alle Lichter ausgehen, wenn der
@@ -51,7 +57,7 @@ Vergiss nicht das Icon \blksmpure{run} zudrücken, damit das Programm geladen wi
 \vfill
 
 %\importantbox[Mehrere Ereignis-Aktions-Paare]{
-\importantbox{Mehrere Ereignis-Aktions-Paare
+\importantbox[Mehrere Ereignis-Aktions-Paare]{
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
 \item Wenn ein Programm ausgeführt wird, werden alle Ereignis-Aktions-Paare
 gleichzeitig ausgeführt.

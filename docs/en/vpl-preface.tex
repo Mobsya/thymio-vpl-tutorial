@@ -49,15 +49,13 @@ This tutorial assumes that you have Aseba installed on your computer; if it is n
 \sect{Reference cards}
 
 You will find it useful to print out one or both of the following reference
-cards:\footnote{The links can be found on the page \textit{Programming Thymio II}:\\
-\url{https://aseba.wikidot.com/en:thymioprogram}.}
+cards, which are in the same zip file as this document or available online\footnote{The links can be found on the page \textit{Programming Thymio II}: \\
+\url{https://aseba.wikidot.com/en:thymioprogram}.}:
 
 \begin{itemize}
-\item \url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-ref-card-en.pdf}\\
-A single page that summarizes the event and action blocks.
-\item \url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-folding-ref-card-en.pdf}\\
-A double page that can be folded in three to form a handy card.
-It summarizes the VPL interface, the event and action blocks, and includes example programs.
+\item A single page that summarizes the event and action blocks (\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-ref-card-en.pdf}{online}).
+\item A double page that can be folded in three to form a handy card.
+It summarizes the VPL interface, the event and action blocks, and includes example programs (\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-folding-ref-card-en.pdf}{online})\\
 \end{itemize}
 
 \sect{Chapter summary}
@@ -69,101 +67,92 @@ You can use the overview to decide what chapters to use
 and in what order, according to the guidance given below.
 
 {\centering \textbf{Chapter \ref{ch.intro}}\\}
-Topics: Thymio robot, Aseba environment.
+\textbf{Topics}: Thymio robot, Programming environment.
 
-Events: Buttons \blkmed{event-buttons}.
+\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colours
 
-Actions: Top colours \blkmed{action-colors-up-white}.
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up-white}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.colors}}\\}
-Topics: Event-action pairs.
+\textbf{Topics}: Event-action pairs.
 
-Events: Buttons \blkmed{event-buttons}.
+\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colours, bottom colours
 
-Actions: Top colours \blkmed{action-colors-up-white},
-bottom colours \blkmed{action-colors-down-white}.
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up-white} \quad \blkmed{action-colors-down-white}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.moving}}\\}
-Topics: Moving, sensing.
+\textbf{Topics}: Moving, sensing.
 
-Events: Buttons \blkmed{event-buttons}, bottom sensors \blkmed{event-ground}.
+\textbf{Events}: Buttons, bottom sensors \hfill \textbf{Actions}: Motors
 
-Actions: Motors \blkmed{action-motors}.
+\blkmed{event-buttons} \quad \blkmed{event-ground} \hfill  \blkmed{action-motors}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.pet}}\\}
-Topics: Feedback control, motor speeds.
+\textbf{Topics}: Feedback control, motor speeds.
 
-Events: Front sensors \blkmed{event-prox}.
+\textbf{Events}: Front sensors \hfill \textbf{Actions}: Motors
 
-Actions: Motors \blkmed{action-motors}.
+\blkmed{event-prox} \hfill \blkmed{action-motors}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.line}}\\}
-Topics: Line following.
+\textbf{Topics}: Line following.
 
-Events: Bottom sensors \blkmed{event-ground}.
+\textbf{Events}: Bottom sensors \hfill \textbf{Actions}: Motors
 
-Actions: Motors \blkmed{action-motors}.
+\blkmed{event-ground} \hfill \blkmed{action-motors}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.bells}}\\}
-Topics: Sound, shocks.
+\textbf{Topics}: Sound, shocks.
 
-Events: Tap \blkmed{event-tap}, clap \blkmed{event-clap}.
+\textbf{Events}: Tap, clap \hfill \textbf{Actions}: Music, top colours, bottom colours
 
-Actions: Music \blkmed{action-music},
-Top colours \blkmed{action-colors-up-white},
-bottom colours \blkmed{action-colors-down-white}.
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music} \quad \blkmed{action-colors-up-white} \quad \blkmed{action-colors-down-white}
 
-\bigskip
+% Tap \blkmed{event-tap}, clap \blkmed{event-clap}.\hfill\
+% Music \blkmed{action-music},
+% Top colours \blkmed{action-colors-up-white},
+% bottom colours \blkmed{action-colors-down-white}.
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.time}}\\}
-Topics: Timers.
+\textbf{Topics}: Timers.
 
-Events: Timer expired \blkmed{event-timer}.
+\textbf{Events}: Timer expired \hfill \textbf{Actions}: Set timer
 
-Actions: Set timer \blkmed{action-timer}.
+\blkmed{event-timer} \hfill \blkmed{action-timer}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.states}}\\}
-Topics: States.
+\textbf{Topics}: States.
 
-Events: State associated with an event (advanced)
-\blkmed{tap-turn-on-state-only}.
+\textbf{Events}: State associated with an event \hfill \textbf{Actions}: Change state
 
-Actions: Change state (advanced) \blk{action-states}.
+\blkmed{tap-turn-on-state-only} \hfill \blkmed{action-states}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.counting}}\\}
-Topics: Counting, binary arithmetic.
+\textbf{Topics}: Counting, binary arithmetic.
 
-Events: State associated with an event (advanced) \blkmed{tap-turn-on-state-only}.
+\textbf{Events}: State associated with an event  \hfill \textbf{Actions}: Change state (advanced)
 
-Actions: Change state (advanced) \blk{action-states}.
+\blkmed{tap-turn-on-state-only} \hfill \blkmed{action-states}
 
-\bigskip
 \bigskip
 
 {\centering \textbf{Chapter \ref{ch.next}}\\}
-Topics: Aseba studio environment.
+\textbf{Topics}: Aseba studio environment.
 
 \bigskip
 

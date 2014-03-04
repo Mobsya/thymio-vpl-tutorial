@@ -21,7 +21,7 @@ Sentez-vous libre de changer n'importe lequel de ces comportements.
 
 {\raggedleft \hfill Programme \bu{count-to-two.aesl}}
 
-La méthode de comptage illustrée ici montre le concept de \emph{modulo 2}. Nous comptons de 0 à 1 puis de nouveau à 0. Le terme \emph{modulo} est proche de \emph{retenue}: si vous tapez dans vos mains 7 fois, et que nous divisons 7 par 2, nous obtenons 3 avec une retenue de 1. En \emph{modulo 2}, nous ne gardons que la retenue de 1.
+La méthode de comptage illustrée ici montre le concept de \emph{modulo 2}. Nous comptons de 0 à 1 puis de nouveau à 0. Le terme \emph{modulo} est proche de \emph{reste}: si vous tapez dans vos mains 7 fois, et que nous divisons 7 par 2, nous obtenons 3 avec un reste de 1. En \emph{modulo 2}, nous ne gardons que le reste de 1.
 
 Dans cette arithmétique, 0 et 1 sont souvent appelés \emph{pair et impair}. Nous appelons aussi ce concept \emph{l'arithmétique cyclique}. Au lieu de compter de 0 à 1, puis de 1 à 2, nous \emph{retournons} à 0: 0, 1, 0, 1 \ldots
 
@@ -120,6 +120,7 @@ Conseils:
 \item Le quartier d'en bas à droite sera utilisé pour représenter les 8.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est éteint (blanc) et que Thymio entend un «\,clap\,», changez-le simplement à allumé (orange) quel que soit l'état des autres quartiers.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est allumé (orange) et que Thymio entend un «\,clap\,», changez-le à éteint (blanc) ensuite, reportez le 1 en retenue.
+Il y aura trois paires événement-action, en fonction de la position du \emph{prochain} quartier montrant 0 (blanc).
 \item Si tous les quartiers sont allumés (orange), la valeur 15 est représentée. Ajouter un à cet état dépasse le modulo et renvoie la valeur à 0. Il vous faut simplement éteindre toutes les LEDs.
 \end{itemize}
 

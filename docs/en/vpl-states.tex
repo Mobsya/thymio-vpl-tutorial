@@ -225,13 +225,49 @@ That is why the ability to \emph{ignore} a quarter is very useful!
 
 \sect{Get the mouse}
 
-Write a program that causes the robot to turn from right to left,
-searching for a mouse (or another object).
-If the robot detects a mouse with its leftmost sensor it
-continues the search until the mouse is detected by its rightmost
-sensor. Then, it positions itself facing the mouse, as shown in \cref{fig.cat-mouse}.
+Write a program to implement behavior of a cat searching for a mouse:
+When the center button is touched, the robot turns counterclockwise
+(from right to left), searching for a mouse.
+If the robot detects a mouse with its rightmost sensor,
+it turns clockwise (from left to right) until the mouse is detected by
+its center sensor, at which point it stops (\cref{fig.cat-mouse}).
 
 {\raggedleft \hfill Program file \bu{mouse.aesl}}
+
+The following state diagram describes the behavior of the robot:
+
+\begin{center}
+\unitlength=1.2pt
+\begin{picture}(320,35)
+%\put(0,0){\framebox(320,35){}}
+\put(40,10){\oval(80,20)}
+\put(160,10){\oval(80,20)}
+\put(280,10){\oval(80,20)}
+\put(0,0){\makebox(80,20){\bu{search left}}}
+\put(120,0){\makebox(80,20){\bu{search right}}}
+\put(240,0){\makebox(80,20){\bu{found}}}
+\put( 80,10){\vector(1,0){40}}
+\put(200,10){\vector(1,0){40}}
+\put(40,35){\vector(0,-1){15}}
+\end{picture}
+\end{center}
+
+\begin{enumerate}
+\item When the center button is touched, the robot enters the state
+\bu{search left} and moves from right to left.
+\item When the robot is in state \bu{search left}
+and it detects the mouse in the rightmost sensor,
+it changes to state \bu{search right} and moves from left to right.
+\item When the robot is in state \bu{search right}
+and it detects the mouse in the center sensor,
+it changes to state \bu{found} and stops.
+\end{enumerate}
+
+The important point to notice is that when the mouse is detected by the
+center sensor, it stops \emph{only if} the robot is in state
+\bu{search right}.
+Otherwise (if the mouse is detected by the center sensor when the robot
+is in state \bu{search left}), nothing happens.
 
 \begin{figure}
 	\subfigure[The cat has found the mouse]{\label{fig.cat-mouse}
@@ -242,25 +278,29 @@ sensor. Then, it positions itself facing the mouse, as shown in \cref{fig.cat-mo
 	\caption{The robot cat is looking for the mouse}
 \end{figure}
 
-The following event-action pair causes the robot to turn left: \blkc{mouse1}
-This only occurs when the left-front quarter is off; initially all
-quarters of the state are off.
+Let us now implement this behavior. We represent the state of the robot
+by the upper-left quarter of the state indicator.
+We choose white for state
+\bu{search left} and orange for state \bu{search right}.
+Since the program ends when the mouse is detected in state
+\bu{search right}, we don't need to represent state \bu{found}
+explicitly. Initially, all the quarters are \bu{off} (white).
 
-The first event-action pair in \cref{fig.mouse2} waits until the
-mouse is detected at the rightmost sensor. Note that the small square
-next to it is colored white so that the event occurs only when the
-rightmost sensor alone detects the mouse. The second event-action pair
-in the \cref{fig.mouse2} changes the state.
+The following event-action pair implements the behavior in step 1:
+\blkc{mouse1}.
 
-The final event-action pair in the program halts the robot when the mouse is directly facing the center
-sensor: \blkc{mouse3}
-Why does the event in this pair need to depend on the state? The reason
-is that the central sensor will also detect the mouse in its initial
-scan from right to left. We want the robot to perform a full scan
-before returning to the position of the mouse, so it is necessary that
-this first detection of the mouse be ignored. This is achieved by
-stopping the scan only when the state is \bu{on} and this is set only
-when the full scan has been completed.
+The event-action pairs that implement step 2 are shown in \cref{fig.mouse2}.
+Both use the same event but the actions are different. The first changes
+the direction of the robot's movement and the second changes its state
+from \bu{search left} to \bu{search right}.
+
+The small square next to the rightmost sensor is set to white so that the event
+occurs only when the rightmost sensor alone detects the mouse.
+
+Step 3 is implemented by the following event-action pair:
+\blkc{mouse3}
+which causes the robot to stop when the mouse is directly facing the center sensor.
+As required by step 3 this will only happen during the search to the right: when the robot is in state \bu{search right} as indicated by the orange quarter.
 
 \trickbox{
 You will have to experiment with the distance of the mouse to the robot.

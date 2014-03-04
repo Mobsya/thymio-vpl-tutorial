@@ -34,20 +34,24 @@
 % Font for program entities
 \newcommand*{\p}[1]{\texttt{\textup{#1}}}
 
-% Inline graphics
+% Inline graphics (large size)
 \newcommand*{\blk}[2][-15]{\raisebox{#1pt}%
 {\includegraphics[height=40pt,keepaspectratio=true]{#2}}}
 
-% Centered inline graphics
-\newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}{\includegraphics[height=4em]{#1}}}\vskip .3em}
+% Inline graphics (medium size)
+\newcommand*{\blkmed}[2][-10]{\raisebox{#1pt}%
+{\includegraphics[height=30pt,keepaspectratio=true]{#2}}}
 
-% Inline graphics
+% Inline graphics (small)
+\newcommand*{\blksmpure}[1]{\raisebox{-.2em}%
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}}
+
+% Inline graphics (small with large block in margin}
 \newcommand*{\blksm}[1]{\raisebox{-.2em}%
 {\includegraphics[height=1em,keepaspectratio=true]{#1}}\marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]{\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
 
-% Inline graphics
-\newcommand*{\blksmpure}[1]{\raisebox{-.2em}%
-{\includegraphics[height=1em,keepaspectratio=true]{#1}}}
+% Centered inline graphics
+\newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}{\includegraphics[height=4em]{#1}}}\vskip .3em}
 
 % Centered image
 \newcommand*{\gr}[2]%

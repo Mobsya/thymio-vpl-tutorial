@@ -46,4 +46,152 @@ Aseba is a programming environment for small mobile robots such as the Thymio.
 VPL is a component of Aseba for \textit{visual programming} that was designed to program Thymio in an easy way through event and action blocks.
 This tutorial assumes that you have Aseba installed on your computer; if it is not the case, go to \url{https://aseba.wikidot.com/en:downloadinstall}, select your operating system, download and install.
 
+\sect{Reference cards}
 
+You will find it useful to print out one or both of the following reference
+cards:\footnote{The links can be found on the page \textit{Programming Thymio II}:\\
+\url{https://aseba.wikidot.com/en:thymioprogram}.}
+
+\begin{itemize}
+\item \url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-ref-card-en.pdf}\\
+A single page that summarizes the event and action blocks.
+\item \url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-folding-ref-card-en.pdf}\\
+A double page that can be folded in three to form a handy card.
+It summarizes the VPL interface, the event and action blocks, and includes example programs.
+\end{itemize}
+
+\sect{Chapter summary}
+
+Here is an overview of the chapters of this tutorial.
+For each chapter, we give the main topic covered as well as lists
+of the event and action blocks that are introduced.
+You can use the overview to decide what chapters to use
+and in what order, according to the guidance given below.
+
+{\centering \textbf{Chapter \ref{ch.intro}}\\}
+Topics: Thymio robot, Aseba environment.
+
+Events: Buttons \blkmed{event-buttons}.
+
+Actions: Top colours \blkmed{action-colors-up-white}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.colors}}\\}
+Topics: Event-action pairs.
+
+Events: Buttons \blkmed{event-buttons}.
+
+Actions: Top colours \blkmed{action-colors-up-white},
+bottom colours \blkmed{action-colors-down-white}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.moving}}\\}
+Topics: Moving, sensing.
+
+Events: Buttons \blkmed{event-buttons}, bottom sensors \blkmed{event-ground}.
+
+Actions: Motors \blkmed{action-motors}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.pet}}\\}
+Topics: Feedback control, motor speeds.
+
+Events: Front sensors \blkmed{event-prox}.
+
+Actions: Motors \blkmed{action-motors}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.line}}\\}
+Topics: Line following.
+
+Events: Bottom sensors \blkmed{event-ground}.
+
+Actions: Motors \blkmed{action-motors}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.bells}}\\}
+Topics: Sound, shocks.
+
+Events: Tap \blkmed{event-tap}, clap \blkmed{event-clap}.
+
+Actions: Music \blkmed{action-music},
+Top colours \blkmed{action-colors-up-white},
+bottom colours \blkmed{action-colors-down-white}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.time}}\\}
+Topics: Timers.
+
+Events: Timer expired \blkmed{event-timer}.
+
+Actions: Set timer \blkmed{action-timer}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.states}}\\}
+Topics: States.
+
+Events: State associated with an event (advanced)
+\blkmed{tap-turn-on-state-only}.
+
+Actions: Change state (advanced) \blk{action-states}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.counting}}\\}
+Topics: Counting, binary arithmetic.
+
+Events: State associated with an event (advanced) \blkmed{tap-turn-on-state-only}.
+
+Actions: Change state (advanced) \blk{action-states}.
+
+\bigskip
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.next}}\\}
+Topics: Aseba studio environment.
+
+\bigskip
+
+
+\sect{Guidance}
+
+Chapters~\ref{ch.intro}--\ref{ch.colors} are an essential introduction
+to the robot, the environment and to the principal programming construct---the
+event-action pair.
+
+Chapters~\ref{ch.moving}--\ref{ch.line} present the events, actions and algorithms
+for constructing autonomous mobile robots and should be the core of any
+activity using the system.
+
+Chapter~\ref{ch.bells} describes features of the robot that can
+be fun to use but are not essential. You can skip the chapter or you can 
+use it immediately after the introductory chapters
+for a more gentler introduction to robotics.
+
+Chapter~\ref{ch.time} shows how to use timed events.
+This is an important topic but is independent of the others
+and can be skipped if time is lacking.
+
+Chapter~\ref{ch.states} uses features available in the advanced mode of VPL.
+State machines are a fundamental construct used in robotics and this material
+should be used in activities with students who are sufficiently mature to understand it. Chapter~\ref{ch.counting} is an optional chapter that shows
+how to use states to implement arithmetic.
+
+Chapter~\ref{ch.next} points to the next step: using
+the textual Studio environment which offers significantly more support for
+developing robots than does the VPL environment.

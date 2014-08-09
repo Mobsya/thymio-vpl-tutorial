@@ -1,0 +1,108 @@
+% !TeX root = vpl.tex
+
+\chap{Mettersi in movimento}\label{ch.moving}
+
+\sect{Muoversi avanti e indietro}
+
+Il robot Thymio ha due motori, uno collegato a ciascuna ruota. I
+motori possono ruotare in avanti e indietro, facendo in modo che il robot si muova
+avanti e indietro in linea retta o curva. Cominciamo con un semplice
+progetto per conoscere i motori.
+
+Il blocco azione Motori  \blksm{action-motors} mostra una piccola immagine del
+robot nel centro insieme a due cursori. I cursori controllano la
+velocità dei motori, uno per il motore sinistro e uno per il motore destro. Quando i quadrato bianco è centrato nel cursore, il
+corrispondente motore è spento. È possibile trascinare un quadrato verso l'alto per aumentare la
+velocità in avanti e verso il basso per aumentare la velocità indietro.
+Scriviamo un programma per spostare il robot in avanti quando il pulsante anteriore
+viene toccato e indietro quando il pulsante indietro viene toccato.
+
+{\raggedleft \hfill File di programma \bu{moving.aesl}}
+
+Abbiamo bisogno di due coppie evento-azione (\cref{fig.nostop}). Trascinare e rilasciare
+i blocchi degli eventi e delle azioni e impostate i cursori allineati per il motore sinistro e destro, a metà corsa verso l'alto per andare avanti e a metà strada verso il basso per andare indietro.
+
+\begin{figure}
+\begin{center}
+\gr{no-stop-motors}{.4}
+\caption{Muoversi avanti o indietro}\label{fig.nostop}
+\end{center}
+\end{figure}
+
+
+Eseguire il programma e toccare i pulsanti per
+far andare il robot avanti e indietro.
+
+\newpage
+
+\sect{Fermare il robot}
+
+\textbf{Aiuto!} Non riesco a fermare i motori del robot!
+
+Fare clic sull'icona \blksm{stop} per fermare il robot.
+
+Risolviamo questo problema aggiungendo una coppia evento-azione: \blkc{stop-motors}
+Questa fermerà i motori quando si tocca il pulsante centrale. Quando si
+trascina il blocco di azione motori nella zona interessata dal programma, è già impostato
+con i cursori al centro corrispondente a spegnere i motori.
+
+\sect{Non cadere dal tavolo}
+
+Se il robot si muove sul pavimento, nel peggiore dei casi, potrebbe colpire un muro o scollegare il
+suo cavo, ma se si posiziona il robot su un tavolo, potrebbe cadere
+fuori, urtare e rompersi! Cerchiamo di fare in modo che il robot si fermi quando si
+raggiunge la fine di un tavolo.
+
+\warningbox{Ogni volta che il robot si muove su un tavolo, essere pronti a prenderlo nel caso in cui dovesse cadere dal bordo.}
+
+Girare il Thymio sulla sua schiena. Si vedranno sulla parte anteriore due piccoli
+rettangoli neri con elementi ottici all'interno (\cref{fig.bottom}).
+Questi sono i \emph{sensori del terreno}.
+Essi mandano un impulso di luce infrarossa e misurano la quantità di luce che viene riflessa.
+Su un tavolo di colore chiaro, c'è molta luce riflessa, però quando la parte anteriore del robot supera l'estremità del tavolo, ci sarà molta meno luce riflessa. Quando viene
+rilevata questa situazione vogliamo che il robot si fermi.
+
+\trickbox{
+Utilizza un tavolo colorato con un colore chiaro, però non utilizzare un tavolo di vetro, in quanto è probabile che non riflettendo la luce, Thymio crederà di non essere su un tavolo!}
+
+Trascinare il blocco evento sensori terreno \blksm{event-ground} nel programma. Ci
+sono due piccoli quadrati nella parte superiore dell'icona. Cliccando i quadrati
+il colore cambia dal grigio al bianco al rosso ed infine di nuovo al grigio.
+Per questo blocco, i significati di questi colori sono:
+
+\begin{itemize}
+\item \textbf{Grigio}: Il sensore non è considerato.
+\item \textbf{Rosso}: l'evento si verifica se c'è molta luce riflessa.
+\item \textbf{Bianco}: l'evento si verifica se c'è poca luce riflessa.
+\end{itemize}
+
+\trickbox[Informazione]{I colori grigio, rosso e bianco usati in un blocco sono
+arbitrari e se ne sarebbero potuti scegliere altri.}
+
+Per fare in modo che il robot si fermi al bordo del tavolo quando c'è poca luce riflessa, fare clic sui quadrati fino a che non sono bianchi e creare la seguente coppia evento-azione:
+\blkc{dont-fall}
+
+\begin{figure}
+\begin{center}
+\gr{bottom}{0.6}
+\caption{La parte inferiore del Thymio con i due sensori del terreno}\label{fig.bottom}
+\end{center}
+\end{figure}
+
+Posizionare il robot in prossimità del bordo del tavolo, di fronte al bordo e toccare il pulsante frontale.
+Il robot deve andare avanti e fermarsi prima di cadere fuori dal tavolo.
+
+\exercisebox{\thechapter.1}{
+Esperimento con la velocità del robot.
+Alla massima velocità, il robot è ancora in grado di fermarsi e non cadere fuori dal tavolo?
+Se no, a partire da che velocità il robot inizia a cadere?
+Si può evitare che il robot cada quando sta andando indietro?
+}
+
+\trickbox{
+Quando ho eseguito il programma, il robot \emph{è} caduto. Il motivo è stato
+che la mia bella scrivania ha un bordo arrotondato; prima che il robot
+rilevasse un basso livello di luce, non era già più stabile e si è ribaltato. La
+soluzione è stata quella di mettere una striscia di nastro nero vicino al
+bordo della scrivania.
+}

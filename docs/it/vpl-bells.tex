@@ -1,0 +1,86 @@
+% !TeX root = vpl.tex
+
+\chap{Sonagli e fischietti}\label{ch.bells}
+
+Prendiamoci qualche momento di svago dai compiti complessi come seguire una linea e
+divertiamoci un po' con il nostro robot Thymio.
+In questo capitolo ti mostriamo come il Thymio possa riprodurre musica, rispondere a un suono o reagire quando viene toccato.
+
+\sect{Suonare musica}
+
+Il robot Thymio contiene un sintetizzatore di suoni e si può programmare
+per riprodurre melodie semplici utilizzando il blocco di azione musica: \blkc{action-music}
+
+{\raggedleft \hfill File di programma \bu{bells.aesl}}
+
+Non diventerai un nuovo Beethoven---si può suonare solo una sequenza di note alla volta,
+su cinque toni e due lunghezze differenti---ma si può comporre una
+melodia che farà distinguere il vostro robot da tutti gli altri. La \Cref{fig.music} mostra
+due coppie evento-azione che rispondono con una melodia quando il pulsante anteriore o posteriore
+vengono toccati. C'è una melodia diversa associato ad ogni evento.
+
+\begin{figure}
+\begin{center}
+\gr{music}{.4}
+\caption{Esegui una melodia}\label{fig.music}
+\end{center}
+\end{figure}
+
+Il piccoli cerchi sono le sei note.
+Una nota nera è una nota breve e una nota bianca è una nota lunga; per passare da una lunghezza all'altra, cliccare sul cerchio.
+Ci sono cinque righi orizzontali colorati, che rappresentano cinque toni.
+Per spostare un cerchio su un rigo, fare clic sul \emph{rigo} sopra o sotto il cerchio.
+Non cercare di trascinare e rilasciare una nota; non funzionerà.
+
+\exercisebox{\thechapter.1}{
+Scrivere un programma che vi permetterà di inviare un messaggio in \href{http://en.wikipedia.org/wiki/Morse_code}{codice Morse}.
+Le lettere in codice Morse sono codificate in sequenze di toni lunghi
+(\emph{linee}) e toni brevi (\emph{punti}). Ad esempio, la lettera
+\emph{V} è codificato da tre punti seguiti da una linea.}
+
+
+\sect{Controllare il tuo robot con i suoni}
+
+Il Thymio ha un microfono. L'evento \blksm{event-clap} si verificherà
+quando il microfono avverte un forte rumore, per esempio un applauso con le tue
+mani. la seguente coppia evento-azione accende le luci della parte inferiore
+quando battete le mani: \blkc{clap}
+
+\trickbox[Informazioni] {In un ambiente rumoroso potresti non essere in grado di utilizzare questo
+evento, perché il livello sonoro sarà sempre alto causando ripetuti
+eventi.}
+
+\exercisebox{\thechapter.2}{
+Scrivi un programma che fa muovere il robot quando batti
+le mani e lo fa fermare quando si tocca un tasto.
+\vspace{.5em}\\
+Quindi scrivi un programma che fa il contrario: si avvia quando si tocca un tasto
+e si ferma quando batti le mani.
+}
+
+
+\sect{Ottimo lavoro, robot!}
+
+Gli animali non sempre fanno quello che chiediamo loro di fare. A volte hanno bisogno di una pacca
+sulla testa per incoraggiarli. Si può fare lo stesso con il vostro robot. Il
+Thymio contiene un sensore di urto che provoca l'evento \blksm{event-tap} in risposta ad un rapido tocco sulla parte superiore del robot. Per esempio,
+la seguente coppia evento-azione fa sì che le luci superiori si accendano quando
+si tocca la parte superiore del robot: \blkc{touch}
+
+Costruisci un programma da questa coppia evento-azione e la seguente coppia
+che accende le luci inferiori quando batti le mani: \blkc{clap}
+
+{\raggedleft \hfill File di programma {bu whistles.aesl}}
+
+Riesci ad attivare solo la parte superiore delle luci? Questo è difficile da fare: un colpetto
+provoca un suono che può essere abbastanza forte da far accendere pure le luci inferiori. Con un po' di pratica sono riuscito a toccare il robot
+abbastanza delicatamente in modo che il suono emesso dal colpetto non è stato considerato un evento.
+
+\exercisebox{\thechapter.3}{
+Scrivere un programma che faccia andare avanti il robot fino a quando non colpisce una
+parete.
+\vspace{.5em}  \\
+\textbf{Assicurarsi} che il robot si \textbf{muova lentamente} in modo che
+non si danneggi.
+}
+

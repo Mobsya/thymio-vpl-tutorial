@@ -9,9 +9,9 @@ motori possono ruotare in avanti e indietro, facendo in modo che il robot si muo
 avanti e indietro in linea retta o curva. Cominciamo con un semplice
 progetto per conoscere i motori.
 
-Il blocco azione Motori  \blksm{action-motors} mostra una piccola immagine del
+Il blocco azione Motori \blksm{action-motors} mostra una piccola immagine del
 robot nel centro insieme a due cursori. I cursori controllano la
-velocità dei motori, uno per il motore sinistro e uno per il motore destro. Quando i quadrato bianco è centrato nel cursore, il
+velocità dei motori, uno per il motore sinistro e uno per il motore destro. Quando il quadrato bianco è centrato nel cursore, il
 corrispondente motore è spento. È possibile trascinare un quadrato verso l'alto per aumentare la
 velocità in avanti e verso il basso per aumentare la velocità indietro.
 Scriviamo un programma per spostare il robot in avanti quando il pulsante anteriore
@@ -19,8 +19,8 @@ viene toccato e indietro quando il pulsante indietro viene toccato.
 
 {\raggedleft \hfill File di programma \bu{moving.aesl}}
 
-Abbiamo bisogno di due coppie evento-azione (\cref{fig.nostop}). Trascinare e rilasciare
-i blocchi degli eventi e delle azioni e impostate i cursori allineati per il motore sinistro e destro, a metà corsa verso l'alto per andare avanti e a metà strada verso il basso per andare indietro.
+Abbiamo bisogno di due coppie evento-azione (\cref{fig.nostop}). Trascina e rilascia
+i blocchi degli eventi e delle azioni e imposta i cursori allineati per il motore sinistro e destro, a metà corsa verso l'alto per andare avanti e a metà strada verso il basso per andare indietro.
 
 \begin{figure}
 \begin{center}
@@ -30,7 +30,7 @@ i blocchi degli eventi e delle azioni e impostate i cursori allineati per il mot
 \end{figure}
 
 
-Eseguire il programma e toccare i pulsanti per
+Esegui il programma e tocca i pulsanti per
 far andare il robot avanti e indietro.
 
 \newpage
@@ -39,7 +39,7 @@ far andare il robot avanti e indietro.
 
 \textbf{Aiuto!} Non riesco a fermare i motori del robot!
 
-Fare clic sull'icona \blksm{stop} per fermare il robot.
+Fai clic sull'icona \blksm{stop} per fermare il robot.
 
 Risolviamo questo problema aggiungendo una coppia evento-azione: \blkc{stop-motors}
 Questa fermerà i motori quando si tocca il pulsante centrale. Quando si
@@ -53,9 +53,9 @@ suo cavo, ma se si posiziona il robot su un tavolo, potrebbe cadere
 fuori, urtare e rompersi! Cerchiamo di fare in modo che il robot si fermi quando si
 raggiunge la fine di un tavolo.
 
-\warningbox{Ogni volta che il robot si muove su un tavolo, essere pronti a prenderlo nel caso in cui dovesse cadere dal bordo.}
+\warningbox{Ogni volta che il robot si muove su un tavolo, stai pronto a prenderlo nel caso in cui dovesse cadere dal bordo.}
 
-Girare il Thymio sulla sua schiena. Si vedranno sulla parte anteriore due piccoli
+Gira il Thymio sulla sua schiena. Vedrai sulla parte anteriore due piccoli
 rettangoli neri con elementi ottici all'interno (\cref{fig.bottom}).
 Questi sono i \emph{sensori del terreno}.
 Essi mandano un impulso di luce infrarossa e misurano la quantità di luce che viene riflessa.
@@ -63,9 +63,9 @@ Su un tavolo di colore chiaro, c'è molta luce riflessa, però quando la parte a
 rilevata questa situazione vogliamo che il robot si fermi.
 
 \trickbox{
-Utilizza un tavolo colorato con un colore chiaro, però non utilizzare un tavolo di vetro, in quanto è probabile che non riflettendo la luce, Thymio crederà di non essere su un tavolo!}
+Utilizza un tavolo colorato con un colore chiaro, però non utilizzare un tavolo di vetro, in quanto è probabile che, non riflettendo la luce, Thymio creda di non essere su un tavolo!}
 
-Trascinare il blocco evento sensori terreno \blksm{event-ground} nel programma. Ci
+Trascina il blocco evento sensori terreno \blksm{event-ground} nel programma. Ci
 sono due piccoli quadrati nella parte superiore dell'icona. Cliccando i quadrati
 il colore cambia dal grigio al bianco al rosso ed infine di nuovo al grigio.
 Per questo blocco, i significati di questi colori sono:
@@ -79,7 +79,7 @@ Per questo blocco, i significati di questi colori sono:
 \trickbox[Informazione]{I colori grigio, rosso e bianco usati in un blocco sono
 arbitrari e se ne sarebbero potuti scegliere altri.}
 
-Per fare in modo che il robot si fermi al bordo del tavolo quando c'è poca luce riflessa, fare clic sui quadrati fino a che non sono bianchi e creare la seguente coppia evento-azione:
+Per fare in modo che il robot si fermi al bordo del tavolo quando c'è poca luce riflessa, fai clic sui quadrati fino a che non sono bianchi e crea la seguente coppia evento-azione:
 \blkc{dont-fall}
 
 \begin{figure}
@@ -89,11 +89,11 @@ Per fare in modo che il robot si fermi al bordo del tavolo quando c'è poca luce
 \end{center}
 \end{figure}
 
-Posizionare il robot in prossimità del bordo del tavolo, di fronte al bordo e toccare il pulsante frontale.
+Posiziona il robot in prossimità del bordo del tavolo, di fronte al bordo e tocca il pulsante frontale.
 Il robot deve andare avanti e fermarsi prima di cadere fuori dal tavolo.
 
 \exercisebox{\thechapter.1}{
-Esperimento con la velocità del robot.
+Esperimenta con la velocità del robot.
 Alla massima velocità, il robot è ancora in grado di fermarsi e non cadere fuori dal tavolo?
 Se no, a partire da che velocità il robot inizia a cadere?
 Si può evitare che il robot cada quando sta andando indietro?

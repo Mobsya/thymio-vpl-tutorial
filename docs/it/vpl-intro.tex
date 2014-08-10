@@ -8,15 +8,15 @@ La \Cref{fig.front} mostra la parte anteriore e superiore del Thymio II. Sulla p
 è possibile vedere il pulsante centrale circolare (\textcolor{blue}{A}) e quattro tasti direzionali (\textcolor{blue}{B}).
 Dietro i pulsanti, la luce verde (\textcolor{blue}{C}) indica quanta carica rimane nella
 batteria. Sul retro ci sono le luci superiori (\textcolor{blue}{D}), che sono state impostate su rosso in questa immagine.
-Ci sono luci simili nella parte inferiore (impostate in verde in \cref{fig.bottom}).
+Ci sono luci simili nella parte inferiore (impostate in verde nella \cref{fig.bottom}).
 I piccoli rettangoli neri (\textcolor{blue}{E}) sono sensori che
-imparerai a conoscere in \cref{ch.pet}. È possibile ignorare le piccole
+imparerai a conoscere nel \cref{ch.pet}. È possibile ignorare le piccole
 luci rosse per ora.
 
 \begin{figure}[h]
 \begin{center}
 \gr{front.jpg}{.8}
-\caption{Thymio robot visto da davanti}\label{fig.front}
+\caption{Il robot Thymio visto da davanti}\label{fig.front}
 \end{center}
 \end{figure}
 
@@ -24,19 +24,19 @@ luci rosse per ora.
 
 \sect{Connettere il robot ed eseguire il VPL}
 
-Collegate il vostro robot Thymio al computer con un cavo USB; il robot suonerà una sequenza di toni.
+Collega il vostro robot Thymio al computer con un cavo USB; il robot suonerà una sequenza di toni.
 Se il robot è spento, accenderlo toccando il tasto centrale
-per cinque secondi. Eseguite VPL facendo doppio clic sull'icona
+per cinque secondi. Fai partire l'esecuzione di VPL facendo doppio clic sull'icona
 \blksm{thymiovpl}.
 
-\importantbox{Quando una piccola icona appare nel testo,
-una immagine più grande viene visualizzata nel margine.}
+\importantbox{Quando nel testo appare una piccola icona,
+nel margine viene anche visualizzata un'immagine più grande, per maggior chiarezza.}
 
 
-VPL solitamente è in grado di connettersi automaticamente al vostro robot.
+VPL solitamente è in grado di connettersi automaticamente al tuo robot.
 In caso contrario, sarà
-visualizzata la finestra mostrata in \cref{fig.connect}. Selezionate la casella accanto a \bu{Seriale}, cliccate su \bu{Thymio
-Robot} sotto di essa, selezionare una lingua, quindi fare clic su
+visualizzata la finestra mostrata in \cref{fig.connect}. Seleziona la casella accanto a \bu{Seriale}, clicca su \bu{Thymio
+Robot} sotto di essa, seleziona una lingua, quindi fai clic su
 \bu{Connetti}.
 A seconda della configurazione del computer
 e il sistema operativo che si sta utilizzando, ci possono essere diverse
@@ -58,17 +58,17 @@ diversi da quanto mostrato in figura.
 
 \sect{L'interfaccia utente del VPL}
 
-L'interfaccia utente del VPL è mostrato sotto.
+L'interfaccia utente del VPL è mostrata sotto.
 Ci sono sei aree nell'interfaccia:
 \begin{enumerate}[noitemsep,nosep]
 \item Una barra degli strumenti con le icone per l'apertura, il salvataggio, l'esecuzione di un programma, ecc...
 \item Una zona programma in cui vengono costruiti i programmi per il controllo del robot.
 \item Indica se il programma che si sta creando è ben formato oppure no.
-\item Una colonna con blocchi di eventi disponibili per costruire il vostro programma.
-\item Una colonna con blocchi di azione a disposizione per costruire il vostro programma.
+\item Una colonna con blocchi di eventi disponibili per costruire il tuo programma.
+\item Una colonna con blocchi di azione a disposizione per costruire il tuo programma.
 \item La traduzione in testo del programma (vedere in fondo a questa pagina).
 \end{enumerate}
-I blocchi di evento e azione saranno descritti nel corso di questo documento.
+I blocchi di evento e azione disponibili saranno descritti nel corso di questo documento.
 
 \plainfloat
 \begin{figure}[h]
@@ -82,7 +82,7 @@ I blocchi di evento e azione saranno descritti nel corso di questo documento.
 
 \trickbox[Per andare oltre]{
 Quando si costruisce un programma utilizzando VPL, il programma di testo che verrà caricato nel robot appare nella parte destra della finestra.
-Se siete curiosi e volete capire questo linguaggio, è possibile leggere il \href{https://aseba.wikidot.com/it:thymiotutoriel}{tutorial della modalità testuale} (\url{http://aseba.wikidot.com/it:thymiotutoriel}).
+Se sei curioso e vuoi capire questo linguaggio, è possibile leggere il \href{https://aseba.wikidot.com/it:thymiotutoriel}{tutorial della modalità testuale} (\url{http://aseba.wikidot.com/it:thymiotutoriel}).
 }
 
 \pagebreak
@@ -106,22 +106,22 @@ Nella zona interessata dal programma si vede un contorno di una coppia:
 \blkc{event-action-pair-empty}
 % Si tratta di un modello per costruire la coppia evento-azione.
 Sulla sinistra il quadrato azzurro  è lo spazio per l'evento; sulla destra il quadrato rosa è lo spazio per l'azione. %\footnote{I colori reali sono \textit{ciano} (una miscela di blu e verde) e \textit{magenta} (una miscela di rosso e blu).}
-Per portare un blocco da lato all'area di programma  (zone 4 e 5 di \cref{fig.vplgui}), è possibile fare clic su di esso o trascinarlo nella casella corrispondente tenendo premuto il tasto sinistro del mouse e rilasciandolo quando il blocco è
+Per portare un blocco da lato all'area di programma  (zone 4 e 5 della \cref{fig.vplgui}), è possibile fare clic su di esso o trascinarlo nella casella corrispondente tenendo premuto il tasto sinistro del mouse e rilasciandolo quando il blocco è
 al suo posto.
 
 Inizia portando il blocco per l'evento "Bottoni"  \blksm{event-buttons} nel quadrato blu.
 Ora, porta il blocco di azione "Colore Superiore" \blksm{action-colors-up} nel quadrato rosa.
-Avete costruito una coppia evento-azione!
+Hai costruito una coppia evento-azione!
 
-Ora dobbiamo modificare l'evento e l'azione per fare quello che vogliamo. per
+Ora dobbiamo modificare l'evento e l'azione per fare quello che vogliamo. Per
 l'evento, fare clic sul pulsante anteriore (il triangolo in alto); si colorerà di
 rosso: \blkc{forward}
 Questo specifica che \textbf{l'evento si verifica quando il pulsante anteriore del Thymio viene toccato}.
 
 Il blocco di azione "Colore Superiore" contiene tre barre con i colori primari rosso,
 verde e blu; all'estremità sinistra di ogni barra vi è un quadrato bianco. La barra del colore
-con il suo quadrato bianco si chiama \emph{cursore}. Trascinate il quadrato bianco
-a destra e poi di nuovo a sinistra, e vedrete i cambiamenti del
+con il suo quadrato bianco si chiama \emph{cursore}. Trascina il quadrato bianco
+a destra e poi di nuovo a sinistra, e vedrai i cambiamenti del
 colore di sfondo del blocco.
 Mescolando questi tre colori primari rosso, verde e blu si possono creare moltissimi altri colori secondari.
 Ora sposta il cursore del rosso fino a quando il
@@ -133,10 +133,10 @@ verde: \blkc{red}
 
 Prima di eseguire il programma, salvalo sul tuo computer.
 Fare clic sull'icona \blksm{save}
-nella barra degli strumenti. Ti verrà chiesto di dare un nome al programma; scegliere un
+nella barra degli strumenti. Ti verrà chiesto di dare un nome al programma; scegli un
 nome che ti aiuterà a ricordare ciò che fa il programma, ad esempio
 \bu{display-red}.
-Scegliere la posizione in cui si desidera salvare il programma, sul desktop, per esempio, e fare clic su Salva.
+Scegli la posizione in cui si desidera salvare il programma, sul desktop, per esempio, e fai clic su Salva.
 
 
 \sect{Eseguire il programma}
@@ -152,10 +152,10 @@ Hai creato ed eseguito il tuo primo programma. Il suo comportamento è: \\
 
 \sect{Spegnere il robot}
 
-Quando avete finito di lavorare con il robot Thymio, è possibile spegnerlo
+Quando hai finito di lavorare con il robot Thymio, è possibile spegnerlo
 toccando il pulsante centrale per quattro secondi fino a quando
 si sente una sequenza di toni discendenti. La batteria del robot
-continuare la carica fintanto che è collegato a un computer. La
+continuerà la carica fintanto che il robot è collegato a un computer. La
 luce rossa accanto al connettore del cavo USB significa che il robot è in
 carica; diventa blu quando la carica è completata (\cref{fig.back}).
 È possibile scollegare il cavo quando non si utilizza il robot.
@@ -177,32 +177,32 @@ Se hai un problema, si può sempre chiudere VPL, ricollegare il robot e aprire d
 \sect{Modificare un programma}
 
 \begin{itemize}
-\item Per eliminare una coppia evento-azione, fare clic su \blksm{x} in alto a destra della coppia.
-\item Per aggiungere una coppia evento-azione, fare clic su \blksm{plus} presente sotto ogni coppia.
-\item Per spostare una coppia evento-azione in un'altra posizione nel programma, trascinarla e rilasciarla nella posizione desiderata.
+\item Per eliminare una coppia evento-azione, fai clic su \blksm{x} in alto a destra della coppia.
+\item Per aggiungere una coppia evento-azione, fai clic su \blksm{plus} presente sotto ogni coppia.
+\item Per spostare una coppia evento-azione in un'altra posizione nel programma, trascinala e rilasciala nella posizione desiderata.
 \end{itemize}
 
 \sect{Aprire un programma esistente}
 
 Supponiamo di aver salvato il programma e spento il robot e
 il computer, ma in seguito si desidera continuare a lavorare sul programma.
-Collegate il robot ed eseguite VPL come descritto in precedenza. Fate clic sull'icona
-\blksm{open} e selezionate il programma che si desidera aprire, per esempio,
+Collega il robot ed manda in esecuzione VPL come descritto in precedenza. Fai clic sull'icona
+\blksm{open} e seleziona il programma che desideri aprire, per esempio,
 \bu{display-red}. Le coppie evento-azione del programma verranno visualizzate
-nell'area programma, e si può continuare a modificarlo.
+nell'area programma, e puoi continuare a modificarlo.
 
 \sect{Altre operazioni nell'interfaccia VPL}
 
-Nella barra degli strumenti, troverete altre funzionalità:
+Nella barra degli strumenti, troverai altre funzionalità:
 
 \begin{itemize}
 
 \item \textbf{Salva come} \blksm{saveas}:
-Fare clic su questa icona per salvare il programma corrente con un \emph{nome diverso} .
-Usalo quando si ha un programma di lavoro e si vuole provare qualcosa di nuovo senza modificare il programma esistente.
+Fai clic su questa icona per salvare il programma corrente con un \emph{nome diverso}.
+Usalo quando hai un programma che funziona e vuoi provare qualcosa di nuovo senza modificare il programma esistente.
 
 \item \textbf{Stop} \blksm{stop}: Questo interrompe il programma in esecuzione
-e porta la velocità dei motori a zero. Usatelo quando il programma ordina
+e porta la velocità dei motori a zero. Usalo quando il programma ordina
 al robot di muoversi, ma non include una coppia evento-azione che possa
 arrestare il motore.
 

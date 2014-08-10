@@ -3,7 +3,7 @@
 \chap{Stati: non fare sempre le stesse cose (Avanzato)}\label{ch.states}
 
 Un programma in VPL è una lista di coppie evento-azione. Tutti gli eventi sono
-controllati periodicamente e sono adottate le azioni appropriate.
+controllati periodicamente e vengono adottate le azioni appropriate quando gli eventi si verificano.
 Questo limita i programmi che possiamo creare; per fare cose più complesse abbiamo bisogno di un modo per specificare che alcune
 coppie evento-azione sono attive in un determinato momento, mentre altre non lo sono.
 Per esempio, nel \cref{ch.line}, quando il robot abbandona il nastro,
@@ -21,8 +21,8 @@ per spegnerlo; l'interruttore \emph{ricorda} se è in stato \bu{acceso} o in
 stato \bu{spento}. L'interruttore include una piccola luce verde che indica il
 suo stato attuale.
 
-Scrivere un programma che trasforma le luci del robot quando viene urtato e
-li si spegne quando urtato nuovamente.
+Scrivi un programma che accende le luci del robot quando viene urtato e
+le spegne quando viene urtato nuovamente.
 
 {\raggedleft \hfill File di programma \bu{tap-on-off.aesl}}
 
@@ -58,7 +58,7 @@ avviene l'evento \emph{urto} $\rightarrow$ \emph{spegne} la luce
 \textbf{\textit{e}} va nello stato \bu{spento}.
 \end{itemize}
 
-La parola evidenziata ``\textbf{\textit{e}}'' prima della frecci~$\rightarrow$
+La parola evidenziata ``\textbf{\textit{e}}'' prima della freccia~$\rightarrow$
 significa che ci sono \emph{due condizioni} che devono verificarsi perchè la transizione avvenga:
  (a) Il robot deve essere in un certo stato e (b)
 l'evento deve accadere. Quando entrambe le condizioni sono vere avviene la transizione, che fa eseguire sia il cambio di stato che  l'azione scritta dopo la freccia~$\rightarrow$.
@@ -84,29 +84,29 @@ Nel diagramma a stati (ripetuto qui):
 l'evento \emph{urto} (tap) appare due volte, ma l'azione provocata dal verificarsi dell'evento \emph{dipende} dallo stato in cui il robot si trova.
 
 Similmente, in un singolo stato, differenti eventi possono provocare differenti azioni e transizioni a nuovi stati differenti.
-nel diagramma seguente:
+Nel diagramma seguente:
 
 \begin{center}
-\begin{picture}(240,80)
+\begin{picture}(260,80)
 \thicklines
 %\put(0,0){\framebox(240,80){}}
-\put(30,42){\circle{30}}
-\put(14,28){\makebox(30,30){\textsf{spento}}}
-\put(220,22){\circle{30}}
-\put(205,8){\makebox(30,30){\textsf{acceso2}}}
-\put(40,57){\vector(1,0){160}}
-\put(220,60){\circle{30}}
-\put(205,45){\makebox(30,30){\textsf{acceso1}}}
-\put(40,27){\vector(1,0){160}}
-\put(0,60){\makebox(240,10){\textsf{bottone sinistro $\rightarrow$ accendi verde}}}
-\put(0,30){\makebox(240,10){\textsf{bottone destro $\rightarrow$ accendi rosso}}}
+\put(20,42){\circle{40}}
+\put(0,21){\makebox(40,40){\textsf{spento}}}
+\put(240,15){\circle{40}}
+\put(220,-5){\makebox(40,40){\textsf{acceso2}}}
+\put(38,57){\vector(1,0){184}}
+\put(240,70){\circle{40}}
+\put(220,50){\makebox(40,40){\textsf{acceso1}}}
+\put(38,27){\vector(1,0){184}}
+\put(10,60){\makebox(240,10){\textsf{bottone sinistro $\rightarrow$ accendi verde}}}
+\put(10,30){\makebox(240,10){\textsf{bottone destro $\rightarrow$ accendi rosso}}}
 \end{picture}
 \end{center}
 
 toccare il pulsante sinistro nello stato \textbf{spento} fa sì che si accenda la luce verde
 e si passi nello stato \textbf{acceso1}, mentre
 toccare il pulsante destro \emph{nello stesso stato} causa una diverso
-azione, si accenda la luce rossa e avviene un cambiamento di uno stato diverso, verso \textbf{acceso2}.
+azione, si accende la luce rossa e avviene un cambiamento di stato diverso, verso \textbf{acceso2}.
 
 \sect{Realizzare un diagramma a stati con le coppie evento-azione}
 
@@ -149,7 +149,7 @@ ulteriori coppie evento-azione con il  blocco di azione \emph{stato}
 Il significato del primo è: \emph{quando}  il robot è urtato
 \emph{e} lo stato è \bu{spento}, modificare lo stato di \bu{a}:
 \blkc{tap-state-on}
-Allo stesso modo, il significato della seconda è \emph{quando} il robot
+Allo stesso modo, il significato della seconda è: \emph{quando} il robot
 viene urtato \emph{e} lo stato è \bu{acceso}, cambiare lo stato a \bu{spento}: \blkc{tap-state-off}
 
 Facendo riferimento al programma completo con quattro coppie evento-azione
@@ -161,8 +161,8 @@ del robot. Sia l'azione che il cambiamento di stato dipendono dallo stato in cui
 
 \sect{In quanti stati può essere il robot?}
 
-Lo stato è indicato da un cerchio diviso in quattro parti.
-Quando utilizzato in un evento o in blocco l'azione dello stato, ogni quarto può essere:
+Lo stato è indicato da un cerchio diviso in quattro elementi (o quarti).
+In un  blocco evento o in un blocco azione ogni elemento dello stato può essere:
 \begin{itemize}
 \item \textbf{Bianco}: l'elemento è \emph{spento};
 \item \textbf{Arancione} : l'elemento è \emph{acceso};
@@ -183,18 +183,18 @@ Dal momento che ciascuno dei quattro elementi può essere acceso o spento, ci so
 \end{quote}
 La \cref{fig.all-states} enumera graficamente tutti questi stati.
 
-\importantbox{lo stato corrente del robot viene visualizzato 
-nel cerchio di LED  sulla parte superiore del robot. La \cref{fig.state-leds} mostra il robot nello stato \bu{(acceso, acceso, acceso, acceso)}.}
+\importantbox{Lo stato corrente del robot viene visualizzato 
+nel cerchio di LED gialli sulla parte superiore del robot. La \cref{fig.state-leds} mostra il robot nello stato \bu{(acceso, acceso, acceso, acceso)}.}
 
 \trickbox[Informazione]{Quando viene eseguito un programma, lo stato iniziale è
 \bu{(spento, spento, spento, spento)}:\quad \blk{state-all-off}}
 
-\trickbox{Se non si utilizzano tutti i possibili 16 stati, ma solo 2 o 4, per esempio,
+\trickbox{Se non utilizzi tutti i possibili 16 stati, ma solo 2 o 4, per esempio,
 sei libero di decidere quali elementi usare per rappresentare il tuo stato.
 Inoltre, se si hanno due cose diverse che si desidera codificare,
-e ciascuno di essi ha due valori possibili,
+e ciascuna di esse ha due valori possibili,
 è possibile utilizzare due quarti in modo indipendente.
-Ecco perché la capacità di \emph{ignorare}  un quarto è molto utile!
+Ecco perché la capacità di \emph{ignorare} un quarto è molto utile!
 }
 
 \begin{figure}
@@ -290,18 +290,18 @@ che fa sì che il robot si fermi quando il topo si trova direttamente davanti al
 Come previsto dal punto 3 questo avverrà solo durante la ricerca sulla destra: quando il robot è in stato \bu{cerca a destra} come indicato dall'elemento in arancione.
 
 \trickbox{
-Dovrete fare degli esperimeni con la distanza del topo dal robot.
+Dovrai fare degli esperimeni con la distanza del topo dal robot.
 Se è troppo vicino al robot, i sensori su entrambi i lati
-del sensore centrale rilevano anche loro il mouse, mentre l'evento richiede
+del sensore centrale rilevano anche loro il topo, mentre l'evento richiede
 che essi \emph{non} lo rilevino.}
 \vfill
 \exercisebox{\thechapter.1}{
-Scrivere un programma che fa danzare il robot: si gira a sinistra sul
+Scrivi un programma che fa danzare il robot: si gira a sinistra sul
 posto per due secondi e poi si gira a destra sul posto per tre secondi.
 Questi movimenti vengono ripetuti all'infinito.
 }
 \exercisebox{\thechapter.2(Difficile)}{
-Modificare il programma per seguire una linea del \cref{ch.line} in modo che il
+Modifica il programma per seguire una linea del \cref{ch.line} in modo che il
 robot giri a sinistra quando lascia il lato destro della linea e
-gira a destra quando lascia il lato sinistro della linea.
+giri a destra quando lascia il lato sinistro della linea.
 }

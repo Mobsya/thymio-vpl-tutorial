@@ -1,0 +1,217 @@
+% !TeX root = vpl.tex
+
+\chap{Contare (Avanzato)}\label{ch.counting}
+
+In questo capitolo mostreremo come gli stati del robot possono essere usati per contare i numeri e anche effettuare semplici calcoli aritmetici.
+
+Il disegno e l'implementazione dei progetti di questo capitolo non saranno presentati in dettaglio.
+Assumiamo che tu abbia abbastanza esperienza ora per svilupparli da te.
+Il codice sorgente dei programmi funzionanti è incluso nell'archivio, ma non consultarlo a meno che tu non abbia veramente
+difficoltà a risolvere un problema.
+
+Questi progetti usano l'evento \emph{clap} (battito di mani) per cambiare gli stati e il comportamento di base del cerchio di LED 
+per mostrare lo stato:
+
+\importantbox{Lo stato corrente del robot è mostrato nel cerchi di LED della parte superiore del robot.
+La \cref{fig.state-leds} mostra il robot nello stato \bu{(on, on, on, on)}.}
+
+Sentiti libero di modificare qualsiasi di questi comportamenti.
+
+\sect{Pari e Dispari}
+
+\begin{quote}
+\textbf{Programma}\\Scegli uno degli elementi dello stato del robot.
+Sarà \bu{spento} (bianco) se il numero di battiti di mani sarà pari, e 
+ \bu{acceso} (arancione) se il numero di appalusi è dispari.
+Toccando il bottone centrale si ripristina a zero cioè pari. 
+(poichè zero è un numero pari per definizione).
+\end{quote}
+
+{\raggedleft \hfill File di programma \bu{count-to-two.aesl}}
+
+Queso metodo di conteggio dimostra il concetto di
+\emph{aritmetica modulo 2}.
+Contiamo a partire da 0 a 1 e poi di nuovo a 0.
+Il termine \emph{modulo} è simile al termine \emph{resto}:
+se ci sono stati 7 battiti di mani, dividendo 7 per 2 da 3 e resto 1.
+Teniamo solo il resto 1.
+
+In aritmetica modulo 2, 0 e 1 sono spesso chiamati pari e dispari,
+rispettivamente.
+
+Un altro termine per lo stesso concetto è \emph{aritmetica ciclica}.
+Invece di contare da 0 a 1 e poi da 1 a 2,
+noi \emph{cicliamo} dall'inizio:
+0, 1, 0, 1, \ldots.
+
+Questi concetti sono molto familiari perché sono usati negli orologi.
+Minuti e secondi vengono contati modulo 60 e le ore e sono contati modulo
+12 o 24. Pertanto, il secondo dopo 59 non è 60; invece, si cicla e si
+inizia di nuovo il conteggio da 0. Allo stesso modo, l'ora dopo le 23 non è 24,
+ma 0.  Se sono le 23:00 e siamo d'accordo di incontrarci dopo 3 ore,
+l'orario fissato per la riunione è 26 modulo 24, che equivale alle 2:00 di
+mattina del giorno dopo.
+
+\sect{Contare in unario}
+
+\begin{quote}
+Modifica il programma per contare modulo 4.
+Ci sono quattro possibili resti 0, 1, 2, 3.
+Scegli tre elementi dello stato, uno per rappresentare ciascuno dei valori 1, 2 e 3; il valore 0 verrà rappresentato
+impostando ogni elemento dello stato a \bu{spento}.
+\end{quote}
+
+Questo metodo di rappresentazione dei numeri è chiamato
+\emph{rappresentazione unaria} 
+poiché ogni elemento dello stato rappresenta un numero diverso.
+Spesso usiamo la rappresentazione unaria per tenere traccia del conteggio di
+alcuni oggetti; per esempio,
+\begin{picture}(35,10)
+\multiput(5,0)(5,0){4}{\put(0,0){\line(0,1){10}}}
+\put(0,0){\line(3,1){25}}
+\put(32,0){\line(0,1){10}}
+\end{picture}
+rappresenta 6.
+
+{\raggedleft \hfill File di programma \bu{count-to-four.aesl}}
+
+\exercisebox{\thechapter.1}{Fino a che numero possiamo contare con Thymio usando la rappresentazione unaria?}
+
+\sect{Contare in binario}
+
+Noi abbiamo molta familiarità con la \emph{rappresentazione in base} dei numeri,
+in particolare con la rappresentazione in base 10 (decimale).
+Il numero 256 nella rappresentazione in base 10  non rappresenta tre
+diversi oggetti (2, 5, 6).
+In realtà il 6 rappresenta il numero di 1 (unità), il 5 rappresenta il
+numero di 10$\times$1=10 (decine), e il 2 rappresenta il numero di
+10$\times$10$\times$1=100 (centinaia). La somma di questi fattori dà il numero
+duecentocinquantasei. Utilizzando la rappresentazione in base 10
+possiamo scrivere numeri molto grandi in una rappresentazione compatta.
+Inoltre, l'aritmetica sui grandi numeri
+è relativamente facile con i metodi che abbiamo imparato a scuola.
+
+Noi usiamo la rappresentazione in base 10  perché abbiamo 10 dita
+quindi per noi è più facile imparare ad usare questa rappresentazione.
+I computer invece hanno due ``dita''(\bu{spento} e \bu{acceso})
+così si usa aritmetica in base 2 per fare i calcoli. L'aritmetica in base 2 sembra 
+strana all'inizio: utilizziamo i simboli familiari 0 e 1
+usati anche in base 10, ma le regole per il conteggio sono di ciclare a 2
+anziché ciclare a 10:
+\begin{displaymath}
+0, 1, 10, 11, 100, 101, 110, 111, 1000, \ldots
+\end{displaymath}
+
+Dato un numero in base 2, ad esempio 1101, si calcola il suo valore da destra
+a sinistra come nella rappresentazione base 10.
+La cifra più a destra rappresenta il numero di uno, la cifra successiva
+rappresenta il numero 1$\times$2=2, la terza cifra rappresenta
+il numero 1$\times$2$\times$2=4, e la cifra più a sinistra
+rappresenta il
+numero 1$\times$2$\times$2$\times$2=8.
+Pertanto, 1101 rappresenta 1 + 0 + 4 + 8, che è tredici,
+rappresentato in base 10 come 13.
+
+\newpage
+
+\begin{quote}
+\textbf{Programma}\\
+Modificare il programma per il conteggio modulo 4 per usare la rappresentazione binaria.
+\end{quote}
+
+{\raggedleft \hfill File di programma \bu{count-to-four-binary.aesl}}
+
+Abbiamo solo bisogno di due elementi dello stato per rappresentare i numeri
+0--3 in base 2.
+Fai in modo che l'elemento in alto a destra rappresenti il numero di 1,
+\bu{spento} (bianco) per zero e \bu{acceso} (arancione) per uno,
+e che l'elemento superiore sinistro rappresenti il numero di 2.
+Ad esempio, \blksm{state-right} rappresenta il numero 1 e
+\blksm{state-left} rappresenta il numero 2.
+Se i due elementi sono entrambi di colore bianco, lo stato rappresenta 0, e se entrambi
+gli elementi sono di colore arancione, lo stato rappresenta il 3.
+
+Per contare sono necessarie quattro transizioni 0 $\rightarrow$ 1, 1 $\rightarrow$ 2, 2
+$\rightarrow$ 3, 3 $\rightarrow$ 0, quindi sono necessarie quattro coppie evento-azione, oltre ad una coppia per ripristinare il programma
+quando si tocca il pulsante centrale.
+
+\medskip
+
+\trickbox{I due elementi inferiori dello stato non vengono utilizzati, quindi sono lasciati in grigio
+e vengono ignorati dal programma.}
+
+\medskip
+
+\exercisebox{\thechapter.2}{Estendere il programma in modo che conti
+modulo 8. L'elemento dello stato in basso a sinistra rappresenterà il numero di 4.}
+
+\exercisebox{\thechapter.3}{Fino a che numero possiamo contare con Thymio utilizzando
+la rappresentazione binaria?}
+
+\sect{Aggiungere e sottrarre}
+
+Scrivere il programma per contare fino a 8 è piuttosto noioso perchè devi programmare 8 coppie evento-azione, una per ciascuna transizione da $n$ a $n+1$ (modulo 8).Certamente non è così che si conta, 
+invece, normalmente utilizziamo metodi per eseguire le addizioni sommando le cifre in ciascun posto e facendo il riporto verso la cella successiva.
+Nella rappresentazione in base 10:
+\begin{displaymath}
+\begin{array}{r}
+387\\
++426\\
+\rule[1pt]{1.5em}{1pt}\\
+813\\
+\end{array}
+\end{displaymath}
+e similmente nella rappresentazione in base 2:
+\begin{displaymath}
+\begin{array}{r}
+0011\\
++1011\\
+\rule[1pt]{2em}{1pt}\\
+1110\\
+\end{array}
+\end{displaymath}
+Quindi aggiungendo 1 a 1, invece di 2, otteniamo 10.
+Lo zero è scritto nella stessa colonna e riportiamo un 1 nella successiva colonna a sinistra. 
+L'esempio mostra la somma di  3 (=0011) e di 11 (=1011)
+per ottenere 14 (=1110).
+
+\begin{quote}
+\textbf{Programma}\\
+Scrivere un programma che inizia con una rappresentazione di 0.
+Ciascun battito di mani aggiunge 1 al numero.
+L'addizione è modulo 16, quindi aggiungendo 1 a 15 il risultato sarà 0.
+\end{quote}
+
+Linee guida:
+
+\begin{itemize}
+\item L'elemento in basso a destra verrà utilizzato per rappresentare il numero 8.
+\item Se l'elemento in alto a destra che rappresenta il numero
+1 mostra 0 (bianco),
+semplicemente cambiarlo a 1 (arancione). Fate questo indipendentemente da ciò che gli altri
+elementi mostrano.
+\item Se l'elemento in alto a destra che rappresenta il numero di 1
+è a 1 (arancione),
+modificarlo a 0 (bianco) e poi riportare 1.
+Ci saranno tre coppie evento-azione,
+a seconda della posizione del \emph{prossimo} elemento che è a 0
+(bianco).
+\item Se tutti gli elementi sono a 1 (arancione), è rappresentato il valore 15.
+Aggiungendo 1 a 15 modulo 16 si ottiene 0, rappresentato da tutti gli elementi
+che sono a 0 (bianchi).
+\end{itemize}
+
+
+{\raggedleft \hfill File di programma \bu{addition.aesl}}
+
+\exercisebox{\thechapter.4}{Modificare il programma in modo che parta dal valore 15 e sottragga uno per ciascun battito di mani,
+e quindi ciclicamante torni a 15.}
+
+
+\exercisebox{\thechapter.5}{Mettere una sequenza di corti segmenti di nastro nero su una superfice chiara (o nastro bianco su una superfice scura).
+Scrivere un programma che faccia andare in avanti il Thymio e fermare quando viene riconosciuto il quarto nastro.}
+
+L'esercizio non è facile: le strisce devo essere sufficientemente ampie in modo che il robot le riconosca, ma non così
+ampie da far avvenire più di un evento per striscia.
+Dovrete anche fare esperimenti con la velocità del robot.
+

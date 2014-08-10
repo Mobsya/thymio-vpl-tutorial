@@ -1,0 +1,65 @@
+% !TeX root = vpl.tex
+\chap{Un tempo per amare}\label{ch.time}
+
+Nel \cref{ch.pet}  abbiamo programmato un robot da compagnia a cui piaciamo o non piaciamo.
+Consideriamo un comportamento più avanzato: un animale timido che
+non può decidersi se gli piaciamo o no. Inizialmente,
+l'animale si girerà verso la nostra mano cercando di raggiungerlla, ma poi si terrà a distanza. Dopo un po'
+cambierà idea e tornerà indietro in direzione
+della nostra mano.
+
+{\raggedleft \hfill File di programma \bu{shy.aesl}}
+
+Il comportamento del robot è il seguente. Quando il tasto destro viene toccato il robot gira a destra. Quando rileva la tua mano,
+gira a sinistra, ma dopo un po' si rammarica per la sua decisione e gira
+indietro. Noi sappiamo come costruire coppie evento-azione per la curva iniziale:
+\blkc{start-turn} e per allontanarsi quando viene rilevata la mano:
+\blkc{turn-away}
+
+Il comportamento di tornare indietro "dopo un po'" può essere suddiviso in
+due parti:
+
+\begin{itemize}
+
+\item \emph{Quando}  il robot inizia ad allontanarsi $\rightarrow$
+\emph{avviare un timer} per due secondi.
+
+\item \emph{Quando}  il timer scende a zero $\rightarrow$ \emph{girare}
+a destra.
+
+\end{itemize}
+
+Abbiamo bisogno di una nuova \emph{azione} per la prima parte e un nuovo
+\emph{evento} per la seconda parte.
+
+L'azione è quella di impostare un \emph{timer}, che è come una sveglia
+\blksm{action-timer}. Normalmente, si imposta una sveglia per un tempo assoluto,
+ma quando ho impostato la sveglia nel mio smartphone per un tempo assoluto come le ore
+7:00, mi dice il tempo relativo: "allarme impostato tra 11 ore e 23
+minuti da oggi". Il blocco del timer funziona allo stesso modo: si imposta il
+timer per un certo numero di secondi da quando si verifica l'evento e poi l'azione accade. Il timer può essere impostato per un massimo di quattro secondi. fare clic su
+qualsiasi punto all'interno del cerchio nero che rappresenta il quadrante dell'orologio (ma non
+sul cerchio nero stesso). Ci sarà una breve animazione e poi
+la quantità di tempo fino a quando l'allarme scatta sarà mostrata di colore blu.
+
+\newpage
+La coppia evento-azione per questa prima parte del comportamento è:
+\blkc{turn-clock}
+
+Il timer è impostato per due secondi. Quando l'evento che rileva la presenza della mano
+si verifica, ci saranno due azioni: ruotare il robot di fianco
+e l'impostazione del timer.
+
+La seconda parte del comportamento utilizza un evento che si verifica quando l'allarme si spegne,
+cioè, quando la quantità di tempo impostato sul timer scende a zero. il blocco dell'evento
+ \blksm{event-timer} mostra una sveglia che squilla.
+
+Ecco la coppia evento-azione per fare girare il robot di nuovo a
+destra quando il timer scende: \blkc{turn-back}
+
+\exercisebox{\thechapter.1}{
+Scrivi un programma che faccia muovere il robot in avanti alla massima velocità per
+tre secondi quando il pulsante in avanti viene toccato; quindi corra
+all'indietro. Aggiungere una coppia evento-azione per arrestare il robot toccando il
+pulsante centrale.
+}

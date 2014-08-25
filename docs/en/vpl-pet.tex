@@ -16,7 +16,7 @@ moves towards your hand.
 
 There are five horizontal distance sensors on the front of the Thymio
 robot and two on the rear of the robot.
-They are similar to the ones under Thymio that we have used in \cref{c.moving}.
+They are similar to the ones under Thymio that we have used in \cref{ch.moving}.
 %\footnote{The technical term is \emph{proximity sensor}, but we will use the simpler term \emph{horizontal distance sensor}.}
 Bring your hand slowly towards the
 sensors; when it gets close, a red light will appear around the sensors
@@ -58,7 +58,7 @@ while the red square specifies that an event will occur \emph{if a lot
 of light is reflected from the surface}.
 \end{itemize}
 The physical principle of these two types of sensors is similar, but because of their different placement their behavior is different.
-}
+}\label{page.sensors}
 
 To implement the behavior, we need the two event-action pairs shown in
 \cref{fig.follow-hand}. In the first pair, the center front sensor
@@ -142,7 +142,7 @@ Experiment with the sliders on each motor action block.
 Modify the behaviour of the pet robot so that it starts moving forward when the program
 is run and stops when it detects the edge of a table (or a strip of black tape).}
 
-As explained in \cref{c.moving}, a lot of light will be reflected
+As explained in \cref{ch.moving}, a lot of light will be reflected
 from a white surface, while very little light will be reflected from a
 black surface.
 You will have to experiment with the horizontal sensor block to determine when to click on a white square and when on a red square, depending on the floor or table where you place the robot.

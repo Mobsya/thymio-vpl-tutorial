@@ -1,0 +1,132 @@
+% !TeX root = vpl.tex
+
+\appendix
+
+\chap{Tips for Programming with VPL}\label{a.tips}
+
+\sect{Exploring and experimenting}
+\
+\begin{description}
+\item[Understand each event and action block] For each event block and each action block,
+spend some time experimenting until you understand exactly how it works.
+To explore the behavior of an action block, construct a pair whose
+event is touching a button. This is a simple and robust event
+that will let you concentrate on learning what the action block does.
+Similarly, to explore the behavior of an event block, construct a pair whose
+action is changing the top colour of the robot. This is a simple and robust action
+that will let you concentrate on learning what the even block does.
+
+\item[Experiment with the sensor event blocks]
+The small red lights next to each sensor which show when
+that sensor detects an obstacle.
+Move your fingers in front of the sensors and see which lights
+are turned on. 
+Now, construct an event-action pair consisting of the sensor event
+and the top colour action. Experiment with the settings of the
+small squares in the event block
+(gray, red, white) until you understand how they work.
+
+Experiment separately with the front/back sensors and the ground sensors
+because the meaning of an event occurrence is slightly different in each case,
+as explained in the box on page~\pageref{page.sensors}.
+
+\item[Experiment with the motors]
+Experiment with the settings of the motors
+so that you get a general impression how fast the robot moves
+for a particular setting.
+It is very important to experiment with different settings
+for the two motors in order to learn how the robot turns.
+\end{description}
+
+
+\sect{Constructing a program}
+
+\begin{description}
+\item[Plan your program]
+Constructing a program is not the same as experimenting with blocks
+and event-action pairs.
+Write down a description of how the program is supposed to work:
+a sentence for each event-action pair.
+
+\item[Construct one event-action pair at a time]
+When you understand how each
+event-action pair works, you can put them together in a program.
+
+\item[Test each addition to the program]
+Test your program each time you add a new event-action pair.
+That way, you will know that any problem
+is due to the interaction of the new pair and the previous pairs.
+
+\item[Use ``Save as'' for each modification]
+Before you change your program, \emph{always} use the icon
+\blksm{saveas} to save the program under a different name.
+If the change makes things worse,
+it is easy to go back to the previous version.
+
+\item[Display what happens]
+Use colours or sounds to display what the program is doing.
+
+For example, if one sensor causes the robot to turn left and another to
+turn right, use the same events in additional event-action pairs
+to display different top colours.
+You will be able to see if a problem is caused by a sensor or
+if the motors are not responding correctly to a sensor event.
+
+\end{description}
+
+
+\sect{Troubleshooting}
+
+\begin{description}
+
+\item[Use a smooth surface]
+Make sure that the surface on which the robot moves---a table or the floor---is
+very clean and smooth. If there is a lot of friction from dirt,
+the motors may not be able to move the robot, or turns may be uneven.
+
+\item[Use a long cable]
+Make sure that your cable is long enough.
+If the robot moves too far, the cable can cause the robot to slow down
+or stop, or the robot can pull the cable out of its connector.
+
+\item[Sensor events may not be detected]
+Sensor events happen 10 times per second.
+If the robot is moving very fast,
+an event might not be detected.
+
+For example, if the robot is supposed to detect the edge of the table and stop,
+and if the robot is moving very fast, it might be unstable and fall off the table
+before the sensor event can stop the motor.
+When you start to run a program, run it at a low speed
+and gradually increase the speed.
+The speed must be fast enough to overcome friction, but not so fast so that
+events are missed.
+
+For another example, consider a line-following program in Chapter~\ref{ch.line}.
+Its algorithm depends on being able to detect when one
+ground sensor detects the line and the other doesn't.
+If the robot is moving too fast, \emph{both} sensors
+might move from a position where the both sensors detect the line to
+to a position where neither sensor detects the line,
+and the intermediate position where only one sensor
+detects the line is not detected.
+
+\item[Event-action pairs are run sequentially]
+In theory, the event-action pairs are run \emph{concurrently}---at the same
+time; in practice, they are run one after the other in the order they appear
+in the program. As shown in Exercise~4.2, this can cause a problem, because
+the second action might conflict with what was done by the first action.
+Try to avoid constructing programs where the \emph{same} action block
+appears in pairs with two different event blocks that can occur at the same time.
+
+\item[Problems with the clap event]
+Do \emph{not} use the clap event \blksm{event-clap}
+when the motors are running. The motors make a lot of noise and
+can cause unexpected clap events.
+
+Similarly, do \emph{not} use the tap event \blksm{event-tap}
+in the same program with the clap event. Tapping on the robot causes
+noise that can be unexpectedly interpreted as a clap.
+
+
+\end{description}

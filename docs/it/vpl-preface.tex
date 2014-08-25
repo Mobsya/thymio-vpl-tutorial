@@ -1,0 +1,194 @@
+% !TeX root = vpl.tex
+
+\chapter*{Prefazione}
+
+\sect{Che cosa è un Robot?}
+
+Stai guidando la bicicletta e improvvisamente vedi che la strada inizia
+ad andare in salita. Pedali più veloce per fornire più potenza alle ruote in modo
+che la bicicletta non rallenti. Quando raggiungi la cima della collina e
+cominci ad andare in discesa, stringi la leva del freno. Questo fa sì che due pezzi di gomma
+(i pattini) vengano premuti contro la ruota e la bicicletta rallenti.
+Quando guidi una bicicletta, i tuoi occhi sono i \textit{sensori}  che percepiscono ciò che
+succede nel mondo. Quando questi sensori---i tuoi occhi---rilevano un
+\textit{evento} come una curva della strada, esegui un'\textit{azione}, come spostare il manubrio a sinistra o a destra.
+
+In una macchina, ci sono sensori che \textit{misurano} ciò che sta accadendo nel
+mondo. Il tachimetro misura  quanto velocemente sta andando la vettura; se si rileva una velocità superiore al limite, si potrebbe dire al conducente che
+sta andando troppo veloce. In risposta, egli può eseguire un'azione, come ad esempio
+premere sul pedale del freno per rallentare la macchina. L'indicatore del livello carburante
+misura quanto carburante rimane in macchina; se si vede che il livello è troppo
+basso, si può dire al conducente di trovare un distributore di benzina. In risposta, egli può
+eseguire un'azione: sollevare la leva dell'indicatore di direzione per indicare una svolta a destra
+e girare il volante per andare nella stazione di servizio.
+
+Il pilota della bicicletta e il conducente della vettura ricevono i dati dai sensori, decidono quali azioni intraprendere e fanno in modo che vengano eseguite. Un \textit{robot} è un sistema in cui questo processo---riceve i dati,
+decidere un'azione, eseguire l'azione---è svolta da un
+elaboratore, di solito senza la partecipazione di un essere umano.
+
+\sect{Il robot Thymio-II e l'ambiente Aseba VPL}
+
+Il Thymio II è un piccolo robot destinato a fini didattici
+(\cref{fig.front}). Il robot include sensori in grado di misurare
+la luce, il suono e la distanza, ed è in grado di rilevare quando i pulsanti vengono toccati e
+quando il corpo del robot viene urtato. L'azione più importante che si può
+effettuare è quella di spostarsi utilizzando due ruote, ciascuna alimentata da un proprio motore.
+Altre azioni includono la generazione di suoni e accendere e spegnere luci.
+
+Nel resto di questo documento, il robot Thymio~II sarà chiamato semplicemente Thymio.
+Si farà sempre riferimento alla versione II del robot.
+
+ASEBA è un ambiente di programmazione per i piccoli robot mobili come Thymio.
+VPL è un componente di ASEBA di \textit{programmazione visuale} che è stato progettato per programmare Thymio in modo semplice attraverso blocchi di eventi e di azioni.
+Questo tutorial presuppone che il programma ASEBA sia stato installato sul vostro computer; se non è così, andate su \url{https://aseba.wikidot.com/it:downloadinstall}, selezionare il sistema operativo, scaricate il programma ed installatelo.
+
+\sect{Schede di Riferimento}
+Troverete utile stampare le schede di riferimento, che sono nello stesso file zip con questo documento o disponibili online\footnote{Il link può essere trovato sulla pagina \textit{Programmare Thymio II}: \\
+\url{https://aseba.wikidot.com/it:thymioprogram}.}:
+\begin{itemize}
+\item Una singola pagina che riassume eventi e azioni (\href{https://aseba.wdfiles.com/local--files/it:thymioprogram/thymio-vpl-ref-card-it.pdf}{online}).
+\item Una doppia pagina che può essere piegata in tre per creare una comoda carta da tenere a portata di mano.
+Riassume l'interfaccia del VPL, i blocchi eventi e azioni, e include esempi di programmi (\href{https://aseba.wdfiles.com/local--files/it:thymioprogram/thymio-vpl-folding-ref-card-it.pdf}{online})\\
+\end{itemize}
+
+\sect{Sommario dei capitoli}
+
+Ecco una panoramica dei capitoli di questo tutorial.
+Per ogni capitolo, diamo l'argomento principale coperto, nonché le liste
+dei blocchi di eventi e azioni che vengono introdotti.
+È possibile utilizzare la panoramica per decidere quali capitoli usare
+e in quale ordine, seguendo le linee guida riportate sotto.
+
+{\centering \textbf{Capitolo \ref{ch.intro}}\\}
+\textbf{Argomenti}: Il Robot Thymio robot, ambiente di programmazione.
+
+\textbf{Eventi}: Bottoni \hfill \textbf{Azioni}: Colori della parte superiore
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up-white}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.colors}}\\}
+\textbf{Argomenti}: Coppie evento-azione.
+
+\textbf{Eventi}: Bottoni \hfill \textbf{Azioni}: Colori della parte superiore, colori della parte inferiore.
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up-white} \quad \blkmed{action-colors-down-white}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.moving}}\\}
+\textbf{Argomenti}: Muoversi, sentire.
+
+\textbf{Eventi}: Bottoni, sensori del terreno \hfill \textbf{Azioni}: Motori
+
+\blkmed{event-buttons} \quad \blkmed{event-ground} \hfill  \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.pet}}\\}
+\textbf{Argomenti}: Controllo a retroazione (feedback), velocità dei motori.
+
+\textbf{Eventi}: Sensori frontali \hfill \textbf{Azioni}: Motori
+
+\blkmed{event-prox} \hfill \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.line}}\\}
+\textbf{Argomenti}: Seguire una linea.
+
+\textbf{Eventi}: Sensori del terreno \hfill \textbf{Azioni}: Motori
+
+\blkmed{event-ground} \hfill \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.bells}}\\}
+\textbf{Argomenti}: Suoni, urti.
+
+\textbf{Eventi}: Urto, Rumore intenso \hfill \textbf{Azioni}: Musica, colori della parte superiore, colori della parte inferiore
+
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music} \quad \blkmed{action-colors-up-white} \quad \blkmed{action-colors-down-white}
+
+% Tap \blkmed{event-tap}, clap \blkmed{event-clap}.\hfill\
+% Music \blkmed{action-music},
+% Top colours \blkmed{action-colors-up-white},
+% bottom colours \blkmed{action-colors-down-white}.
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.time}}\\}
+\textbf{Argomenti}: Timer.
+
+\textbf{Eventi}: Timer scaduto \hfill \textbf{Azioni}: Predisponi timer
+
+\blkmed{event-timer} \hfill \blkmed{action-timer}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.states}}\\}
+\textbf{Argomenti}: Stati.
+
+\textbf{Eventi}: Stato associato ad un evento \hfill \textbf{Azioni}: Cambio stato
+
+\blkmed{tap-turn-on-state-only} \hfill \blkmed{action-states}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.counting}}\\}
+\textbf{Argomenti}: Contare, aritmetica binaria.
+
+\textbf{Eventi}: Stato associato ad un evento  \hfill \textbf{Azioni}: Cambio stato (avanzato)
+
+\blkmed{tap-turn-on-state-only} \hfill \blkmed{action-states}
+
+\bigskip
+
+{\centering \textbf{Capitolo \ref{ch.next}}\\}
+\textbf{Argomenti}: ambiente Aseba studio.
+
+\bigskip
+
+{\centering \textbf{Appendice \ref{a.tips}}\\}
+\textbf{Argomenti}: Esplorare e sperimentare,
+costruire un programma, risoluzione dei problemi.
+
+
+\sect{Linee Guida}
+
+\textbf{I Capitoli~\ref{ch.intro}--\ref{ch.colors}} sono una introduzione essenziale
+al robot, all'ambiente e al principale costrutto di programmazione---la
+coppia evento-azione.
+
+\textbf{I Capitoli~\ref{ch.moving}--\ref{ch.line}} presenta gli eventi, le azioni e gli algoritmi
+per la costruzione di robot mobili autonomi e dovrebbe essere al centro di ogni
+attività che preveda l'utilizzo del sistema.
+
+\textbf{Il Capitolo~\ref{ch.bells}} descrive le caratteristiche del robot che possono
+essere divertenti da usare, ma non sono essenziali. È possibile saltare il capitolo o lo si può
+utilizzare subito dopo i capitoli introduttivi
+per un'introduzione più dolce alla robotica.
+
+\textbf{Il Capitolo~\ref{ch.time}} mostra come utilizzare eventi a tempo.
+Questo è un argomento importante, ma è indipendente dagli altri
+e può essere saltato se il tempo manca.
+
+\textbf{Il Capitolo~\ref{ch.states}} utilizza funzioni disponibili nella modalità avanzata del VPL.
+Le macchine a stati sono un costrutto fondamentale utilizzato in robotica e questo materiale
+deve essere utilizzato in attività con studenti che siano sufficientemente maturi per capire. Il capitolo~\ref{ch.counting} è un capitolo opzionale che mostra
+come utilizzare gli stati per implementare conti aritmetici.
+
+\textbf{Il Capitolo~\ref{ch.next}} punta al passo successivo: l'utilizzo
+dell'ambiente testuale Studio, che offre significativamente più supporto per
+lo sviluppo di robot di quanto non faccia l'ambiente VPL.
+
+%\textbf{L'Appendice~\ref{a.tips}} fornisce una guida per insegnanti e tutor
+%di studenti che stanno imparando la Robotica con Thymio e VPL.
+%Inizia incoraggiando l'esplorazione e la sperimentazione
+%per acquisire familiarità con i blocchi evento e azione del VPL.
+%La sessione succesiva si concentra sulle buone pratiche di programmazione;
+%anche se VPL è un ambiente visivo semplice,
+%gli studenti potranno già beneficiare molto dal lavorare con
+%pratiche professionali.
+%L'ultima sezione elenca alcuni problemi che si possono incontrare
+%e dà suggerimenti su come superarli.

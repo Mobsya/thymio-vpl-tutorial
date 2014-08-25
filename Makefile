@@ -1,5 +1,5 @@
-langs=en de fr
-targets=$(patsubst %,thymio-vpl-tutorial-%.zip,$(langs))
+langs=en de fr it
+targets=$(patsubst %,thymio-vpl-tutorial-%.zip,$(langs)) $(patsubst %,thymio-vpl-folding-ref-card-%.pdf,$(langs))
 zipdeps=authors.txt $(wildcard programs/*.aesl) $(wildcard answers/*.aesl)
 texdeps=$(wildcard images/*.png) $(wildcard images/*.jpg) vpl.sty Makefile
 
@@ -25,11 +25,11 @@ thymio-vpl-folding-ref-card-%.pdf: ref-card/%/vpl-folding-ref-card.tex $(texdeps
 	cd build/$* && TEXINPUTS=../../answers/$*:${TEXINPUTS} pdflatex ../../$<
 	mv build/$*/vpl-folding-ref-card.pdf $@
 
-thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf thymio-vpl-ref-card-%.pdf readmes/%/readme.txt $(zipdeps) Makefile
+thymio-vpl-tutorial-%.zip: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf thymio-vpl-ref-card-%.pdf thymio-vpl-folding-ref-card-%.pdf readmes/%/readme.txt $(zipdeps) Makefile
 	rm -f thymio-vpl-tutorial-$*.zip
 	touch thymio-vpl-tutorial-$*.pdf thymio-vpl-tutorial-answers-$*.pdf
-	zip $@ thymio-vpl-tutorial-$*.pdf thymio-vpl-tutorial-answers-$*.pdf thymio-vpl-ref-card-$*.pdf $(zipdeps)
-	cd readmes/$* && zip ../../$@ *
+	zip $@ thymio-vpl-tutorial-$*.pdf thymio-vpl-tutorial-answers-$*.pdf thymio-vpl-ref-card-$*.pdf thymio-vpl-folding-ref-card-$*.pdf $(zipdeps)
+	cd readmes/$* && zip ../../$@ *.txt
 
 build/%:
 	mkdir -p build/$*
@@ -45,4 +45,4 @@ distclean: clean
 	rm -f *.pdf $(targets)
 
 .PHONY: clean buildclean distclean all dist
-.PRECIOUS: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf thymio-vpl-ref-card-%.pdf build/%
+.PRECIOUS: thymio-vpl-tutorial-%.pdf thymio-vpl-tutorial-answers-%.pdf thymio-vpl-ref-card-%.pdf thymio-vpl-folding-ref-card-%.pdf build/%

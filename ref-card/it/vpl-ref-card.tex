@@ -1,0 +1,148 @@
+%
+%    Aseba/VPL Reference Card
+%
+%  Copyright 2013 by Mordechai (Moti) Ben-Ari.
+%  This work is licensed under the Creative Commons
+%  Attribution-ShareAlike 3.0 License. 
+%  To view a copy of this license, 
+%  visit http://creativecommons.org/licenses/by-sa/3.0/; 
+%  or, (b) send a letter to Creative Commons, 
+%  543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+%
+\documentclass[a4paper,italian]{article}
+\usepackage[a4paper,margin=.9cm]{geometry}
+%\usepackage{mathpazo}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,url}
+\usepackage{tabularx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{colortbl}
+\usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
+\usepackage{libertine}
+
+\graphicspath{{../../images/}}
+
+\renewcommand*\familydefault{\sfdefault}
+
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
+\parindent=0pt
+
+\newcommand*{\blk}[1]{\raisebox{-40pt}%
+{\includegraphics[height=50pt,keepaspectratio=true]{#1}}}
+
+\newcommand*{\blkbig}[1]{\raisebox{-50pt}%
+{\includegraphics[height=60pt,keepaspectratio=true]{#1}}}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\colorlet{advancedmode}{orange!20}
+
+\begin{document}
+\thispagestyle{empty}
+
+\fontsize{15pt}{18pt}\selectfont
+
+\begin{center}
+{\Huge \textbf{Scheda di riferimento VPL}}
+\end{center}
+
+\bigskip
+
+\begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
+
+\multicolumn{2}{l}{\textbf{Eventi}} & \multicolumn{2}{l}{\textbf{Azioni}} \\[.4cm]
+
+\blk{event-buttons} & \textbf{Bottoni toccati}
+
+grigio: ignora il bottone, rosso: deve essere toccato &
+
+\blk{action-motors} & \textbf{Motori}
+
+Assegna la velocità del motore di destra e di sinistra e delle ruote.%
+%
+\\[.6cm]
+
+\blk{event-prox} & \textbf{Sensori ostacoli}
+
+grigio: ignora il sensore, rosso: oggetto vicino, bianco: oggetto lontano&
+
+\blk{action-colors-up} & \textbf{Colori superiori}
+
+Miscela di rosso, verde e blu per la parte superiore del robot.%
+%
+\\[.6cm]
+
+\blk{event-ground} & \textbf{Sensori terreno}
+
+grigio: ignora sensore, rosso: terreno chiaro o presente, bianco: terreno scuro o assente &
+
+\blk{action-colors-down} & \textbf{Colori inferiori}
+
+Miscela di rosso, verde e blu per la parte inferiore del robot.%
+%
+\\[.6cm]
+
+\blk{event-tap} & \textbf{Robot urtato}
+
+Il Robot ha ricevuto un urto.&
+
+\blk{action-music} & \textbf{Suona la musica}
+
+Scegli l'altezza del suono, nota bianca doppia durata rispetto a nera.%
+%
+\\[.6cm]
+
+\blk{event-clap} & \textbf{Battito di mani}
+
+Il Robot ha sentito un rumore forte.&
+
+\blk{action-timer} & \textbf{Avvia timer}
+
+Trascorso il tempo impostato genera l'evento Timer scaduto.%
+%
+\\[.6cm]
+
+\blk{event-timer} & \textbf{Timer scaduto}
+
+Il timer ha completato il conteggio.&
+
+\cellcolor{advancedmode} \blk{action-states} & \cellcolor{advancedmode} \textbf{Definisce lo stato del Robot}
+
+Configura lo stato interno a 4-bit del robot.\\
+
+\end{tabularx}
+
+\vfill
+
+\begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}L}
+
+\multicolumn{2}{l}{\textbf{Costruire il proprio programma}} \\[.4cm]
+
+\blkbig{event-action-pair-empty} & Prendere e trascinare gli eventi nel quadrato di sinistra, le azioni nel quadrato di destra. 
+
+Quando accade l'evento, il robot esegue l'azione.
+\\
+
+\end{tabularx}
+
+\vfill
+
+\begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}Ll}
+
+\multicolumn{2}{l}{\textbf{I sensori sono combinati in AND negli eventi}} & \\[.4cm]
+
+\blk{sensor-and-button} & Se due sensori sono selezionati, entrambe le condizioni devono essere vere perchè accada l'evento.
+
+Sinistra \textbf{e} destra devono essere toccati o avere un oggetto vicino. &
+
+\blk{sensor-and-prox}\\
+
+\end{tabularx}
+
+\vfill
+
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}\hfill\colorbox{advancedmode}{funzionalità avanzata}
+
+\end{document}

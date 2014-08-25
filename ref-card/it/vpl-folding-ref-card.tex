@@ -1,0 +1,255 @@
+%
+%    Aseba/VPL Reference Card
+%
+%  Copyright 2013 by Mordechai (Moti) Ben-Ari.
+%  This work is licensed under the Creative Commons
+%  Attribution-ShareAlike 3.0 License. 
+%  To view a copy of this license, 
+%  visit http://creativecommons.org/licenses/by-sa/3.0/; 
+%  or, (b) send a letter to Creative Commons, 
+%  543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+%
+\documentclass[a4paper,italian]{leaflet}
+\usepackage{mathptmx}
+\usepackage{url}
+\usepackage{graphicx,url}
+\usepackage[utf8x]{inputenc}
+\graphicspath{{../../images/}}
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{1.5}
+\textheight=190mm
+
+\newcommand{\sct}[1]{\subsubsection{#1}\mbox{}\\}
+
+\CutLine*{1}\CutLine*{3}\CutLine*{4}\CutLine*{6}
+
+\newcommand*{\blk}[2][-20]{\raisebox{#1pt}%
+{\includegraphics[height=35pt,keepaspectratio=true]{#2}}}
+
+\newcommand*{\blkwide}[2][-50]{\raisebox{#1pt}%
+{\includegraphics[width=.4\textwidth,keepaspectratio=true]{#2}}}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\begin{bfseries}
+\begin{large}
+Scheda di riferimento Aseba/VPL
+\end{large}
+
+\medskip
+
+Moti Ben-Ari, St\'{e}phane Magnenat, Jiwon Shin
+\end{bfseries}
+\end{center}
+
+\vspace*{-1ex}
+{\scriptsize Copyright 2013 by Moti Ben-Ari, St\'{e}phane Magnenat and
+Jiwon Shin. Questo lavoro è rilasciato sotto la licenza Creative Commons
+Attribution-ShareAlike 3.0. Per vedere una copia di questa licenza,
+visitare \url{http://creativecommons.org/licenses/by-sa/3.0/}; o, (b) inviare
+una lettera a Creative Commons, 543 Howard Street, 5th Floor, San
+Francisco, California, 94105, USA.}
+
+
+\sct{Interfaccia utente VPL}
+
+\smallskip
+
+\begin{tabular}{lp{.73\textwidth}}
+\blk{new} & Cancella editor per un nuovo programma; ritorna a modalità semplice.\\
+
+\blk{open} & Apri un programma esistente.\\
+
+\blk{save} & Salva il programma.\\
+
+\blk{saveas} & Salva il programma con un nuovo nome.\\
+
+\blk{run} & Carica ed esegui il programma sul robot.\\
+
+\blk{stop} & Arresta il programma in esecuzione sul robot.\\
+
+\blk{scheme} & Cambia i colori dei blocchi.\\
+
+\blk{advanced} & Modalità avanzata.\\
+
+\blk{info1} & Mostra la documentazione del VPL.\\
+
+\blk{quit} & Chiudi VPL (solo se avviato da Aseba Studio).\\
+
+\end{tabular}
+
+
+\newpage
+
+\sct{Blocchi Evento}
+
+Un evento accade quando:      
+
+\bigskip
+
+\begin{tabular}{lp{.73\textwidth}}
+
+\blk{forward} & I bottoni sono stati toccati.\par
+I bottoni rossi sono attivi.\\
+
+&\\
+
+\blk[-25]{horizontal} & I sensori orizzontali avvertono la vicinanza ad un oggetto.\par
+Rosso = un oggetto è nelle vicinanze.\par Bianco = non ci sono oggetti nelle vicinanze.\\
+
+&\\
+
+\blk[-25]{ground} & I sensori per il terreno riconosco il buio o la luce.\par 
+Rosso = Il terreno è chiaro.\par Bianco = il terreno è scuro o assente.\\
+
+&\\
+
+\blk{event-tap} & Il robot è stato urtato.\\
+
+&\\
+
+\blk{event-clap} & Il robot sente un forte rumore.\\
+
+&\\
+
+\blk{event-timer} & Il timer è arrivato a fine conteggio.\\
+
+\end{tabular}
+
+\bigskip
+\bigskip
+
+I bottoni e i sensori che sono di colore grigio non sono attivi.
+
+\newpage
+
+\sct{Blocchi Azione}
+
+\begin{tabular}{lp{.73\textwidth}}
+
+\blk[-27]{action-motors} & Seleziona la velocità dei motori sinistro e destro.\par
+Muovere il cursore in su (avanti)\par
+o in basso (indietro).\\
+
+&\\
+
+\blk{action-colors-up} & Sceglie il colore della parte superiore del robot.\par
+Muovere i cursori per miscelare rosso, verde e blu.\\
+
+&\\
+
+\blk{action-colors-down} & Sceglie il colore della parte inferiore del robot.\par
+Muovere i cursori per miscelare rosso, verde e blu.\\
+
+&\\
+
+\blk[-27]{action-music} & Suona la musica.\par
+Cliccare su un rigo per scegliere l'altezza della nota.\par
+Le note bianche durano il doppio di quelle nere.\par
+Cliccare sulla nota per cambiare la durata. $\leftrightarrow$ black.\\
+
+&\\
+
+\blk{clock} & Avvia il timer per un tempo da 0 a 4 secondi.\par
+Cliccare sul quadrante dell' orologio per scegliere la durata.\\
+
+&\\
+
+\blk[-30]{states2} & Configura le 4 parti dello stato corrente del robot.\par
+Grigio = non cambia il valore.\par
+Bianco = mette il valore a 0.\par
+Giallo = mette il valore a 1.\\
+
+\end{tabular}
+
+\newpage
+
+\sct{Coppie evento-azione}
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blkwide[-25]{e-a-pair} & Una coppia evento-azione.\\
+
+&\\
+
+\blkwide[-20]{tap-state-off} & Una coppia evento-azione che dipende dallo stato corrente (solo in modalità avanzata).\\
+
+&\\
+
+\blk{x} & Cancella questa coppia evento-azione.\\
+
+&\\
+
+\blk{plus} & Aggiunge una coppia evento-azione.\\
+
+\end{tabular}
+
+
+\newpage
+
+\sct{Esempi}
+
+\vspace{-2ex}
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blkwide[-35]{dont-fall} & \mbox{}\par
+Il robot si ferma quando riconosce il bordo del tavolo.\\
+
+&\\
+
+\blkwide{likes-turns} & Il robot viene verso di te.\\
+
+&\\
+
+\blkwide{hates} & il robot si allontana da te.\\
+
+&\\
+
+\blkwide{line-controller} & Il robot segue una linea sul terreno.\\
+
+\blkwide[-35]{clap} & \mbox{}\par
+Un battito di mani cambia il colore inferiore del robot.\\
+
+\end{tabular}
+
+\newpage
+
+\vspace*{1ex}
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blkwide[-35]{turn-clock} & \mbox{}\par
+Quando il sensore di destra riconosce un oggetto fa partire un timer di 2 secondi.\\
+
+\blkwide[-35]{turn-back} & \mbox{}\par
+Quando il timer è arrivato a zero, gira a destra.\\
+
+&\\
+
+\blkwide{tap-on-off2} & Un urto cambia la prima parte dello stato da 0 a 1 e da 1 a 0.\\
+
+&\\
+
+\blkwide{tap-on-off1} & Un urto cambia il colore superiore in magenta se in stato 0 e
+spegne il colore se in stato 1.\\
+
+\end{tabular}
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\sct{Riferimenti}
+
+\begin{itemize}
+\item Documentazione di riferimento VPL:\\
+\url{https://aseba.wikidot.com/en:thymiovpl}.
+
+\item Tutorail VPL\\
+\url{https://aseba.wdfiles.com/local--files/it:thymioprogram/thymio-vpl-tutorial-it.zip}.
+
+\end{itemize}
+\end{document}

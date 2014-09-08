@@ -1,0 +1,55 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II">var state[4] = [0,0,0,0]
+var new_state[4] = [0,0,0,0]
+
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+sub display_state
+	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
+
+onevent prox
+	if prox.horizontal[0] &lt; 1500 and prox.horizontal[1] &lt; 1500 and prox.horizontal[2] &lt; 1500 and prox.horizontal[3] &lt; 1500 and prox.horizontal[4] &lt; 1500 then
+		call leds.top(0,0,0)
+	end
+	if prox.horizontal[1] > 2500 and prox.horizontal[2] > 2500 and prox.horizontal[3] &lt; 1500 then
+		call leds.top(0,31,0)
+	end
+	if prox.horizontal[1] > 2500 and prox.horizontal[2] &lt; 1500 and prox.horizontal[3] > 2500 then
+		call leds.top(32,32,0)
+	end
+	if prox.horizontal[1] &lt; 1500 and prox.horizontal[2] > 2500 and prox.horizontal[3] > 2500 then
+		call leds.top(0,0,32)
+	end
+	if prox.horizontal[1] > 2500 and prox.horizontal[2] > 2500 and prox.horizontal[3] > 2500 then
+		call leds.top(32,0,0)
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot>
+<settings advanced-mode="true" color-scheme="0"/>
+
+<buttonset eb0="1" eb1="1" eb2="1" eb3="1" eb4="1" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="0" ab1="0" ab2="0"/>
+
+<buttonset eb0="0" eb1="2" eb2="2" eb3="1" eb4="0" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="0" ab1="31" ab2="0"/>
+
+<buttonset eb0="0" eb1="2" eb2="1" eb3="2" eb4="0" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="32" ab1="32" ab2="0"/>
+
+<buttonset eb0="0" eb1="1" eb2="2" eb3="2" eb4="0" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="0" ab1="0" ab2="32"/>
+
+<buttonset eb0="0" eb1="2" eb2="2" eb3="2" eb4="0" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="32" ab1="0" ab2="0"/>
+
+<buttonset/>
+
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

@@ -1,0 +1,74 @@
+% !TeX root = vpl.tex
+
+\chap{Project: Sweeping the Floor (Advanced)}\label{ch.sweep}
+
+Are you tired of cleaning your house? Now there are
+\href{http://en.wikipedia.org/wiki/Robotic_vacuum_cleaner}{robotic
+vacuum cleaners} that can do the job for you! The main task for the
+robot is to systematically move over the floor of your apartment,
+navigating around furniture and other obstacles, while it vacuums the
+dirt.
+
+\textbf{Specification}
+
+When the forwards button is touched, the Thymio robot travels from one
+side of the room to the opposite side, turns, moves a few steps and then
+returns to the first side:
+\begin{center}
+\begin{picture}(200,30)
+%\put(0,0){\framebox(200,30){}}
+\put(0,30){\vector(1,0){200}}
+\put(200,30){\vector(0,-1){30}}
+\put(200,0){\vector(-1,0){200}}
+\end{picture}
+\end{center}
+
+\textbf{Guidance}
+
+There are three subtasks that the robot must implement: (1) move the
+length of the room (to the right or to the left), (2) turn right, (3)
+move a few steps down. The subtasks are performed in the following
+order:
+
+\begin{center}
+\begin{picture}(380,20)
+%\put(0,0){\framebox(380,20){}}
+\put(30,10){\oval(60,20)}
+\put(110,10){\oval(60,20)}
+\put(190,10){\oval(60,20)}
+\put(270,10){\oval(60,20)}
+\put(350,10){\oval(60,20)}
+\put(0,0){ \makebox(60,20){right}}
+\put(80,0){\makebox(60,20){turn right}}
+\put(160,0){\makebox(60,20){down}}
+\put(240,0){\makebox(60,20){turn right}}
+\put(320,0){\makebox(60,20){left}}
+\put( 60,10){\vector(1,0){20}}
+\put(140,10){\vector(1,0){20}}
+\put(220,10){\vector(1,0){20}}
+\put(300,10){\vector(1,0){20}}
+\end{picture}
+\end{center}
+
+The robot will use \emph{state} (Chapter~\ref{ch.states}) to keep track of which subtask it is
+performing. The direction and amount of movement for each subtask is
+determined by the speeds of the left and right motors, and by the length
+of time that the motors run (Chapter~\ref{ch.time}).
+ Therefore, each subtask will consist of three event-action pairs,
+where the event is the expiration of the timer for the previous subtask
+ (except initially, where it is touching the button). The actions are
+to set the following parameters for the next subtask:
+
+\begin{enumerate}
+\item State.
+\item Left and right motor speeds (see~\pageref{s.sliders} on setting
+the motor speeds accurately).
+\item Timer period.
+\end{enumerate}
+
+You will have to experiment with the speeds and the timer period to
+cause the robot to follow the required rectangular path.
+
+\bigskip
+
+\textbf{Program file}: \bu{sweep.aesl}

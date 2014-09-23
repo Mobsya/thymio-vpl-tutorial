@@ -1,0 +1,342 @@
+% !TeX root = vpl-parsons.tex
+
+\documentclass[11pt,a4paper,english]{report}
+
+\usepackage{../../vpl}
+\graphicspath{{../../images/}}
+
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-14pt]{0pt}{32pt}}\ }
+\newcommand*{\eblockbig}{\framebox[58pt]{\rule[-14pt]{0pt}{32pt}}\ }
+\newcommand*{\hr}{\mbox{}\\\bigskip\rule{\textwidth}{.5pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\begin{Huge}
+\begin{bfseries}
+Parsons Puzzles for VPL
+\end{bfseries}
+\end{Huge}
+
+\bigskip
+\bigskip
+
+\begin{Large}
+Version 1.0
+for \href{https://aseba.wikidot.com/en:downloadinstall}{Aseba 1.3.3}
+\end{Large}
+
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\begin{LARGE}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}
+\end{LARGE}
+
+\begin{Large}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{http://www.weizmann.ac.il/sci-tea/benari/}
+\end{Large}
+
+\end{center}
+
+\vfill
+
+\begin{center}
+\copyright{}\  2014 by \href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}% and other contributors.
+\end{center}
+
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy
+of this license, visit
+\url{http://creativecommons.org/licenses/by-sa/3.0/}
+or send a letter to Creative Commons, 444 Castro Street, Suite 900,
+Mountain View, California, 94041, USA.
+
+\begin{center}
+\includegraphics[width=.2\textwidth]{by-sa}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\emph{Parsons Puzzles} are a form of exercise that can help students
+learn how to program.\footnote{Parsons, D. and Haden, P. Parson’s
+programming puzzles: A fun and effective learning tool for first
+programming courses. \textit{Proceedings of the 8th Australian
+Conference on Computing Education}, Darlinghurst, Australia, 2006,
+157–163.} A Parsons Puzzle consists of a specification of a program
+together with a set of statements in a programming language. Your task
+is to place the statements in the correct order so that they the form a
+program that implements what is required. A Parsons Puzzle may also
+include \emph{distractors}, which are incorrect statements or extra
+statements that are not needed in the solution.
+
+The advantage of Parsons Puzzles over exercises that ask: ``Write a
+program that does \ldots{}'' is that all the statements needed for the
+solution are visible to the student and they have the correct syntax.
+Hopefully, this is better than staring at a blank screen with no idea
+how to start writing a program.
+
+In VPL, there is almost no meaning to the order of the set of
+event-action pairs in a program for the Thymio robot. Therefore, Parsons
+Puzzles will be constructed as programs where one or more pairs are
+missing the event block, the action block or both. To the right of each
+event-action pair will appear two or more blocks; select the correct
+block and draw an arrow from it to the empty block.
+
+
+\textbf{Example}
+\begin{itemize}
+\item When the forwards button is touched, the top green led is turned on.
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{forward} $\rightarrow$ \eblock  &  \blk{red} & \blk{green}\\
+\end{tabular}
+\begin{picture}(250,20)
+\put(230,60){\line(0,1){20}}
+\put(230,80){\line(-1,0){155}}
+\put(75,80){\vector(0,-1){20}}
+\end{picture}
+\end{center}
+\vspace{-5ex}
+
+The second block on the right turns the green led on and is selected as
+the solution to this puzzle.
+\end{itemize}
+
+
+\newpage
+
+\begin{enumerate}
+
+\item When the right button is touched the bottom red led is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{right-button} $\rightarrow$ \eblock  &  \blk{red-bottom} &
+ \blk{red}\\
+\end{tabular}
+
+\hr
+
+\item When the right button is touched the top red led is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{left-button} &
+ \blk{right-button}\\
+\end{tabular}
+
+\hr
+
+\item When the left button is touched the bottom green led is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \eblock  &  \blk{right-button} & \blk{left-button}
+ & \blk{green} & \blk{green-bottom}\\
+\end{tabular}
+
+\hr
+
+\item When the left button \textbf{or} the right button is touched, the
+top green led is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{left-button} $\rightarrow$ \eblock  &  \blk{green} &
+  \blk{green-bottom}\\
+\\
+\eblock $\rightarrow$ \blk{green}  &  \blk{right-button} &
+ \blk{left-button}\\
+\end{tabular}
+
+\hr
+
+\newpage
+
+\item When the left button \textbf{and} the right button are touched, the
+top red led is turned on.\\
+Select one of the following two programs:
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}l}
+\blk{left-right-button} $\rightarrow$ \blk{red}\\ 
+\textbf{or}\\
+\blk{left-button} $\rightarrow$ \blk{red}\\
+\blk{right-button} $\rightarrow$ \blk{red}\\
+\end{tabular}
+
+\hr
+
+\item If an object is detected \textbf{only} by the leftmost sensor, turn left.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{left-turn} & \blk{both-prox} & \blk{right-prox} & \blk{center-prox} & \blk{left-prox} \\
+\end{tabular}
+
+\hr
+
+\item Stop the robot when the end of the table has been reached. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-ground} &
+ \blk{ground1} & \blk{ground2}\\
+\end{tabular}
+
+\hr
+
+\item When the robot detects a wall, the top red led is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{center-prox} & \blk{ground1}\\
+\end{tabular}
+
+\hr
+
+\item When the robot hits the wall, the motors are turned off.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{event-tap} $\rightarrow$ \eblock & \blk{full} & \blk{back-full} & \blk{action-motors}\\
+\end{tabular}
+
+\hr
+
+\item The robot turns to the left if there is an object in front of the center sensor. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} & \blk{left-turn}\\
+\end{tabular}
+
+\hr
+
+\item The robot turns to the right if there is \textbf{no} object in front of the center sensor. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{center-prox} & \blk{no-detect-forward} &
+\blk{neither-prox}\\
+\end{tabular}
+
+\hr
+
+\item The motors are turned off when the left button is touched \textbf{no} if the robot is tapped.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-buttons} &
+\blk{left-right-button} & \blk{left-button} & \blk{right-button}\\
+\\
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-tap} &
+\blk{event-clap}\\
+\end{tabular}
+
+\hr
+
+\newpage
+
+\item When the forwards button is touched, the robot moves forward
+for three seconds and then moves backwards.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{forward} $\rightarrow$ \blk{full}\\
+\\
+\blk{forward} $\rightarrow$ \eblock & \blk{event-timer} & \blk{three-seconds}\\
+\\
+\eblock       $\rightarrow$ \blk{back-full} & \blk{event-timer} &  \blk{three-seconds}\\
+\end{tabular}
+
+\hr
+
+\item The robot moves towards an object that is detected by its left,
+right or center sensor.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \blk{full}\\
+\\
+\blk{left-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} &
+ \blk{left-turn} & \blk{action-motors}\\
+\\
+\eblock       $\rightarrow$ \eblock & \blk{right-turn} & \blk{left-turn} &
+ \blk{left-prox} & \blk{right-prox}\\
+\end{tabular}
+
+\hr
+
+\newpage
+
+\item The robot's top led is off. Tap the robot; the top red led is turned on.
+Tap again; the top led is turned off. This behavior continues
+ indefinitely.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblockbig $\rightarrow$ \blk{red} & \blk{tap-0} & \blk{tap-1} & \blk{set-state-0} & \blk{set-state-1}\\
+\\
+\eblockbig $\rightarrow$ \blk{action-colors-up} & \blk{tap-0} & \blk{tap-1} & \blk{set-state-0} & \blk{set-state-1}\\
+\\
+\blk{tap-0} $\rightarrow$ \eblock & \blk{tap-0} & \blk{tap-1} & \blk{set-state-0} & \blk{set-state-1}\\
+\\
+\blk{tap-1} $\rightarrow$ \eblock & \blk{tap-0} & \blk{tap-1} & \blk{set-state-0} & \blk{set-state-1}\\
+\\
+\end{tabular}
+
+
+\hr
+
+\item The robot is following a line on the floor. It turns left if it no
+longer detects the line in its right sensor and it turns right if it no
+longer detects the line in its left sensor,
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{bottom-right} & \blk{bottom-left} & \blk{left-prox} & \blk{right-prox}\\
+\\
+\eblock $\rightarrow$ \eblock & \blk{bottom-right} & \blk{bottom-left} & \blk{right-turn} & \blk{left-turn}\\
+\\
+\end{tabular}
+
+\hr
+
+\newpage
+
+\item The robot counts 0, 1, 2, 3, 0, 1, 2, 3, \ldots, whenever it
+detects a clap event.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{clap-0} $\rightarrow$ \eblock{} & \blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\
+\\
+\eblockbig $\rightarrow$ \blk{state-2} & \blk{clap-0} & \blk{clap-1} &
+ \blk{clap-2} & \blk{clap-3}\\
+\\
+\eblockbig $\rightarrow$ \blk{state-3} & \blk{clap-0} & \blk{clap-1} &
+ \blk{clap-2} & \blk{clap-3}\\
+\\
+\eblockbig $\rightarrow$ \eblock{} & \blk{clap-0} & \blk{clap-3} & \blk{state-0} & \blk{state-3}\\
+\\
+\end{tabular}
+
+\end{enumerate}
+
+\end{document}

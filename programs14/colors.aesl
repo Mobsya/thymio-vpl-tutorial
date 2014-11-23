@@ -1,0 +1,63 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II"># reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent buttons
+	if button.forward == 1 then
+		call leds.top(32,0,0)
+	end
+	if button.backward == 1 then
+		call leds.top(0,0,32)
+	end
+	if button.right == 1 then
+		call leds.bottom.left(0,32,0)
+		call leds.bottom.right(0,32,0)
+	end
+	if button.left == 1 then
+		call leds.bottom.left(32,32,0)
+		call leds.bottom.right(32,32,0)
+	end
+	if button.center == 1 then
+		call leds.top(0,0,0)
+	end
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="0">
+<set>
+<block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="32" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="1" value3="0" value4="0" type="event" name="button"/>
+<block value0="0" value1="0" value2="32" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="1" value4="0" type="event" name="button"/>
+<block value0="0" value1="32" value2="0" type="action" name="colorbottom"/>
+</set>
+<set>
+<block value0="0" value1="1" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="32" value1="32" value2="0" type="action" name="colorbottom"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" type="action" name="colorbottom"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

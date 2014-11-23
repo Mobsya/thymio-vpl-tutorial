@@ -1,0 +1,284 @@
+% !TeX root = vpl.tex
+
+\chapter*{Preface}
+
+\sect{What is a robot?}
+
+You are riding your bicycle and suddenly you see that the street starts
+to go uphill. You pedal faster to supply more power to the wheels so
+that the bicycle won't slow down. When you reach the top of the hill and
+start to go downhill, you squeeze the brake lever. This causes a rubber
+pad to be pressed against the wheel and the bicycle slows down. When you
+ride a bicycle, your eyes are \textit{sensors} that sense what is going
+on in the world. When these sensors---your eyes---detect an
+\textit{event} such as a curve in the street, you perform an
+\textit{action}, such as moving the handlebar left or right.
+
+In a car, there are sensors that \textit{measure} what is going on in
+the world. The speedometer measures how fast the car is going; if you
+see it measuring a speed higher than the limit, you might tell the
+driver that he is going too fast. In response, he can perform an action,
+such as stepping on the brake pedal to slow the car down. The fuel meter
+measures how much fuel remains in the car; if you see that it is too
+low, you can tell the driver to find a gas station. In response, she can
+perform an action: raise the turn-signal lever to indicate a right turn
+and turn the steering wheel in order to drive into the station.
+
+The rider of the bicycle and the driver of the car receive data from the
+sensors, decide what actions to take and cause the actions to be
+performed. A \textit{robot} is a system where this process---receive
+data, decide upon an action, perform the action---is carried out by a
+computerized system, usually without the participation of a human.
+
+\sect{The Thymio-II robot and the Aseba VPL environment}
+
+The Thymio II is a small robot intended for educational purposes
+(\cref{fig.front}). The robot includes sensors that can measure light,
+sound and distance, and can detect when buttons are touched and when the
+robot's body is tapped. The most important action that it can perform is
+to move using two wheels, each powered by its own motor. Other actions
+include generating sound and turning lights on and off.
+
+In the rest of this document, the Thymio~II robot will be called simply
+Thymio. It will always refer to the version II of the robot.
+
+Aseba is a programming environment for small mobile robots such as the
+Thymio. VPL is a component of Aseba for \textit{visual programming} that
+was designed to program Thymio in an easy way through event and action
+blocks. This tutorial assumes that you have Aseba installed on your
+computer; if not, download it from 
+\url{https://aseba.wikidot.com/en:downloadinstall} and install.
+
+\newpage
+
+\sect{Overview of the tutorial}
+
+\textbf{Chapters~\ref{ch.intro}--\ref{ch.colors}} are an essential
+introduction to the robot, the VPL environment and its principal
+programming construct: the event-actions pair.
+
+\textbf{Chapters~\ref{ch.moving}--\ref{ch.line}} present the events,
+actions and algorithms for constructing autonomous mobile robots and
+should be the core of any activity using Thymio and VPL.
+
+\textbf{Chapter~\ref{ch.bells}} describes features of the robot that can
+be fun to use but are not essential. You can skip the chapter or you can
+use it immediately after the introductory chapters for a more gentler
+introduction to robotics.
+
+\bigskip
+
+\hrule
+
+\bigskip
+
+\importantbox[Advanced mode]{VPL has a basic mode which supports
+elementary events and actions that are easy for beginners to master. The
+advanced mode of VPL supports more events and actions that require
+experience to use. Explanations of the features of advanced mode
+start in Chapter~\ref{ch.time}.}
+
+\textbf{Chapter~\ref{ch.time}} presents timed events. There is an action
+to set a timer and when the timer expires, an event occurs.
+
+\textbf{Chapter~\ref{ch.states}} explains state machines, which are a
+fundamental construct used in robotics.
+
+\textbf{Chapter~\ref{ch.counting}} shows how to use states to implement
+arithmetic.
+
+\textbf{Chapter~\ref{ch.angles}} describes how to use the accelerometers
+in the Thymio robot.
+
+\bigskip
+
+\hrule
+
+\bigskip
+
+\textbf{Chapters~\ref{ch.rabbit}--\ref{ch.speed}} differ from the
+previous chapters: they contains no new material and no detailed
+explanation of how to develop the projects. Instead, they specify VPL
+projects and invite you to design and implement them yourself.
+
+\bigskip
+
+\hrule
+
+\bigskip
+
+\textbf{Chapter~\ref{ch.next}} points to the next step: using the
+textual Studio environment which offers significantly more support for
+developing robots than does the VPL environment.
+
+\bigskip
+
+\hrule
+
+\bigskip
+
+\informationbox{Reference material}{The appendices contains reference
+material that you will want to look at from time to time to learn about
+new featuers of VPL or to refresh your memory about how they work.}
+
+\textbf{Appendix~\ref{a.toolbar}} contains a description of the user
+interface: the buttons on the toolbar and how each one works. It also
+describes how to display dynamic feedback when a VPL program is run.
+
+\textbf{Appendix~\ref{a.blocks}} is a reference list of the event and
+action blocks in both basic and advanced modes.
+
+\textbf{Appendix~\ref{a.tips}} provides guidance for teachers and
+mentors of students. The first section suggests ways to encourage
+exploration and experimentation. The next section focuses on good
+programming practices. The final section lists some pitfalls that may be
+encountered and offers hints on how to overcome them.
+
+\bigskip
+
+\sect{Chapter summary}
+
+Here is an overview of the chapters of this tutorial. For each chapter,
+we give the main topic covered as well as lists of the event and action
+blocks that are introduced. You can use the overview to decide what
+chapters to use and in what order, according to the guidance given
+below.
+
+{\centering \textbf{Chapter \ref{ch.intro}}\\}
+\textbf{Topics}: Thymio robot, VPL programming environment.
+
+\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colors
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.colors}}\\}
+\textbf{Topics}: Event-actions pairs.
+
+\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colors, bottom colors
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.moving}}\\}
+\textbf{Topics}: Moving, sensing.
+
+\textbf{Events}: Buttons, bottom sensors \hfill \textbf{Actions}: Motors
+
+\blkmed{event-buttons} \quad \blkmed{event-ground} \hfill  \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.pet}}\\}
+\textbf{Topics}: Feedback control, motor speeds.
+
+\textbf{Events}: Front sensors \hfill \textbf{Actions}: Motors
+
+\blkmed{event-prox} \hfill \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.line}}\\}
+\textbf{Topics}: Line following.
+
+\textbf{Events}: Bottom sensors \hfill \textbf{Actions}: Motors
+
+\blkmed{event-ground} \hfill \blkmed{action-motors}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.bells}}\\}
+\textbf{Topics}: Sound, shocks.
+
+\textbf{Events}: Tap, clap \hfill \textbf{Actions}: Music, top colors,
+bottom colors
+
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
+\quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.time}}\\}
+\textbf{Topics}: Timers.
+
+\textbf{Events}: Timer expired \hfill \textbf{Actions}: Set timer
+
+\blkmed{event-timer} \hfill \blkmed{action-timer}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.states}}\\}
+\textbf{Topics}: States.
+
+\textbf{Events}: State associated with an event \hfill \textbf{Actions}:
+Change state
+
+\blkmed{state-filter} \hfill \blkmed{action-states}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.counting}}\\}
+\textbf{Topics}: Counting, binary arithmetic.
+
+\textbf{Events}: State associated with an event \hfill \textbf{Actions}:
+Change state
+
+\blkmed{state-filter} \hfill \blkmed{action-states}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.angles}}\\}
+\textbf{Topics}: Accelerometers.
+
+\textbf{Events}: Accelerometer events
+
+\blkmed{event-acc-pitch} \quad \blkmed{event-acc-roll}
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.rabbit}--\ref{ch.angles}}\\}
+\textbf{Topics}: VPL projects for you to implement with minimal
+guidance.
+
+\textbf{Events}: Advanced blocks for sensors and taps
+
+\blkmed{event-prox-advanced} \quad \blkmed{event-prox-ground-advanced}
+\quad \blkmed{event-tap-advanced}
+
+
+\bigskip
+
+{\centering \textbf{Chapter \ref{ch.next}}\\}
+\textbf{Topics}: Aseba studio environment.
+
+\newpage
+
+{\centering \textbf{Appendix \ref{a.toolbar}}\\}
+\textbf{Topics}: A description of the buttons on the toolbar.
+
+\bigskip
+
+{\centering \textbf{Appendix \ref{a.blocks}}\\}
+\textbf{Topics}: A summary of the features in advanced mode.
+
+\bigskip
+{\centering \textbf{Appendix \ref{a.tips}}\\}
+\textbf{Topics}: Exploring and experimenting,
+constructing a program, troubleshooting.
+
+\sect{Reference cards}
+
+You will find it useful to print out one or both of the reference cards,
+which are in the same zip file as this document and available
+online at \url{https://aseba.wikidot.com/en:thymioprogram}.
+
+\begin{itemize}
+\item A single page that summarizes the event and action blocks
+(\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-ref-card-en.pdf}{click here to download}).
+\item A double page that can be folded in three to form a handy card.
+It summarizes the VPL interface, the event and action blocks,
+and includes example programs
+(\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-folding-ref-card-en.pdf}{click here to download})
+\end{itemize}

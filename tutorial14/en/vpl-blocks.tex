@@ -1,0 +1,105 @@
+% !TeX root = vpl.tex
+
+\chap{Event and Action Blocks}\label{a.blocks}
+
+\section*{Event blocks}
+
+\blksm{event-buttons} \textbf{Buttons}. Click on one or more of the images
+of the buttons; they will turn red. An event will occur if the red
+buttons are touched.
+
+\bigskip\bigskip\bigskip\bigskip
+
+
+\blksm{event-prox} \textbf{Horizontal sensors} (five at the front of the
+Thymio and two at the back). Click on one or more of the small squares.
+If the square is gray, the reading of the is ignored; if the square is
+white, an event occurs if a lot of light is reflected; if the square is
+black, an event occurs if little light is reflected.
+
+\bigskip
+
+\blksm{event-ground} \textbf{Bottom sensors} (two on the bottom of the
+Thymio). Use like the block for the horizontal sensors.
+
+\bigskip\bigskip
+
+\blksm{event-prox-advanced}, \blksm{event-prox-ground-advanced}
+\textbf{Sensors, advanced mode}. Use like the previous blocks. In
+addition, the top slider sets the threshold above which an object is
+detected and the bottom slider sets the threshold below which the
+absence of an object is detected.
+
+\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip
+
+\blksm{event-tap} \textbf{Tap}. An event occurs when the Thymio is
+tapped.
+
+\bigskip\bigskip
+
+\blksm{event-tap-advanced} \textbf{Tap, advanced mode}. Use like the
+previous block. Click on the small center or right circle to change to
+an accelerometer event.
+
+\bigskip\bigskip\bigskip\bigskip
+
+\blksm{event-acc-roll}, \blksm{event-acc-pitch} \textbf{Accelerometer,
+advanced mode}. Drag the red segment of the half-circle left or right.
+An event will occur if the left / right or forwards / backwards angle
+(respectively) of the Thymio is within the red segment.
+
+\bigskip\bigskip\bigskip\bigskip\bigskip
+
+\blksm{event-timer} \textbf{Timer, advanced mode}. An event occurs when
+a timer has counted down to zero. The timer must have been set by a
+previous timer \emph{action}.
+
+\bigskip\bigskip\bigskip\bigskip
+
+\blksm{event-state} \textbf{Event state, advanced mode}. The event
+occurs only if the components of the current state match the
+corresponding orange and white quarters of this block. The components
+corresponding to the gray quarters need not match.
+
+\bigskip\bigskip\bigskip\bigskip
+
+\section*{Action blocks}
+
+\blksm{action-motors} \textbf{Motors}. Move the left and right sliders
+up to increase the forwards rotation of the left and right motors,
+respectively, and move the sliders down to increase the backwards
+rotation.
+
+\bigskip\bigskip
+
+\blksm{action-colors-up} \textbf{Top lights}. Move the three sliders to
+the right to increase the red, green and blue components of the top
+light, respectively. For example, moving the red and green sliders fully
+to the right without moving the blue slider will turn the top light
+yellow.
+
+\bigskip\bigskip
+
+\blksm{action-colors-down} \textbf{Bottom lights}. Turns the bottom
+lights on. Use like the previous block.
+
+\bigskip\bigskip\bigskip
+
+\blksm{action-music} \textbf{Music}. The six small circles are notes. A
+black note is short and a white note is long. Click on a circle to
+change the length. The five horizontal bars, represent tones. Click on
+the bar to move a circle to that bar.
+
+
+\bigskip\bigskip\bigskip
+
+\blksm{action-timer} \textbf{Timer, advanced mode} The timer can be set
+for up to four seconds. Click anywhere within the white circle showing
+the face of the clock. There will be a short animation and then the
+amount of time until the alarm will be colored blue.
+
+\bigskip\bigskip
+
+\blksm{action-states} \textbf{States, advanced mode} The four
+quarters in the block correspond to four components of a state.
+Click a quarter to turn it to gray, orange or white.

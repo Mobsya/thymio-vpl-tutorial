@@ -1,0 +1,426 @@
+\documentclass[11pt,a4paper,english]{report}
+
+\usepackage{../../vpl}
+\graphicspath{{../../images14/}}
+
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-14pt]{0pt}{32pt}}\ }
+\newcommand*{\eblockbig}{\framebox[58pt]{\rule[-5pt]{0pt}{20pt}}\ }
+\newcommand*{\eblocksm}{\framebox[30pt]{\rule[-5pt]{0pt}{20pt}}\ }
+\newcommand*{\hr}{\mbox{}\\\mbox{}\\\rule{\textwidth}{.5pt}\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\begin{Huge}
+\begin{bfseries}
+Answers to
+
+\bigskip
+
+Parsons Puzzles for VPL
+\end{bfseries}
+\end{Huge}
+
+\bigskip
+\bigskip
+
+\begin{Large}
+Version 2.0
+for \href{https://aseba.wikidot.com/en:downloadinstall}{Aseba 1.4}
+\end{Large}
+
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\begin{LARGE}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}
+\end{LARGE}
+
+\begin{Large}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{http://www.weizmann.ac.il/sci-tea/benari/}
+\end{Large}
+
+\end{center}
+
+\vfill
+
+\begin{center}
+\copyright{}\  2014 by \href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}% and other contributors.
+\end{center}
+
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy
+of this license, visit
+\url{http://creativecommons.org/licenses/by-sa/3.0/}
+or send a letter to Creative Commons, 444 Castro Street, Suite 900,
+Mountain View, California, 94041, USA.
+
+\begin{center}
+\includegraphics[width=.2\textwidth]{by-sa}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{enumerate}
+
+\item When the right button is touched the bottom red light is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{right-button} $\rightarrow$ \eblock  &  \blk{red-bottom} & \blk{red}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,40){\line(0,-1){18}}
+\put(-80,40){\line(-1,0){100}}
+\put(-180,40){\vector(0,-1){18}}
+\end{picture}
+
+\hr
+
+\item When the right button is touched the top red light is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{left-button} &
+ \blk{right-button}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-30,40){\line(0,-1){18}}
+\put(-30,40){\line(-1,0){200}}
+\put(-230,40){\vector(0,-1){18}}
+\end{picture}
+
+\hr
+
+\item When the left button is touched the bottom green light is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \eblock  &  \blk{right-button} & \blk{left-button}
+ & \blk{green} & \blk{green-bottom}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-132,40){\line(0,-1){18}}
+\put(-132,40){\line(-1,0){200}}
+\put(-332,40){\vector(0,-1){18}}
+
+\put(-28,-34){\line(0,1){18}}
+\put(-28,-34){\line(-1,0){254}}
+\put(-282,-34){\vector(0,1){16}}
+\end{picture}
+
+\hr
+
+\item When the left button \textbf{or} the right button is touched, the
+top green light is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{left-button} $\rightarrow$ \eblock  &  \blk{green} &
+  \blk{green-bottom}\\
+\\
+\eblock $\rightarrow$ \blk{green}  &  \blk{right-button} &
+ \blk{left-button}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,70){\line(0,-1){18}}
+\put(-80,70){\line(-1,0){100}}
+\put(-180,70){\vector(0,-1){18}}
+
+\put(-80,-62){\line(0,1){18}}
+\put(-80,-62){\line(-1,0){152}}
+\put(-232,-62){\vector(0,1){16}}
+\end{picture}
+
+\hr
+
+\newpage
+
+\item When \textbf{both} the left button \textbf{and} the right button
+are touched, the top red light is turned on.
+Select one of the following two programs:
+\bigskip
+
+\begin{center}
+\begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
+\blk{left-right-button} $\rightarrow$ \blk{red} \quad $\surd$ & \textbf{or}&
+\blk{left-button} $\rightarrow$ \blk{red}\\
+&&\blk{right-button} $\rightarrow$ \blk{red}
+\end{tabular}
+\end{center}
+
+\vspace{-2ex}
+
+\hr
+
+\item If an object is detected \textbf{only} by the leftmost sensor, turn left.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{left-turn} & \blk{sensor-and-prox} &
+\blk{right-prox} & \blk{center-prox} & \blk{left-prox} \\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-30,40){\line(0,-1){18}}
+\put(-30,40){\line(-1,0){305}}
+\put(-335,40){\vector(0,-1){18}}
+\end{picture}
+
+\hr
+
+\item Stop the robot when the end of the table has been reached. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-ground} &
+ \blk{ground2} & \blk{ground1}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){200}}
+\put(-282,42){\vector(0,-1){20}}
+\end{picture}
+
+\hr
+
+\item When the robot detects a wall, the top red light is turned on.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{center-prox} & \blk{ground1}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){150}}
+\put(-232,42){\vector(0,-1){20}}
+\end{picture}
+
+\hr
+
+\item When the robot hits the wall, the motors are turned off.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{event-tap} $\rightarrow$ \eblock & \blk{full} & \blk{back-full} & \blk{action-motors}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-28,42){\line(0,-1){18}}
+\put(-28,42){\line(-1,0){200}}
+\put(-228,42){\vector(0,-1){20}}
+\end{picture}
+
+\hr
+
+\item The robot turns to the left if there is an object in front of the center sensor. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \eblock & \blk{left-turn} & \blk{full} & \blk{right-turn}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-134,42){\line(0,-1){18}}
+\put(-134,42){\line(-1,0){96}}
+\put(-230,42){\vector(0,-1){20}}
+\end{picture}
+
+\hr
+
+\item The robot turns to the right if there is \textbf{no} object in front of the center sensor. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{center-prox} & \blk{no-detect-forward} &
+\blk{neither-prox}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){200}}
+\put(-282,42){\vector(0,-1){20}}
+\end{picture}
+
+\hr
+
+\item The motors are turned off when the left button is touched
+\textbf{or} if the robot is tapped. 
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-buttons} &
+\blk{left-right-button} & \blk{left-button} & \blk{right-button}\\
+\\
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-tap} &
+\blk{event-clap}
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,70){\line(0,-1){18}}
+\put(-82,70){\line(-1,0){256}}
+\put(-338,70){\vector(0,-1){20}}
+
+\put(-182,-63){\line(0,1){18}}
+\put(-182,-63){\line(-1,0){156}}
+\put(-338,-63){\vector(0,1){16}}
+\end{picture}
+
+\hr
+
+\newpage
+
+\item When the forwards button is touched, the robot moves forward
+for three seconds and then moves backwards.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{forward} $\rightarrow$ \blk{full}\\
+\\
+\blk{forward} $\rightarrow$ \eblock & \blk{event-timer} & \blk{three-seconds}\\
+\\
+\eblock       $\rightarrow$ \blk{back-full} & \blk{event-timer} &  \blk{three-seconds}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-28,34){\line(0,-1){10}}
+\put(-28,34){\line(-1,0){148}}
+\put(-176,34){\vector(0,-1){11}}
+
+\put(-82,-90){\line(0,1){18}}
+\put(-82,-90){\line(-1,0){152}}
+\put(-234,-90){\vector(0,1){16}}
+\end{picture}
+
+\hr
+
+\item The robot moves towards an object that is detected by its left,
+right or center sensor.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \blk{full}\\
+\\
+\blk{left-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} &
+ \blk{left-turn} & \blk{action-motors}\\
+\\
+\eblock       $\rightarrow$ \eblock & \blk{right-turn} & \blk{left-turn} &
+ \blk{left-prox} & \blk{right-prox}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,35){\line(0,-1){10}}
+\put(-80,35){\line(-1,0){203}}
+\put(-283,35){\vector(0,-1){12}}
+
+\put(-186,-24){\line(0,-1){10}}
+\put(-186,-24){\line(-1,0){97}}
+\put(-283,-24){\vector(0,-1){11}}
+
+\put(-27,-90){\line(0,1){18}}
+\put(-27,-90){\line(-1,0){311}}
+\put(-338,-90){\vector(0,1){16}}
+\end{picture}
+
+\hr
+
+\item The robot is following a line on the floor. It turns left if it no
+longer detects the line in its right sensor and it turns right if it no
+longer detects the line in its left sensor,
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{bottom-right} & \blk{bottom-left} & \blk{left-prox} & \blk{right-prox}\\
+\\
+\eblock $\rightarrow$ \eblock & \blk{bottom-right} & \blk{bottom-left} & \blk{right-turn} & \blk{left-turn}\\
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-188,74){\line(0,-1){16}}
+\put(-188,74){\line(-1,0){150}}
+\put(-338,74){\vector(0,-1){18}}
+
+\put(-136,15){\line(0,-1){14}}
+\put(-136,15){\line(-1,0){202}}
+\put(-338,15){\vector(0,-1){16}}
+
+\put(-27,-57){\line(0,1){18}}
+\put(-27,-57){\line(-1,0){256}}
+\put(-283,-57){\vector(0,1){16}}
+\end{picture}
+
+
+\newpage
+
+\begin{center}
+\LARGE \textbf{Advanced Mode}
+\end{center}
+
+%\item The robot's top light is off. Tap the robot; the top red light is turned on.
+%Tap again; the top light is turned off. This behavior continues
+% indefinitely.
+%\bigskip\bigskip
+%
+%\begin{tabular}{l@{\hspace{3em}}l|l|l|l}
+%\eblockbig $\rightarrow$ \blkmed{red} & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
+%\\
+%\eblockbig $\rightarrow$ \blkmed{action-colors-up} & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
+%\\
+%\blkmed{tap-0} $\rightarrow$ \eblocksm & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
+%\\
+%\blkmed{tap-1} $\rightarrow$ \eblocksm & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
+%\\
+%\end{tabular}
+%
+%
+%\hr
+
+\item The robot counts 0,1,2,3,0,1,2,3, \ldots, whenever it
+detects a clap event.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}l|l|l|l}
+\blkmed{clap-0} $\rightarrow$ \eblocksm &
+\blkmed{state-0} & \blkmed{state-1} & \blkmed{state-2} & \blkmed{state-3}\\ 
+\\
+\\
+\eblockbig $\rightarrow$ \blkmed{state-2} &
+\blkmed{clap-0} & \blkmed{clap-1} & \blkmed{clap-2} & \blkmed{clap-3}\\
+\\
+\\
+\eblockbig $\rightarrow$ \blkmed{state-3} &
+\blkmed{clap-0} & \blkmed{clap-1} & \blkmed{clap-2} & \blkmed{clap-3}\\
+\\
+\\
+\eblockbig $\rightarrow$ \eblocksm &
+\blkmed{clap-0} & \blkmed{clap-3} & \blkmed{state-0} & \blkmed{state-3}\\ 
+\end{tabular}
+\begin{picture}(0,0)
+\put(238,228){\line(0,-1){16}}
+\put(238,228){\line(-1,0){138}}
+\put(100,228){\vector(0,-1){18}}
+
+\put(252,168){\line(0,-1){16}}
+\put(252,168){\line(-1,0){216}}
+\put(36,168){\vector(0,-1){18}}
+
+\put(327,108){\line(0,-1){16}}
+\put(327,108){\line(-1,0){291}}
+\put(36,108){\vector(0,-1){18}}
+
+\put(252,48){\line(0,-1){16}}
+\put(252,48){\line(-1,0){216}}
+\put(36,48){\vector(0,-1){18}}
+
+\put(312,-18){\line(0,1){18}}
+\put(312,-18){\line(-1,0){216}}
+\put(96,-18){\vector(0,1){19}}
+\end{picture}
+
+\end{enumerate}
+
+\end{document}

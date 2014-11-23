@@ -1,0 +1,282 @@
+%
+%    Aseba/VPL Reference Card
+%
+%  Copyright 2013-14 by Mordechai (Moti) Ben-Ari.
+%  This work is licensed under the Creative Commons
+%  Attribution-ShareAlike 3.0 License. 
+%  To view a copy of this license, 
+%  visit http://creativecommons.org/licenses/by-sa/3.0/; 
+%  or, (b) send a letter to Creative Commons, 
+%  543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+%
+\documentclass[a4paper]{leaflet}
+\usepackage{mathptmx}
+\usepackage{url}
+\usepackage{graphicx,url}
+\graphicspath{{../../images14/}}
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{1.5}
+\textheight=190mm
+
+\newcommand{\sct}[1]{\subsubsection{#1}\mbox{}\\}
+
+\CutLine*{1}\CutLine*{3}\CutLine*{4}\CutLine*{6}
+
+\newcommand*{\blk}[2][-20]{\raisebox{#1pt}%
+{\includegraphics[height=30pt,keepaspectratio=true]{#2}}}
+
+\newcommand*{\blkwide}[2][-50]{\raisebox{#1pt}%
+{\includegraphics[width=.4\textwidth,keepaspectratio=true]{#2}}}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\begin{bfseries}
+\begin{large}
+VPL Reference Card (Version 1.4)
+\end{large}
+
+\medskip
+
+Moti Ben-Ari, St\'{e}phane Magnenat, Jiwon Shin
+\end{bfseries}
+\end{center}
+
+\vspace*{-1ex}
+{\scriptsize Copyright 2013--14 by Moti Ben-Ari, St\'{e}phane Magnenat and
+Jiwon Shin. This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 License. To view a copy of this license,
+visit \url{http://creativecommons.org/licenses/by-sa/3.0/}; or, (b) send
+a letter to Creative Commons, 543 Howard Street, 5th Floor, San
+Francisco, California, 94105, USA.}
+
+
+\sct{VPL user interface}
+
+\smallskip
+
+\begin{tabular}{lp{.73\textwidth}}
+\blk{new} & Clear the editor; return to simple mode.\\
+
+\blk{open} & Open an existing program.\\
+
+\blk{save} & Save the program.\\
+
+\blk{saveas} & Save the program with a new name.\\
+
+\blk{undo} & Undo the previous operation.\\
+
+\blk{redo} & Redo the previous undo.\\
+
+\blk{run} & Load and run the program on the robot.\\
+
+\blk{stop} & Stop the program on the robot.\\
+
+\blk{advanced} & Change to advanced mode.\\
+
+\blk{info1} & Display the VPL documentation.\\
+
+\blk{export} & Export the program in a graphics format.
+
+\end{tabular}
+
+\newpage
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blk{x} & Delete this event-actions pair.\\
+
+&\\
+
+\blk{plus} & Add an event-actions pair.\\
+
+&\\
+
+Drag and drop & Move an event-actions pair.\\
+
+&\\
+
+Control\\drag and drop & Copy an event-actions pair.\\
+\end{tabular}
+
+
+\newpage
+
+\sct{Event blocks}
+
+\begin{tabular}{lp{.73\textwidth}}
+
+\blk{forward} & Buttons are touched.\par
+Red buttons are active.\\
+
+&\\
+
+\blk[-25]{event-prox} & Horizontal sensors detect an object.\par
+White = an object is detected.\par Black = No object is detected.\\
+
+&\\
+
+\blk[-25]{event-prox-advanced} & (Advanced mode) As above, but the slides can be
+used to set the thresholds.\\
+
+&\\
+\blk[-25]{event-ground} & Ground sensors detect light or dark.\par 
+White = a lot of reflected light is detected.\par
+Black = little reflected light is detected.\\
+
+&\\
+
+\blk[-25]{event-ground-advanced} & (Advanced mode) As above, but the slides can be
+used to set the thresholds.\\
+
+&\\
+
+\blk{event-tap} & The robot has been tapped.\\
+
+&\\
+
+\blk{event-tap-advanced} & (Advanced mode) The robot has been tapped.\\
+
+&\\
+
+\blk{event-acc-pitch} & (Advanced mode) The pitch (forwards and backwards) of the robot
+is within the red segment.\\
+
+&\\
+
+\blk{event-acc-roll} & (Advanced mode) The roll (left and right) of the robot
+is within the red segment.\\
+\end{tabular}
+
+
+\begin{tabular}{lp{.73\textwidth}}
+
+\blk{event-clap} & The robot detects a loud noise.\\
+
+&\\
+
+\blk{event-timer} & (Advanced mode) The timer has counted down to zero.\\
+
+\end{tabular}
+
+\bigskip
+\bigskip
+
+\sct{Action blocks}
+
+\begin{tabular}{lp{.73\textwidth}}
+
+\blk[-27]{action-motors} & Set the power of the left and right motors.\par
+Move a slider up (forward)\par
+or down (backwards).\\
+
+&\\
+
+\blk{action-colors-up} & Set the colour of the top of the robot.\par
+Move the sliders to mix red, green and blue.\\
+
+&\\
+
+\blk{action-colors-down} & Set the colour of the bottom of the robot.\par
+Move the sliders to mix red, green and blue.\\
+
+&\\
+
+\blk[-27]{action-music} & Play music.\par
+Click on a bar to set a note.\par
+White notes are longer than black notes.\par
+Click on a note to change white $\leftrightarrow$ black.\\
+
+&\\
+
+\blk{action-timer} & (Advanced mode) Start a timer in the range of 0--4 seconds.\par
+Click on the clock face to set the time.\\
+
+&\\
+
+\blk[-30]{states2} & (Advanced mode) Set the current state.\par
+Grey = do not change the value.\par
+White = set to 0.\par
+Yellow = set to 1.\\
+
+\end{tabular}
+
+
+\newpage
+
+\sct{Examples}
+
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blkwide[-20]{dont-fall} &
+The robot stops when the end of a table is detected.\\
+
+&\\
+
+\blkwide{likes-turns} & 
+The robot turns towards you when you
+are detected by the rightmost or leftmost sensor.\\
+
+&\\
+
+\blkwide{hates} &
+The robot turns away you when you
+are detected by the rightmost or leftmost sensor.\\
+
+&\\
+
+\blkwide{line-controller} & The robot moved off a line on the floor and
+turns back.\\
+
+\blkwide[-35]{clap-lights} & \mbox{}\par
+A clap changes the bottom colour of the robot.\\
+
+\blkwide[-35]{turn-back} & \mbox{}\par
+When the timer counts down to zero, turn right.\\
+
+
+\end{tabular}
+
+\newpage
+
+\sct{Examples with multiple actions}
+
+\vspace*{-4ex}
+
+
+\begin{tabular}{lp{.5\textwidth}}
+
+\blkwide[-35]{colors-multiple} & \mbox{}\par
+An event-actions pair with multiple actions.\\
+
+\blkwide[-35]{tap-on-off1} & \mbox{}\par
+An event-actions pair that
+depends on the current state and changes the state (advanced mode).\\
+
+\blkwide[-35]{turn-clock} & \mbox{}\par
+When the center sensor detects an object, turn left and set a two-second timer.\\
+
+\blkwide[-35]{tap-on-off2} & \mbox{}\par
+Tap changes the first part of the state from
+1 to 0 and turns off the top lights.\\
+
+\blkwide[-35]{tap-on-off1} & \mbox{}\par
+Tap changes the first part of the state
+from 0 to 1 and turns the top color magenta.\\
+
+\end{tabular}
+
+\vfill
+
+\sct{References}
+
+\begin{itemize}
+\item VPL reference:\\
+\url{https://aseba.wikidot.com/en:thymiovpl}.
+
+\item VPL tutorial:\\
+\url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-vpl-tutorial-en.zip}.
+
+\end{itemize}
+\end{document}

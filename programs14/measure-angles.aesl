@@ -1,0 +1,82 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II"># variables for state
+var state[4] = [0,0,0,0]
+var new_state[4] = [0,0,0,0]
+
+# variable for angle
+var angle
+# reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+# subroutine to display the current state
+sub display_state
+	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
+
+onevent acc
+	call math.atan2(angle, acc[0], acc[2])
+	if angle &lt; -15019 then
+		call leds.top(32,0,0)
+	end
+	call math.atan2(angle, acc[0], acc[2])
+	if angle > -9557 and angle &lt; -6827 then
+		call leds.top(0,32,0)
+	end
+	call math.atan2(angle, acc[0], acc[2])
+	if angle > -1365 and angle &lt; 1365 then
+		call leds.top(0,0,32)
+	end
+	call math.atan2(angle, acc[0], acc[2])
+	if angle > 6827 and angle &lt; 9557 then
+		call leds.top(32,32,0)
+	end
+	call math.atan2(angle, acc[0], acc[2])
+	if angle > 15019 then
+		call leds.top(32,0,32)
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="1">
+<set>
+<block value0="1" value1="6" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="32" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="1" value1="3" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="0" value1="32" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="1" value1="0" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="0" value1="0" value2="32" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="1" value1="-3" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="32" value1="32" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="1" value1="-6" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="32" value1="0" value2="32" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+</set>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

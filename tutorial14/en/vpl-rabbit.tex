@@ -1,0 +1,44 @@
+% !TeX root = vpl.tex
+
+\chap{Project: The Rabbit and the Fox}\label{ch.rabbit}
+
+This chapter contains the specification of a large project (my program
+uses 7 event-actions pairs, each with 2--3 actions). You should have
+enough experience by now designing and implementing VPL programs in
+order to write it yourself. We will give the specification of the
+behavior of the robot as a list of tasks and suggest that you develop
+the program by implementing each task in turn.
+
+
+\textbf{Story}\footnote{The story is loosely inspired by a joke
+well-known to PhD students.\\ See:
+\url{http://www.cs.hmc.edu/~fleck/parable.html}.} The robot is a rabbit,
+walking in the forest. A fox chases the the rabbit to catch
+it from behind. The rabbit senses the fox, turns around and catches the
+fox.
+
+
+\textbf{Specification}
+
+For each event, we specify a top color to be displayed when the event occurs.
+
+\begin{enumerate}
+\item Touch the forwards button: the robot moves forwards (blue).
+\item Touch the backwards button: the robot stops (off).
+\item If the robot detects the edge of the table it stops (off).
+\item If the left rear sensor detects an object, the robot quickly turns
+left (counterclockwise) until the object is detected by the front center
+sensor (red).
+\item If the right rear sensor detects an object, the robot quickly turns
+right (clockwise) until the object is detected by the front center
+sensor (green).
+\item When the object is detected by the front center sensor, the robot
+moves forward quickly for one second and then stops (yellow).
+\end{enumerate}
+
+\textbf{Guidance} Use states to ensure that the robots stops after
+moving forward even if the front center sensor still detects the object.
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Program file} \bu{rabbit-fox.aesl}}

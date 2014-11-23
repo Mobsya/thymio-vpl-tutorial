@@ -1,0 +1,65 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II"># variables for notes
+var notes[6]
+var durations[6]
+var note_index = 6
+var wave[142]
+var i
+var wave_phase
+var wave_intensity
+
+# compute a sinus wave for sound
+for i in 0:141 do
+	wave_phase = (i-70)*468
+	call math.cos(wave_intensity, wave_phase)
+	wave[i] = wave_intensity/256
+end
+call sound.wave(wave)
+# reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+# when a note is finished, play the next note
+onevent sound.finished
+	if note_index != 6 then
+		call sound.freq(notes[note_index], durations[note_index])
+		note_index += 1
+	end
+
+onevent buttons
+	if button.forward == 1 then
+		call math.copy(notes, [524, 524, 524, 262, 262, 262])
+		call math.copy(durations, [15, 15, 15, 8, 8, 8])
+		call sound.freq(notes[0], durations[0])
+		note_index = 1
+	end
+	if button.backward == 1 then
+		call math.copy(notes, [524, 262, 262, 262, 262, 262])
+		call math.copy(durations, [15, 8, 8, 8, 8, 8])
+		call sound.freq(notes[0], durations[0])
+		note_index = 1
+	end
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="0">
+<set>
+<block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="516" value1="516" value2="516" value3="256" value4="256" value5="256" type="action" name="sound"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="1" value3="0" value4="0" type="event" name="button"/>
+<block value0="516" value1="256" value2="256" value3="256" value4="256" value5="256" type="action" name="sound"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

@@ -1,0 +1,54 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="1" name="thymio-II"># reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+onevent prox
+	if prox.ground.delta[0] > 450 and prox.ground.delta[1] > 450 then
+		motor.left.target = -150
+		motor.right.target = 200
+	end
+	if prox.ground.delta[0] &lt; 350 and prox.ground.delta[1] &lt; 350 then
+		motor.left.target = 350
+		motor.right.target = 350
+	end
+	if prox.ground.delta[0] &lt; 350 and prox.ground.delta[1] > 450 then
+		motor.left.target = -300
+		motor.right.target = 350
+	end
+	if prox.ground.delta[0] > 450 and prox.ground.delta[1] &lt; 350 then
+		motor.left.target = 350
+		motor.right.target = -300
+	end
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="0">
+<set>
+<block value0="1" value1="1" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="-150" value1="200" type="action" name="move"/>
+</set>
+<set>
+<block value0="2" value1="2" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="350" value1="350" type="action" name="move"/>
+</set>
+<set>
+<block value0="2" value1="1" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="-300" value1="350" type="action" name="move"/>
+</set>
+<set>
+<block value0="1" value1="2" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="350" value1="-300" type="action" name="move"/>
+</set>
+<set/>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

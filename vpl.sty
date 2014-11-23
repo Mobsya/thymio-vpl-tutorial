@@ -24,8 +24,8 @@
 
 % End of packages
 
-\renewcommand{\baselinestretch}{1.05}
-\setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\parskip}{0.4\baselineskip plus 1pt minus 1pt}
 \parindent=0pt
 
 % Font for buttons and menus
@@ -100,6 +100,14 @@
 \begin{minipage}{.8\textwidth}%
 #1\end{minipage}}%
 \end{center}}
+
+% localized boxes
+\newcommand*{\trickbox}[2][Trick]{\infobox{#1}{#2}{blue!10}{\bclampe}}
+\newcommand*{\importantbox}[2][Important information]{\infobox{#1}{#2}{yellow!10}{\bcinfo}}
+\newcommand*{\yourturnbox}[1]{\infobox{Your turn}{#1}{orange!10}{\bccrayon}}
+\newcommand*{\exercisebox}[2]{\infobox{Exercise #1}{#2}{orange!10}{\bccrayon}}
+\newcommand*{\warningbox}[1]{\infobox{Warning!}{#1}{orange!10}{\bcattention}}
+\newcommand*{\informationbox}[2]{\infobox{#1}{#2}{yellow!10}{\bcetoile}}
 
 % Change style of chapter and section headings
 \newcommand*{\chap}[1]{\chapter[#1]{\LARGE #1}}

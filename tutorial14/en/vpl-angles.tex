@@ -1,0 +1,69 @@
+% !TeX root = vpl.tex
+
+\chap{Accelerometers (Advanced Mode)}\label{ch.angles}
+
+We are all familiar with \emph{acceleration}, the rate of change of
+speed, for example, when a car speeds up or slows down. An
+\emph{accelerometer} is a device for measuring acceleration. A airbags
+in a car uses an accelerometer to detect if the speed of the car is
+descreasing ``too fast'' because the car has crashed; if so, the airbag
+is inflated.
+
+The Thymio robot has three accelerometers, one for each direction:
+forward / backwards, left / right, and up / down.
+
+\informationbox{Advanced mode}{Accelerometers are supported in \emph{advanced
+mode}. Click on \blkmed{advanced} to enter advanced mode.}
+
+It is hard to achieve measurable accelerations, except for the case of
+\emph{gravity} which is an acceleration towards the center of the earth.
+In this project, we use the accelerometers to measure the angle at which
+the robot is tilted.
+
+There are two events that can detect the angle of the robot relative to
+the earth: \label{p.accel}
+
+\begin{itemize}
+
+\item \blksm{event-acc-roll}: An event occurs when the left / right
+angle of the robot is within the red segment of the half-circle.
+
+\item \blksm{event-acc-pitch}: An event occurs when the forward /
+backwards angle of the robot is within the red segment of the
+half-circle.
+
+\end{itemize}
+
+Initially, these blocks have the red segment pointing upwards from the
+top of the image of the Thymio, so that an event occurs when the robot
+is placed on a level surface such as a table or the floor. By dragging
+the red segment with the mouse, you can select other angles; for
+example, the following block causes an event to occur when the robot is
+tilted left roughly half-way from vertical to horizontal:
+\blkc{roll-left}
+
+\newpage
+
+\begin{quote}
+\textbf{Program}\\
+Hold the robot so that it is facing you and tilt it left and right. The
+top color of the robot will change with a different color for each range
+of the angle of the tilt.
+\end{quote}
+
+{\raggedleft \hfill \textbf{Program file}: \bu{measure-angles.aesl}}
+
+Construct a set of event-actions pairs where each event is a left-right
+accelerometer event and the corresponding action changes the top color:
+\blkc{measure-angles}
+Make a list relating colors to angles so that you can translate any
+color to a specific angle. 
+
+The quarters of the event-state block are gray so the event causes
+the action in any state.
+
+\bigskip
+
+\exercisebox{\thechapter.1}{Can two events use the same red segment of
+angles?\\
+How many events with different angles and you can construct? }

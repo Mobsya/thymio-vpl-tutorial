@@ -1,0 +1,408 @@
+\documentclass[11pt,a4paper,english]{article}
+\usepackage{../../vpl}
+\graphicspath{{../../images14/}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\begin{bfseries}
+
+\begin{Large}
+First Steps in Robotics
+
+with the
+Thymio Robot
+
+and the
+Aseba/VPL Environment
+
+\bigskip
+
+Answers to the Exercises
+
+\end{Large}
+
+Version 1.4{\textasciitilde}pre1
+
+\bigskip
+
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari} and other contributors
+
+\end{bfseries}
+\end{center}
+
+\bigskip
+
+\copyright{}\  2013--14 by Moti Ben-Ari and other contributors.
+
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy
+of this license, visit
+\url{http://creativecommons.org/licenses/by-sa/3.0/}
+or send a letter to Creative Commons, 444 Castro Street, Suite 900,
+Mountain View, California, 94041, USA.
+
+\begin{center}
+\hspace{6pt}\includegraphics[width=.2\textwidth]{../images/by-sa}
+\end{center}
+
+\section{Your First Robotics Project}
+
+No exercises.
+
+\section{Changing Colors}
+
+\textbf{\thesection.1}: 
+When mixing the three colors of the Thymio robot, each color can have
+an intensity between 0 (off) and 32 (on maximum). Therefore, there are
+$33 \times 33 \times 33=35,937$ different colors. If we consider only
+the extremes of intensity off or on maximum, the colors are: off (all
+colors off), white (all colors on), red, green, blue (one color on),
+yellow (red and green on, blue off), cyan (blue and green on, red off),
+magenta (red and blue on, green off).
+
+
+\section{Let's Get Moving}
+
+\textbf{\thesection.1}: The robot should be able to stop. The
+maximum speed of the Thymio is 20 centimeters per second. Since the
+sensors are sampled 10 times a second, the robot can move at most 2
+centimeters before it stops. That should be sufficiently fast to prevent
+the robot from falling off the table, but be prepared to catch it just
+in case!
+
+There are no ground sensors at the back of the Thymio robot, so that the
+time that the sensors in the front detect the edge of the table, the
+entire body of the robot has moved beyond the edge and fallen off.
+
+\section{A Pet Robot}
+
+\textbf{\thesection.1}: Replace the first two event-action pairs
+with the pairs shown in \cref{fig.answer1}. The first pair turns
+both motors on when all the sensors do \emph{not} detect an obstacle;
+the second pair stops the motors when the ground sensors detect the edge
+of the table.
+
+{\raggedleft \hfill Program file \bu{likes-and-stops.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{likes-and-stops}{0.3}
+\caption{Stop at the edge of the table}\label{fig.answer1}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.2}: An event-action pair is run when its event
+occurs. Events like touching a button occur when this external event
+occurs. Other events, like sampling sensors, occur at fixed intervals
+such as 10 times a second. When the sensors are sampled, all events for
+the sensors occur ``at the same time.'' The computer in the robot cannot
+actually run all the event-action pairs simultaneously; instead, the
+event-action pairs are run one-by-one \emph{in the order} that they
+appear from top to bottom in the program.
+
+In the program in \cref{fig.answer1}, the horizontal sensors
+do not detect an obstacle and keep the motors running; \emph{then} the
+ground sensors detect the tape and stop the robot.
+
+In the program in \cref{fig.change}, the ground sensors
+detect the tape and try to stop the motors, but the second event-action
+pair keeps the motors on before they have a chance to stop.
+
+{\raggedleft \hfill Program file \bu{likes-changed-order.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{likes-changed-order}{0.3}
+\caption{Changing the order of the event-action pairs}\label{fig.change}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.3}: 
+\begin{itemize}
+
+\item Use sensors 1 and 3: The robot is less sensitive to the presence
+of your hand on the side. You will have to move it closer to the center.
+
+\item Use both sensors 0 and 1 to turn the robot left and both sensors 3
+and 4 to turn the robot right: The robot senses a wider area in the
+front and side. You don't have to be as careful in placing your hand.
+
+\item Add event-action pairs for the rear sensors 5 and 6: You can now
+cause the robot to turn by placing your hand near the back of the robot.
+
+\end{itemize}
+
+
+\section{The Robot Finds Its Way by Itself}
+
+
+\textbf{\thesection.1}: The event-action pair \blkc{gentle-left}
+will cause a gentle left turn when both ground sensors detect a lot of
+light. If you increase the speed, the robot might run too far off the
+line and not detect it when turning. If the robot gets to the end of the
+line it will also make a gentle left turn.
+
+{\raggedleft \hfill Program file \bu{find-line.aesl}}
+
+\textbf{\thesection.2}: The robot will, of course, move \emph{away} from
+the line.
+
+\textbf{\thesection.3}:
+\begin{itemize}
+\item Gentle turns are easier to follow; 
+\item Sharp turns are harder to follow; 
+\item The robot might not return to the line before
+the next turn is encountered;
+\item Wider lines make it less likely that the robot will run off the line; 
+\item Narrow lines make it more likely that a small deviation will cause
+the robot to run off the line. Therefore, there will be frequent turns
+and the movement will be jerky.
+\end{itemize}
+
+
+\textbf{\thesection.4}:
+\begin{itemize}
+\item If the ground sensing events are more frequent, the robot will be
+more likely to respond to running off the line; if they are less
+frequent, it might run completely off the line before detection occurs.
+\item If the sensors are further apart a wider line will be needed but
+it is more likely that leaving the line will be detected before running
+off it completely; the opposite is true for sensors that are closer
+together.
+\item If there are more sensors, the robot can be more precise in its
+movements: gentle turns if only one sensor detects the floor and sharper
+turns if more than one sensor detects the floor.
+\end{itemize}
+
+\section{Bells and Whistles}
+
+\textbf{\thesection.1}:
+In Morse code, a dash is three times longer than a dot. The actions in
+\cref{fig.morse} use three white notes at the highest tone for the
+dash and one for the dot. Since there must be exactly six tones, we fill
+out the tune with short notes at the lowest tone which will not be heard
+as well as the highest tones.
+
+{\raggedleft \hfill Program file \bu{bells-morse.aesl}}
+
+\begin{figure}
+\begin{center}
+\gr{morse}{.3}
+\caption{Morse code}\label{fig.morse}
+\end{center}
+\end{figure}
+
+
+\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns the motors on when
+the clap event occurs and turns them off when the center button is
+touched.
+
+{\raggedleft \hfill Program file \bu{clap-start.aesl}}
+
+For the opposite behavior, it seems obvious that the program in
+\cref{fig.clap-to-stop} should work, but it doesn't. The reason is
+that the event that causes the motor to stop is not specifically
+clapping; \emph{any} loud noise will cause the event to occur. The
+motors make so much noise that as soon as they start, the loud-noise
+event occurs and the motors stop.
+
+{\raggedleft \hfill Program file \bu{clap-stop.aesl}}
+
+\begin{figure}
+\begin{center}
+\gr{clap-to-start}{.3}
+\caption{Clap to start the motor}\label{fig.clap-to-start}
+\end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{clap-to-stop}{.3}
+\caption{Clap to stop the motor}\label{fig.clap-to-stop}
+\end{center}
+\end{figure}
+
+\textbf{\thesection.3}:
+The program has two event-action pairs (\cref{fig.bump}): one to
+move the robot when a button is touched and the other to stop it when a
+tap event occurs.
+
+{\raggedleft \hfill Program file \bu{bump.aesl}}
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{bump}{.3}
+\caption{Stop the motor when the robot bumps into a wall}\label{fig.bump}
+\end{center}
+\end{figure}
+
+\section{A Time to Like}
+
+\textbf{\thesection.1}:
+See \cref{fig.three}. When the front button
+is touched the motors are turned on and a three-second timer is started.
+When the timer expires, the motors are reversed. Finally, when the
+center button is touched, the motors are stopped.
+
+{\raggedleft \hfill Program file \bu{run-three-seconds.aesl}}
+
+
+\begin{figure}[hbt]
+\begin{center}
+\gr{run-three-seconds}{.3}
+\caption{Run three seconds and reverse}\label{fig.three}
+\end{center}
+\end{figure}
+
+
+\section{States}
+
+\textbf{\thesection.1}:
+There will be two states: state \emph{left} \blksm{state-left} when the
+robot turns to the left and state \emph{right} \blksm{state-right} when
+the robot turns to the right. Initially, touching the forward button in
+the initial state (off, off, off, off) sets a one-second timer and state
+\emph{left} (\cref{fig.dance-start}). When the timer runs down in
+state \emph{left}, the robot turns to the left, (re-)sets a timer for
+two seconds and goes to state \emph{right}
+(\cref{fig.dance-left}). When the timer runs down in state
+\emph{right}, the robot turns to the right, (re-)sets a timer for two
+seconds and goes to state \emph{left} (\cref{fig.dance-right}).
+These two behaviors are run repeatedly, so you will have to click
+\blksm{stop} to stop the robot.
+
+{\raggedleft \hfill Program file \bu{dance.aesl}}
+
+
+\begin{figure}
+\begin{center}
+\gr{dance-start}{0.4}
+\caption{Starting the dance}\label{fig.dance-start}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{dance-left}{0.4}
+\caption{Dance two seconds to the left}\label{fig.dance-left}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{dance-right}{0.4}
+\caption{Dance three seconds to the right}\label{fig.dance-right}
+\end{center}
+\end{figure}
+
+\newpage
+
+\textbf{\thesection.2}:
+I was not able to solve this problem. I had assumed that it would be
+possible to detect the event when \emph{one sensor} no longer detect the
+line \emph{before} the event when \emph{both sensors} no longer detect
+the line. This would enable the program to identify and remember from
+which side the robot ran off the line. This proved impossible even at
+low speeds.
+
+The best I could do is to have the program remember on which side the
+robot last ran off the line, even if that occurred much earlier.
+
+{\raggedleft \hfill Program file \bu{follow-line-and-find.aesl}}
+
+The robot does have one cool behavior: When it gets to the end of the
+line, it slowly turns completely around and heads back the other way
+along the line!
+
+State \emph{left} \blksm{state-left} remembers that the robot left the
+left side of the line and state \emph{right} \blksm{state-right}
+remembers that the robot ran off the right side of the line
+(\cref{fig.follow3}).
+
+When both sensors fail to detect the line, the robot turns in the
+direction indicated by the current state (\cref{fig.follow1}).
+
+It is also possible that the robot runs off the line without ever having
+left one side so that the state is the initial state of all \emph{off};
+in that case, we arbitrary choose to turn right (\cref{fig.follow2}).
+
+\begin{figure}
+\begin{center}
+\gr{follow3}{0.4}
+\caption{Change state to remember direction}\label{fig.follow3}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{follow1}{0.4}
+\caption{Search to the left or the right}\label{fig.follow1}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\gr{follow1}{0.4}
+\caption{Turn to the right}\label{fig.follow2}
+\end{center}
+\end{figure}
+
+
+%\clearpage
+
+\section{Counting}
+
+\textbf{\thesection.1}:
+You can count to four because there are four quarters of the state
+each of which can be set \textbf{on} to count an object.
+
+\textbf{\thesection.2}:
+The lower left quarter of the state icon will be used to represent the
+number of 4's in a binary number. If all quarters are off, the number represented
+is 0; if all quarters are on, the number represented is 4+2+1=7.
+Eight event-action pairs are needed, one for each transition between $n$ and
+$n+1$ (modulo 8).
+
+{\raggedleft \hfill Program file \bu{count-to-eight.aesl}}
+
+
+\textbf{\thesection.3}:
+There are four quarters in the state. We can use one quarter to count
+each of the number of 1's, 2's, 4's and 8's. Therefore, we can count
+from 0 to 8+4+2+1=15.
+
+
+\textbf{\thesection.4}:
+This program is a mirror image of the program for adding.
+For example, if the binary number is xyz1,
+then subtracting one gives xyz0, whatever the values of xyz.
+If the number is xyz0, you will have to borrow a binary digit,
+and there will be different event-action pairs depending on the value
+of xyz. Finally, subtracting one from 0000=0 gives 1111=15 in cyclic
+arithmetic.
+
+{\raggedleft \hfill Program file \bu{subtraction.aesl}}
+
+\textbf{\thesection.5}:
+An event-action pair is needed to count each strip of tape.
+For example, the following pair \blkc{count3} changes the count from 2 to 3 when a tape is detected.
+
+{\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
+
+
+\section{Accelerometers}
+
+\textbf{\thesection.1}: VPL does not allow identical events in more than
+one event-actions pair, unless the parameters are different. For this
+block, choosing a different angle for the red segment makes the events
+different.
+
+There are seven different positions of the red segment between the
+vertical and horizonal on one side. Therefore, each segment represents
+$90 / 6.5 \approx 14$ degrees. (The vertical segment is half within the
+left quarter circle and half within the right quarter circle, so we
+divide 90 by 6.5 and not 7.)
+
+\end{document}

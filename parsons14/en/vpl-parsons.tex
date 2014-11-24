@@ -3,9 +3,7 @@
 \usepackage{../../vpl}
 \graphicspath{{../../images14/}}
 
-\newcommand*{\eblock}{\framebox[40pt]{\rule[-14pt]{0pt}{32pt}}\ }
-\newcommand*{\eblockbig}{\framebox[58pt]{\rule[-5pt]{0pt}{20pt}}\ }
-\newcommand*{\eblocksm}{\framebox[30pt]{\rule[-5pt]{0pt}{20pt}}\ }
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-11pt]{0pt}{32pt}}\ }
 \newcommand*{\hr}{\mbox{}\\\mbox{}\\\rule{\textwidth}{.5pt}\\}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,42 +308,81 @@ longer detects the line in its left sensor,
 \LARGE \textbf{Advanced Mode}
 \end{center}
 
-%\item The robot's top light is off. Tap the robot; the top red light is turned on.
-%Tap again; the top light is turned off. This behavior continues
-% indefinitely.
-%\bigskip\bigskip
-%
-%\begin{tabular}{l@{\hspace{3em}}l|l|l|l}
-%\eblockbig $\rightarrow$ \blkmed{red} & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
-%\\
-%\eblockbig $\rightarrow$ \blkmed{action-colors-up} & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
-%\\
-%\blkmed{tap-0} $\rightarrow$ \eblocksm & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
-%\\
-%\blkmed{tap-1} $\rightarrow$ \eblocksm & \blkmed{tap-0} & \blkmed{tap-1} & \blkmed{set-state-0} & \blkmed{set-state-1}\\
-%\\
-%\end{tabular}
-%
-%
-%\hr
-
 \item The robot counts 0,1,2,3,0,1,2,3, \ldots, whenever it
 detects a clap event.
 \bigskip\bigskip
 
-\begin{tabular}{l@{\hspace{3em}}l|l|l|l}
+\begin{tabular}{l@{\hspace{3em}}llll}
 
-\blkmed{clap-0} $\rightarrow$ \eblocksm &
-\blkmed{state-0} & \blkmed{state-1} & \blkmed{state-2} & \blkmed{state-3}\\ 
+\blk{event-clap} \blk{state-0} $\rightarrow$ \eblock &
+\blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
 \\
-\eblockbig $\rightarrow$ \blkmed{state-2} &
-\blkmed{clap-0} & \blkmed{clap-1} & \blkmed{clap-2} & \blkmed{clap-3}\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
 \\
-\eblockbig $\rightarrow$ \blkmed{state-3} &
-\blkmed{clap-0} & \blkmed{clap-1} & \blkmed{clap-2} & \blkmed{clap-3}\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-3} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
 \\
-\eblockbig $\rightarrow$ \eblocksm &
-\blkmed{clap-0} & \blkmed{clap-3} & \blkmed{state-0} & \blkmed{state-3}\\ 
+\blk{event-clap} \eblock $\rightarrow$ \eblock &
+\blk{state-event-0} & \blk{state-event-3} & \blk{state-0} & \blk{state-3}\\ 
+\\
+\end{tabular}
+
+\hr
+
+\item When the center button is touched, the right front and left front circle
+lights turn on and off alternately at one-second intervals.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
+\blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
+\\
+\blk{event-timer} \blk{state-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
+\\
+\eblock \blk{state-2} $\rightarrow$ \eblock \blk{one-second} &
+\blk{event-timer} & \blk{action-timer} & \blk{state-0} & \blk{state-1}\\ 
+\\
+\end{tabular}
+
+\hr
+
+\newpage
+
+\item The bottom light of the robot turns green when it detects an object is
+far away from it and the top light of the robot turns red when it
+detects an object is close to it.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{bottom-green} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{red} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+\end{tabular}
+
+\hr
+
+
+\item Tilt the robot on its left side; the top light turns blue and the bottom
+light is turned off. Tilt the robot on its back; the top light is turned
+off and the bottom light turns yellow.
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{blue} \blk{action-colors-down} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{action-colors-up} \blk{yellow-bottom} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
 \\
 \end{tabular}
 

@@ -1,0 +1,187 @@
+% !TeX root = vpl.tex
+
+\chap{Project: Finite Automata}\label{ch.fa}
+
+A \emph{finite automaton (FA)}\footnote{The plural is \emph{finite
+automata} and its acronym is also FA.} is an abstract machine that is
+capable of performing computations. FA are extremely important in many
+areas of computer science.\footnote{FA are formally defined and
+developed in textbooks such as: J.E. Hopcroft, R. Motwani, J.D. Ullman.
+\textit{Introduction to Automata Theory, Languages, and Computation},
+Pearson, 2013.} Consider finite strings composed of two symbols $a$ and
+$b$: \begin{quote} aabbbababbaba \end{quote}
+
+The task is to read such strings and to decide if the number of $a$'s is
+odd or even. A FA to solve this problem has two states: it is in state 0
+if the number of $a$'s read so far is even and it is in state 1 if the
+number of $a$'s read so far is odd. The FA is represented in the
+following diagram. It consists of two states, 0 and 1, and transitions
+from each state that are labeled $a$ and $b$.
+
+\begin{center}
+\begin{picture}(175,45)
+%\put(0,0){\framebox(175,45){}}
+\put(35,25){\circle{30}}
+\put(140,25){\circle{30}}
+\put(3,25){\vector(1,0){15}}
+\put(20,10){\makebox(30,30){0}}
+\put(125,10){\makebox(30,30){1}}
+\put(50,20){\vector(1,0){75}}
+\put(50,10){\makebox(75,10){a}}
+\put(125,30){\vector(-1,0){75}}
+\put(50,30){\makebox(75,10){a}}
+\put(20,10){
+   \put(0,0){\oval(20,18)[b]}
+   \put(0,0){\oval(20,18)[tl]}
+   \put(-1,9){\vector(1,0){1}}
+   \put(-20,-5){\makebox(10,10){b}}
+}
+\put(145,10){
+    \put(10,0){\oval(20,18)[b]}
+    \put(10,0){\oval(20,18)[tr]}
+    \put(11,9){\vector(-1,0){1}}
+    \put(20,-5){\makebox(10,10){b}}
+}
+\end{picture}
+\end{center}
+
+When the FA is in a state and reads a symbol from the string, it changes
+its state as indicated by the transitions. If the number of $a$'s read
+so far is even (state 0) and an $a$ is read, the FA takes the transition
+to state 1, and conversely if the number of $a$'s read so far is odd
+(state 1), the transition to state 0 is taken. If a $b$ is read, the
+state does not change, because the number of $a$'s read does not change.
+
+The FA starts in state 0 since the initial number of $a$'s read is 0
+which is even. This initial state is indicated by the small arrow.
+
+\textbf{Specification}\footnote{The specification and implementation
+were inspired by the light-painting project
+\url{https://aseba.wikidot.com/en:barcodelightpainting}.}
+
+Print out the file \p{fa-path-alternate.pdf} containing the
+following image:\footnote{The path files can be found in the directory
+\p{image14} in this archive.}
+
+\gr{fa-path-parity}{.8}
+
+The shaded line is used to ensure that the robot moves forward and does
+not move off to the right or the left. The string is encoded by squares,
+where $a$ is represented by a black square and $b$ is represented by a
+white square. This image represents the string $babababab$.
+
+Place the robot at the left of the image before the first square, facing
+right, with the right ground sensor in the middle of the shaded line.
+The behavior of the robot is as follows:
+
+\begin{enumerate}
+
+\item Touch the forward button to start the robot. The top light is
+turned off, the state is initialized (see below) and a timer is started.
+
+\item Touch the center button to stop the robot.
+
+\item The robot moves to the right. It uses the \emph{right} ground
+sensor to detect if it starts to turn left or right. If the robot turns
+right, the sensor will detect a lower (blacker) light level and the
+robot turns left; if the robot turns left, the sensor will detect a
+higher (whiter) light level and the robot turns right.
+
+\item When the timer expires, the value of the \emph{left} ground sensor
+is checked. If the robot is over a white square (reading a $b$), the top
+light is turned red and the timer reset. If the robot is over a black
+square (reading a $a$), the top light is turned green, the timer reset
+and the state changed from even to odd or from odd to even.
+
+\end{enumerate}
+
+
+\textbf{Guidance}
+
+The robot will use three of the four quarters in the state events and
+actions:
+
+\begin{itemize}
+\item The upper left quarter is used to indicate if the program is
+running or not.
+\item The upper right quarter is used to indicate if the color (black or
+white) of a square should be detected.
+\item The lower left quarter keeps track of whether the
+number of $a$'s read is even or odd.
+\end{itemize}
+
+Here is an example of one event-actions pair:
+
+\blkc{parity-0-1}
+
+\begin{quote}
+if the left sensor detects little light (a black square) \emph{and}\\
+\hspace*{1em} the program is running \emph{and}
+the color of the square should be detected \emph{and}\\
+\hspace*{1em} an even number of $a$'s has been read so far, then\\
+\hspace*{2em} turn on the top red light\\
+\hspace*{2em} change the state: the number of $a$'s
+read is odd \emph{and}\\
+\hspace*{4em} the color of the square should not be detected\\
+\hspace*{2em} reset the timer
+\end{quote}
+
+{\raggedleft \hfill \textbf{Program file}: \bu{fa.aesl}}
+
+You will have to experiment with the speed of the motors and the
+duration of the timers to reliably detect the black and white squares.
+
+\textbf{Exercise} Print out the file \p{fa-path-blank.pdf} which
+contains an image where all the squares are white. Use a marker pen to
+blacken a different set of squares and test the program. In particular,
+check if the program works where two or more adjacent squares are
+blackened, representing a string with more than one consecutive $a$.
+
+\textbf{Exercise} Modify the program so that it detects the remainder
+$0$, $1$ or $2$ of the number of $a$'s read divided by $3$.
+
+\bigskip
+
+\textbf{Modifying the layout}
+
+You can modify the layout of the shaded line and the squares if you
+know how to format a document using \LaTeX{}. The files \p{\footnotesize
+fa-path-*.tex} contain the \LaTeX{} source code. 
+
+The following instruction draws a shaded line 2cm wide by 23cm
+ long:\footnote{These instructions are from the Ti\textit{k}Z
+graphics library.}
+\begin{footnotesize}
+\begin{verbatim}
+\shade[left color=black,right color=white] (0,0) rectangle +(2,23);
+\end{verbatim}
+\end{footnotesize}
+
+The black and white squares are drawn using the following instructions: 
+\begin{footnotesize}
+\begin{verbatim}
+\foreach \a in {1, 3, 5, 7}
+  \filldraw[color=black] (\offset,\height*\a) rectangle +(\width,\height);
+
+\foreach \a in {0, 2, 4, 6, 8}
+  \draw (\offset,\height*\a) rectangle +(\width,\height);
+\end{verbatim}
+\end{footnotesize}
+You can change the list of numbers in the \p{foreach} instructions
+to specify which squares are black and which are white.
+
+The \p{filldraw} and \p{draw} instructions use length parameters that
+can be easily changed:
+\begin{footnotesize}
+\begin{verbatim}
+\setlength{\height}{2.4cm}  % Height of a square
+\setlength{\width}{3cm}     % Width of a square
+\setlength{\offset}{2.3cm}  % Offset of the squares from the shaded line
+\end{verbatim}
+\end{footnotesize}
+
+Format the file with \p{pdflatex} and print the output using software
+such as \p{Adobe Reader} or \p{SumatraPDF}. The image is created in
+portrait layout, but you can fix paper to a table in any orientation.
+Two or more images can be taped to a table in sequence to obtain a
+representation of a longer string.

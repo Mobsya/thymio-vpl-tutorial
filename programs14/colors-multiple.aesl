@@ -24,8 +24,8 @@ onevent buttons
 	end
 	if button.center == 1 then
 		call leds.top(0,0,0)
-		call leds.bottom.left(7,0,0)
-		call leds.bottom.right(7,0,0)
+		call leds.bottom.left(1,0,0)
+		call leds.bottom.right(1,0,0)
 	end
 <toolsPlugins>
 <ThymioVisualProgramming>
@@ -51,7 +51,7 @@ onevent buttons
 <set>
 <block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
 <block value0="0" value1="0" value2="0" type="action" name="colortop"/>
-<block value0="7" value1="0" value2="0" type="action" name="colorbottom"/>
+<block value0="1" value1="0" value2="0" type="action" name="colorbottom"/>
 </set>
 <set/>
 </program>

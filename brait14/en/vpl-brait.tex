@@ -1,0 +1,236 @@
+\documentclass[12pt,a4paper,english]{report}
+
+\usepackage{../../vpl}
+\usepackage{url}
+\def\UrlFont{\sf\small}
+\graphicspath{{../../images14/}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\begin{Huge}
+\begin{bfseries}
+Braitenberg Creatures in VPL
+\end{bfseries}
+\end{Huge}
+
+\bigskip
+\bigskip
+
+\begin{Large}
+Version 1.0
+for \href{https://aseba.wikidot.com/en:downloadinstall}{Aseba 1.4}
+\end{Large}
+
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\begin{LARGE}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}
+\end{LARGE}
+
+\begin{Large}
+\href{http://www.weizmann.ac.il/sci-tea/benari/}{http://www.weizmann.ac.il/sci-tea/benari/}
+\end{Large}
+
+\end{center}
+
+\vfill
+
+\begin{center}
+\copyright{}\  2015 by \href{http://www.weizmann.ac.il/sci-tea/benari/}{Moti Ben-Ari}% and other contributors.
+\end{center}
+
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported License. To view a copy
+of this license, visit
+\url{http://creativecommons.org/licenses/by-sa/3.0/}
+or send a letter to Creative Commons, 444 Castro Street, Suite 900,
+Mountain View, California, 94041, USA.
+
+\begin{center}
+\includegraphics[width=.2\textwidth]{by-sa}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\Large \textbf{What are Braitenberg Creatures?}
+\end{center}
+
+\href{http://en.wikipedia.org/wiki/Valentino_Braitenberg}{Valentino
+Braitenberg} was a neuroscientist who published a small book describing
+the design of virtual vehicles, which exhibited surprisingly complex
+behavior.\footnote{V. Braitenberg. \textit{Vehicles: Experiments in
+Synthetic Psychology} (MIT Press, 1984).} Braitenberg's vehicles have
+been widely used in educational robotics.
+
+Researchers at the MIT Media Lab created hardware implementations of
+Braintenberg's vehicles, which they called \emph{Braitenberg
+creatures}.\footnote{David W. Hogg, Fred Martin, Mitchel Resnick.
+\textit{Braitenberg Creatures}. MIT Media Laboratory, E\&L Memo 13,
+1991. \url{http://cosmo.nyu.edu/hogg/lego/braitenberg_vehicles.pdf}.}
+The vehicles were build from \emph{programmable bricks} that were the
+forerunner of the LEGO Mindstorms robotics kits.
+
+This document describes an implementation of the twelve Braitenberg
+creatures from the MIT report adapted for the Thymio-II robot with the
+Aseba/\textsc{VPL} programming environment. The MIT hardware used light
+and touch sensors, while the Thymio robot relies primarily on
+infrared proximity sensors. To enable comparison with the MIT report,
+the names of the creatures used there have been retained, even though
+they may not be appropriate for the Thymio implementations.
+
+In the descriptions, the phrase ''detects an object'' is used. Unless
+otherwise indicated, this means that an object is detected by the front
+center sensor. The easiest way to do this is to place and move your hand
+so that it is detected by a sensor.
+
+The \textsc{VPL} source code is not given here, but is available in the
+zip archive in which this document is delivered. The file names are the
+same as the names of the creatures with the extension \texttt{\small
+aesl}. For some creatures, additional behaviors are suggested in the
+exercises and their implementations are given in file names with an
+additional number.
+
+Building the Braitenberg creatures is especially suited as an activity
+for novices, because they require very short programs (nine of them
+require only two event-actions pairs!), yet they require some thought to
+implement correctly. Feel free to expand the implementations to include
+other features, such as detecting the edge of a table, using buttons to
+turn the robot on and off, and displaying the robot's current behavior
+using different colors of the LEDS.
+
+\textbf{Version note} The implementations were done using Version 1.4 of
+Aseba/\textsc{VPL} that has not yet been released. Most of them can also
+be implemented in Version 1.3 with multiple event-action pairs replacing
+the multiple actions per event supported in 1.4.
+
+\textbf{Advanced mode} When an implementation needs blocks from advanced
+mode such as timers or states, the word \emph{advanced} appears.
+
+\newpage
+
+\begin{center}
+\Large \textbf{The Braitenberg Creatures}
+\end{center}
+
+\begin{description}
+
+\item[Timid] When the robot does not detect an object, it moves forwards.
+When it detects an object, it stops.
+
+\item[Indecisive] When the robot does not detect an object, it moves
+forwards. When it detects an object, it moves backwards. At just the
+right distance, the robot will \emph{oscillate}, that is, it will move
+forwards and backwards in quick succession.
+
+\item[Paranoid] When the robot detects an object, it moves forwards. When
+it does not detect an object, it turns to the left.
+
+\textbf{Exercise (Paranoid1)} When an object is detected by the center
+sensor of the robot, it moves forwards. When an object is detected by
+the right sensor (but not by the center sensor), the robot turns right.
+When an object is detected by the left sensor (but not by the center
+sensor), the robot turns left.
+
+\textbf{Exercise (Paranoid2, advanced)} As in \textbf{Paranoid}, but the
+robot alternates the direction of its turn every second. \textbf{Hint}
+Use states to keep track of the direction and a timer to change states.
+
+\item[Dogged] When the robot detects an object in front, it moves
+backwards. When the robot detects an object in back, it moves forwards.
+
+\textbf{Exercise (Dogged1)} As in \textbf{Dogged}, but also: When the
+robot does not detect an object, it stops.
+
+\textbf{Exercise (Dogged2, advanced)} The robot moves forwards until it
+detects an object and then moves backwards. The robot moves backwards
+until it detects an object and then moves forwards. \textbf{Hint} Use
+states to keep track of the direction. Detecting an objects causes the
+state to change and the state controls the motors.
+
+\item[Insecure] If an object is not detected, turn the robot's right
+motor on and the left motor off. If an object is detected, turn the
+right motor off and the left motor on. The robot should follow a wall
+placed to its left. \textbf{Hint} See Note~\ref{e.motor} below.
+
+\item[Driven] If the robot detects an object on the left, it turns the
+right motor on and the left motor off. If the robot detects an object on
+the right, it turns the left motor on and the right motor off. The robot
+should approach the object in a zigzag. \textbf{Hint} See
+Note~\ref{e.motor} below.
+
+\item[Persistent (advanced)] The robot moves forwards until it detects
+an object. It then moves backwards for one second and reverses to move
+forwards again.
+
+\item[Attractive and repulsive] When an object approaches the robot from
+behind, the robot runs away until it is out of range.
+
+\item[Consistent (advanced)] The robot cycles through four states when
+it is tapped: moving forwards, turning left, turning right, moving
+backwards.
+
+\item[Inhumane] The robot travels forwards until it detects an obstacle
+and then it stops and never moves again.
+
+\item[Frantic (advanced)] The top LED flashes red. \textbf{Hint} You the
+sensor event block with all sensors gray as explained in
+note~\ref{e.gray} below.
+
+\textbf{Exercise (Franctic1, advanced)} Implement the flashing LED using
+the button event block instead of the sensor event block. Is there a
+difference in the behavior of the robot? If so, what causes it?
+
+\item[Observant (advanced)] The robot turns the top LED green when the
+right sensor detects an object. The robot turns the top LED red when the
+left sensor detects an object. Once a LED is turned on, it waits three
+seconds before turning off; during this period, the LED does not change,
+no matter what is detected.
+
+\end{description}
+
+\begin{center}
+\Large \textbf{Notes on the VPL Blocks}
+\end{center}
+
+\begin{enumerate}
+
+\item\label{e.motor} When one motor rotates forwards at a certain speed
+and the other motor rotates backwards at the same speed, the robot turns
+in place. However, if only one motor is on, the robot goes both forwards
+and in the opposite direction. Since only one motor is powered, you may
+need to set a higher power to overcome ground resistance.
+
+\item\label{e.gray} The small squares on the sensor event block are
+initially colored light gray, meaning that the corresponding sensors to
+not take part in determining when the event occurs. In most projects,
+you click one or more of the sensors to indicate the they participate in
+\emph{filtering} the events: red causes an event to occur if this sensor
+detects and object and black causes an event if this sensors does not
+detect an object. However, if \emph{all} the sensors remain in the
+original gray, then no filtering is done, that is, the event will occur
+no matter what values are read from the sensors. Such a block is a
+convenient way of expressing: the event \emph{always} occurs, where
+\emph{always} means many times per second.
+
+The meaning of the button event block is similar. When \emph{all}
+buttons remain in the original gray color, the button event occurs many
+times per second.
+
+\end{enumerate}
+
+\end{document}

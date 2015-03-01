@@ -3,11 +3,12 @@
                     Thymio-II Robot
                         and the
                   Aseba/VPL Environment
+                      For Aseba 1.3
 
            Moti Ben-Ari and other contributors
               (see authors.txt for details)
 
-    Copyright 2013 by Moti Ben-Ari and other contributors
+    Copyright 2013-15 by Moti Ben-Ari and other contributors
 
     This work is licensed under the Creative Commons
     Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -22,12 +23,15 @@ dropping colorful blocks. This archive is a tutorial on using the
 Thymio-II robot with VPL. For more information on the Thymio-II and
 Aseba, see: https://aseba.wikidot.com/.
 
-There are four documents and two directories in this archive:
+There are four directories in this archive:
+docs:
+  vpl.pdf:                  Tutorial
+  vpl-parsons.pdf           Parsons puzzles
+programs:                   VPL programs for the tutorial
+answers:
+  vpl-answers.pdf:          Answers to the questions
+  programs:                 VPL programs for the answers
+ref-card:
+  vpl-ref-card.pdf:         Single A4 page reference card
+  vpl-folding-ref-card.pdf: Folding reference card
 
-thymio-vpl-tutorial-en.pdf:             The tutorial
-thymio-vpl-tutorial-answers-en.pdf:     The answers to the questions
-thymio-vpl-ref-card-en.pdf:             Single A4 page reference card
-thymio-vpl-folding-ref-card-en.pdf:     Folding reference card
-
-programs:     The Aseba/VPL programs for the examples in the tutorial
-answers:      The Aseba/VPL programs for the answers

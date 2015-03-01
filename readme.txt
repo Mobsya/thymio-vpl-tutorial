@@ -3,11 +3,12 @@
                     Thymio-II Robot
                         and the
                   Aseba/VPL Environment
+                      For Aseba 1.3
 
            Moti Ben-Ari and other contributors
               (see authors.txt for details)
 
-    Copyright 2013 by Moti Ben-Ari and other contributors
+    Copyright 2013-15 by Moti Ben-Ari and other contributors
 
     This work is licensed under the Creative Commons
     Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -16,32 +17,21 @@
     or send a letter to Creative Commons, 444 Castro Street,
     Suite 900, Mountain View, California, 94041, USA.
 
-
 Aseba is a programming environment for the Thymio-II robot. VPL is a
 component of Aseba that enables visual programming by dragging and
-dropping colorful blocks. This repository is a tutorial on using the
+dropping colorful blocks. This archive is a tutorial on using the
 Thymio-II robot with VPL. For more information on the Thymio-II and
 Aseba, see: https://aseba.wikidot.com/.
 
-There are five directories in this repository:
+There are four directories in this archive:
+docs:
+  vpl.pdf:                  Tutorial
+  vpl-parsons.pdf           Parsons puzzles
+programs:                   VPL programs for the tutorial
+answers:
+  vpl-answers.pdf:          Answers to the questions
+  programs:                 VPL programs for the answers
+ref-card:
+  vpl-ref-card.pdf:         Single A4 page reference card
+  vpl-folding-ref-card.pdf: Folding reference card
 
-docs:     The text of the tutorial
-images:   The images used in the tutorial
-programs: The Aseba/VPL programs for the examples in the tutorial
-answers:  Answers to the exercises and programs for the answers
-readmes:  Language-specific readmes for the distribution archives
-
-This tutorial is written using LaTeX. To compile both the tutorial 
-and the answers, under unixes with pdflatex installed, just type:
-
-    make
-
-If you want to build by hand, the files to compile are:
-
-    docs/LL/vpl.tex
-    answers/LL/vpl-answers.tex
-
-where LL is the language code (for instance "en").
-
-If you have trouble compiling, or found errors in this document, please
-fill an issue at https://github.com/aseba-community/thymio-vpl-tutorial

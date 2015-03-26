@@ -22,14 +22,14 @@ foil, contruct an object with various arrangements of the strips of foil:
 
 \item Each configuration of the three center horizontal sensors will
 represent a different code. (How many codes can there be?) For some or
-all of these codes, implement event-actions pairs that displays a top
+all of these codes, implement event-actions pairs that display a top
 color depending on the code identified.
 
 \end{enumerate}
 
 \textbf{Guidance}:
 
-Since we are only using the three center sensors, the squares for the
+We will only use the three center sensors, so the squares for the
 outer sensors will be gray. For the center sensors, squares where the
 reflecting foil must appear in the code are white, while squares where
 the foil must not appear are black. For example, the following
@@ -37,9 +37,8 @@ event-actions pair displays yellow for the code \texttt{on-off-on}:
 
 \blkc{barcode1-3}
 
-This program identifies barcodes with foil opposite any two of the three
-center sensors, as well as the code with no foil. You can extend it for
-other configurations. 
+The program in the archive identifies barcodes with foil opposite any
+two of the three center sensors, as well as the code with no foil.
 
 {\raggedleft \hfill \textbf{Program file}: \bu{barcode.aesl}}
 

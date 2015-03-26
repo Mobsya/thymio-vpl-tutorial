@@ -41,7 +41,7 @@ by three dots followed by one dash.}
 
 \sect{Controlling your robot by sound}
 
-The Thymio has a microphone. The event \blksm{event-clap} will occur
+The Thymio has a microphone. The event \blksm{event-clap} occurs
 when the microphone senses a loud noise, for example, from clapping your
 hands. The following event-actions pair will turn on the bottom lights
 when you clap your hands:
@@ -60,7 +60,7 @@ events.}
 Write a program that causes the robot to move when you clap
 your hands and to stop when you touch a button.
 \vspace{.5em}\\
-Write a program that does the opposite: the robot starts when you touch a
+Write a program that does the opposite: the robot starts moving when you touch a
 button and stops when you clap your hands.
 }
 
@@ -70,13 +70,11 @@ button and stops when you clap your hands.
 Pets don't always do what we ask them to do. Sometimes they need a pat
 on the head to encourage them. You can do the same with your robot. The
 Thymio contains a tap sensor that causes the event \blksm{event-tap} to
-occur in response to a quick tap on the top of the robot. For example,
-the following event-actions pair causes the top lights to turn on when
-you tap the top of the robot:
+occur in response to a quick tap on the top of the robot. The following
+event-actions pair causes the top lights to turn on when you tap the top
+of the robot:
 
 \blkc{good-job}
-
-\newpage
 
 Construct a program from this event-actions pair and the following pair
 that turns on the bottom lights when you clap your hands:
@@ -88,7 +86,7 @@ that turns on the bottom lights when you clap your hands:
 Can you turn on just the top lights? This is difficult to do: a tap
 causes a sound that can be loud enough to cause the bottom lights to be
 turned on as well. With a little practice I was able to tap the robot
-gently enough so that the sound was not considered an event.
+gently enough so that the sound of the tap was not considered an event.
 
 \bigskip
 

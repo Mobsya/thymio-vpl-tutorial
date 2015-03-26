@@ -2,11 +2,10 @@
 
 \chap{Project: Sweeping the Floor}\label{ch.sweep}
 
-Are you tired of cleaning your house? Now there are
-\href{http://en.wikipedia.org/wiki/Robotic_vacuum_cleaner}{robotic
-vacuum cleaners} that can do the job for you! The robot systematically
-moves over the floor of your apartment, navigating around furniture and
-other obstacles, while it vacuums the dirt.
+Are you tired of cleaning your house? Now there are \emph{robotic vacuum
+cleaners} that can do the job for you! The robot systematically moves
+over the floor of your apartment, navigating around furniture and other
+obstacles, while it vacuums the dirt.
 
 \textbf{Specification}
 
@@ -37,11 +36,11 @@ order:
 \put(190,10){\oval(60,20)}
 \put(270,10){\oval(60,20)}
 \put(350,10){\oval(60,20)}
-\put(0,0){ \makebox(60,20){right}}
+\put(0,0){ \makebox(60,20){move long}}
 \put(80,0){\makebox(60,20){turn right}}
-\put(160,0){\makebox(60,20){down}}
+\put(160,0){\makebox(60,20){move short}}
 \put(240,0){\makebox(60,20){turn right}}
-\put(320,0){\makebox(60,20){left}}
+\put(320,0){\makebox(60,20){move long}}
 \put( 60,10){\vector(1,0){20}}
 \put(140,10){\vector(1,0){20}}
 \put(220,10){\vector(1,0){20}}
@@ -54,14 +53,20 @@ performing. The direction and amount of movement for each subtask is
 determined by the speeds of the left and right motors, and by the length
 of time that the motors run. Therefore, each subtask will be implemented
 by an event-actions pair, where the event is the expiration of the timer
-for the previous subtask (except initially, where it is touching the
-button), and the (three) actions are to set the following parameters for
-the next subtask: (1) the state; (2) the left and right motor speeds
-(see page~\pageref{s.sliders} on setting the motor speeds accurately);
-(3) the timer period. You will have to experiment with the speeds and
-the timer period to cause the robot to follow the required rectangular
-path.
+for the previous subtask and the actions are to set the following
+parameters for the next subtask: (1) the state; (2) the left and right
+motor speeds; (3) the timer period. The program is initiated by a button event.
+
+You will have to experiment with the speeds and the timer period to
+cause the robot to follow the required rectangular path.
 
 \bigskip
 
 {\raggedleft \hfill \textbf{Program file} \bu{sweep.aesl}}
+
+For fun, add colors to the top lights: green for straight, yellow for turn
+and red for stop.
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Program file} \bu{sweep1.aesl}}

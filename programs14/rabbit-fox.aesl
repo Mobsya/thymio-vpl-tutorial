@@ -55,6 +55,7 @@ onevent prox
 	if prox.horizontal[2] > 2000 and state[0] == 0 then
 		motor.left.target = 250
 		motor.right.target = 250
+		call leds.top(32,32,0)
 		timer.period[0] = 1088
 	end
 
@@ -65,6 +66,7 @@ onevent timer0
 	timer.period[0] = 0
 	motor.left.target = 0
 	motor.right.target = 0
+	call leds.top(0,0,0)
 
 	call math.copy(state, new_state)
 	callsub display_state
@@ -109,12 +111,14 @@ onevent timer0
 <block value0="0" value1="0" value2="1" value3="0" value4="0" value5="0" value6="0" value7="1000" type="event" value8="2000" name="prox"/>
 <block value0="2" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="250" value1="250" type="action" name="move"/>
+<block value0="32" value1="32" value2="0" type="action" name="colortop"/>
 <block value0="1088" type="action" name="timer"/>
 </set>
 <set>
 <block type="event" name="timeout"/>
 <block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="0" value1="0" type="action" name="move"/>
+<block value0="0" value1="0" value2="0" type="action" name="colortop"/>
 </set>
 <set>
 <block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>

@@ -18,8 +18,8 @@ action is changing the color of the robot.
 to each sensor show when that sensor detects an object. Move your
 fingers in front of the sensors and see which lights are turned on.
 Construct an event-actions pair consisting of the sensor event and the
-top color action and experiment with the settings of the small squares
-in the event block (gray, white, black).
+top color action, and experiment with the settings of the small squares
+in the event block (gray, white, black, and dark gray in advanced mode).
 
 \item[Experiment with the motors] Experiment with the settings of the
 motors so that you get a general impression how fast the robot moves for
@@ -45,17 +45,17 @@ program.
 add a new event-actions pair so that you can identify which pair causes
 an error.
 
-\item[Use ``Save as'' after modifying a program] Before you change your
-program, use \blksm{saveas} to save the program under a different name.
+\item[Use \bu{Save as} after modifying a program] Before you change your
+program, click \blksm{saveas} to save the program under a different name.
 If the change makes things worse, it will be easy to go back to the
 previous version.
 
-\item[Display what happens] Use colors or sounds to display what the
-program is doing. For example, if one sensor causes the robot to turn
-left and another to turn right, add an action to the sensor events to
-display different top colors. You will be able to see if a problem is
-caused by a sensor or if the motors are not responding correctly to a
-sensor event.
+\item[Display what happens] Use colors to display what the program is
+doing. For example, if a sensor in one pair causes the robot to turn
+left and a sensor in another pair causes it to turn right, add an action
+to each pair that displays different top colors. You will be able to see
+if a problem is caused by the sensors or if the motors are not
+responding correctly to a sensor event.
 
 \end{description}
 
@@ -66,7 +66,7 @@ sensor event.
 
 \item[Use a smooth surface] Make sure that the surface on which the
 robot moves---a table or the floor---is very clean and smooth.
-Otherwise, the motors may not be able to move the robot, or turns may be
+Otherwise, the motors may not be able to move the robot or turns may be
 uneven.
 
 \item[Use a long cable] Make sure that your cable is long enough. If the
@@ -82,10 +82,18 @@ table before the sensor event can stop the motor. When you run a
 program, start at a low speed and gradually increase it.
 
 For another example, consider the line-following program in
-Chapter~\ref{ch.line}. Its algorithm depends on being able to detect
+\cref{ch.line}. Its algorithm depends on being able to detect
 when one ground sensor detects the line and the other doesn't. If the
 robot is moving too fast, the position where only one sensor detects
 the line does not cause an event.
+
+\item[Problems with the bottom sensors] In programs like the
+line-following program, the sensor must distinguish between lots of
+reflected light and little reflected light. Make sure that there is a
+lot of contrast between the two. For example, if your table is not light
+enough, you can attach white paper to get better results.
+
+Alternatively, you can adjust the thresholds in advanced mode.
 
 \item[Event-actions pairs are run sequentially] In theory, the
 event-actions pairs are run \emph{concurrently}---at the same time; in

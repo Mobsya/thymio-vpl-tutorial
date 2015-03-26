@@ -11,12 +11,11 @@ that causes the robot to follow a line on the floor.
 {\raggedleft \hfill Program file \bu{follow-line.aesl}}
 
 The line-following task brings out all the uncertainty of constructing
-robots in the real world: The robot must deal with uncertainty in its
-perceptions and its actions. For instance, the line might not be
-perfectly straight, dust may obscure part of the line, or dirt may cause
-one wheel to move more slowly than the other one. To follow a line, the
-robot must use a \emph{controller} that decides how much power to apply
-to each motor depending on the data received from the sensors.
+robots in the real world. The line might not be perfectly straight, dust
+may obscure part of the line, or dirt may cause one wheel to move more
+slowly than the other one. To follow a line, the robot must use a
+\emph{controller} that decides how much power to apply to each motor
+depending on the data received from the sensors.
 
 \sect{The line and the robot}
 
@@ -27,12 +26,11 @@ light-colored, the sensor will detect a lot of reflected light and the
 event \blksm{lots-of-light} will occur. We need a line that will cause
 an event to occur when there is little reflected light
 \blksm{little-light}. This is easy to do by printing a black line on
-paper and taping it to the floor, by painting the line, or by sticking
-black electrician's tape on the floor (\cref{fig.tape}). The line must
-be wide enough so that both ground sensors will sense black when the
-robot is successfully following the line. A width of 5 centimeters is
-sufficient for the robot to follow the line even if there are small
-deviations.
+paper and taping it to the floor or by attaching black electrician's
+tape on the floor (\cref{fig.tape}). The line must be wide enough so
+that both ground sensors will sense black when the robot is successfully
+following the line. A width of 5 centimeters is sufficient for the robot
+to follow the line even if there are small deviations.
 
 \begin{figure}
 \subfigure[Thymio following a line of tape]%
@@ -46,21 +44,19 @@ deviations.
 \end{figure}
 
 To implement line-following, first, we cause the robot to move forward
-whenever \emph{both} sensors detect a dark surface (it is on the line)
-and to stop whenever \emph{both} sensors detect a light surface (it is
-not the line):
-
-The event-actions pairs are shown in \cref{fig.start-stop}.
+whenever \emph{both} sensors detect a dark surface---it is on the
+line---and to stop whenever \emph{both} sensors detect a light
+surface---it is not on the line. See \cref{fig.start-stop}.
                   
 \begin{figure}
 \subfigure[Start and stop the robot]%
 {\label{fig.start-stop}%
-\includegraphics[width=0.4\textwidth]{line-forward}}
+\includegraphics[width=0.45\textwidth]{line-forward}}
 \hfill
 \subfigure[Correcting deviations]%
 {\label{fig.follow-line}%
-\includegraphics[width=0.4\textwidth]{line-controller}}
-\caption{A program for line following}
+\includegraphics[width=0.45\textwidth]{line-controller}}
+\caption{A program for line following}\label{fig.follow-line-all}
 \end{figure}
 
 %\begin{center}
@@ -78,18 +74,18 @@ as it moves. You can find extension cables in any computer shop.}
 \sect{Your first controller}
 
 The next step is to program the controller that follows the line. Two
-event-actions pairs are needed, as shown on the image above (b):
+event-actions pairs are needed (Figure~\cref{fig.follow-line}).
 
 \begin{itemize}
 
 \item If the robot moves off the tape to the \emph{left}
 (\cref{fig.one-off}), the \emph{left} sensor will detect the floor while
-the \emph{right} sensor is still detecting the tape; in that case the
-robot should turn slightly to the \emph{right}.
+the \emph{right} sensor is still detecting the tape; the robot must
+turn slightly to the \emph{right}.
 
 \item If the robot moves off the tape to the \emph{right}, the
 \emph{right} sensor will detect the floor while the \emph{left} sensor
-is still detecting the tape; in that case the robot should turn slightly
+is still detecting the tape; the robot must turn slightly
 to the \emph{left}.
 
 \end{itemize}
@@ -102,32 +98,22 @@ It is easy to see that if the robot runs off the left edge of the tape,
 it has to turn to the right (\cref{fig.one-off}). The question is
 how tight should the turn be? If the turn is too gentle, the right
 sensor might \emph{also} run off the tape before the robot turns back;
-if the turn is too aggressive, it might cause the robot to run off the
-other end of the tape. In any case, aggressive turns can be dangerous to
-the robot and whatever it is carrying.
+if the turn is too sharp, it might cause the robot to run off the
+other end of the tape. In any case, sharp turns can be dangerous to
+the robot and cause whatever it is carrying to fall off.
 
 You will need to experiment with the speeds of the left and right motors
 in each motor action block until the robot runs \emph{reliably}. Here,
 reliably means that the robot can successfully follow the line several
 times. Since each time you place the robot on the line you might place
-it at a slightly different position and point in a slightly different
+it at a slightly different position and point it in a slightly different
 direction, you need to run several tests to make sure that the program
 works.
 
-There are many ways to configure the motor action blocks. The forward
-speed of the robot on the line is an important parameter. If it is too
-fast, the robot can run off the line before the turning actions can
-affect its direction. However, if the speed is too slow, no one will buy
-your robot to use in a warehouse.
-
-If the robot starts to leave the line, what should it do? If it makes a
-sharp turn (one motor goes forward and the other backwards), the robot
-will return quickly to the line, but its movements will be very jerky.
-On the other hand, if the robot makes a gentle turn (one motor goes
-slightly faster than the other), the robot will move smoothly but it may
-lose the line. You will have to experiment to find good compromises.
-
-\newpage
+The forward speed of the robot on the line is also an important
+parameter. If it is too fast, the robot can run off the line before the
+turning actions can affect its direction. If the speed is too slow, no
+one will buy your robot to use in a warehouse.
 
 \exercisebox{\thechapter.1}{The robot stops when both ground sensors
 detect that they are off the tape. Modify the program so that the robot
@@ -168,8 +154,8 @@ most lines? For each line, whose robot follows it in the shortest time?
 Discuss what effect the following modifications to the Thymio would
 have on the ability of the robot to follow a line:
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
-\item Ground sensing events occur more often or less often than 10 times a second;
-\item The sensors are further apart or closer together;
+\item Ground sensing events occur more often or less often.
+\item The sensors are further apart or closer together.
 \item There are more than two ground sensors on the bottom of the robot.
 \end{itemize}
 }

@@ -20,7 +20,7 @@ onevent prox
 		motor.left.target = -100
 		motor.right.target = 100
 	end
-	if prox.ground.delta[0] &lt; 350 and prox.ground.delta[1] &lt; 350 and state[0] == 1 and state[1] == 0 then
+	if prox.ground.delta[0] > 450 and prox.ground.delta[1] > 450 and state[0] == 1 and state[1] == 0 then
 		motor.left.target = 100
 		motor.right.target = -100
 	end
@@ -58,7 +58,7 @@ onevent prox
 <block value0="-100" value1="100" type="action" name="move"/>
 </set>
 <set>
-<block value0="2" value1="2" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="1" value1="1" value2="350" value3="450" type="event" name="proxground"/>
 <block value0="1" value1="2" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="100" value1="-100" type="action" name="move"/>
 </set>

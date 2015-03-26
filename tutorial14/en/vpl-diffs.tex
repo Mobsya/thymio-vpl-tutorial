@@ -20,12 +20,12 @@ reflected light is detected from an object, while a \emph{black} box
 causes an event when little or no reflected light is detected because
 there is no object in front of the sensor
 (pages~\pageref{p.proximity-colors1},~\pageref{p.proximity-colors2}).
-The bottom sensors also use white and black, instead of white and red,
+The ground sensors also use white and black, instead of white and red,
 but the behavior in 1.4 is the same as in 1.3 except that black is used
 instead of red.
 
-\warningbox{This change in VPL means that existing programs will no
-longer work correctly until they are modified.}
+\warningbox{Programs from Version 1.3 that use horizontal and ground
+sensors will no longer work correctly.}
 
 \item In advanced mode, the thresholds of sensors can be
 set (page~\pageref{p.proximity-sensitivity}).
@@ -41,8 +41,7 @@ of the forward/backward and left/right accelerometers
 
 \begin{itemize}
 
-\item You can now have multiple actions associated with an event. This
-makes VPL programs much more concise (page~\pageref{p.multiple}).
+\item Multiple actions associated with an event (page~\pageref{p.multiple}).
 
 \item Blocks and event-actions pairs can be copied
 (page~\pageref{p.copy-pairs}).
@@ -55,7 +54,7 @@ makes VPL programs much more concise (page~\pageref{p.multiple}).
 \item The Run button blinks green when the program has been changed
 (page~\pageref{p.blink}).
 
-\item Dynamic feedback has been added (page~\pageref{p.feedback}).
+%\item Dynamic feedback has been added (page~\pageref{p.feedback}).
 
 \item It is no longer possible to change the color scheme of VPL.
 

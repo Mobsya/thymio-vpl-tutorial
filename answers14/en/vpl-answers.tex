@@ -34,7 +34,7 @@ Version 1.4{\textasciitilde}pre1
 
 \bigskip
 
-\copyright{}\  2013--14 by Moti Ben-Ari and other contributors.
+\copyright{}\  2013--15 by Moti Ben-Ari and other contributors.
 
 This work is licensed under the Creative Commons
 Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -195,9 +195,9 @@ as well as the highest tones.
 \end{figure}
 
 
-\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns the motors on when
-the clap event occurs and turns them off when the center button is
-touched.
+\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns
+the motors on when the clap event occurs and turns them off when the
+center button is touched. This may not work because the 
 
 {\raggedleft \hfill Program file \bu{clap-start.aesl}}
 
@@ -223,6 +223,8 @@ event occurs and the motors stop.
 \caption{Clap to stop the motor}\label{fig.clap-to-stop}
 \end{center}
 \end{figure}
+
+\newpage
 
 \textbf{\thesection.3}:
 The program has two event-action pairs (\cref{fig.bump}): one to
@@ -259,45 +261,28 @@ center button is touched, the motors are stopped.
 
 \section{States}
 
-\textbf{\thesection.1}:
-There will be two states: state \emph{left} \blksm{state-left} when the
-robot turns to the left and state \emph{right} \blksm{state-right} when
-the robot turns to the right. Initially, touching the forward button in
-the initial state (off, off, off, off) sets a one-second timer and state
-\emph{left} (\cref{fig.dance-start}). When the timer runs down in
-state \emph{left}, the robot turns to the left, (re-)sets a timer for
-two seconds and goes to state \emph{right}
-(\cref{fig.dance-left}). When the timer runs down in state
-\emph{right}, the robot turns to the right, (re-)sets a timer for two
-seconds and goes to state \emph{left} (\cref{fig.dance-right}).
-These two behaviors are run repeatedly, so you will have to click
-\blksm{stop} to stop the robot.
+\textbf{\thesection.1}: See Figure~\ref{fig.dance} There will be two
+states: state \emph{left} \blksm{state-left} when the robot turns to the
+left and state \emph{right} \blksm{state-right} when the robot turns to
+the right. Initially, touching the forward button in the initial state
+(off, off, off, off) sets a one-second timer and state \emph{left}. When
+the timer runs down in state \emph{left}, the robot turns to the left,
+(re-)sets a timer for two seconds and goes to state \emph{right}. When
+the timer runs down in state \emph{right}, the robot turns to the right,
+(re-)sets a timer for two seconds and goes to state \emph{left}. These
+two behaviors are run repeatedly, so you will have to click \blksm{stop}
+to stop the robot.
 
 {\raggedleft \hfill Program file \bu{dance.aesl}}
 
 
 \begin{figure}
 \begin{center}
-\gr{dance-start}{0.4}
-\caption{Starting the dance}\label{fig.dance-start}
+\gr{dance}{0.4}
+\caption{Dancing}\label{fig.dance}
 \end{center}
 \end{figure}
 
-\begin{figure}
-\begin{center}
-\gr{dance-left}{0.4}
-\caption{Dance two seconds to the left}\label{fig.dance-left}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\gr{dance-right}{0.4}
-\caption{Dance three seconds to the right}\label{fig.dance-right}
-\end{center}
-\end{figure}
-
-\newpage
 
 \textbf{\thesection.2}:
 I was not able to solve this problem. I had assumed that it would be
@@ -320,13 +305,8 @@ State \emph{left} \blksm{state-left} remembers that the robot left the
 left side of the line and state \emph{right} \blksm{state-right}
 remembers that the robot ran off the right side of the line
 (\cref{fig.follow3}).
-
 When both sensors fail to detect the line, the robot turns in the
 direction indicated by the current state (\cref{fig.follow1}).
-
-It is also possible that the robot runs off the line without ever having
-left one side so that the state is the initial state of all \emph{off};
-in that case, we arbitrary choose to turn right (\cref{fig.follow2}).
 
 \begin{figure}
 \begin{center}
@@ -341,16 +321,6 @@ in that case, we arbitrary choose to turn right (\cref{fig.follow2}).
 \caption{Search to the left or the right}\label{fig.follow1}
 \end{center}
 \end{figure}
-
-\begin{figure}
-\begin{center}
-\gr{follow1}{0.4}
-\caption{Turn to the right}\label{fig.follow2}
-\end{center}
-\end{figure}
-
-
-%\clearpage
 
 \section{Counting}
 
@@ -384,6 +354,8 @@ of xyz. Finally, subtracting one from 0000=0 gives 1111=15 in cyclic
 arithmetic.
 
 {\raggedleft \hfill Program file \bu{subtraction.aesl}}
+
+\newpage
 
 \textbf{\thesection.5}:
 An event-action pair is needed to count each strip of tape.

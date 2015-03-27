@@ -52,19 +52,49 @@ computer; if not, download it from
 
 \sect{Overview of the tutorial}
 
+For each chapter, we give the main topic, as well as lists of the event
+and action blocks that are introduced. I suggest that you start with the
+tutorial chapters on VPL basic mode. Then, you can study the tutorial on
+advanced mode, or try some of the projects. The Parsons puzzles can be
+tried whenever you feel the need to evaluate your knowledge of VPL.
+Read the \cref{ch.next} when you are ready to leave VPL and work with
+the more advanced Aseba Studio environment. The appendices contain
+reference material that can be read as needed.
+
+\subsection*{The tutorial itself}
+
 \textbf{\cref{ch.intro,ch.colors}} are an essential
 introduction to the robot, the VPL environment and its principal
 programming construct: the event-actions pair.
+
+\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colors, bottom colors
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\medskip
 
 \textbf{\cref{ch.moving,ch.pet,ch.line}} present the events,
 actions and algorithms for constructing autonomous mobile robots and
 should be the core of any activity using Thymio and VPL.
 
-\textbf{\cref{ch.bells}} describes features of the robot that can
-be fun to use but are not essential. You can skip the chapter or you can
-use it immediately after the introductory chapters for a more gentler
-introduction to robotics.
+\textbf{Events}: Buttons, front sensors, bottom sensors \hfill
+\textbf{Actions}: Motors
 
+\blkmed{event-buttons} \quad\blkmed{event-prox}\quad \blkmed{event-ground} \hfill
+\blkmed{action-motors}
+
+\medskip
+
+\textbf{\cref{ch.bells}} describes features of the robot that can
+be fun to use but are not essential: sounds and shocks.
+
+\textbf{Events}: Tap, clap \hfill \textbf{Actions}: Music, top colors,
+bottom colors
+
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
+\quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\medskip
 
 \importantbox[Advanced mode]{VPL has a basic mode which supports
 elementary events and actions that are easy for beginners to master. The
@@ -72,31 +102,64 @@ advanced mode of VPL supports more events and actions that require
 experience to use. Explanations of the features of advanced mode
 start in \cref{ch.time}.}
 
+\medskip
+
 \textbf{\cref{ch.time}} presents timed events. There is an action
 to set a timer and when the timer expires, an event occurs.
 
-\textbf{\cref{ch.states}} explains state machines, which are a
-fundamental construct used in robotics.
+\textbf{Events}: Timer expired \hfill \textbf{Actions}: Set timer
 
-\textbf{\cref{ch.counting}} shows how to use states to implement
-arithmetic.
+\blkmed{event-timer} \hfill \blkmed{action-timer}
+
+\medskip
+
+\textbf{\cref{ch.states,ch.counting}} explains state machines, which
+enable the robot to perform different operations at different times.
+States can also be used to perform elementary arithmetic like counting.
+
+\textbf{Events}: State associated with an event \hfill \textbf{Actions}:
+Change state
+
+\blkmed{state-filter} \hfill \blkmed{action-states}
+
+\medskip
 
 \textbf{\cref{ch.angles}} describes how to use the accelerometers
 in the Thymio robot.
 
+\textbf{Events}: Accelerometer events
+
+\blkmed{event-pitch} \quad \blkmed{event-roll}
+
+\medskip
+
+\subsection*{Parsons puzzles}
+
+\textbf{\cref{ch.parsons}} presents Parsons puzzles which are exercises
+that you can use to check your knowledge of VPL.
+
+\medskip
+
+\subsection*{Projects}
+
 \textbf{\cref{ch.brait,ch.rabbit,ch.barcode,ch.sweep,ch.speed,ch.radar,ch.fa}}
-differ from the previous chapters: they contains no new material and no
-detailed explanation of how to develop the projects. Instead, they
-specify VPL projects and invite you to design and implement them
-yourself.
+specify projects that you can design and implement on your own.
+The VPL source is available in the archive, but I suggest that you work
+on the projects before looking at the solutions.
+
+\medskip
+
+\subsection*{From VPL to AESL}
 
 \textbf{\cref{ch.next}} points to the next step: using the
 textual Studio environment which offers significantly more support for
 developing robots than does the VPL environment.
 
-\informationbox{Reference material}{The appendices contains reference
-material that you will want to look at from time to time to learn about
-new featuers of VPL or to refresh your memory.}
+%\informationbox{Reference material}{The appendices contains reference
+%material that you will want to look at from time to time to learn about
+%new featuers of VPL or to refresh your memory.}
+
+\subsection*{Reference appendices}
 
 \textbf{\cref{a.toolbar}} contains a description of the user
 interface---the buttons on the toolbar.
@@ -105,154 +168,17 @@ interface---the buttons on the toolbar.
 \textbf{\cref{a.blocks}} is a list of the event and
 action blocks in both basic and advanced modes.
 
-\textbf{\cref{a.tech}} describes techniques for working with the
-sliders of the sensor and motor blocks.
-
 \textbf{\cref{a.tips}} provides guidance for teachers and
 mentors of students. The first section suggests ways to encourage
 exploration and experimentation. The next section focuses on good
 programming practices. The final section lists some pitfalls that may be
 encountered and offers hints on how to overcome them.
 
-\bigskip
-
-\sect{Chapter summary}
-
-Here is an overview of the chapters of this tutorial. For each chapter,
-we give the main topic, as well as lists of the event and action
-blocks that are introduced.
-
-{\centering \textbf{\cref{ch.intro}}\\}
-\textbf{Topics}: Thymio robot, VPL programming environment.
-
-\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colors
-
-\blkmed{event-buttons} \hfill \blkmed{action-colors-up}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.colors}}\\}
-\textbf{Topics}: Event-actions pairs.
-
-\textbf{Events}: Buttons \hfill \textbf{Actions}: Top colors, bottom colors
-
-\blkmed{event-buttons} \hfill \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.moving}}\\}
-\textbf{Topics}: Moving, sensing.
-
-\textbf{Events}: Buttons, bottom sensors \hfill \textbf{Actions}: Motors
-
-\blkmed{event-buttons} \quad \blkmed{event-ground} \hfill  \blkmed{action-motors}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.pet}}\\}
-\textbf{Topics}: Feedback control, motor speeds.
-
-\textbf{Events}: Front sensors \hfill \textbf{Actions}: Motors
-
-\blkmed{event-prox} \hfill \blkmed{action-motors}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.line}}\\}
-\textbf{Topics}: Line following.
-
-\textbf{Events}: Bottom sensors \hfill \textbf{Actions}: Motors
-
-\blkmed{event-ground} \hfill \blkmed{action-motors}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.bells}}\\}
-\textbf{Topics}: Sound, shocks.
-
-\textbf{Events}: Tap, clap \hfill \textbf{Actions}: Music, top colors,
-bottom colors
-
-\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
-\quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
-
-%\bigskip
-\newpage
-
-{\centering \textbf{\cref{ch.time}}\\}
-\textbf{Topics}: Timers.
-
-\textbf{Events}: Timer expired \hfill \textbf{Actions}: Set timer
-
-\blkmed{event-timer} \hfill \blkmed{action-timer}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.states}}\\}
-\textbf{Topics}: States.
-
-\textbf{Events}: State associated with an event \hfill \textbf{Actions}:
-Change state
-
-\blkmed{state-filter} \hfill \blkmed{action-states}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.counting}}\\}
-\textbf{Topics}: Counting, binary arithmetic.
-
-\textbf{Events}: State associated with an event \hfill \textbf{Actions}:
-Change state
-
-\blkmed{state-filter} \hfill \blkmed{action-states}
-
-\bigskip
-
-{\centering \textbf{\cref{ch.angles}}\\}
-\textbf{Topics}: Accelerometers.
-
-\textbf{Events}: Accelerometer events
-
-\blkmed{event-pitch} \quad \blkmed{event-roll}
-
-\bigskip
-
-{\centering
-\textbf{\cref{ch.brait,ch.rabbit,ch.barcode,ch.sweep,ch.speed,ch.radar,ch.fa}}\\}
-\textbf{Topics}: VPL projects for you to implement with minimal
-guidance.
-
-\textbf{Events}: Advanced blocks for sensors and taps
+\textbf{\cref{a.tech}} describes techniques for working with the
+sliders of the sensor and motor blocks.
 
 \blkmed{event-prox-advanced} \quad \blkmed{event-prox-ground-advanced}
-\quad \blkmed{event-tap-advanced}
 
-\bigskip
-
-{\centering \textbf{\cref{ch.next}}\\}
-\textbf{Topics}: Aseba studio environment.
-
-\medskip
-%\newpage
-
-{\centering \textbf{\cref{a.toolbar}}\\}
-\textbf{Topics}: A description of the buttons on the toolbar.
-
-\medskip
-
-{\centering \textbf{\cref{a.blocks}}\\}
-\textbf{Topics}: A summary of the blocks, and
-notes on motor, sensor and button blocks.
-
-\medskip
-{\centering \textbf{\cref{a.tips}}\\}
-\textbf{Topics}: Exploring and experimenting,
-constructing a program, troubleshooting.
-
-\medskip
-
-{\centering \textbf{\cref{a.tech}}\\}
-\textbf{Topics}: Techniques for using the sliders.
 
 \sect{Reference cards}
 

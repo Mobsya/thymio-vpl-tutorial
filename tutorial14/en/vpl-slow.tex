@@ -1,0 +1,36 @@
+\chap{Multiple sensor thresholds}\label{ch.slow}
+
+As explained in \cref{a.tech}, in advanced mode sensors events can be
+specified in three different ways: an event occurs when the reflected
+light is below a threshold (black), an event occurs when the reflected
+light is above a threshold (white), and an event occurs when the
+reflected light falls between two thresholds (dark gray):
+
+\gr{slow}{.6}
+
+\textbf{Specification}
+
+Construct a program that causes the robot to approach an object,
+starting at a high speed, slowing down as it gets closer, and finally
+stopping when the robot is very close to the object.
+
+\textbf{Guidance}
+
+\begin{itemize}
+\item Use three event-actions pairs, one with each type of sensor
+event.
+
+\item Carefully adjust the sliders (see \cref{a.tech}) so that the
+high value of one threshold is the same as the low value of the next
+threshold. 
+
+\item Add a color block to each pair so that you can see the robot's
+speed setting.
+
+\item Use reflector tape to extend the range of
+the sensors as explained in \cref{a.blocks}. 
+\end{itemize}
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Program file}: \bu{slow.aesl}}

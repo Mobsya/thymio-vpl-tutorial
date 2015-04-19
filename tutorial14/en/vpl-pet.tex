@@ -30,13 +30,15 @@ The block \blksm{event-prox} is used to sense if something is close to a
 sensor or not. In either case it causes an event to occur. The small
 squares in the block (five on the front and two on the rear) are used to
 specify when an event occurs. Clicking on a square changes it from gray
-to white (with a red border) to black and back to gray. The meaning of
+to white to black and back to gray. The meaning of
 these colors is:
 
 \begin{itemize}
 \item \textbf{Gray}: The sensor is not used.
 \item \textbf{White}: An event occurs when there is a lot of reflected
-light.\label{p.proximity-colors2}.
+light.\label{p.proximity-colors2}. The white square has a red border
+to remind you that the event will occur when the lights next to the sensor 
+itself are red.
 \item \textbf{Black}: An event occurs when there is little reflected
 light.
 \end{itemize}
@@ -86,7 +88,7 @@ track moves forward at a certain speed, while the other track moves
 backwards at the same speed, the Thymio turns in place. For example, in
 the motor action block \blksm{differential}, the left slider has been
 set for fast speed backwards, while the right slider has been set for
-fast speed forwards. The result is that the robot will turn to the left
+fast speed forwards. The result is that the robot will turn to the left.
 
 \newpage
 
@@ -173,6 +175,6 @@ precsie motor speeds.}
 \bigskip
 
 \informationbox{Sensors in advanced mode}{In advanced mode
-(\cref{ch.time}), there is a fourth mode of the timers in addition to
-gray, white and black, as described in \cref{a.tech}.}
-
+(\cref{ch.time}), there is a fourth mode for specifying when sensors cause
+events, in addition to modes indicated by
+gray, white and black. See \cref{a.tech}.}

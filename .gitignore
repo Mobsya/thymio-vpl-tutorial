@@ -1,5 +1,10 @@
 build/
 *.zip
+*.aux
+*.log
+*.toc
+*.out
+*.synctex
 *.pdf
 *.bat
 *.swp

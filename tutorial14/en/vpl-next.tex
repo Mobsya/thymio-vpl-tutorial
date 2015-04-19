@@ -1,6 +1,6 @@
-\part{From VPL to AESL}
+\part{From visual to textual programming}
 
-\chap{From VPL to AESL}\label{ch.next}
+\chap{Learning AESL from VPL programs}\label{ch.next}
 
 
 Congratulations! You are an expert in programming the Thymio robot using
@@ -11,7 +11,7 @@ on and use the professional \textit{Studio Programming Environment}
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{studio}{.8}
+\gr{studio}{.9}
 \caption{Aseba Studio environment}\label{fig.studio}
 \end{center}
 \end{figure}
@@ -43,37 +43,21 @@ you first read this tutorial.
 
 \textbf{\large Documentation}
 
-To learn about Aseba Studio and AESL, go to the \emph{Programming Thymio} page at
-\url{https://aseba.wikidot.com/en:thymioprogram}
-and follow the link \emph{Text Programming Environment}.
+To learn about Aseba Studio and AESL, go to the \emph{Programming
+Thymio} page at\\
+\href{https://aseba.wikidot.com/en:asebausermanual}{https://aseba.wikidot.com/en:asebausermanual}.
+You can find documentation of:
 
-The \textit{Thymio Programming Interface}
-\url{https://aseba.wikidot.com/en:thymioapi}
-defines the names and properties of events that occur in the Thymio robots,
-as well as how the sensors of the robot are read, and how the robot can
-be controlled.
+\begin{itemize}
+\item The Studio programming environment.
+\item The AESL programming language.
+\item The interface to the Thymio robot.
+(There is a reference card for the interface).
+\item The native functions library supported in AESL.
+\end{itemize}
 
-The ``cheat sheet''
-\url{https://aseba.wdfiles.com/local--files/en:thymioprogram/ThymioCheatSheet.pdf}
-is a diagram of the Thymio robot that identifies the parts of the robot
-(for example, the center horizontal proximity sensor is numbered 2).
-
-The reference for the AESL programming language is
-\textit{The Aseba Language---Thymio \& Aseba}
-\url{https://aseba.wikidot.com/en:asebalanguage}.
-
-The Studio environment is described in
-\url{https://aseba.wikidot.com/en:asebastudio}.
-
-Advanced computational functions that can be called from AESL are listed
-in the \textit{Aseba Native Functions Standard Library} 
-\url{https://aseba.wikidot.com/en:asebastdnative}.
-
-You can find many interesting projects in AESL in the archive
-\textit{Projects for the Thymio Robot in the Aseba Studio
-Environment}\\
-\url{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-programming-exercises-en.zip}.
-
+There is also an archive describing interesting projects in AESL,
+together with the source of proposed solutions.
 
 \sect{The Thymio Interface}
 
@@ -107,8 +91,7 @@ is turned on with the color called \emph{cyan}. Corresponding to the
 event-actions pairs in VPL are \emph{event handlers}, which are
 introduced by the keyword \p{onevent} (read this as two words: ``on
 event''). You can find a list of events in the table at the bottom of
-the \href{https://aseba.wikidot.com/en:thymioapi}{Thymio Programming
-Interface}.
+the documentation for the Thymio programming interface.
 
 The lines following \p{onevent} form the body of the event handler
 and correspond to the action blocks following an event block in VPL.
@@ -145,12 +128,14 @@ $0-255$) is greater than $250$.
 
 In VPL, the threshold is built-in and cannot be changed, but in a
 textual program you can change it using an \emph{assignment statement}:
+\begin{footnotesize}
 \begin{verbatim}
   mic.threshold = 180
 \end{verbatim}
+\end{footnotesize}
 Its meaning is that the \emph{value} on the right-hand side of the
 \verb+=+ symbol is copied to the \emph{variable} on the left-hand side.
-The variable \p{mic.threshold} is predefined in Aseba.
+The variable \p{mic.threshold} is predefined for the Thymio robot.
 
 \textbf{\large Initialization of the Thymio}
 
@@ -345,12 +330,11 @@ The event is called \p{prox}. Unlike the button events, which
 occur when something ``happens,'', this event occurs \emph{10 times
 every second}. Before the event occurs, the values of the
 \p{prox.horizontal} variables are set to values that depend on what the
-sensors are detecting. See the\label{pg.hz}
-\href{https://aseba.wikidot.com/en:thymioapi}%
-{Thymio Programming Interface} document for details.\footnote{The unit
+sensors are detecting. See the\label{pg.hz} documentation of the
+Thymio rogramming interface for details.\footnote{The unit
 for \emph{frequency}, the number of times something happens per second, is called
 the \emph{hertz}, abbreviated \emph{Hz}. The interface document specifies
-that the \p{prox} event occurs with frequency \emph{10 Hz}.}
+that the {\footnotesize\p{prox}} event occurs with frequency \emph{10 Hz}.}
 
 \textbf{\large Arrays as multiple variables}
 
@@ -393,11 +377,9 @@ proximity sensors is predefined and is called \p{prox.horizontal}:
 The first 5 components are for the front sensors from left to right,
 while the last two components are for the back sensors from left to
 right. If you don't remember the assignment of numbers to sensors, you
-can always look it up in the
-\href{https://aseba.wikidot.com/en:thymioapi}%
-{Thymio Programming Interface}, or, even better, on the diagram in the
-\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/ThymioCheatSheet.pdf}%
-{cheat sheet}.
+can always look it up in the the documentation for the Thymio
+programming interface, even better, on the diagram in the reference
+card.
 
 To access a specific component in an array, write its sequence number in
 square brackets after the name of the array variable. This number is
@@ -428,10 +410,8 @@ A natural generalization of arrays is to use a variable instead of a
 constant for the index.\footnote{This is not used in translations of VPL
 programs into AESL, except in an advanced construct for constructing
 sounds; therefore, the simple example here is taken from the AESL
-projects.} The program \p{cats.aesl} in
-\href{https://aseba.wdfiles.com/local--files/en:thymioprogram/thymio-programming-exercises-en.zip}%
-{Projects for the Thymio Robot in the Aseba Studio Environment} contains
-the following statements:
+projects.} The program \p{cats.aesl} in archive of project for AESL
+contains the following statements:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -458,8 +438,7 @@ Here, there is a single \p{if}-statement between \p{do} and \p{end}. It
 checks the value of the horizontal proximity sensors and sets the value
 2 in the variable \p{state} if the value read from a sensor is greater
 than the constant \p{DETECTION}.\footnote{See the documentation of the 
-\href{https://aseba.wikidot.com/en:asebastudio}{Aseba Studio environment}
-for instructions on how to define constants.}
+Aseba Studio environment for instructions on how to define constants.}
 
 The variable \p{i} receives the values 0, 1, 2, 3, 4 in turn, so each
 time the \p{if}-statement is run, \p{prox.horizontal[i]} reads the value
@@ -484,7 +463,7 @@ detects your hand; two seconds later, it turns right:
     if prox.horizontal[2] > 2000 then
       motor.left.target = -150
       motor.right.target = 100
-      timer.period[0] = 1979
+      timer.period[0] = 2000
     end
   
   onevent timer0
@@ -502,10 +481,7 @@ There are two timers in the Thymio robot. You set the duration of a
 timer by assigning a value to components 0 or 1 of the array
 \p{timer.period}. The value is in \emph{milliseconds}, thousandths of a
 second. To set a duration of two seconds in timer 0, the value 2000
-(milliseconds) should be assigned to \p{timer.period[0]}. In VPL, you
-cannot precisely control the duration of a timer, because it is set by
-dragging the hand on the clock face, so the value is 1979 which is quite
-close to 2000.
+(milliseconds) should be assigned to \p{timer.period[0]}.
 
 There are two events, \p{timer0} and \p{timer1}, one for each timer.
 When the duration has passed (we say that the timer has \emph{expired}),
@@ -560,9 +536,9 @@ generated by VPL as explained later in this chapter.}
 The state is stored in an array \p{state[]} which has 4 components. Each
 component can be 0 or 1, so there are $2\times 2\times 2\times 2=16$
 possible values in the array. The components of the array are given
-initial values of 0 by assigning the four values \verb+[0,0,0,0]+. The
+initial values of 0 by assigning the four values {\footnotesize\verb+[0,0,0,0]+}. The
 initial value of the array is also used to specify the number of
-components in an array; since there are 4 values in \verb+[0,0,0,0]+,
+components in an array; since there are 4 values in {\footnotesize\verb+[0,0,0,0]+},
 there are 4 components in the array. In AESL you can assign any initial
 values to an array.
 
@@ -630,9 +606,11 @@ Quite often we need to run the same sequence of statements from many
 places within a program. We could write the statements once and copy
 them each time they are needed. A simpler solution is to use
 \emph{subroutines}, which assign a name to a sequence of statements. In
-this program, the declaration \verb+sub display_state+ declares a
-subroutine that assigns the name \verb+display_state+ to a sequence of
+this program, the declaration {\footnotesize\verb+sub display_state+} declares a
+subroutine that assigns the name {\footnotesize\verb+display_state+} to a sequence of
 statements, here, the single statement \p{call leds.circle}:
+
+\bigskip
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -671,18 +649,22 @@ An array variable is declared by giving its size in brackets following
 the array name. The size can also be specified by providing an initial
 value:
 
+\begin{footnotesize}
 \begin{verbatim}
 var state[4]             # An array with four components
 var state[] = [0,0,0,0]  # An array with four components
 \end{verbatim}
+\end{footnotesize}
 
 In the translation of the VPL program, both the size and the initial
 value are given. This is OK as long as the number of values is the same
 as the size:
 
+\begin{footnotesize}
 \begin{verbatim}
 var state[4] = [0,0,0,0]  # OK, but redundant
 \end{verbatim}
+\end{footnotesize}
 
 \textbf{\large Native functions}
 
@@ -715,9 +697,8 @@ onevent buttons
 The \emph{native function} \p{math.copy} is used to copy the arrays.
 Native functions are built into the Thymio robot and are more efficient
 than sequences of statements in the textual programming language. The
-native functions are described in the document
-\href{https://aseba.wikidot.com/en:asebastdnative}%
-{Aseba Native Functions Standard Library}.
+native functions are described in the documentation of the
+Aseba native functions library.
 
 The current version of AESL allows assignment of entire arrays, so that
 it would have been possible to use the assignment

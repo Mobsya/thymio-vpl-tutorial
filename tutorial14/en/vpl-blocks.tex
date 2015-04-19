@@ -10,10 +10,15 @@ buttons are touched.
 
 
 \blksm{event-prox} \textbf{Horizontal sensors} (five at the front of the
-Thymio and two at the back). Click on one or more of the small squares.
-If the square is gray, the reading of the is ignored; if the square is
-white, an event occurs if a lot of light is reflected; if the square is
-black, an event occurs if little light is reflected.
+Thymio and two at the back). Click on one or more of the small squares
+and they will change color. Initially, all squares are gray, meaning
+that the reading of each sensor is ignored.
+
+If the square is white with a red border \blksm{center-prox}, an event
+occurs if a lot of light is reflected.
+
+If the square is black \blksm{center-no-prox}, an event occurs if little
+light is reflected.
 
 \bigskip
 
@@ -39,15 +44,20 @@ Thymio). Use like the block for the horizontal sensors.
 \textbf{Sensors, advanced mode}. Use like the previous blocks. The top
 slider sets the threshold above which an object is detected and the
 bottom slider sets the threshold below which the absence of an object is
-detected. There is an additional mode (the square is dark gray) in which
-an event occurs if the value is between to upper and lower threshold.
+detected.
 
 \bigskip\bigskip
+
+There is an additional mode (the square is dark gray \blksm{slow-mid})
+in which an event occurs if the value is between to upper and lower
+threshold.
+
+\bigskip\bigskip\bigskip
 
 \blksm{event-tap} \textbf{Tap}. An event occurs when the Thymio is
 tapped.
 
-\bigskip\bigskip
+\bigskip\bigskip\bigskip
 
 \blksm{event-tap-advanced} \textbf{Tap, advanced mode}. Use like the
 previous block. Click on the small center or right circle to change to
@@ -66,12 +76,14 @@ An event will occur if the left / right or forwards / backwards angle
 a timer has counted down to zero. The timer must have been set by a
 previous timer \emph{action}.
 
-\bigskip\bigskip\bigskip\bigskip
+\bigskip\bigskip\bigskip
 
 \blksm{event-state} \textbf{State event, advanced mode}. The event
 occurs only if the components of the current state match the
 corresponding orange and white quarters of this block. The components
 corresponding to the gray quarters need not match.
+
+\bigskip
 
 \sect{Action blocks}
 
@@ -91,7 +103,7 @@ light, respectively.
 \blksm{action-colors-down} \textbf{Bottom lights}. Turns the bottom
 lights on. Use like the previous block.
 
-\bigskip\bigskip\bigskip
+\bigskip\bigskip\bigskip\bigskip
 
 \blksm{action-music} \textbf{Music}. The six small circles are notes. A
 black note is short and a white note is long. Click on a circle to
@@ -111,8 +123,6 @@ amount of time until the alarm will be colored blue.
 quarters in the block correspond to four components of a state.
 Click a quarter to turn it to gray, orange or white.
 
-\newpage
-
 \sect{Notes on the VPL Blocks}
 
 \informationbox{Turning in place or a gentle turn}{When the motors run
@@ -122,7 +132,7 @@ the opposite direction. You may need to set a higher power to overcome
 ground resistance.}
 
 \informationbox{Rapid repetitive sensor events}{In most projects, you
-set a color (red, black, dark gray) in a square in a sensor block to
+set a color (white, black, dark gray) in a square in a sensor block to
 indicate the the correspoding sensor participates in \emph{filtering}
 the events. However, if \emph{all} the sensors remain in the original
 gray, then no filtering is done. The event will occur 10 times per

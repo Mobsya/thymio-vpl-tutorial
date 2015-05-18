@@ -51,10 +51,13 @@
 
 % Inline graphics (small with large block in margin}
 \newcommand*{\blksm}[1]{\raisebox{-.2em}%
-{\includegraphics[height=1em,keepaspectratio=true]{#1}}\marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]{\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}%
+\marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]%
+{\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
 
 % Centered inline graphics
-\newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}{\includegraphics[height=4em]{#1}}}\vskip .3em}
+\newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}%
+{\includegraphics[height=4em]{#1}}}\vskip .3em}
 
 % Centered image
 \newcommand*{\gr}[2]%

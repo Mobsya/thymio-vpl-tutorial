@@ -1,11 +1,12 @@
 build/
+VPL-blocks/
+tutorial14/en/*.pdf
 *.zip
 *.aux
 *.log
 *.toc
 *.out
 *.synctex
-*.pdf
 *.bat
 *.swp
 *~

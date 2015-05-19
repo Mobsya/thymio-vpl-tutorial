@@ -1,112 +1,126 @@
-% !TeX root = vpl.tex
-
 \chap{Let's Get Moving}\label{ch.moving}
 
 \sect{Move forwards and backwards}
 
-The Thymio robot has two motors, one connected to each wheel. The
-motors can be run forwards and backwards, causing the robot to move
-forwards and backwards, and to make turns. Let us start with a simple
-project to learn about the motors.
+The Thymio robot has two motors, one connected to each wheel. The motors
+can be run forwards and backwards, causing the robot to move forwards
+and backwards, and to make turns. Let us start with a simple project to
+learn about the motors.
 
-The motor action block \blksm{action-motors} displays a small image of the
-robot in the center together with two sliders. The sliders control the
-speed of the motors, one slider for the left motor and one for the right
-motor. When the white square is centered in the slider, the
-corresponding motor is off. You can drag a square up to increase the
-forward speed and down to increase the backwards speed.
-Let us write a program to move the robot forward when the front button
-is touched and backwards when the back button is touched.
+The motor action block \blksm{action-motors} displays a small image of
+the robot in the center together with two sliders. The sliders control
+the speed of the motors, one slider for the left motor and one for the
+right motor. When the black frame is centered on the red dot in the
+slider, the corresponding motor is off. You can drag the frame up above
+the red dot to increase the forward speed and down below the red dot to
+increase the backwards speed. Let us write a program to move the robot
+forward when the front button is touched and backwards when the back
+button is touched.
 
 {\raggedleft \hfill Program file \bu{moving.aesl}}
 
-We need two event-action pairs (\cref{fig.nostop}). Drag and drop
-the event and action blocks and set the sliders equally for the left and
-right motors, half-way up for forward and half-way down for backwards.
+We need two event-actions pairs:
+%(\cref{fig.nostop}).
 
-\begin{figure}
+%\begin{figure}
 \begin{center}
-\gr{no-stop-motors}{.4}
-\caption{Moving forward or backwards}\label{fig.nostop}
+\gr{no-stop-motors}{.3}
+%\caption{Moving forward or backwards}\label{fig.nostop}
 \end{center}
-\end{figure}
+%\end{figure}
 
-Run the program and touch the buttons to
-make the robot go forwards and backwards.
+Drag and drop the event and action blocks and set the sliders equally
+for the left and right motors, half-way up for forward and half-way down
+for backwards.
 
-\newpage
+Run the program and touch the buttons to make the robot go forwards and
+backwards.
 
 \sect{Stop the robot}
 
 \textbf{Help!} I can't stop the robot's motors!
 
-Click on the icon \blksm{stop} to stop the robot.
+Click on the button \blksm{stop} to stop the robot.
 
-Let us fix this problem by adding an event-action pair: \blkc{stop-motors}
-That will stop the motors when the center button is touched. When you
-drag the motor action block into the program area, it is already set
-with the sliders in the middle to turn off the motors.
+\newpage
+
+Let us fix this problem by adding an event-actions pair that will stop
+the motors when the center button is touched:
+\blkc{stop-motors}
+When you drag the motor action block into the program area, it is
+already set with the sliders in the middle to turn off the motors.
 
 \sect{Don't fall off the table}
 
-If your robot moves on the floor, at worst, it might hit a wall or pull
-its cable out, but if you place your robot on a table, it might fall
-off, crash and break! Let us arrange for the robot to stop when it
-reaches the end of a table.
+If your robot moves on the floor, at worst it might hit a wall, but if
+you place your robot on a table, it might fall off, crash and break! Let
+us arrange for the robot to stop when it reaches the end of a table.
 
-\warningbox{Whenever the robot moves on a table, be ready to catch it in case it does fall off.}
+\warningbox{Whenever the robot moves on a table, be ready to catch it in
+case it does fall off.}
 
-Turn the Thymio on its back. You will see at the front two small
-black rectangles with optical elements inside (\cref{fig.bottom}).
-These are the \emph{ground sensors}.
-They send a pulse of infrared light and measure the amount of light that is reflected.
-On a light-colored table, there is a
-lot of reflected light, but when the front of the robot goes past the
-end of the table, there will be much less reflected light. When this is
-detected we want the robot to stop.
+Turn the Thymio on its back. You will see at the front two small black
+rectangles with optical elements inside; they are displayed at the top
+of \cref{fig.bottom}. These are the \emph{ground sensors}. They send a
+pulse of infrared light and measure the amount of light that is
+reflected. On a light-colored table, there is a lot of reflected light,
+but when the front of the robot goes past the end of the table, there
+will be much less reflected light. When this is detected we want the
+robot to stop.
 
-\trickbox{Use a table colored with a light color, but don't use a glass table, as it will likely not reflect the light and Thymio will believe that it is not on a table!}
+\trickbox{Use a table colored with a light color or tape a sheet of
+white paper on the table. Don't use a glass table, as it will likely not
+reflect the light and Thymio will believe that it is not on a table!}
 
-Drag the ground sensor event \blksm{event-ground} into the program. There
-are two small squares at the top of the icon. Clicking the squares
-changes them from gray to white to red and finally back to gray.
-For this block, the meanings of these colors are:
+Drag and drop the ground sensor event \blksm{event-ground} into the
+program. There are two small squares at the top of the block. Clicking
+the squares changes them from gray to red to black and finally back to
+gray. For this block, the meanings of these colors are:
 
 \begin{itemize}
+
 \item \textbf{Gray}: The sensor is not used.
-\item \textbf{Red}: An event occurs when there is a lot of reflected light.
-\item \textbf{White}: An event occurs when there is little reflected light.
+
+\item \textbf{White}:An event occurs when there is a lot of reflected
+light.\label{p.proximity-colors1} Next to the white square a small red
+dot will be displayed; this dot corresponds to the small red light next
+to each sensor that is turned on when the sensor detects
+something.\footnote{The white square has a red border to remind you that
+the event will occur when the lights next to the sensor itself are red.}
+
+\item \textbf{Black}: An event occurs when there is little reflected light.
+
 \end{itemize}
 
-\trickbox[Information]{The gray, red and white colors used in a block are
-arbitrary and others could have been chosen.}
+%\trickbox[Information]{The gray, red and white colors used in a block
+%are arbitrary and others could have been chosen.}
 
-To cause the robot to stop at the border of the table when there is little reflected light, click
-the squares until they are white and create the following event-action pair:
-\blkc{dont-fall}
+To cause the robot to stop at the border of the table (when there is
+little reflected light), click both squares until they are black.
+Create the following event-actions pair: \blkc{dont-fall}
 
 \begin{figure}
 \begin{center}
 \gr{bottom}{0.6}
-\caption{The bottom of the Thymio with two ground sensors at the
- front}\label{fig.bottom}
+\caption{The bottom of the Thymio with two ground sensors at the front}\label{fig.bottom}
 \end{center}
 \end{figure}
 
-Place the robot near from the edge of the table, facing the edge, and touch the front button.
-The robot should move forward and stop before falling off the table.
+Place the robot near the edge of the table, facing the edge, and touch
+the front button. The robot should move forward and stop before falling
+off the table.
 
-\exercisebox{\thechapter.1}{
-Experiment with the speed of the robot.
-At maximum speed, is the robot still able to stop and not fall off the table?
-If not, at what speed does the robot start to fall off?
-Can you stop the robot from falling off when it is going backwards?
-}
+\bigskip
 
-\trickbox{
-When I ran the program, the robot \emph{did} fall off. The reason was
-that my nice desk has a rounded edge; by the time that the robot
-detected a low light level, it was no longer stable and tipped over. The
-solution was to place a strip of black tape close to the
-edge of the desk.
-}
+\exercisebox{\thechapter.1}{ Experiment with the speed of the robot. At
+maximum speed, is the robot still able to stop and not fall off the
+table? If not, at what speed does the robot start to fall off? Can you
+stop the robot from falling off when it is going backwards?}
+
+\bigskip
+
+\warningbox{ When I ran the program, the robot \emph{did} fall off. The
+reason was that my desk has a rounded edge; by the time that the robot
+detected a low level of reflected light, it was no longer stable and
+tipped over. My solution was to place a strip of black tape close to
+the edge of the desk.}

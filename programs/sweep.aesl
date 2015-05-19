@@ -1,29 +1,35 @@
 <!DOCTYPE aesl-source>
 <network>
-<node nodeId="1" name="thymio-II">var state[4] = [0,0,0,0]
+<node nodeId="1" name="thymio-II"># variables for state
+var state[4] = [0,0,0,0]
 var new_state[4] = [0,0,0,0]
 
+# stop timer 0
 timer.period[0] = 0
+# reset outputs
 call sound.system(-1)
 call leds.top(0,0,0)
 call leds.bottom.left(0,0,0)
 call leds.bottom.right(0,0,0)
 call leds.circle(0,0,0,0,0,0,0,0)
 
+# subroutine to display the current state
 sub display_state
 	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
 
 onevent buttons
 	if button.center == 1 then
+		new_state[0] = 0
+		new_state[1] = 0
+		new_state[2] = 0
+		new_state[3] = 0
 		motor.left.target = 0
 		motor.right.target = 0
 	end
 	if button.forward == 1 and state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
 		motor.left.target = 300
 		motor.right.target = 300
-	end
-	if button.forward == 1 and state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
-		timer.period[0] = 3995
+		timer.period[0] = 3500
 	end
 
 	call math.copy(state, new_state)
@@ -36,54 +42,42 @@ onevent timer0
 		new_state[1] = 1
 		new_state[2] = 0
 		new_state[3] = 0
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
 		motor.left.target = 250
 		motor.right.target = -250
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
-		timer.period[0] = 1001
+		timer.period[0] = 1000
 	end
 	if state[0] == 0 and state[1] == 1 and state[2] == 0 and state[3] == 0 then
 		new_state[0] = 0
 		new_state[1] = 0
 		new_state[2] = 0
 		new_state[3] = 1
-	end
-	if state[0] == 0 and state[1] == 1 and state[2] == 0 and state[3] == 0 then
-		motor.left.target = 200
-		motor.right.target = 200
-	end
-	if state[0] == 0 and state[1] == 1 and state[2] == 0 and state[3] == 0 then
-		timer.period[0] = 3006
+		motor.left.target = 350
+		motor.right.target = 350
+		timer.period[0] = 1500
 	end
 	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 1 then
 		new_state[0] = 0
 		new_state[1] = 0
 		new_state[2] = 1
 		new_state[3] = 0
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 1 then
 		motor.left.target = 250
 		motor.right.target = -250
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 0 and state[3] == 1 then
-		timer.period[0] = 949
+		timer.period[0] = 1000
 	end
 	if state[0] == 0 and state[1] == 0 and state[2] == 1 and state[3] == 0 then
 		new_state[0] = 1
 		new_state[1] = 0
 		new_state[2] = 0
 		new_state[3] = 0
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 1 and state[3] == 0 then
 		motor.left.target = 300
 		motor.right.target = 300
-	end
-	if state[0] == 0 and state[1] == 0 and state[2] == 1 and state[3] == 0 then
-		timer.period[0] = 3975
+		timer.period[0] = 3500
 	end
 	if state[0] == 1 and state[1] == 0 and state[2] == 0 and state[3] == 0 then
+		new_state[0] = 0
+		new_state[1] = 0
+		new_state[2] = 0
+		new_state[3] = 0
 		motor.left.target = 0
 		motor.right.target = 0
 	end
@@ -92,43 +86,59 @@ onevent timer0
 	callsub display_state
 <toolsPlugins>
 <ThymioVisualProgramming>
-<vplroot>
-<settings advanced-mode="true" color-scheme="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="0" eb3="0" eb4="1" action-name="move" event-name="button" state="0" ab0="0" ab1="0"/>
-
-<buttonset eb0="1" eb1="0" eb2="0" eb3="0" eb4="0" action-name="move" event-name="button" state="170" ab0="300" ab1="300"/>
-
-<buttonset eb0="1" eb1="0" eb2="0" eb3="0" eb4="0" action-name="timer" event-name="button" state="170" ab0="3995"/>
-
-<buttonset action-name="statefilter" event-name="timeout" state="170" ab0="2" ab1="1" ab2="2" ab3="2"/>
-
-<buttonset action-name="move" event-name="timeout" state="170" ab0="250" ab1="-250"/>
-
-<buttonset action-name="timer" event-name="timeout" state="170" ab0="1001"/>
-
-<buttonset action-name="statefilter" event-name="timeout" state="166" ab0="2" ab1="2" ab2="2" ab3="1"/>
-
-<buttonset action-name="move" event-name="timeout" state="166" ab0="200" ab1="200"/>
-
-<buttonset action-name="timer" event-name="timeout" state="166" ab0="3006"/>
-
-<buttonset action-name="statefilter" event-name="timeout" state="106" ab0="2" ab1="2" ab2="1" ab3="2"/>
-
-<buttonset action-name="move" event-name="timeout" state="106" ab0="250" ab1="-250"/>
-
-<buttonset action-name="timer" event-name="timeout" state="106" ab0="949"/>
-
-<buttonset action-name="statefilter" event-name="timeout" state="154" ab0="1" ab1="2" ab2="2" ab3="2"/>
-
-<buttonset action-name="move" event-name="timeout" state="154" ab0="300" ab1="300"/>
-
-<buttonset action-name="timer" event-name="timeout" state="154" ab0="3975"/>
-
-<buttonset action-name="move" event-name="timeout" state="169" ab0="0" ab1="0"/>
-
-<buttonset/>
-
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="1">
+<set>
+<block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="2" value3="2" type="action" name="setstate"/>
+<block value0="0" value1="0" type="action" name="move"/>
+</set>
+<set>
+<block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="2" value1="2" value2="2" value3="2" type="state" name="statefilter"/>
+<block value0="300" value1="300" type="action" name="move"/>
+<block value0="3500" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="2" value1="2" value2="2" value3="2" type="state" name="statefilter"/>
+<block value0="2" value1="1" value2="2" value3="2" type="action" name="setstate"/>
+<block value0="250" value1="-250" type="action" name="move"/>
+<block value0="1000" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="2" value1="1" value2="2" value3="2" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="2" value3="1" type="action" name="setstate"/>
+<block value0="350" value1="350" type="action" name="move"/>
+<block value0="1500" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="2" value1="2" value2="2" value3="1" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="1" value3="2" type="action" name="setstate"/>
+<block value0="250" value1="-250" type="action" name="move"/>
+<block value0="1000" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="2" value1="2" value2="1" value3="2" type="state" name="statefilter"/>
+<block value0="1" value1="2" value2="2" value3="2" type="action" name="setstate"/>
+<block value0="300" value1="300" type="action" name="move"/>
+<block value0="3500" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="1" value1="2" value2="2" value3="2" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="2" value3="2" type="action" name="setstate"/>
+<block value0="0" value1="0" type="action" name="move"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+</set>
+</program>
 </vplroot>
 </ThymioVisualProgramming>
 </toolsPlugins>

@@ -1,7 +1,7 @@
 %
 %    Aseba/VPL Reference Card
 %
-%  Copyright 2013 by Mordechai (Moti) Ben-Ari.
+%  Copyright 2013--14 by Mordechai (Moti) Ben-Ari.
 %  This work is licensed under the Creative Commons
 %  Attribution-ShareAlike 3.0 License. 
 %  To view a copy of this license, 
@@ -45,7 +45,7 @@
 \fontsize{15pt}{18pt}\selectfont
 
 \begin{center}
-{\Huge \textbf{VPL Reference Card}}
+{\Huge \textbf{VPL Reference Card (Version 1.4)}}
 \end{center}
 
 \bigskip
@@ -66,7 +66,7 @@ Set left and right motor and wheel speeds.%
 
 \blk{event-prox} & \textbf{Obstacle detectors}
 
-grey: ignore detector, red: object close, white: object far&
+grey: ignore detector, white: object close, black: object far&
 
 \blk{action-colors-up} & \textbf{Set top colour}
 
@@ -76,7 +76,7 @@ Set a mixture of red, green and blue to robot's top.%
 
 \blk{event-ground} & \textbf{Ground detectors}
 
-grey: ignore detector, red: ground, white: no ground&
+grey: ignore detector, while: ground, black: no ground&
 
 \blk{action-colors-down} & \textbf{Set bottom colour}
 
@@ -98,20 +98,6 @@ Choose pitch, white twice the duration of black.%
 
 Robot heard a strong noise.&
 
-\blk{action-timer} & \textbf{Start timer}
-
-Timer elapsed event will occur after some duration.%
-%
-\\[.6cm]
-
-\blk{event-timer} & \textbf{Timer elapsed}
-
-The timer has timed out.&
-
-\cellcolor{advancedmode} \blk{action-states} & \cellcolor{advancedmode} \textbf{Set robot's state}
-
-Set the 4-bit internal state of the robot.\\
-
 \end{tabularx}
 
 \vfill
@@ -120,9 +106,15 @@ Set the 4-bit internal state of the robot.\\
 
 \multicolumn{2}{l}{\textbf{Constructing your program}} \\[.4cm]
 
-\blkbig{event-action-pair-empty} & Drag and drop events to the left square, actions to the right square. 
+\blkbig{empty-frame} & Drag and drop events to the left square,\par actions to the right square. 
 
 When event happens, the robot executes the action.
+\\
+
+\blkbig{colors-multiple} & Multiple actions associated with a single
+event. 
+
+When event happens, the robot executes all the actions.
 \\
 
 \end{tabularx}
@@ -143,6 +135,64 @@ Left \textbf{and} right must be touched or have an object close. &
 
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}\hfill\colorbox{advancedmode}{advanced mode feature}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{center}
+{\Huge \textbf{Advanced Mode}}
+\end{center}
+
+\begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
+
+\multicolumn{2}{l}{\textbf{Events}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.4cm]
+
+\blk{event-prox-advanced} & \textbf{Obstacle detectors}
+
+Sliders set high (object close) and low (object far) thresholds&
+
+\blk{action-timer} & \textbf{Start timer}
+
+Timer elapsed event will occur after some duration.%
+%
+\\[.6cm]
+
+\blk{event-ground-advanced} & \textbf{Ground detectors}
+
+Sliders set high (object close) and low (object far) thresholds&
+
+\blk{action-states} & \textbf{Set robot's state}
+
+Set the four-bit internal state of the robot.%
+%
+\\[.6cm]
+
+\blk{event-tap-advanced} & \textbf{Robot tapped}
+
+Robot received a shock.
+\\[1.6cm]
+
+\blk{event-acc-pitch} & \textbf{Pitch accelerometer}
+
+Pitch (forwards / backwards) is within the red segment.
+\\[.6cm]
+
+\blk{event-acc-roll} & \textbf{Roll accelerometer}
+
+Roll (left / right) is within the red segment.
+\\[1cm]
+
+\blk{event-timer} & \textbf{Timer elapsed}
+
+The timer has timed out.\\
+
+
+\end{tabularx}
+
+\vfill
+
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
 
 \end{document}

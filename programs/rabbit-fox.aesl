@@ -1,76 +1,62 @@
 <!DOCTYPE aesl-source>
 <network>
-<node nodeId="1" name="thymio-II">var state[4] = [0,0,0,0]
+<node nodeId="1" name="thymio-II"># variables for state
+var state[4] = [0,0,0,0]
 var new_state[4] = [0,0,0,0]
 
+# stop timer 0
 timer.period[0] = 0
+# reset outputs
 call sound.system(-1)
 call leds.top(0,0,0)
 call leds.bottom.left(0,0,0)
 call leds.bottom.right(0,0,0)
 call leds.circle(0,0,0,0,0,0,0,0)
 
+# subroutine to display the current state
 sub display_state
 	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
 
 onevent buttons
 	if button.forward == 1 then
+		new_state[0] = 0
+		new_state[1] = 0
 		motor.left.target = 200
 		motor.right.target = 200
-	end
-	if button.forward == 1 then
 		call leds.top(0,0,32)
 	end
-	if button.forward == 1 then
+	if button.backward == 1 then
 		new_state[0] = 0
 		new_state[1] = 0
-	end
-	if button.backward == 1 then
 		motor.left.target = 0
 		motor.right.target = 0
-	end
-	if button.backward == 1 then
 		call leds.top(0,0,0)
-	end
-	if button.backward == 1 then
-		new_state[0] = 0
-		new_state[1] = 0
 	end
 
 	call math.copy(state, new_state)
 	callsub display_state
 
 onevent prox
-	if prox.ground.reflected[0] &lt; 150 and prox.ground.reflected[1] &lt; 150 then
+	if prox.ground.delta[0] &lt; 350 and prox.ground.delta[1] &lt; 350 then
 		motor.left.target = 0
 		motor.right.target = 0
-	end
-	if prox.ground.reflected[0] &lt; 150 and prox.ground.reflected[1] &lt; 150 then
 		call leds.top(0,0,0)
 	end
-	if prox.horizontal[5] > 2500 then
-		call leds.top(32,0,0)
-	end
-	if prox.horizontal[5] > 2500 then
+	if prox.horizontal[5] > 2000 then
 		motor.left.target = -150
 		motor.right.target = 200
+		call leds.top(32,0,0)
 	end
-	if prox.horizontal[6] > 2500 then
-		call leds.top(0,32,0)
-	end
-	if prox.horizontal[6] > 2500 then
+	if prox.horizontal[6] > 2000 then
 		motor.left.target = 200
 		motor.right.target = -150
+		call leds.top(0,32,0)
 	end
-	if prox.horizontal[2] > 2500 and state[0] == 0 then
-		motor.left.target = 200
-		motor.right.target = 200
-	end
-	if prox.horizontal[2] > 2500 and state[0] == 0 then
+	if prox.horizontal[2] > 2000 and state[0] == 0 then
+		motor.left.target = 250
+		motor.right.target = 250
 		call leds.top(32,32,0)
-	end
-	if prox.horizontal[2] > 2500 and state[0] == 0 then
-		timer.period[0] = 974
+		timer.period[0] = 1088
 	end
 
 	call math.copy(state, new_state)
@@ -80,51 +66,64 @@ onevent timer0
 	timer.period[0] = 0
 	motor.left.target = 0
 	motor.right.target = 0
-	new_state[0] = 1
+	call leds.top(0,0,0)
 
 	call math.copy(state, new_state)
 	callsub display_state
 <toolsPlugins>
 <ThymioVisualProgramming>
-<vplroot>
-<settings advanced-mode="true" color-scheme="0"/>
-
-<buttonset eb0="1" eb1="0" eb2="0" eb3="0" eb4="0" action-name="move" event-name="button" state="0" ab0="200" ab1="200"/>
-
-<buttonset eb0="1" eb1="0" eb2="0" eb3="0" eb4="0" action-name="colortop" event-name="button" state="0" ab0="0" ab1="0" ab2="32"/>
-
-<buttonset eb0="1" eb1="0" eb2="0" eb3="0" eb4="0" action-name="statefilter" event-name="button" state="0" ab0="2" ab1="2" ab2="0" ab3="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="1" eb3="0" eb4="0" action-name="move" event-name="button" state="0" ab0="0" ab1="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="1" eb3="0" eb4="0" action-name="colortop" event-name="button" state="0" ab0="0" ab1="0" ab2="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="1" eb3="0" eb4="0" action-name="statefilter" event-name="button" state="0" ab0="2" ab1="2" ab2="0" ab3="0"/>
-
-<buttonset eb0="1" eb1="1" action-name="move" event-name="proxground" state="0" ab0="0" ab1="0"/>
-
-<buttonset eb0="1" eb1="1" action-name="colortop" event-name="proxground" state="0" ab0="0" ab1="0" ab2="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="0" eb3="0" eb4="0" eb5="2" eb6="0" action-name="colortop" event-name="prox" state="0" ab0="32" ab1="0" ab2="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="0" eb3="0" eb4="0" eb5="2" eb6="0" action-name="move" event-name="prox" state="0" ab0="-150" ab1="200"/>
-
-<buttonset eb0="0" eb1="0" eb2="0" eb3="0" eb4="0" eb5="0" eb6="2" action-name="colortop" event-name="prox" state="0" ab0="0" ab1="32" ab2="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="0" eb3="0" eb4="0" eb5="0" eb6="2" action-name="move" event-name="prox" state="0" ab0="200" ab1="-150"/>
-
-<buttonset eb0="0" eb1="0" eb2="2" eb3="0" eb4="0" eb5="0" eb6="0" action-name="move" event-name="prox" state="2" ab0="200" ab1="200"/>
-
-<buttonset eb0="0" eb1="0" eb2="2" eb3="0" eb4="0" eb5="0" eb6="0" action-name="colortop" event-name="prox" state="2" ab0="32" ab1="32" ab2="0"/>
-
-<buttonset eb0="0" eb1="0" eb2="2" eb3="0" eb4="0" eb5="0" eb6="0" action-name="timer" event-name="prox" state="2" ab0="974"/>
-
-<buttonset action-name="move" event-name="timeout" state="0" ab0="0" ab1="0"/>
-
-<buttonset action-name="statefilter" event-name="timeout" state="0" ab0="1" ab1="0" ab2="0" ab3="0"/>
-
-<buttonset/>
-
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="1">
+<set>
+<block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="0" value3="0" type="action" name="setstate"/>
+<block value0="200" value1="200" type="action" name="move"/>
+<block value0="0" value1="0" value2="32" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="1" value3="0" value4="0" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="2" value1="2" value2="0" value3="0" type="action" name="setstate"/>
+<block value0="0" value1="0" type="action" name="move"/>
+<block value0="0" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="2" value1="2" value2="350" value3="450" type="event" name="proxground"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="0" value1="0" type="action" name="move"/>
+<block value0="0" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" value4="0" value5="1" value6="0" value7="1000" type="event" value8="2000" name="prox"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="-150" value1="200" type="action" name="move"/>
+<block value0="32" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" value4="0" value5="0" value6="1" value7="1000" type="event" value8="2000" name="prox"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="200" value1="-150" type="action" name="move"/>
+<block value0="0" value1="32" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="1" value3="0" value4="0" value5="0" value6="0" value7="1000" type="event" value8="2000" name="prox"/>
+<block value0="2" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="250" value1="250" type="action" name="move"/>
+<block value0="32" value1="32" value2="0" type="action" name="colortop"/>
+<block value0="1088" type="action" name="timer"/>
+</set>
+<set>
+<block type="event" name="timeout"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="0" value1="0" type="action" name="move"/>
+<block value0="0" value1="0" value2="0" type="action" name="colortop"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+</set>
+</program>
 </vplroot>
 </ThymioVisualProgramming>
 </toolsPlugins>

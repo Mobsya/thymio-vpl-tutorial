@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,english]{article}
+\documentclass[11pt,a4paper,english]{article}
 \usepackage{../../vpl}
 \graphicspath{{../../images/}}
 
@@ -12,7 +12,7 @@
 First Steps in Robotics
 
 with the
-Thymio-II Robot
+Thymio Robot
 
 and the
 Aseba/VPL Environment
@@ -23,7 +23,7 @@ Answers to the Exercises
 
 \end{Large}
 
-Version 1.3{\textasciitilde}pre1
+Version 1.4{\textasciitilde}pre1
 
 \bigskip
 
@@ -34,7 +34,7 @@ Version 1.3{\textasciitilde}pre1
 
 \bigskip
 
-\copyright{}\  2013--14 by Moti Ben-Ari and other contributors.
+\copyright{}\  2013--15 by Moti Ben-Ari and other contributors.
 
 This work is licensed under the Creative Commons
 Attribution-ShareAlike 3.0 Unported License. To view a copy
@@ -49,12 +49,12 @@ Mountain View, California, 94041, USA.
 
 \section{Your First Robotics Project}
 
-No exercise.
+No exercises.
 
 \section{Changing Colors}
 
 \textbf{\thesection.1}: 
-When mixing the three colors of the Thymio-II robot, each color can have
+When mixing the three colors of the Thymio robot, each color can have
 an intensity between 0 (off) and 32 (on maximum). Therefore, there are
 $33 \times 33 \times 33=35,937$ different colors. If we consider only
 the extremes of intensity off or on maximum, the colors are: off (all
@@ -66,12 +66,15 @@ magenta (red and blue on, green off).
 \section{Let's Get Moving}
 
 \textbf{\thesection.1}: The robot should be able to stop. The
-maximum speed of the Thymio-II is 20 centimeters per second. Since the
+maximum speed of the Thymio is 20 centimeters per second. Since the
 sensors are sampled 10 times a second, the robot can move at most 2
 centimeters before it stops. That should be sufficiently fast to prevent
 the robot from falling off the table, but be prepared to catch it just
 in case!
 
+There are no ground sensors at the back of the Thymio robot, so that the
+time that the sensors in the front detect the edge of the table, the
+entire body of the robot has moved beyond the edge and fallen off.
 
 \section{A Pet Robot}
 
@@ -85,7 +88,7 @@ of the table.
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{likes-and-stops}{0.4}
+\gr{likes-and-stops}{0.3}
 \caption{Stop at the edge of the table}\label{fig.answer1}
 \end{center}
 \end{figure}
@@ -111,7 +114,7 @@ pair keeps the motors on before they have a chance to stop.
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{likes-change-order}{0.4}
+\gr{likes-changed-order}{0.3}
 \caption{Changing the order of the event-action pairs}\label{fig.change}
 \end{center}
 \end{figure}
@@ -119,7 +122,7 @@ pair keeps the motors on before they have a chance to stop.
 \textbf{\thesection.3}: 
 \begin{itemize}
 
-\item Use sensors 1 and 3: The robot is less sensitive the the presence
+\item Use sensors 1 and 3: The robot is less sensitive to the presence
 of your hand on the side. You will have to move it closer to the center.
 
 \item Use both sensors 0 and 1 to turn the robot left and both sensors 3
@@ -150,7 +153,7 @@ the line.
 \begin{itemize}
 \item Gentle turns are easier to follow; 
 \item Sharp turns are harder to follow; 
-\item If the lines zigzag the robot might not return to the line before
+\item The robot might not return to the line before
 the next turn is encountered;
 \item Wider lines make it less likely that the robot will run off the line; 
 \item Narrow lines make it more likely that a small deviation will cause
@@ -186,15 +189,15 @@ as well as the highest tones.
 
 \begin{figure}
 \begin{center}
-\gr{morse}{.4}
+\gr{morse}{.3}
 \caption{Morse code}\label{fig.morse}
 \end{center}
 \end{figure}
 
 
-\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns the motors on when
-the clap event occurs and turns them off when the center button is
-touched.
+\textbf{\thesection.2}: The program in \cref{fig.clap-to-start} turns
+the motors on when the clap event occurs and turns them off when the
+center button is touched. This may not work because the 
 
 {\raggedleft \hfill Program file \bu{clap-start.aesl}}
 
@@ -205,24 +208,23 @@ clapping; \emph{any} loud noise will cause the event to occur. The
 motors make so much noise that as soon as they start, the loud-noise
 event occurs and the motors stop.
 
-The lesson to be learned is not to put
-too much trust in what is shown on a visual block!
-
 {\raggedleft \hfill Program file \bu{clap-stop.aesl}}
 
 \begin{figure}
 \begin{center}
-\gr{clap-to-start}{.4}
+\gr{clap-to-start}{.3}
 \caption{Clap to start the motor}\label{fig.clap-to-start}
 \end{center}
 \end{figure}
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{clap-to-stop}{.4}
+\gr{clap-to-stop}{.3}
 \caption{Clap to stop the motor}\label{fig.clap-to-stop}
 \end{center}
 \end{figure}
+
+\newpage
 
 \textbf{\thesection.3}:
 The program has two event-action pairs (\cref{fig.bump}): one to
@@ -233,11 +235,10 @@ tap event occurs.
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{bump}{.4}
+\gr{bump}{.3}
 \caption{Stop the motor when the robot bumps into a wall}\label{fig.bump}
 \end{center}
 \end{figure}
-
 
 \section{A Time to Like}
 
@@ -252,51 +253,36 @@ center button is touched, the motors are stopped.
 
 \begin{figure}[hbt]
 \begin{center}
-\gr{run-three-seconds}{.4}
+\gr{run-three-seconds}{.3}
 \caption{Run three seconds and reverse}\label{fig.three}
 \end{center}
 \end{figure}
 
 
-\section{States: Don't Always Do the Same Thing}
+\section{States}
 
-\textbf{\thesection.1}:
-There will be two states: state \emph{left} \blksm{state-left} when the
-robot turns to the left and state \emph{right} \blksm{state-right} when
-the robot turns to the right. Initially, touching the forward button in
-the initial state (off, off, off, off) sets a one-second timer and state
-\emph{left} (\cref{fig.dance-start}). When the timer runs down in
-state \emph{left}, the robot turns to the left, (re-)sets a timer for
-two seconds and goes to state \emph{right}
-(\cref{fig.dance-left}). When the timer runs down in state
-\emph{right}, the robot turns to the right, (re-)sets a timer for two
-seconds and goes to state \emph{left} (\cref{fig.dance-right}).
-These two behaviors are run repeatedly, so you will have to click
-\blksm{stop} to stop the robot.
+\textbf{\thesection.1}: See Figure~\ref{fig.dance} There will be two
+states: state \emph{left} \blksm{state-left} when the robot turns to the
+left and state \emph{right} \blksm{state-right} when the robot turns to
+the right. Initially, touching the forward button in the initial state
+(off, off, off, off) sets a one-second timer and state \emph{left}. When
+the timer runs down in state \emph{left}, the robot turns to the left,
+(re-)sets a timer for two seconds and goes to state \emph{right}. When
+the timer runs down in state \emph{right}, the robot turns to the right,
+(re-)sets a timer for two seconds and goes to state \emph{left}. These
+two behaviors are run repeatedly, so you will have to click \blksm{stop}
+to stop the robot.
 
 {\raggedleft \hfill Program file \bu{dance.aesl}}
 
 
 \begin{figure}
 \begin{center}
-\gr{dance-start}{0.4}
-\caption{Starting the dance}\label{fig.dance-start}
+\gr{dance}{0.4}
+\caption{Dancing}\label{fig.dance}
 \end{center}
 \end{figure}
 
-\begin{figure}
-\begin{center}
-\gr{dance-left}{0.4}
-\caption{Dance two seconds to the left}\label{fig.dance-left}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\gr{dance-right}{0.4}
-\caption{Dance three seconds to the right}\label{fig.dance-right}
-\end{center}
-\end{figure}
 
 \textbf{\thesection.2}:
 I was not able to solve this problem. I had assumed that it would be
@@ -319,13 +305,8 @@ State \emph{left} \blksm{state-left} remembers that the robot left the
 left side of the line and state \emph{right} \blksm{state-right}
 remembers that the robot ran off the right side of the line
 (\cref{fig.follow3}).
-
 When both sensors fail to detect the line, the robot turns in the
 direction indicated by the current state (\cref{fig.follow1}).
-
-It is also possible that the robot runs off the line without ever having
-left one side so that the state is the initial state of all \emph{off};
-in that case, we arbitrary choose to turn right \blkc{follow2}
 
 \begin{figure}
 \begin{center}
@@ -340,8 +321,6 @@ in that case, we arbitrary choose to turn right \blkc{follow2}
 \caption{Search to the left or the right}\label{fig.follow1}
 \end{center}
 \end{figure}
-
-\clearpage
 
 \section{Counting}
 
@@ -376,10 +355,472 @@ arithmetic.
 
 {\raggedleft \hfill Program file \bu{subtraction.aesl}}
 
+\newpage
+
 \textbf{\thesection.5}:
 An event-action pair is needed to count each strip of tape.
 For example, the following pair \blkc{count3} changes the count from 2 to 3 when a tape is detected.
 
 {\raggedleft \hfill Program file \bu{count-tapes-four.aesl}}
+
+
+\section{Accelerometers}
+
+\textbf{\thesection.1}: VPL does not allow identical events in more than
+one event-actions pair, unless the parameters are different. For this
+block, choosing a different angle for the red segment makes the events
+different.
+
+There are seven different positions of the red segment between the
+vertical and horizonal on one side. Therefore, each segment represents
+$90 / 6.5 \approx 14$ degrees. (The vertical segment is half within the
+left quarter circle and half within the right quarter circle, so we
+divide 90 by 6.5 and not 7.)
+
+\newpage
+
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-11pt]{0pt}{32pt}}\ }
+\newcommand*{\eblockbig}{\framebox[58pt]{\rule[-5pt]{0pt}{20pt}}\ }
+\newcommand*{\eblocksm}{\framebox[30pt]{\rule[-5pt]{0pt}{20pt}}\ }
+
+\begin{center}
+\begin{Large}
+\begin{bfseries}
+Answers to the Parsons Puzzles
+\end{bfseries}
+\end{Large}
+\end{center}
+
+\begin{enumerate}
+
+\item When the right button is touched the bottom red light is turned on.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{right-button} $\rightarrow$ \eblock  &  \blk{red-bottom} & \blk{red}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,40){\line(0,-1){18}}
+\put(-80,40){\line(-1,0){100}}
+\put(-180,40){\vector(0,-1){18}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the right button is touched the top red light is turned on.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{left-button} &
+ \blk{right-button}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-30,40){\line(0,-1){18}}
+\put(-30,40){\line(-1,0){200}}
+\put(-230,40){\vector(0,-1){18}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the left button is touched the bottom green light is turned on.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \eblock  &  \blk{right-button} & \blk{left-button}
+ & \blk{green} & \blk{green-bottom}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-132,40){\line(0,-1){18}}
+\put(-132,40){\line(-1,0){200}}
+\put(-332,40){\vector(0,-1){18}}
+
+\put(-28,-34){\line(0,1){18}}
+\put(-28,-34){\line(-1,0){254}}
+\put(-282,-34){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the left button \textbf{or} the right button is touched, the
+top green light is turned on.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{left-button} $\rightarrow$ \eblock  &  \blk{green} &
+  \blk{green-bottom}\\
+\\
+\eblock $\rightarrow$ \blk{green}  &  \blk{right-button} &
+ \blk{left-button}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,70){\line(0,-1){18}}
+\put(-80,70){\line(-1,0){100}}
+\put(-180,70){\vector(0,-1){18}}
+
+\put(-80,-62){\line(0,1){18}}
+\put(-80,-62){\line(-1,0){152}}
+\put(-232,-62){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When \textbf{both} the left button \textbf{and} the right button
+are touched, the top red light is turned on.
+Select one of the following two programs:
+
+\bigskip\bigskip
+
+\begin{center}
+\begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
+\blk{left-right-button} $\rightarrow$ \blk{red} \quad $\surd$ & \textbf{or}&
+\blk{left-button} $\rightarrow$ \blk{red}\\
+&&\blk{right-button} $\rightarrow$ \blk{red}
+\end{tabular}
+\end{center}
+
+\bigskip\bigskip
+
+\item If an object is detected \textbf{only} by the leftmost sensor, turn left.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{left-turn} & \blk{sensor-and-prox} &
+\blk{right-prox} & \blk{center-prox} & \blk{left-prox} \\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-30,40){\line(0,-1){18}}
+\put(-30,40){\line(-1,0){305}}
+\put(-335,40){\vector(0,-1){18}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item Stop the robot when the end of the table has been reached. 
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-ground} &
+ \blk{ground2} & \blk{ground1}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){200}}
+\put(-282,42){\vector(0,-1){20}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the robot detects a wall, the top red light is turned on.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{center-prox} & \blk{ground1}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){150}}
+\put(-232,42){\vector(0,-1){20}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the robot hits the wall, the motors are turned off.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{event-tap} $\rightarrow$ \eblock & \blk{full} & \blk{back-full} & \blk{action-motors}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-28,42){\line(0,-1){18}}
+\put(-28,42){\line(-1,0){200}}
+\put(-228,42){\vector(0,-1){20}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The robot turns to the left if there is an object in front of the center sensor. 
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \eblock & \blk{left-turn} & \blk{full} & \blk{right-turn}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-134,42){\line(0,-1){18}}
+\put(-134,42){\line(-1,0){96}}
+\put(-230,42){\vector(0,-1){20}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The robot turns to the right if there is \textbf{no} object in front of the center sensor. 
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{center-prox} & \blk{no-detect-forward} &
+\blk{neither-prox}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,42){\line(0,-1){18}}
+\put(-82,42){\line(-1,0){200}}
+\put(-282,42){\vector(0,-1){20}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The motors are turned off when the left button is touched
+\textbf{or} if the robot is tapped. 
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-buttons} &
+\blk{left-right-button} & \blk{left-button} & \blk{right-button}\\
+\\
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-tap} &
+\blk{event-clap}
+\end{tabular}
+\begin{picture}(0,0)
+\put(-82,70){\line(0,-1){18}}
+\put(-82,70){\line(-1,0){256}}
+\put(-338,70){\vector(0,-1){20}}
+
+\put(-182,-63){\line(0,1){18}}
+\put(-182,-63){\line(-1,0){156}}
+\put(-338,-63){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the forwards button is touched, the robot moves forward
+for three seconds and then moves backwards.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{forward} $\rightarrow$ \blk{full}\\
+\\
+\blk{forward} $\rightarrow$ \eblock & \blk{event-timer} & \blk{three-seconds}\\
+\\
+\eblock       $\rightarrow$ \blk{back-full} & \blk{event-timer} &  \blk{three-seconds}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-28,34){\line(0,-1){10}}
+\put(-28,34){\line(-1,0){148}}
+\put(-176,34){\vector(0,-1){11}}
+
+\put(-82,-90){\line(0,1){18}}
+\put(-82,-90){\line(-1,0){152}}
+\put(-234,-90){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The robot moves towards an object that is detected by its left,
+right or center sensor.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \blk{full}\\
+\\
+\blk{left-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} &
+ \blk{left-turn} & \blk{action-motors}\\
+\\
+\eblock       $\rightarrow$ \eblock & \blk{right-turn} & \blk{left-turn} &
+ \blk{left-prox} & \blk{right-prox}\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-80,35){\line(0,-1){10}}
+\put(-80,35){\line(-1,0){203}}
+\put(-283,35){\vector(0,-1){12}}
+
+\put(-186,-24){\line(0,-1){10}}
+\put(-186,-24){\line(-1,0){97}}
+\put(-283,-24){\vector(0,-1){10}}
+
+\put(-27,-90){\line(0,1){18}}
+\put(-27,-90){\line(-1,0){311}}
+\put(-338,-90){\vector(0,1){16}}
+\end{picture}
+
+%\bigskip\bigskip
+\newpage
+
+\item The robot is following a line on the floor. It turns left if it no
+longer detects the line in its right sensor and it turns right if it no
+longer detects the line in its left sensor,
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{bottom-right} & \blk{bottom-left} & \blk{left-prox} & \blk{right-prox}\\
+\\
+\eblock $\rightarrow$ \eblock & \blk{bottom-right} & \blk{bottom-left} & \blk{right-turn} & \blk{left-turn}\\
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-188,74){\line(0,-1){16}}
+\put(-188,74){\line(-1,0){150}}
+\put(-338,74){\vector(0,-1){18}}
+
+\put(-136,13){\line(0,-1){12}}
+\put(-136,13){\line(-1,0){202}}
+\put(-338,13){\vector(0,-1){12}}
+
+\put(-27,-57){\line(0,1){18}}
+\put(-27,-57){\line(-1,0){256}}
+\put(-283,-57){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The robot counts 0,1,2,3,0,1,2,3, \ldots, whenever it
+detects a clap event.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{event-clap} \blk{state-0} $\rightarrow$ \eblock &
+\blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-3} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \eblock &
+\blk{state-event-0} & \blk{state-event-3} & \blk{state-0} & \blk{state-3}\\ 
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-386,-108){
+\put(254,240){\line(0,-1){18}}
+\put(254,240){\line(-1,0){128}}
+\put(126,240){\vector(0,-1){19}}
+
+\put(254,177){\line(0,-1){10}}
+\put(254,177){\line(-1,0){186}}
+\put( 68,177){\vector(0,-1){12}}
+
+\put(306,120){\line(0,-1){10}}
+\put(306,120){\line(-1,0){238}}
+\put( 68,120){\vector(0,-1){10}}
+
+\put(252,64){\line(0,-1){8}}
+\put(252,64){\line(-1,0){184}}
+\put( 68,64){\vector(0,-1){8}}
+
+\put(306,0){\line(0,1){16}}
+\put(306,0){\line(-1,0){180}}
+\put(126,0){\vector(0,1){16}}
+}
+\end{picture}
+
+\bigskip\bigskip
+
+\item When the center button is touched, the right front and left front circle
+lights turn on and off alternately at one-second intervals.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
+\blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
+\\
+\blk{event-timer} \blk{state-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
+\\
+\eblock \blk{state-2} $\rightarrow$ \eblock \blk{one-second} &
+\blk{event-timer} & \blk{action-timer} & \blk{state-1} & \blk{state-2}\\ 
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(350,180){\line(0,-1){15}}
+\put(350,180){\line(-1,0){225}}
+\put(125,180){\vector(0,-1){15}}
+
+\put(350,120){\line(0,-1){10}}
+\put(350,120){\line(-1,0){180}}
+\put(170,120){\vector(0,-1){10}}
+
+\put(242,64){\line(0,-1){8}}
+\put(242,64){\line(-1,0){215}}
+\put(27,64){\vector(0,-1){8}}
+
+\put(350,0){\line(0,1){16}}
+\put(350,0){\line(-1,0){224}}
+\put(126,0){\vector(0,1){16}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item The bottom light of the robot turns green when it detects an object is
+far away from it and the top light of the robot turns red when it
+detects an object is close to it.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{bottom-green} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{red} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(-184,72){\line(0,-1){15}}
+\put(-184,72){\line(-1,0){176}}
+\put(-360,72){\vector(0,-1){15}}
+
+\put(-132,10){\line(0,-1){8}}
+\put(-132,10){\line(-1,0){228}}
+\put(-360,10){\vector(0,-1){8}}
+\end{picture}
+
+\bigskip\bigskip
+
+\item Tilt the robot on its left side; the top light turns blue and the bottom
+light is turned off. Tilt the robot on its back; the top light is turned
+off and the bottom light turns yellow.
+
+\bigskip\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{blue} \blk{action-colors-down} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{action-colors-up} \blk{yellow-bottom} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+\end{tabular}
+\begin{picture}(0,0)
+\put(293,126){\line(0,-1){15}}
+\put(293,126){\line(-1,0){267}}
+\put( 26,126){\vector(0,-1){15}}
+
+\put(398,64){\line(0,-1){8}}
+\put(398,64){\line(-1,0){372}}
+\put( 26,64){\vector(0,-1){8}}
+\end{picture}
+
+\end{enumerate}
 
 \end{document}

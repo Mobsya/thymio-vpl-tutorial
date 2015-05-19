@@ -1,6 +1,8 @@
 <!DOCTYPE aesl-source>
 <network>
-<node nodeId="1" name="thymio-II">mic.threshold = 250
+<node nodeId="1" name="thymio-II"># setup threshold for detecting claps
+mic.threshold = 250
+# reset outputs
 call sound.system(-1)
 call leds.top(0,0,0)
 call leds.bottom.left(0,0,0)
@@ -15,15 +17,19 @@ onevent mic
 	call leds.bottom.right(0,32,32)
 <toolsPlugins>
 <ThymioVisualProgramming>
-<vplroot>
-<settings advanced-mode="false" color-scheme="0"/>
-
-<buttonset action-name="colortop" event-name="tap" state="-1" ab0="32" ab1="0" ab2="32"/>
-
-<buttonset action-name="colorbottom" event-name="clap" state="-1" ab0="0" ab1="32" ab2="32"/>
-
-<buttonset/>
-
+<vplroot xml-format-version="1">
+<settings color-scheme="0"/>
+<program advanced_mode="0">
+<set>
+<block value0="0" value1="0" type="event" name="acc"/>
+<block value0="32" value1="0" value2="32" type="action" name="colortop"/>
+</set>
+<set>
+<block type="event" name="clap"/>
+<block value0="0" value1="32" value2="32" type="action" name="colorbottom"/>
+</set>
+<set/>
+</program>
 </vplroot>
 </ThymioVisualProgramming>
 </toolsPlugins>

@@ -1,25 +1,17 @@
-% !TeX root = vpl.tex
+\chap{A Time to Like (Advanced Mode)}\label{ch.time}
 
-\chap{A Time to Like}\label{ch.time}
-
-In \cref{ch.pet} we programmed a pet robot which either did or did
-not like us. Let us consider a more advanced behavior: a shy pet who
-can't make up its mind whether it likes us or dislikes us. Initially,
-the pet will turn towards our outreached hand, but then it will turn
-away. After a while, it will reconsider and turn back in the direction
-of our hand.
+In \cref{ch.pet} we programmed a pet robot which either did or did not
+like us. Let us consider a more advanced behavior: a shy pet who can't
+make up its mind whether it likes us or dislikes us. Initially, the pet
+will turn towards our outreached hand, but then it will turn away. After
+a while, it will reconsider and turn back in the direction of our hand.
 
 {\raggedleft \hfill Program file \bu{shy.aesl}}
 
-The behavior of the robot is as follows. When the right button is
-touched the robot turns to the right. When it detects your hand, it
-turns to the left but after a while it regrets its decision and turns
-back. We know how to construct event-action pairs for the initial turn:
-\blkc{start-turn} and for turning away when your hand is detected:
-\blkc{turn-away}
-
-The behavior of turning back ``after a while'' can be broken down into
-two parts:
+When the right button is touched the robot turns to the right:
+\blkc{start-turn} When it detects your hand, it turns to the left:
+\blkc{turn-away} The behavior of turning back ``after a while'' can be
+divided into two parts:
 
 \begin{itemize}
 
@@ -31,38 +23,48 @@ to the right.
 
 \end{itemize}
 
-We need a new \emph{action} for the first part and a new
-\emph{event} for the second part.
+We need a new \emph{action} for the first part and a new \emph{event}
+for the second part.
 
-The action is to set a \emph{timer}, which is like an alarm clock
-\blksm{action-timer}. Normally, we set an alarm clock to an absolute time,
-but when I set the alarm clock in my smartphone to an absolute time like
-07:00, it tells me the relative time: ``Alarm set for 11 hours, and 23
-minutes from now.'' The timer block works the same way: you set the
-timer for a certain number of seconds from when the event occurs and then the
-action happens. The timer can be set for up to four seconds. Click
-anywhere within the black circle showing the face of the clock (but not
-on the black circle itself). There will be a short animation and then
-the amount of time until the alarm will be colored blue.
+The action to set a \emph{timer} is like an alarm clock
+\blksm{action-timer}. Normally, we set an alarm clock to an absolute
+time, but when I set the alarm clock in my smartphone to an absolute
+time like 07:00, it tells me the relative time: ``Alarm set for 11 hours
+and 23 minutes from now.'' You can set the timer action block for a
+certain number of seconds; when the timer has \emph{expired}---that is,
+when the number of seconds has passed from the setting of the timer---a
+timer \emph{event} occurs.
 
-\newpage
-The event-action pair for this first part of the behavior is:
+The timer can be set for up to four seconds, where each second is
+represented by one quarter of the clock face. Click anywhere within the
+white circle; there will be a short animation and then the appropriate
+part of the clock face will be colored dark blue.
+
+\informationbox{Advanced mode}{Timers are supported in \emph{advanced
+mode}. Click on \blkmed{advanced} to enter advanced mode.\\The icon will
+change to \blkmed{basic} and you can click on it to change back to
+\emph{basic mode}.}
+
+%\newpage
+
+The event-actions pair for this first part of the behavior is:
 \blkc{turn-clock}
 
-The timer is set for two seconds. When the event of detecting your
-hand occurs, there will be two actions: turning the robot to the left
-and setting the timer.
+When the event of detecting your hand occurs, there will be two actions:
+turning the robot to the left and setting the timer to two seconds.
 
-The second part of the behavior needs an event that occurs when the alarm goes off,
-that is, when the amount of time set on the timer runs down to zero. The
-event block \blksm{event-timer} shows a ringing alarm clock.
+The second part of the behavior uses a ringing-alarm-clock timer event
+\blksm{event-timer} that occurs when the amount of time set on the timer
+expires.
 
-Here is the event-action pair to turn the robot anew to
-the right when the timer runs down: \blkc{turn-back}
+Here is the event-actions pair to turn the robot to the right when the
+timer expires: \blkc{turn-back}
+
+\bigskip
 
 \exercisebox{\thechapter.1}{
 Write a program that causes the robot to move forward at top speed for
 three seconds when the forward button is touched; then it runs
-backwards. Add an event-action pair to stop the robot by touching the
+backwards. Add an event-actions pair to stop the robot by touching the
 center button.
 }

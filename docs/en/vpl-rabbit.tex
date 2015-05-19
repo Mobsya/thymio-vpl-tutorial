@@ -1,20 +1,16 @@
-% !TeX root = vpl.tex
+\chap{The Rabbit and the Fox}\label{ch.rabbit}
 
-\chap{Project: The Rabbit and the Fox}\label{ch.rabbit}
-
-This chapter contains the specification of a large project (my
-implementation uses 17 event-action pairs). You should have enough
-experience designing and implementing VPL programs in order to write it
-yourself. We will give the specification of the behavior of the robot as
-a list of tasks and suggest that you develop the program by implementing
-each task in turn. Check the complete behavior of the robot each time
-you add some event-action pairs in order to ensure that that additional
-new pairs haven't caused a problem with the existing ones.
+This chapter contains the specification of a large project (my program
+uses 7 event-actions pairs, each with 2--3 actions). You should have
+enough experience by now designing and implementing VPL programs in
+order to write it yourself. We will give the specification of the
+behavior of the robot as a list of tasks and suggest that you develop
+the program by implementing each task in turn.
 
 
-\textbf{Story}:\footnote{The story is loosely inspired by a joke
-well-known to PhD students.\\ See:
-\url{http://www.cs.hmc.edu/~fleck/parable.html}.} The robot is a rabbit,
+\textbf{Story}\footnote{The story is loosely inspired by a
+\href{http://www.cs.hmc.edu/~fleck/parable.html}{joke}
+well-known to PhD students.} The robot is a rabbit,
 walking in the forest. A fox chases the the rabbit to catch
 it from behind. The rabbit senses the fox, turns around and catches the
 fox.
@@ -22,8 +18,7 @@ fox.
 
 \textbf{Specification}
 
-For each event, we specify a color that should be shown on the top LEDs
-when the event occurs.
+For each event, we specify a top color to be displayed when the event occurs.
 
 \begin{enumerate}
 \item Touch the forwards button: the robot moves forwards (blue).
@@ -36,13 +31,7 @@ sensor (red).
 right (clockwise) until the object is detected by the front center
 sensor (green).
 \item When the object is detected by the front center sensor, the robot
-moves forward quickly for one second and then stops (yellow).
+moves forward quickly for one second (yellow) and then stops (off).
 \end{enumerate}
 
-\textbf{Guidance}: You will have to use states from advanced mode to
-ensure that the robots stops after moving forward even if the front
-center sensor still detects the object.
-
-\bigskip
-
-\textbf{Program file}: \bu{rabbit-fox.aesl}
+{\raggedleft \hfill \textbf{Program file} \bu{rabbit-fox.aesl}}

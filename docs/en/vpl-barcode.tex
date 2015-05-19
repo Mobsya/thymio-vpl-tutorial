@@ -1,12 +1,10 @@
-% !TeX root = vpl.tex
-
-\chap{Project: Reading Barcodes}\label{ch.barcode}
+\chap{Reading Barcodes}\label{ch.barcode}
 
 Barcodes are universally used in supermarkets and elsewhere to identify
 objects. The identification is a number or a sequence of symbols that is
 different for each type of object. The identification is used to access
 a database containing information about an object, such as its price.
-Let use build a barcode reader from the Thymio robot.
+Let us build a barcode reader from the Thymio robot.
 
 \textbf{Specification}
 
@@ -22,24 +20,22 @@ foil, contruct an object with various arrangements of the strips of foil:
 
 \item Each configuration of the three center horizontal sensors will
 represent a different code. (How many codes can there be?) For some or
-all of these codes, implement event-action pairs that cause the top LEDs
-to display a color, depending on the code identified.
+all of these codes, implement event-actions pairs that display a top
+color depending on the code identified.
 
 \end{enumerate}
 
 \textbf{Guidance}:
 
-Since we are only using the three center sensors, the squares for the
+We will only use the three center sensors, so the squares for the
 outer sensors will be gray. For the center sensors, squares where the
-reflecting foil must appear in the code are red, while squares where the
-foil must not appear are white. For example, the following event-action
-pair turns the top LEDs yellow for the code \texttt{on-off-on}:
+reflecting foil must appear in the code are white, while squares where
+the foil must not appear are black. For example, the following
+event-actions pair displays yellow for the code \texttt{on-off-on}:
 
 \blkc{barcode1-3}
 
-\bigskip
+The program in the archive identifies barcodes with foil opposite any
+two of the three center sensors, as well as the code with no foil.
 
-\textbf{Program file}: \bu{barcode.aesl}\\
-This program identifies barcodes with foil opposite any two of the three
-center sensors, as well as the code with no foil. You can extend it for
-other configurations. 
+{\raggedleft \hfill \textbf{Program file}: \bu{barcode.aesl}}

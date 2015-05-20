@@ -55,6 +55,12 @@
 \marginpar[\hfill\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}]%
 {\raisebox{-1.2em}{\includegraphics[width=3em,keepaspectratio=true]{#1}}}}
 
+% Inline graphics (small with medium block in margin}
+\newcommand*{\blkxsm}[1]{\raisebox{-.2em}%
+{\includegraphics[height=1em,keepaspectratio=true]{#1}}%
+\marginpar[\hfill\raisebox{-.6em}{\includegraphics[width=2em,keepaspectratio=true]{#1}}]%
+{\raisebox{-.6em}{\includegraphics[width=2em,keepaspectratio=true]{#1}}}}
+
 % Centered inline graphics
 \newcommand*{\blkc}[1]{\vskip .1em\makebox[\textwidth]{\raisebox{-1em}%
 {\includegraphics[height=4em]{#1}}}\vskip .3em}

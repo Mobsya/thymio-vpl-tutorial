@@ -11,3 +11,4 @@ save/
 *.bat
 *.swp
 *~
+.DS_Store

@@ -27,4 +27,4 @@ There are four directories in this archive:
 docs          Text of the tutorial
 programs      Programs for the tutorial
 answers       Answers to the questions in the tutorial
-ref-card14    Reference cards
+ref-card      Reference cards

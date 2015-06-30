@@ -1,14 +1,11 @@
-\documentclass[12pt,a4paper,twoside,french]{report}
+\documentclass[11pt,a4paper,french]{report}
 \usepackage[fr]{../../vpl}
 \graphicspath{{../../images/} {../../images/fr/} {../../images/en/}}
 
 \begin{document}
-\pagenumbering{Roman} \setcounter{page}{0} 
 \include{vpl-front}
 \include{vpl-preface}
-\tableofcontents
-\thispagestyle{empty}
-\pagenumbering{arabic} \setcounter{page}{1}
+\include{vpl-diffs}
 \include{vpl-intro}
 \include{vpl-colors}
 \include{vpl-moving}
@@ -18,5 +15,20 @@
 \include{vpl-time}
 \include{vpl-states}
 \include{vpl-count}
+\include{vpl-angles}
+\include{vpl-parsons}
+\include{vpl-brait}
+\include{vpl-rabbit}
+\include{vpl-barcode}
+\include{vpl-sweep}
+\include{vpl-speed}
+\include{vpl-radar}
+\include{vpl-fa}
+\include{vpl-slow}
 \include{vpl-next}
+\appendix
+\include{vpl-gui}
+\include{vpl-blocks}
+\include{vpl-tips}
+\include{vpl-tech}
 \end{document}

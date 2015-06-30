@@ -1,26 +1,156 @@
-\thispagestyle{empty}
 \chapter*{Préface}
 
 \sect{Qu'est-ce qu'un robot?}
 
-Imaginez-vous sur votre vélo, pédalant sur la route, lorsque vous vous trouvez face à une colline. Vous décidez donc de pédaler plus vite pour ne pas perdre trop de vitesse. Une fois en haut, vous vous trouvez face à une descente plutôt raide. Vous allez donc freiner pour éviter de prendre trop de vitesse et de perdre le contrôle de votre vélo.
+Imaginez-vous sur votre vélo, pédalant sur la route, lorsque vous vous trouvez face à une colline.
+Vous décidez donc de pédaler plus vite pour ne pas perdre trop de vitesse.
+Une fois en haut, vous vous trouvez face à une descente plutôt raide.
+Vous allez donc freiner pour éviter de prendre trop de vitesse et de perdre le contrôle de votre vélo.
 Lorsque vous êtes sur votre vélo, vos yeux sont vos \textit{capteurs} qui mesure ce qu'il se passe dans le monde.
 Lorsque ces capteurs --- vos yeux -- détectent un \textit{événement} tel qu'une courbe de la route, vous effectuez une \textit{action}, telle que bouger le guidon à gauche ou à droite.
 
-Dans une voiture, nous pouvons trouver de nombreux \textit{capteurs}. Le tachymètre, ce cadran à aiguille ou digital derrière le volant, vous permet de savoir à quelle vitesse votre voiture avance. Si vous remarquez que vous allez trop vite par rapport à la limitation, vous allez freiner et, au contraire, vous accélérerez si vous vous trouvez en dessous de la limite. Un autre cadran vous indique la quantité d'essence se trouvant dans votre réservoir. Si vous voyez qu'il n'y en a presque plus, vous déciderez d'entreprendre l'action d'aller remplir votre réservoir.
+Dans une voiture, nous pouvons trouver de nombreux \textit{capteurs}.
+Le tachymètre, ce cadran à aiguille ou digital derrière le volant, vous permet de savoir à quelle vitesse votre voiture avance.
+Si vous remarquez que vous allez trop vite par rapport à la limitation, vous allez freiner et, au contraire, vous accélérerez si vous vous trouvez en dessous de la limite.
+Un autre cadran vous indique la quantité d'essence se trouvant dans votre réservoir.
+Si vous voyez qu'il n'y en a presque plus, vous déciderez d'entreprendre l'action d'aller remplir votre réservoir.
  
-Autant sur votre vélo que dans votre voiture, vous recevez des informations, des données, depuis les capteurs et vous décidez d'entreprendre des actions vis-à-vis de ces données. Un \textit{robot} est un système dans lequel le processus --- recevoir des données, décider d'une action, réaliser l'action -- est effectué par un système informatique, en général sans la participation d'un être humain.
+Autant sur votre vélo que dans votre voiture, vous recevez des informations, des données, depuis les capteurs et vous décidez d'entreprendre des actions vis-à-vis de ces données. Un \textit{robot} est un système dans lequel le processus est effectué par un système informatique, en général sans la participation d'un être humain.
 
-\sect{Le robot Thymio II et l'environnement Aseba VPL}
+\sect{Le robot Thymio et l'environnement Aseba VPL}
 
-Thymio II est un petit robot conçu à but éducatif (\cref{fig.front}).
+Thymio est un petit robot conçu à but éducatif (\cref{fig.front}).
 Il comprend différents capteurs qui peuvent mesurer la lumière, les distances, la température, etc.
 Il possède également des boutons tactiles, il peut se rendre compte qu'on lui donne une petite tape et peut entendre quelqu'un qui frappe dans ses mains.
 Il possède deux roues, chacune reliée à un moteur, lui permettant de se déplacer sur une table, ou sur le sol.
 Il peut encore s'illuminer de toutes les couleurs et jouer de la musique !
-Dans le reste de ce document, le robot Thymio~II sera souvent nommé simplement Thymio.
-Il s'agira toujours de la version II du robot.
+Dans ce document, le nom Thymio est utilisé pour désigner le robot Thymio~II.
 
 Aseba est un environnement de programmation pour petits robots comme le Thymio.
 VPL est un composant d'Aseba qui permet à toutes et tous de programmer \textit{graphiquement} Thymio en utilisant des blocs d'événement et d'action très simples d'emploi.
-Ce tutoriel suppose qu'Aseba est installé sur votre ordinateur ; si ce n'est pas le cas, allez sur \url{https://aseba.wikidot.com/fr:downloadinstall}, sélectionnez votre système d'exploitation, téléchargez et installez.
+
+\sect{Vue d'ensemble du tutoriel}
+Voici les sujets et les listes des blocs d'évènement et d'action qui seront traités dans chaque chapitre.
+Je vous suggère de commencer par les chapitres sur le mode basique de VPL.
+Par la suite, vous pourrez suivre le tutoriel en mode avancé ou vous lancer dans quelques uns des projets présentés.
+Les casse-têtes de Parson peuvent être tentés à tout moment si vous voulez tester vos connaissances de VPL.
+Lisez le \cref{ch.next} lorsque vous voudrez quitter VPL pour utiliser l'environnement plus avancé Aseba Studio.
+Des résumés de référence sont aussi à votre disposition en annexes.
+
+\subsection*{Première partie: le tutoriel}
+\textbf{Les \cref{ch.intro, ch.colors}} sont une introduction essentielle du robot, de l'environnement VPL et de son principal concept de programmation: les paires événement-action.
+
+\blkmed{event-buttons}\hfill\blkmed{action-colors-up}\quad\blkmed{action-colors-down}
+
+\medskip
+
+\textbf{Les \cref{ch.moving, ch.pet, ch.line}} présentent les événements, actions et algorithmes nécessaires à la construction de robots mobiles autonomes et qui sont au centre de toute activité avec Thymio et VPL.
+
+\textbf{Événements}: boutons, capteurs avants, capteurs inférieurs.\hfill
+\textbf{Actions}: moteurs
+
+\blkmed{event-buttons} \quad\blkmed{event-prox} \quad \blkmed{event-prox-ground}\hfill
+\blkmed{action-motors}
+
+\medskip
+
+\textbf{Le \cref{ch.bells}} décrit certaines fonctionnalités amusantes du robot mais qui ne sont pas nécessaires (les bruitages et les chocs).
+
+\begin{minipage}[t]{0.6\textwidth}
+\textbf{Événements}: toucher le robot, frapper des mains
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright}
+\textbf{Actions}: musique,\\ couleurs du dessus et du dessous.
+\end{flushright}
+\end{minipage}
+
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
+\quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\medskip
+
+\importantbox[Mode avancé]{VPL contient un mode basique permettant l'utilisation d'événements et actions faciles à maîtriser pour un débutant.
+Le mode avancé de VPL offre plus d'événements et d'actions mais requière plus d'expérience.
+Les fonctionnalités du mode avancé sont présentées à partir du 
+\cref{ch.time}.}
+
+\medskip
+
+\textbf{Le \cref{ch.time}} explique les événements minutés.
+Il existe une action qui enclanche un minuteur.
+Un événement est ensuite déclanché quand le minuteur est écoulé.
+
+\textbf{Événements}: minuteur écoulé\hfill
+\textbf{Actions}: démarer le minuteur.
+
+\blkmed{event-timer} \hfill \blkmed{action-timer}
+
+\newpage
+
+\textbf{Les \cref{ch.states, ch.counting}} expliquent le concept de machines à états qui permettent au robot de agir différemment selon leur état.
+Les états permettent aussi des opérations arithmétiques élémentaires comme compter.
+
+\textbf{Événements}: État associé à un événement\hfill
+\textbf{Actions}: changer d'état
+
+\blkmed{state-filter} \hfill \blkmed{action-states}
+
+\medskip
+
+\textbf{Le \cref{ch.angles}} décrit l'utilisation des accéléromètres du robot Thymio.
+
+\textbf{Événements}: Événements de l'accéléromètre
+
+\blkmed{event-pitch} \quad \blkmed{event-roll}
+
+\bigskip
+
+\subsection*{Deuxième partie: les casse-têtes de Parson}
+
+\textbf{Le \cref{ch.parsons}} présente les casse-têtes de Parson, des exercices qui vous permettent d'évaluer vos connaissances de VPL.
+
+\bigskip
+
+\subsection*{Troisième partie: les projets}
+\textbf{Les \cref{ch.brait, ch.rabbit, ch.barcode, ch.sweep, ch.speed, ch.radar, ch.fa, ch.slow}} proposent des projets que vous pouvez réaliser vous-mêmes.
+Le code source VPL est disponible dans l'archive mais je vous suggèrerais d'avancer seul avant de vérifier le corrigé.
+
+\bigskip
+
+\subsection*{Quatrième partie: de la programmation visuelle à la programmation textuelle}
+\textbf{Le \cref{ch.next}} ouvre la voie pour la suite: l'utilisation de l'environnement textuel Studio.
+Avec celui-ci, il est possible d'aller bien au-delà des possibilités offertes par VPL.
+
+\bigskip
+
+\subsection*{Cinquième partie: les annexes}
+
+\textbf{L'\cref{a.toolbar}} contient une description de l'interface utilisateur---les boutons sur la barre d'outils.
+
+\textbf{L'\cref{a.blocks}} est une liste des blocs événement et action pour les modes basique et avancé.
+
+\textbf{L'\cref{a.tips}} donne quelques propositions destinées aux professeurs et directeurs de projets d'étudiants.
+La première section offre des pistes pour stimuler l'exploration et l'expérimentation.
+La section suivante donne quelques bonne habitudes de programmation.
+La section finale dresse une liste de quelques pièges courants et comment les éviter.
+
+\textbf{L'\cref{a.tech}} discute différentes techniques d'utilisation des \textit{sliders} pour les blocs de capteurs et de moteurs.
+
+\blkmed{event-prox-advanced} \quad \blkmed{event-prox-ground-advanced}
+
+\sect{Cartes de référence}
+Vous trouverez peut-être utile d'imprimer une ou les deux cartes de référence VPL.
+Vous les trouverez dans le même fichier zip que ce document, ou alors sur \href{https://www.thymio.org/en:visualprogramming}{https://www.thymio.org/en:visualprogramming}.
+
+\begin{itemize}
+\item Une page simple contien un résumé des blocs événement et action.
+\item Une page recto-verso qui peut être pliée pour former une carte pratique contient un résumé de l'interface VPL, des blocs événement et action et contient aussi des exemples de programmes.
+\end{itemize}
+
+\sect{Installation d'Aseba}
+Pour installer Aseba, y compris VPL, rendez-vous sur
+\href{https://www.thymio.org/en:start}{https://www.thymio.org/en:start}
+et cliquez sur l'icône correspondant à votre système (Windows, Mac OS etc.).
+Suivez les instructions pour télécharger et installer l'application.
+L'insallation d'Aseba contient à la fois l'environnement de développement VPL et Studio (voir \cref{ch.next}).

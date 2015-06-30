@@ -11,4 +11,5 @@ save/
 *.bat
 *.swp
 *~
+.vimrc
 .DS_Store

@@ -115,7 +115,7 @@ Regardons maintenant les paires événement-action unes à unes.
 	\label{fig.turn-on-off}
 \end{figure}
 
-Dans la première paire événement-action, l'événement est composé du bloc détection de choc avec une indication d'état \blksm{tap-turn-on-state-only}: \blkc{tap-turn-on}
+Dans la première paire événement-action, l'événement est composé du bloc détection de choc avec une indication d'état ATT fausse image \blksm{tap-turn-on}: \blkc{tap-turn-on}
 
 Un état est indiqué par quatre quartiers d'un cercle, chacun pouvant être soit allumé (orange) ou éteint (blanc).
 Dans ce programme, nous utiliserons le quartier en haut à gauche pour indiquer si la lumière du haut du robot est éteinte ou allumée.
@@ -129,8 +129,8 @@ Si vous regardez à nouveau le diagramme d'états, vous verrez que seulement la 
 En effet, en allumant et éteignant le robot, nous devons aussi changer son état d'\bu{éteint} à \bu{allumé} ou d'\bu{allumé} à \bu{éteint}.
 Pour cela nous créons en plus deux paires événement-actions en utilisant le bloc d'action \emph{état} \blksm{action-states}, comme montré sur la \cref{fig.turn-on-off2}.
 
-Le sens de la première paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \emph{éteint}, alors changer l'état à \bu{allumé} : \blkc{tap-state-on}
-De même, le sens de la seconde paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \bu{allumé}, alors changer l'état à \bu{éteint} : \blkc{tap-state-off}
+Le sens de la première paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \emph{éteint}, alors changer l'état à \bu{allumé} : ATT fausse image \blkc{tap-turn-on}
+De même, le sens de la seconde paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \bu{allumé}, alors changer l'état à \bu{éteint} : ATT fausse image \blkc{tap-turn-off}
 
 La \cref{fig.turn-on-off} montre le programme complet composé de quatre paires ; nous voyons que chaque événement cause à la fois une action sur la lumière et un changement de l'état du robot.
 Tant l'action que le changement d'état dépendent de l'état dans lequel le robot se trouve, appellé \emph{état courrant}.

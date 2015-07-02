@@ -1,12 +1,16 @@
-\chap{États: Pour ne pas toujours faire la même chose (avancé)}\label{ch.states}
+\chap{Les états (Mode avancé)}\label{ch.states}
 
-Un programme VPL est composé d'une série de paires événement-action.
-Tous les événements sont vérifiés périodiquement et les actions appropriées sont effectuées.
-Ceci limite les programmes que nous pouvons créer ; pour aller plus loin nous avons besoin d'une façon de spécifier que certaines paires événement-action sont actives à un certain moment, alors que d'autres ne le sont pas.
-Par exemple, dans le \cref{ch.line}, lorsque le robot sort de la ligne, nous aurions aimé qu'il tourne à gauche ou à droite afin de rechercher la ligne dans une direction qui dépend de quel côté il est sorti.
+Un programme VPL est composé d'une série de paires événement-actions.
+\emph{Tous} les événements sont vérifiés périodiquement et les actions appropriées sont effectuées.
+Ceci limite les programmes que nous pouvons créer ; pour aller plus loin nous avons besoin d'une façon de spécifier que certaines paires événement-actions sont actives à un certain moment, alors que d'autres ne le sont pas.
 
-Les états sont disponibles dans le mode \emph{avancé} de VPL.
-Cliquez sur \blksm{advanced} avant de travailler sur les projets de ce chapitre.
+Par exemple, quand Thymio devait suivre une ligne (\cref{ch.line}), lorsque le robot sortait de la ligne, nous aurions aimé qu'il tourne à gauche ou à droite afin de rechercher la ligne dans une direction qui dépendait de quel côté il était sorti.
+Pour cela, deux paires événement-actions sont nécessaires:
+une pour tourner à gauche lorsque le robot sort à droite de la ligne
+et une pour tourner à droite lorsqu'il sort à gauche.
+
+%Les états sont disponibles dans le mode \emph{avancé} de VPL.
+%Cliquez sur \blksm{advanced} avant de travailler sur les projets de ce chapitre.
 
 \sect{Tape, tape}
 
@@ -14,7 +18,6 @@ Dans les programmes que nous avons réalisé jusqu'ici, nous avons souvent \emph
 Mais regardez votre ordinateur, normalement, il n'a qu'un seul bouton pour l'allumer ou l'éteindre.
 %\blksm{power-button} 
 Le bouton se \emph{rappelle} s'il est dans l'état \bu{allumé} ou l'état \bu{éteint}.
-Le bouton inclut souvent une petite lumière qui indique son état courrant.
 
 Écrivons un programme qui allume les lumières du robot si vous lui donnez une petite tape et qui les éteigne si vous lui donnez une seconde tape.
 
@@ -49,14 +52,19 @@ Les instructions décrivent quand une transition d'un état à l'autre peut se p
 
 \end{itemize}
 
-L'accent mis sur le mot «\,\textbf{\textit{et}}\,» avant la flèche~$\rightarrow$ signifie que deux conditions doivent être remplies pour que la transition se fasse: (a) Le robot doit être dans un certain état et (b) l'événement doit se produire.
+L'accent mis sur le mot \textbf{\textit{et}} avant la flèche~$\rightarrow$ signifie que deux conditions doivent être remplies pour que la transition se fasse: (a) Le robot doit être dans un certain état et (b) l'événement doit se produire.
 Lorsque les deux conditions sont remplies, alors la transition est prise ce qui fait à la fois changer l'état et exécute l'action écrite après la flèche~$\rightarrow$.
 
 Il est important de réaliser que les deux parties de la condition sont indépendantes.
-Dans le diagramme ci-dessus (répété ici) :
+Dans le diagramme ci-dessus (répété ici),
+l'événement \emph{tape} apparaît deux fois, mais l'action 
+exécutée lorsque cet événement a lieu 
+\emph{dépend de l'état du robot}.
+
+\vspace*{-1ex}
 
 \begin{center}
-\begin{picture}(240,45)
+\begin{picture}(240,40)
 \thicklines
 %\put(0,0){\framebox(240,40){}}
 \put(20,20){\circle{40}}
@@ -70,10 +78,17 @@ Dans le diagramme ci-dessus (répété ici) :
 \end{picture}
 \end{center}
 
-l'événement \emph{tape} apparaît deux fois, mais l'action causée par cet événement \emph{dépend} de l'état dans lequel le robot se trouve.
+\vspace*{-1ex}
 
-De façon similaire, dans un même état, différents événements peuvent causer différentes actions et des transitions vers de nouveaux états différents.
-Dans le diagramme suivant :
+Dans un même état, différents événements peuvent causer différentes actions et des transitions vers de nouveaux états différents.
+Dans le diagramme suivant, toucher le bouton de gauche
+dans l'état \textbf{off} allume la lumière verte du robot
+et passe l'état du robot à \textbf{on1},
+alors que toucher le bouton droit \textbf{dans le même état}
+entraîne une autre action, allumer la lumière rouge,
+et un autre changement d'état vers \textbf{on2}.
+
+\vspace*{-1ex}
 
 \begin{center}
 \begin{picture}(300,80)
@@ -92,55 +107,63 @@ Dans le diagramme suivant :
 \end{picture}
 \end{center}
 
-toucher le bouton gauche dans l'état \textbf{éteint} allumer le robot en vert et l'amène dans l'état \textbf{allumé1}, alors que toucher le bouton droite, \emph{dans le même état}, génère une action différente, allumer le robot en rouge, et amène le robot dans un état différent, \textbf{allumé2}.
+\sect{Implémenter des diagrammes d'états avec des paires événement-actions}
 
-\sect{Implémenter des diagrammes d'états avec des paires événement-action}
-
-Nous montrons comment \emph{implémenter} le comportement décrit par le diagramme d'état avec des paires événement-action.
-Implémenter signifie construire un programme qui fera ce que le diagramme d'états décrit.
+Nous montrons comment \emph{implémenter} le comportement décrit par le diagramme d'état avec des paires événement-actions.
+Implémenter signifie construire un programme qui fera ce que le diagramme d'états ci-dessus décrit.
 La \cref{fig.turn-on-off} montre le programme.
-Regardons maintenant les paires événement-action unes à unes.
+Regardons maintenant les paires événement-actions unes à unes.
+Le cercle gauche du bloc \blksm{event-tap} est
+sélectionné (et s'affiche en rouge) pour indiquer qu'il s'agit d'un bloc pour l'événement tape.
+
+\importantbox[Le bloc tape en mode avancé]{
+Le bloc pour l'événement tape est différent en mode avancé
+car il permet aussi l'utilistation des événements
+accéléromètre comme décrit au \cref{ch.angles}.}
 
 \begin{figure}
-	\subfigure[Une tape pour allumer ou éteindre]{
-		\label{fig.turn-on-off1}
-		\includegraphics[width=.4\textwidth]{tap-on-off1}
-	}
-	\hfill
-	\subfigure[Une tape pour changer d'état]{
-		\label{fig.turn-on-off2}
-		\includegraphics[width=.4\textwidth]{tap-on-off2}
-	}
-	\caption{Une tape qui a des résultats différents en fonction de l'état.}
-	\label{fig.turn-on-off}
+    \subfigure[Une tape pour allumer la lumière]{
+        \label{fig.turn-on-off1}
+        \includegraphics[width=.6\textwidth]{tap-on-off1}
+    }
+    \subfigure[Une tape pour éteindre la lumière]{
+        \label{fig.turn-on-off2}
+        \includegraphics[width=.6\textwidth]{tap-on-off2}
+    }
+    \caption{Une tape qui a des résultats différents en fonction de l'état.}
+    \label{fig.turn-on-off}
 \end{figure}
 
-Dans la première paire événement-action, l'événement est composé du bloc détection de choc avec une indication d'état ATT fausse image \blksm{tap-turn-on}: \blkc{tap-turn-on}
-
+Dans la première paire événement-actions (\cref{fig.turn-on-off1}), l'événement est composé du bloc détection de choc avec une indication d'état \blksm{state-filter}.
 Un état est indiqué par quatre quartiers d'un cercle, chacun pouvant être soit allumé (orange) ou éteint (blanc).
 Dans ce programme, nous utiliserons le quartier en haut à gauche pour indiquer si la lumière du haut du robot est éteinte ou allumée.
-Dans cette paire, ce quartier est coloré en blanc, ce qui veut dire que la lumière du robot est éteinte.
-Ainsi, cette paire veut dire : si le robot est tapé et que le robot est éteint, allumer le robot.
+Dans \cref{fig.turn-on-off1}, ce quartier est coloré en blanc
+et donc la lumière du robot est éteinte.
+Ainsi, cette paire veut dire : \textbf{si} le robot est tapé \textbf{et} que le robot est éteint, \textbf{alors} allumer la lumière du robot.
 
-La seconde paire événement-action veut dire : si le robot est tapé et qu'il est allumé, alors l'éteindre: \blkc{tap-turn-off}
-% Ce quartier est coloré en orange, donc le robot est allumé 
+Dans la seconde paire événement-actions
+(\cref{fig.turn-on-off2}),
+le quart est coloré en orange et donc la lumière du robot est allumée.
+Cette paire veut dire : \textbf{si} le robot est tapé \textbf{et} qu'il est allumé, \textbf{alors} l'éteindre.
 
 Si vous regardez à nouveau le diagramme d'états, vous verrez que seulement la moitié du travail est fait.
 En effet, en allumant et éteignant le robot, nous devons aussi changer son état d'\bu{éteint} à \bu{allumé} ou d'\bu{allumé} à \bu{éteint}.
-Pour cela nous créons en plus deux paires événement-actions en utilisant le bloc d'action \emph{état} \blksm{action-states}, comme montré sur la \cref{fig.turn-on-off2}.
+Ainsi, il nous faut ajouter un bloc action \emph{état} \blksm{action-states} à chaque paire.
+Ce bloc change l'état selon si les quartiers sont blancs ou oranges.
+Pour résumer, la signification du programme de la figure \cref{fig.turn} est la suivante :
 
-Le sens de la première paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \emph{éteint}, alors changer l'état à \bu{allumé} : ATT fausse image \blkc{tap-turn-on}
-De même, le sens de la seconde paire est : \emph{quand} le robot est tapé \emph{et} que l'état est \bu{allumé}, alors changer l'état à \bu{éteint} : ATT fausse image \blkc{tap-turn-off}
+\begin{quote}
+    \emph{Quand} le robot est tapé \emph{et} que l'état est \emph{éteint},\\ changer l'état à \bu{allumé} \emph{et} \bu{allumer} la lumière du haut.
+    \emph{Quand} le robot est tapé \emph{et} que l'état est \bu{allumé},\\changer l'état à \bu{éteint}
+    \emph{et} \bu{éteindre} la lumière du haut.
+\end{quote}
 
-La \cref{fig.turn-on-off} montre le programme complet composé de quatre paires ; nous voyons que chaque événement cause à la fois une action sur la lumière et un changement de l'état du robot.
-Tant l'action que le changement d'état dépendent de l'état dans lequel le robot se trouve, appellé \emph{état courrant}.
-
-%\newpage
+Chaque événement entraîne à la fois une action lumière et une action état.
+Les actions dépendent de l'état dans lequel le robot se trouve, appellé \emph{état actuel}.
 
 \sect{Dans combien d'états différents Thymio peut-il être?}
 
-L'état est indiqué par un cercle divisé en quatre quartiers.
-Quand utilisé avec un événement ou dans le bloc d'action état, chaque quartier peut être :
+Quand il est utilisé avec un bloc événement état ou action état, chaque quartier peut être :
 \begin{itemize}
 	\item \textbf{Blanc}: le quartier est \emph{éteint} ;
 	\item \textbf{Orange}: le quartier est \emph{allumé} ;
@@ -153,20 +176,21 @@ Ceci veut dire que si \blksmpure{states} est associé à un bloc événement, l'
 \centering \makebox{\raisebox{-1.7em}{\includegraphics[height=4em]{states1}}}\quad ou \quad \makebox{\raisebox{-1.7em}{\includegraphics[height=4em]{states2}}}
 \end{center}
 
-Comme chacun des quatre quartiers peut être soit allumé soit éteint, il y a 2 $\times$ 2 $\times$ 2 $\times$ 2 = 16 états possibles :
+Comme chacun des quatre quartiers peut être soit allumé soit éteint, il y a 2 $\times$ 2 $\times$ 2 $\times$ 2 = 16 états :
 \begin{quote}
 \bu{(éteint, éteint, éteint, éteint)\\(éteint, éteint, éteint, allumé)\\(éteint, éteint, allumé, éteint)\\
 \mbox{}\hspace{3em}\ldots\\
 (allumé, allumé, allumé, éteint)\\
 (allumé, allumé, allumé, allumé)}.
 \end{quote}
-La \cref{fig.all-states} énumère graphiquement tous ces états.
-L'état courant du robot est toujours affiché sur le haut du robot par des arcs de cercles lumineux, par exemple, la \cref{fig.state-leds} montre le robot dans l'état \bu{(allumé, allumé, allumé, allumé)}.
+La \cref{fig.all-states} donne tous ces états.
+\importantbox{L'état courant du robot est toujours affiché sur le haut du robot par les quatre arcs de cercles lumineux.
+Par exemple, la \cref{fig.state-leds} montre le robot dans l'état \bu{(allumé, allumé, allumé, allumé)}.}
 
 \trickbox[Information]{Lorsqu'un programme démarre, l'état initial est toujours 
-\bu{(éteint, éteint, éteint, éteint)}:\quad \blk{state-all-off}}
+\bu{(éteint, éteint, éteint, éteint)}:\quad \blkmed{state-all-off}}
 
-\trickbox{Si vous n'utiliser pas tous les 16 états possibles, mais par exemple que 2 ou 4, vous êtes libre de décider quel quartier vous utiliser pour représenter votre état.
+\trickbox{Si vous n'utilisez pas tous les 16 états possibles, mais par exemple que 2 ou 4, vous êtes libre de décider quel quartier vous utiliser pour représenter votre état.
 Aussi, si par exemple vous avez deux choses différentes à encoder dans l'état, et que chacune d'elle a deux valeurs possibles, vous pouvez utiliser deux quartiers indépendemment.
 C'est pourquoi la capacité d'\emph{ignorer} un quartier est très utile !
 Essayez toujours de rester le plus simple possible.
@@ -178,7 +202,7 @@ Essayez toujours de rester le plus simple possible.
 		\includegraphics[width = 0.4\textwidth]{all-states}
 	} 
 	\hfill
-	\subfigure[La cercle de LED indique l'état]{
+        \subfigure[La cercle de lumières indique l'état]{
 		\label{fig.state-leds}
 		\includegraphics[width = 0.4\textwidth]{state-leds}
 	}
@@ -188,46 +212,64 @@ Essayez toujours de rester le plus simple possible.
 \sect{Attraper la souris}
 
 Écrivons un programme qui fasse tourner le robot de droite à gauche à la recherche d'une souris (ou d'un autre objet).
-Si le robot détecte une souris avec son capteur avant-gauche, il continue la recherche jusqu'à ce que la souris soit détectée avec son capteur avant-droite.
+Si le robot détecte une souris avec son capteur tout à gauche, il continue la recherche jusqu'à ce que la souris soit détectée avec son capteur tout à droite.
 Puis, il se positionne en face de la souris, comme sur la \cref{fig.cat-mouse}.
 
 {\raggedleft \hfill Programme \bu{mouse.aesl}}
 
 \begin{figure}
-	\subfigure[Le chat a trouvé la souris]{\label{fig.cat-mouse}
-	\includegraphics[width=0.4\textwidth]{cat-mouse}}
-	\hfill
-	\subfigure[Recherche avec le capteur avant-droite]{\label{fig.mouse2}
-	\includegraphics[width=0.4\textwidth]{mouse2}}
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{cat-mouse}
 	\caption{Le robot chat cherche la souris}
+        \label{fig.cat-mouse}
+    \end{center}
 \end{figure}
 
-La paire événement-action suivante fait tourner le robot à gauche : \blkc{mouse1}
-Ceci se produira lorsque le quartier gauche-haut est éteint ; initialement tous les quartiers de l'état sont éteint.
+Implémentons ce comportement.
+L'état du robot sera défini par le quartier supérieur gauche.
+Choisissons le blanc pour représenter l'état \bu{chercher à gauche} et l'orange pour représenter l'état \bu{chercher à droite}.
+Puisque le programme se termine lorsque la souris est détectée dans l'état \bu{chercher à droite},
+nous n'avons pas besoin de représenter l'état final \bu{trouvé}.
+Initialement, tous les quartiers sont \bu{éteints} (blancs).
 
-La première paire événement-action dans la \cref{fig.mouse2} attend que la souris soit détectée par le capteur avant-droite.
-Notez que le petit carré à côté de ce capteur est blanc pour que l'événement se produise seulement si le capteur le plus à droite seul détecte la souris.
-La seconde paire événement-action de la \cref{fig.mouse2} change l'état.
+La paire événement-actions suivante fait tourner le robot à gauche : \blkc{mouse1}
+Quand le bouton central est touché, l'état change et devient
+\bu{chercher à gauche} \emph{et} le robot tourne à gauche.
 
-La dernière paire événement-action du programme arrête le robot lorsque la souris est directement en face du capteur avant-centre : \blkc{mouse3}
-Pourquoi l'événement de cette paire doit-il dépendre de l'état ?
-La raison est que le capteur central détectera aussi la souris durant le scan initial de droite à gauche.
-Nous voulons que le robot fasse d'abord un scan complet avant de retourner à la position de la souris ; il est donc nécessaire que cette première détection soit ignorée.
-Ceci est accomplit en arrêtant le scan seulement lorsque l'état est \bu{allumé} et ceci arrive que lorsqu'un scan complet a été effectué.
+%Ceci se produira lorsque le quartier gauche-haut est éteint ; initialement tous les quartiers de l'état sont éteint.
 
-\vfill
+La prochaine paire événement-actions implémente la deuxième étape: \blkc{mouse2}
+Quand le robot est dans l'état \bu{chercher à gauche} et
+que la souris est détectée par le capteur tout à droite,
+l'état devient \bu{chercher à droite}
+\emph{et} le robot tourne vers la droite.
+
+Notez que le petit carré à côté de ce capteur est noir pour que l'événement se produise seulement si seul le capteur le plus à droite détecte la souris.
+
+La troisième étape est implémentée dans la paire événement-actions suivante: \blkc{mouse3}
+Lorsque la souris est détectée par le capteur central dans l'état \bu{chercher à droite}, le robot s'arrête.
+
+
+%Pourquoi l'événement de cette paire doit-il dépendre de l'état ?
+%La raison est que le capteur central détectera aussi la souris durant le scan initial de droite à gauche.
+%Nous voulons que le robot fasse d'abord un scan complet avant de retourner à la position de la souris ; il est donc nécessaire que cette première détection soit ignorée.
+%Ceci est accomplit en arrêtant le scan seulement lorsque l'état est \bu{allumé} et ceci arrive que lorsqu'un scan complet a été effectué.
 
 \trickbox{
 Il vous faudra expérimenter avec la distance de la souris au robot.
 Si elle est trop proche du robot, les capteurs à côte du capteur central détecteront aussi la souris, alors que l'événement demande qu'ils ne la détecte \emph{pas}.
 }
 
-\vfill
+\bigskip
+
+\bigskip
 
 \exercisebox{\thechapter.1}{
 Écrivez un programme qui fasse danser le robot : il tourne à gauche sur place durant deux secondes, puis tourne à droite sur place durant trois secondes.
 Ces mouvement se répètent indéfiniment.
 }
+
+\bigskip
 
 \exercisebox{\thechapter.2 (Difficile)}{
 Modifier le programme de suivi de ligne du \cref{ch.line} pour que le robot tourne à gauche quand il sort de la ligne par le côté droite, et qu'il tourne à droite quand il sort de la ligne par le côté gauche.

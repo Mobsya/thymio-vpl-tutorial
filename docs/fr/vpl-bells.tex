@@ -1,7 +1,7 @@
 \chap{Sons et chocs}\label{ch.bells}
 
-Faisons une pause avec les tâches compliquées et jouons un peu avec Thymio.
-Dans ce chapitre, nous vous montrerons que Thymio peut jouer de la musique, répondre à un son ou à un petite tape amicale!
+Jouons un peu avec Thymio.
+Dans ce chapitre, nous vous montrerons que Thymio peut jouer de la musique et réagir à un son ou à un petite tape amicale!
 
 \sect{Thymio mélomane}
 
@@ -10,22 +10,24 @@ Vous pouvez le programmer simplement en utilisant le bloc action :\blkc{action-m
 
 {\raggedleft \hfill Programme \bu{bells.aesl}}
 
-Vous ne deviendrez pas le nouveau Beethoven --- on ne peut jouer qu'un ensemble de six notes, sur cinq hauteurs et deux longueurs différentes --- mais vous pouvez composer une petite musique qui donnera de la personalité à votre robot.
+Vous ne deviendrez pas le nouveau Beethoven --- on ne peut jouer qu'un ensemble de six notes, sur cinq hauteurs et deux longueurs différentes --- mais vous pouvez composer une petite musique.
 La \cref{fig.music} illustre deux chansons différentes jouées par Thymio lorsque vous touchez les boutons avant ou arrière.
 
 \begin{figure}
 \begin{center}
-\gr{action-music}{.4}
-\caption{ATT fausse image!! Jouer une chanson}\label{fig.music}
+\gr{bells}{.3}
+\caption{Jouer une chanson}\label{fig.music}
 \end{center}
 \end{figure}
 
-Les petits cercles sont les six notes.
-Chaque note doit être placée sur une barre de couleur représentant une hauteur.
-Il suffit de cliquer avec votre souris sur la barre de couleur de votre choix au niveau de la note que vous souhaitez modifier et voilà !
-Ensuite, vous pouvez choisir entre jouer une noire (courte), et une blanche (deux fois plus longue), en cliquant sur la note que vous souhaitez modifier.
-N'essayez pas de glisser/déplacer une note, ça ne fonctionnera pas.
-
+Les six petits cercles sont des notes.
+Les notes noires sont courtes et les notes blanches sont
+longues; pour changer de longueur, cliquez sur le cercle.
+Il existe cinq barres horizontales colorées qui représentent
+les cinq notes.
+Pour déplacer un cercle vers l'une des barres,
+cliquez sur la barre au-dessus ou au-dessous du cercle,
+ou glissez-déposez la note sur l'une des barres.
 
 \exercisebox{\thechapter.1}{
 Écrivez un programme qui vous permet d'envoyer un \href{http://fr.wikipedia.org/wiki/Morse_(alphabet)}{code Morse}.
@@ -37,15 +39,18 @@ Par exemple, la lettre \emph{V} est encodée par trois points suivis par un trai
 \sect{Contrôllez votre robot par le son}
 
 Thymio a un microphone, il peut donc réagir à un son! L'événement \blksm{event-clap} se déclenche si Thymio entend un son fort, comme par exemple quelqu'un qui tape dans ses mains.
-La paire événement-action suivante allumera les lumières en dessous du robot lorsque vous tapez dans vos mains: ATT fausse image\blkc{clap-to-start}
+La paire événement-actions suivante allumera les lumières en dessous du robot lorsque vous tapez dans vos mains: \blkc{clap-lights}
 
+\bigskip
 
 \trickbox[Information]{Si vous vous trouvez dans un environnement bruyant, vous ne pourrez pas utiliser cet événement, car le niveau sonore sera toujours haut et l'événement s'activera à répétition.}
+
+\bigskip
 
 \exercisebox{\thechapter.2}{
 Écrivez un programme qui fasse démarrer le robot quand vous tapez dans vos mains et le fasse s'arrêter lorsque vous touchez un bouton.
 \vspace{.5em}\\
-Puis écrivez un programme qui fasse l'opposé : démarrer lorsque vous touchez un bouton et s'arrêter lorsque vous tapez dans vos mains.
+Écrivez un programme qui fasse l'opposé : le robot démarre lorsque vous touchez un bouton et s'arrête lorsque vous tapez dans vos mains.
 }
 
 \newpage
@@ -54,9 +59,12 @@ Puis écrivez un programme qui fasse l'opposé : démarrer lorsque vous touchez 
 
 Il est important de récompenser votre animal de compagnie quand il est gentil, c'est pareil avec Thymio !
 Il peut vous détecter si vous lui donner une petite tape sur la tête grâce à l'événement \blksm{event-tap}.
-Par exemple, la paire événement-action suivante allume les lumières du haut lorsque vous lui donner une petite tape ATT fausse image : \blkc{clap-to-start}
+La paire événement-actions suivante allume les lumières du haut lorsque vous lui donner une petite tape :
+\blkc{good-job}
 
-Construisez un programme avec cette paire événement-action et la paire suivante qui allume les lumières du bas du robot lorsque vous tapez dans vos mains : ATT fausse image \blkc{clap-to-start}
+Construisez un programme avec cette paire événement-actions
+et la paire suivante qui allume les lumières du bas du robot
+lorsque vous tapez dans vos mains : \blkc{clap-lights}
 
 {\raggedleft \hfill Programme \bu{whistles.aesl}}
 
@@ -64,8 +72,10 @@ Arrivez-vous à n'allumer que les lumières du haut ?
 C'est difficile à faire : une tape génère un son qui est assez fort pour faire aussi s'allumer les lumières du bas.
 Avec un peu de pratique, on arrive à taper le robot assez gentillement pour que le son résultant ne soit pas suffisant pour être considéré.
 
+\bigskip
+
 \exercisebox{\thechapter.3}{
 Écrivez un programme qui fasse avancer le robot jusqu'à ce qu'il touche un mur.
 \vspace{.5em}\\
-\textbf{Faites attention} à ce que le robot \textbf{bouge lentement} afin qu'il ne s'endomage pas.
+Faites attention à ce que le robot \textbf{bouge lentement} afin qu'il ne s'endomage pas.
 }

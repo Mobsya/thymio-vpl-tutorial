@@ -1,0 +1,330 @@
+\part{Les casse-têtes de Parson}
+
+\chap{Les casse-têtes de Parson}\label{ch.parsons}
+
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-11pt]{0pt}{32pt}}\ }
+
+\sect{Que sont les casse-têtes de Parson?}
+
+Les \emph{casse-têtes de Parson} sont un type d'exercices
+qui peuvent aider les étudiants à apprendre à programmer.
+\footnote{Parsons, D. and Haden, P. Parson's programming puzzles: A fun and effective learning tool for first programming courses. \textit{Proceedings of the 8th Australian Conference
+on Computing Education}, Darlinghurst, Australia, 2006, 157-163.}
+Un casse-tête de Parson consiste en la donnée d'un objectif
+pour un programme et d'une série d'instructions dans un langage de programmation.
+L'exercice consiste alors à placer les instructions
+dans le bon ordre pour créer un programme
+qui remplit l'objectif donné.
+Un casse-tête de Parson peut aussi contenir des \emph{pièges},
+comme des instructions incorrectes ou inutiles.
+L'avantage de ces casse-têtes est que toutes les instructions
+dont on a besoin sont à disposition des étudiants et ont une
+syntaxe correcte.
+
+Dans VPL, l'ordre des paires événement-actions ne joue presque
+aucun rôle.
+C'est pourquoi les casse-têtes ici seront des programmes
+avec des paires incomplètes,
+où le bloc événement, action ou les deux manquent.
+À droite de chaque paire événement-actions,
+il y aura deux blocs ou plus; sélectionnez le
+et tracez une flèche de ce bloc vers la case vide.
+
+\textbf{Exemple}
+Lorsque le bouton avant est touché, la lumière verte est allumée.
+
+\bigskip\bigskip
+
+\begin{center}
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{forward} $\rightarrow$ \eblock  &  \blk{red} & \blk{green}\\
+\end{tabular}
+\begin{picture}(250,20)
+\put(230,60){\line(0,1){20}}
+\put(230,80){\line(-1,0){155}}
+\put(75,80){\vector(0,-1){20}}
+\end{picture}
+\end{center}
+
+\vspace*{-8ex}
+
+\sect{Les casse-têtes}
+
+
+\begin{enumerate}
+
+\item Lorsque le bouton droit est touché,
+    la lumière rouge du bas est allumée.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{right-button} $\rightarrow$ \eblock  &  \blk{red-bottom} & \blk{red}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le bouton droit est touché, la lumière rouge du haut est allumée.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{left-button} &
+ \blk{right-button}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le bouton gauche est touché,
+    la lumière verte du bas est allumée.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \eblock  &  \blk{right-button} & \blk{left-button}
+ & \blk{green} & \blk{green-bottom}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le bouton gauche \textbf{ou} le bouton droit est touché, 
+    la lumière verte du haut est allumée.
+top green light is turned on.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{left-button} $\rightarrow$ \eblock  &  \blk{green} &
+  \blk{green-bottom}\\
+\\
+\eblock $\rightarrow$ \blk{green}  &  \blk{right-button} &
+ \blk{left-button}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque \textbf{à la fois} le bouton gauche \textbf{et}
+    le bouton droit sont touchés,
+    la lumière rouge du haut est allumée.
+    Choisissez l'un des deux programmes suivants:
+
+\begin{center}
+\begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
+\blk{left-right-button} $\rightarrow$ \blk{red} & \textbf{or}&
+\blk{left-button} $\rightarrow$ \blk{red}\\
+&&\blk{right-button} $\rightarrow$ \blk{red}
+\end{tabular}
+\end{center}
+
+\vspace{-2ex}
+
+\bigskip
+
+\item Si un objet est détecté par le capteur tout à gauche
+    \textbf{seulement}, tournez à gauche.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{left-turn} & \blk{sensor-and-prox} &
+\blk{right-prox} & \blk{center-prox} & \blk{left-prox} \\
+\end{tabular}
+
+\bigskip
+
+\item Arrêtez le robot lorsque le bord de la table est atteint.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-prox-ground} &
+ \blk{ground2} & \blk{ground1}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le robot détecte un mur, la lumière rouge
+    supérieure est allumée.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{center-prox} & \blk{ground1}\\
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le robot atteint un mur, les moteurs s'arrêtent.
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{event-tap} $\rightarrow$ \eblock & \blk{full} & \blk{back-full} & \blk{action-motors}\\
+\end{tabular}
+
+\bigskip
+
+\item Le robot tourne à gauche s'il y a un objet devant le
+    capteur central.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \eblock & \blk{left-turn} & \blk{full} & \blk{right-turn}\\
+\end{tabular}
+
+\bigskip
+
+\item Le robot tourne à droite s'il n'y a \textbf{pas} d'objet devant le capteur central.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{center-prox} & \blk{no-detect-forward} &
+\blk{neither-prox}\\
+\end{tabular}
+
+\bigskip
+
+\item Les moteurs sont arrêtés dès que le bouton gauche est touché 
+\textbf{ou} si on donne une tape au robot.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-buttons} &
+\blk{left-right-button} & \blk{left-button} & \blk{right-button}\\
+\\
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-tap} &
+\blk{event-clap}
+\end{tabular}
+
+\bigskip
+
+\item Lorsque le bouton avant est touché,
+    le robot avance pendant trois secondes puis recule.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{forward} $\rightarrow$ \blk{full}\\
+\\
+\blk{forward} $\rightarrow$ \eblock & \blk{event-timer} & \blk{three-seconds}\\
+\\
+\eblock       $\rightarrow$ \blk{back-full} & \blk{event-timer} &  \blk{three-seconds}\\
+\end{tabular}
+
+\bigskip
+
+\item Le robot s'approche d'un objet lorsqu'il le détecte
+    par son capteur gauche, droite ou central.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \blk{full}\\
+\\
+\blk{left-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} &
+ \blk{left-turn} & \blk{action-motors}\\
+\\
+\eblock       $\rightarrow$ \eblock & \blk{right-turn} & \blk{left-turn} &
+ \blk{left-prox} & \blk{right-prox}\\
+\end{tabular}
+
+\bigskip
+
+\item Le robot suit une ligne sur le sol.
+    Il tourne à gauche s'il ne détecte plus la ligne sous son capteur droit et
+    tourne à droite s'il ne détecte plus la ligne sous son capteur gauche.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{bottom-right} & \blk{bottom-left} & \blk{left-prox} & \blk{right-prox}\\
+\\
+\eblock $\rightarrow$ \eblock & \blk{bottom-right} & \blk{bottom-left} & \blk{right-turn} & \blk{left-turn}\\
+\\
+\end{tabular}
+
+\item Le robot compte dans l'ordre 0,1,2,3,0,1,2,3, \ldots
+    chaque fois qu'il détecte un événement frapper les mains.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{event-clap} \blk{state-0} $\rightarrow$ \eblock &
+\blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-3} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \eblock &
+\blk{state-event-0} & \blk{state-event-3} & \blk{state-0} & \blk{state-3}\\ 
+\\
+\end{tabular}
+
+\newpage
+
+\item Lorsque le bouton central est touché,
+    les arcs de cercles avants droit et gauche
+    s'allument et s'éteignent alternativement chaque seconde.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
+\blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
+\\
+\blk{event-timer} \blk{state-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
+\\
+\eblock \blk{state-2} $\rightarrow$ \eblock \blk{one-second} &
+\blk{event-timer} & \blk{action-timer} & \blk{state-0} & \blk{state-1}\\ 
+\\
+\end{tabular}
+
+\bigskip
+
+\item La lumière du bas du robot devient vert lorsqu'il
+    détecte un objet loin de lui et devient rouge
+    lorsqu'il détecte un objet proche de lui.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{bottom-green} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{red} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+\end{tabular}
+
+\bigskip
+
+
+\item Penchez le robot vers la gauche; la lumière du haut
+    devient bleue et la lumière du bas s'éteint.
+    Penchez le robot sur son dos; la lumière du haut s'éteint
+    et la lumière du bas devient jaune.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{blue} \blk{action-colors-down} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{action-colors-up} \blk{yellow-bottom} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+\end{tabular}
+
+\end{enumerate}

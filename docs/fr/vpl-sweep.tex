@@ -1,0 +1,68 @@
+\chap{Nettoyer le sol}\label{ch.sweep}
+
+Marre de nettoyer votre maison?
+Il existe maintenant les \emph{robots aspirateurs} qui font le travail à votre place!
+Le robot traverse systématiquement votre appartement pour aspirer les saletés
+tout en évitant les obstacles.
+
+\textbf{Instructions}
+
+Lorsque l'on appuie sur le bouton avant, le robot traverse la chambre d'un bout à l'autre, 
+tourne, avance un petit bout puis retourne vers le côté original:
+
+\begin{center}
+\begin{picture}(200,30)
+%\put(0,0){\framebox(200,30){}}
+\put(0,30){\vector(1,0){200}}
+\put(200,30){\vector(0,-1){30}}
+\put(200,0){\vector(-1,0){200}}
+\end{picture}
+\end{center}
+
+\textbf{Conseils}
+
+Le robot doit implémenter trois tâches distinctes: (1) traverser la chambre (vers la droite ou vers la gauche), (2) tourner à droite, (3) avancer un peu.
+Ces tâches sont exécutées dans l'ordre suivant:
+
+\begin{center}
+\begin{picture}(380,20)
+%\put(0,0){\framebox(380,20){}}
+\put(30,10){\oval(60,20)}
+\put(110,10){\oval(60,20)}
+\put(190,10){\oval(60,20)}
+\put(270,10){\oval(60,20)}
+\put(350,10){\oval(60,20)}
+\put(0,0){ \makebox(60,20){traverser}}
+\put(80,0){\makebox(60,20){tourner}}
+\put(160,0){\makebox(60,20){avancer peu}}
+\put(240,0){\makebox(60,20){tourner}}
+\put(320,0){\makebox(60,20){traverser}}
+\put( 60,10){\vector(1,0){20}}
+\put(140,10){\vector(1,0){20}}
+\put(220,10){\vector(1,0){20}}
+\put(300,10){\vector(1,0){20}}
+\end{picture}
+\end{center}
+
+Il faudra utiliser des états différents pour mémoriser quel tâche est en train d'être exécutée.
+Dans chaque tâche, la direction et la quantité de mouvement est déterminée par la vitesse
+des moteurs droite et gauche et par la durée pendant laquelle ils sont allumés.
+C'est pourquoi chaque tâche sera implémentée grâce à une paire événement-actions où
+l'événement sera la fin du minuteur de la tâche précédente et les actions contrôleront
+le changement d'état. Il faudra pour cela: (1) changer l'état; (2) changer les vitesses des
+moteurs gauche et droite; (3) lancer un nouveau minuteur. 
+Pour lancer le programme, on utilisera un événement bouton.
+
+Il vous faudra ajuster les vitesses et la longueur des minuteurs pour que le robot
+suive la trajectoire rectangulaire désirée.
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Programme} \bu{sweep.aesl}}
+
+Vous pouvez encore vous amuser à ajouter des couleurs différentes pour les différents états:
+vert quand le Thymio va tout droit, jaune quand il tourne et rouge quand il est arrêté.
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Programme} \bu{sweep1.aesl}}

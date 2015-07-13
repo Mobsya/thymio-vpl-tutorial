@@ -1,0 +1,41 @@
+\chap{Lire des codes-barres}\label{ch.barcode}
+
+Les codes-barres sont largement utilisés dans les supermarchés et ailleurs pour identifier
+des objets. L'identifiant est un nombre ou une suite de symboles unique à chaque type d'objet.
+Cet identifiant est utilisé pour retrouver dans la base de données des informations concernant
+cet objet comme le prix.
+Construisons maintenant un lecteur de code-barres grâce au Thymio.
+
+\textbf{Instructions}
+
+\begin{enumerate}
+\item Mesurez soigneusement la distance entre deux capteurs frontaux ainsi que la largeur d'un de ces
+    capteurs.
+    Utilisez une feuille de carton pliable, du ruban adhésif noir et des bandes de papier d'aluminium
+    pour créer un bricollage qui contient différentes combinaisons de bandes noires ou blanches.
+
+\begin{center}
+\gr{barcode}{.6}
+\end{center}
+
+\item Chacune des configurations pour les trois capteurs horizontaux centraux
+    représentent un code différent. (Combien de codes différents peut-on créer?)
+    Implémentez des paires événement-actions pour certains voire tous ces différents codes
+    et créez différentes couleurs sur le haut du Thymio selon quel code est identifié.
+
+\end{enumerate}
+
+\textbf{Conseils}:
+
+Seuls les trois capteurs centraux seront utilisés; configurez les carrés des capteurs latéraux
+en mode gris.
+Les carrés des capteurs centraux doivent être blancs quand l'on souhaite détecter une bande d'aluminium blanche
+et ils doivent être noirs quand l'on souhaite détecter le fond noir du ruban adhésif.
+Ainsi, la paire événement-actions suivante affiche du jaune pour le code \texttt{allumé-éteint-allumé}:
+
+\blkc{barcode1-3}
+
+La solution dans l'archive identifie tous les codes avec deux bandes d'aluminium ainsi que 
+le code sans aucune barre d'aluminium.
+
+{\raggedleft \hfill \textbf{Programme}: \bu{barcode.aesl}}

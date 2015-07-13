@@ -1,0 +1,43 @@
+\chap{Mesurer sa vitesse}\label{ch.speed}
+
+\textbf{Instructions}
+
+Mesurez la vitesse du Thymio dans différentes configurations des moteurs des roues.
+Placez une bande de ruban adhésif noire sur une surface claire comme lorsque le Thymio
+suivait la ligne (\cref{ch.line}).
+Placez le robot à l'un des bouts de la bande. Implémentez le comportement suivant:
+
+\begin{itemize}
+
+\item Le robot commence à avancer lorsque l'on appuie sur le bouton central.
+
+\item Lorsque le robot détecte le début de la bande avec ces capteurs du bas,
+    lancez un minuteur d'une seconde.
+
+\item Quand le minuteur s'est écoulé, changez la couleur du haut et relancez le minuteur d'une seconde.
+
+\item Quand le Thymio arrive au bout de la bande, éteignez les moteurs.
+
+    \end{itemize}
+
+Lancez le programme et comptez combien de fois la couleur change.
+Ce sont le nombre de secondes qu'il a fallu au robot pour traverser la bande.
+Divisez la longueur de la bande par le nombre de secondes obtenu pour obtenir la vitesse.
+Si par exemple la bande mesure 30 centimètres et la couleur change 6 fois, alors la vitesse
+du robot est 30/6=5 centimètres par seconde.
+
+Essayez de modifier la configurations des moteurs et la longueur de la bande.
+
+\textbf{Conseils}
+
+Faites une liste de couleurs, par exemple 1=rouge, 2=bleu, 3=vert, 4=jaune, etc
+et utilisez cette liste pour déduire le nombre de secondes à partir de la couleur du robot.
+
+Utilisez des états pour mémoriser la couleur actuelle et les prochaines couleurs.
+Par exemple, dans l'état 3, la couleur est vert; quand le minuteur est écoulé \emph{et}
+l'état est 3, passez à l'état 4, affichez la couleur jaune et relancez le minuteur.
+Pour chaque événement minuteur, il y a trois actions.
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Programme} \bu{measure-speed.aesl}}

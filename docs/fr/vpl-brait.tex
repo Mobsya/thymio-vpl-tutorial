@@ -1,0 +1,117 @@
+\part{Projets}
+
+\chap{Les créatures de Braitenberg}
+
+\sect{Que sont les créatures de Braitenberg?}
+
+\href{http://fr.wikipedia.org/wiki/Valentino_Braitenberg}{Valentino Braitenberg}
+était un spécialiste en neurosciences qui créa des véhicules virtuels
+qui présentaient des comportements étonnamment complexes.\footnote{V. Braitenberg.
+\textit{Vehicles: Experiments in Synthetic Psychology} (MIT Press, 1984).}
+Ses véhicules ont été largement adoptés dans la robotique éducative.
+Des chercheurs du MIT Media Lab ont repris ces modèles pour construire ces véhicules en vrai.
+Ils les ont appelés les \emph{Créatures de Braitenberg}.\footnote{David W. Hogg, Fred Martin,
+Mitchel Resnick. \textit{Braitenberg Creatures}. MIT Media Laboratory, E\&L Memo 13, 1991.
+\href{http://cosmo.nyu.edu/hogg/lego/braitenberg_vehicles.pdf}{http://cosmo.nyu.edu/hogg/lego/braitenberg\_vehicles.pdf}.}
+Ces véhicules étaient construits à partir de \emph{briques programmables} qui étaient les
+précurseurs des kits robotiques LEGO Mindstorms.
+
+Ce document donne une implémentation des douze créatures de Braitenberg décrites dans
+rapport le rapport du MIT, adaptées pour le robot Thymio avec la VPL.
+Les créatures développées au MIT utilisaient des lumières et des capteurs tactiles
+alors que Thymio utilise principalement les capteurs infrarouges de proximité.
+Pour garder l'équivalence avec le rapport du MIT, nous avons gardé les noms des créatures
+qu'on leur avait alors donné même s'ils ne correspondent pas à l'implémentation pour le Thymio.
+
+Dans les descriptions, on utilise, à part mention contraire,
+l'expression <<\,détecte un objet\,>> pour signifier
+que le robot détecte un objet par le capteur avant central.
+On peut générer cet événement le plus simplement en plaçant et déplaçant sa main
+de sorte qu'elle soit détectée par un capteur.
+
+Le code source \textbf{VPL} est disponible dans l'archive.
+Les fichiers portent les noms en anglais des créatures qu'ils représentent
+plus l'extension \texttt{\small aesl}.
+Les noms des fichiers en anglais apparaissent entre parenthèses à côté du nom français.
+Pour certaines créatures, des comportements supplémentaires sont proposés en exercice.
+Leur implémentation se trouve dans des fichiers du nom de la créature avec un nombre additionnel.
+
+\sect{Les créatures}
+
+\begin{description}
+
+\item[Timide (timid.aesl)] Tant que le robot ne détecte aucun objet, il avance. 
+Dès qu'un objet est détecté, il s'arrête.
+
+\item[Indécis (indecisive.aesl)] Le robot avance tant qu'il ne détecte aucun objet.
+Lorsqu'un objet est détecté, il recule.
+Lorsqu'il se trouve exactement à la bonne distance, le robot \emph{oscille}
+entre marche avant et marche arrière.
+
+\item[Paranoïaque (paranoid.aesl)] Lorsque le robot détecte un objet, il avance. S'il ne détecte
+aucun objet, il tourne à gauche.
+
+\textbf{Exercice (paranoid1.aesl)} 
+Lorsque capteur central du robot détecte un objet, le robot avance.
+Lorsque c'est le capteur droit (mais pas le capteur central) qui détecte un objet,
+le robot tourne à droite.
+Lorsque c'est le capteur gauche (mais pas le capteur central) qui détecte un objet,
+le robot tourne à gauche.
+
+\textbf{Exercice (paranoid2.aesl - mode avancé)} 
+Tâche similaire à \textbf{Paranoïaque}, mais cette fois changer de direction lorsque le robot tourne
+chaque seconde. \textbf{Indice} Utilisez des états pour retenir la direction actuelle
+et un minuteur pour changer d'état.
+
+\item[Entêté (dogged.aesl)] Lorsqu'un objet est détecté à l'avant, le robot recule et
+lorsqu'un objet est détecté à l'arrière, le robot avance.
+
+\textbf{Exercice (dogged1.aesl)}
+Reprenez \textbf{Entêté}, mais arrêtez le robot lorsqu'aucun objet n'est détecté.
+
+\textbf{Exercice (dogged2.aesl - mode avancé)}
+Le robot avance tant qu'il ne rencontre pas d'objet, puis recule.
+Il recule alors jusqu'à ce qu'il détecte un nouvel objet, puis avance de nouveau.
+\textbf{Indice} Utilisez les états pour retenir la direction actuelle.
+L'état change lorsqu'un objet est détecté et c'est l'état qui contrôle les moteurs.
+
+\item[Désécurisé (insecure.aesl)]
+S'il n'y a pas d'objet détecté, allumez le moteur droit du robot et éteignez le moteur gauche.
+Si un objet est détecté, allumez le moteur gauche et éteignez le moteur droit.
+Le robot devrait alors suivre un mur à sa gauche.
+\textbf{Indice} Voir la référence \cref{a.blocks} sur les virages avec Thymio.
+
+\item[Driven A TRADUIRE (driven.aesl)]
+Lorsque le robot détecte un ojet à gauche, il allume le moteur droit et éteint le moteur gauche.
+Et lorsque le robot détecte un objet à droite, il allume le moteur gauche et éteint le moteur droit.
+Le robot devrait alors s'approcher de l'objet en zigzagant.
+
+\item[Insistant (persistent.aesl)]
+Le robot avance jusqu'à ce qu'il détecte un objet.
+Il recule alors pendant une seconde et ensuite avance de nouveau.
+
+\item[Attiré et repoussé (attractive-repulsive.aesl)]
+Lorsqu'un objet approche le robot, il s'enfuit jusqu'à ce qu'il ne le voit plus.
+
+\item[Constant (consistent.aesl - mode avancé)]
+Chaque fois qu'on donne une tappe au robot, celui-ci passe à l'état suivant:
+d'abord il avance, ensuite il tourne à gauche, puis à droite, puis recule, puis recommemce.
+
+\item[Inhumain (inhumane.aesl)]
+Le robot continue à avancer jusqu'à ce qu'il rencontre un obstacle.
+
+\item[Paniqué (frantic.aesl - mode avancé)]
+La lumière du haut clignote en rouge.
+\textbf{Indice} Vous pouvez utiliser le bloc événement capteur avec tous les carrés des capteurs en mode gris comme décrit dans \cref{a.blocks}.
+
+\textbf{Exercice (frantic1.aesl - mode avancé)}
+Implémentez le clignotement à l'aide du bloc événement boutons au lieu du bloc événement capteurs.
+Y a-t-il une différence de comportement du robot? Si oui, quelle en est la cause?
+
+\item[Observateur (observant.aesl - mode avancé)]
+La lumière du haut est verte quand le capteur droit détecte un objet.
+La lumière du haut devient rouge lorsque le capteur gauche détecte un objet.
+Une fois la lumière du haut allumée, le robot attend trois secondes avant de s'éteindre;
+pendant ce temps, la lumière ne change pas, peu importe ce que le robot détecte.
+
+\end{description}

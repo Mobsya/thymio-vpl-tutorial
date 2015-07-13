@@ -1,0 +1,33 @@
+\chap{Attrapez les chauffards}\label{ch.radar}
+
+\textbf{Instructions}
+
+Aidez la police à arrêter les conducteurs qui roulent trop vite.
+Calculez la vitesse en mesurant la vitesse que la voiture parcoure en un temps donné.
+
+Le robot détecte les objets qui se déplacent de sa gauche vers sa droite grâce à ces capteurs
+avants.
+Allumez une couleur différente selon la distance qu'a parcourue un objet pendant la seconde
+qui a suivi la détection de l'objet par le capteur tout à gauche.
+
+\textbf{Conseils}
+
+\begin{itemize}
+
+\item Dans l'état initial, la détection d'un objet par le capteur avant tout à gauche lance un
+    minuteur d'une seconde.
+
+\item Quand le minuteur a exprié, passez à un nouvel état que l'on va appeler l'état \emph{mesurer}.
+
+\item Construisez quatre paires événement-actions, une pour chacun des quatre autres capteurs avants;
+    ces événements n'auront lieu que lorsque le robot sera dans le mode \emph{mesurer}.
+    Lorsque l'un des capteurs détecte un objet, il affiche en haut une couleur associée à ce capteur.
+
+\item Assurez-vous qu'une paire événement-actions n'a lieu que lorsqu'un capteur détecte un objet
+    et qu'aucun autre capteur ne détecte d'objet.
+
+\end{itemize}
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Programme}: \bu{speeders.aesl}}

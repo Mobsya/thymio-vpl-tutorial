@@ -1,0 +1,39 @@
+\chap{Le lièvre et le renard}\label{ch.rabbit}
+
+Ce chapitre donne les consignes pour un gros projet (mon programme
+contient 7 paires événement-actions, chacune d'elles avec 2--3
+actions).
+Vous devriez entre temps avoir acquis assez d'expérience dans VPL
+pour réaliser ce projet vous-même. Nous vous donnerons toutes les
+caractéristiques du comportement à développer sous la forme d'une
+liste d'instructions. Nous vous suggérons de construire le programme en
+implémentant chaque contrainte une à une.
+
+\textbf{Le problème}\footnote{Cette histoire est inspirée d'une \href{
+http://www.cs.hmc.edu/~fleck/parable.html}{blague} bien connue
+des doctorants}
+Le robot est un lièvre qui marche dans la forêt.
+Un renard le chasse et essaie de l'attraper depuis derrière.
+Le lièvre remarque le renard, se retourne et attrape le renard.
+
+
+\textbf{Instructions}
+
+Pour chaque événement, nous donnons la couleur qui doit apparaître
+sur le haut du robot lorsque l'événement a lieu.
+
+\begin{enumerate}
+\item Le bouton avant est touché: le robot avance (bleu).
+\item Le bouton arrière est touché: le robot s'arrête (éteint).
+\item Si le robot détecte le bord d'une table, il s'arrête (éteint).
+\item Si le capteur arrière gauche détecte un objet, le robot tourne rapidement
+vers la gauche (dans le sens contraire des aiguilles d'une montre) jusqu'à ce que
+l'objet soit détecté par le capteur avant central (rouge).
+\item Si le capteur arrière droit détecte un objet, le robot tourne rapidement
+vers la droite (dans le sens des aiguilles d'une montre)
+jusqu'à ce que l'objet soit détecté par le capteur avant central (vert).
+\item Lorsque l'objet est détecté par le capteur avant central, le
+robot avance rapidement pendant une seconde (jaune) et s'arrête (éteint).
+\end{enumerate}
+
+{\raggedleft \hfill \textbf{Programme} \bu{rabbit-fox.aesl}}

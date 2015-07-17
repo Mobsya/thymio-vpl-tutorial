@@ -1,0 +1,115 @@
+\chap{Quelques trucs pour programmer avec VPL}\label{a.tips}
+
+\sect{Explorer et expérimenter}
+
+\begin{description}
+
+\item[Comprendre chaque bloc événement et action]
+Pour chaque bloc événement et chaque bloc action,
+prenez votre temps pour faire plusieurs essais jusqu'à ce que vous compreniez
+exactement comment il fonctionne.
+Pour mieux comprendre comment un bloc action fonctionne,
+créez une paire avec un bloc événement bouton.
+C'est un événement facile qui vous permettra de bien discerner l'action du bloc action.
+Pour les blocs événement, vous pouvez construire une paire avec l'action changer de couleur.
+
+\item[Tester les blocs événement capteurs]
+Les petites lumières rouges à côté de chaque capteur permettent de voir quand ce capteur détecte
+un objet.
+Déplacez par exemple vos doigts devant les capteurs et regardez quelles lumières sont allumées,
+ce qui indique quels capteurs détectent vos doigts.
+Créez une paire événement-actions qui consiste en un événement capteur et l'action couleur du haut
+et jouez avec les différents réglages des petits carrés dans le bloc événement (gris, blanc, noir et
+gris foncé en mode avancé).
+
+\end{description}
+
+\sect{Construisez un programme}
+
+\begin{description}
+
+\item[Faites un plan pour votre programme]
+Avant d'écrire un programme,
+commencez par rédiger une description du fonctionnement voulu de votre programme:
+une phrase pour chaque paire événement-actions.
+
+\item[Construisez une paire événement-actions à la fois]
+Une fois que vous aurez compris comment chacune des paires événement-actions fonctionnent,
+vous pourrez les mettre ensemble pour créer votre programme.
+
+\item[Testez chaque nouveauté de votre programme]
+Testez votre programme à chaque fois que vous ajoutez une nouvelle paire événement-actions
+pour que vous puissiez rapidement trouver la paire à l'origine d'une erreur dans votre programme.
+
+\item[Utilisez \bu{Sauvegarder sous} quand vous avez changé votre programme]
+Avant de modifier votre programme, cliquez sur \blksm{saveas} pour sauvegarder votre programme
+en utilisant un autre nom. Si votre modification devait ne pas marcher,
+il vous sera alors facile de revenir à la version précédente.
+
+\item[Montrez ce qui se passe]
+Utilisez des couleurs pour montrer ce que le programme est en train de faire.
+Par exemple, si un capteur d'une paire a une action associée tourner à gauche
+et un capteur d'une autre paire a une action associée tourner à droite,
+ajoutez une action aux deux paires qui affichent des couleurs différentes.
+Vous pourrez ainsi voir le problème est dû aux capteurs ou si ce sont les moteurs
+qui ne réagissent pas correctement aux événements capteur.
+
+\end{description}
+
+
+\sect{Régler les problèmes}
+
+\begin{description}
+
+\item[Utilisez une surface lisse]
+Vérifiez que votre Thymio se déplace sur une surface lisse et propre.
+Les moteurs risquent sinon de ne pas réussir à déplacer le robot,
+ou alors les virages risquent de ne pas être réguliers.
+
+\item[Utilisez un long cable]
+Assurez-vous d'avoir un cable assez long.
+Si le robot va trop loin, le cable peut freiner ou arrêter le robot.
+
+\item[Les événements capteurs peuvent ne pas être déclanchés]
+Les événements capteurs sont déclanchés 10 fois par seconde.
+Si le robot se déplace très rapidement, il est possible qu'un événement ne soit pas déclanché.
+
+Par exemple, si le robot est censé s'arrêter lorsqu'il détecte le bord de la table
+mais qu'il avance très rapidement, il est possible qu'il tombe de la table
+avant que l'événement capteurs n'arrête les moteurs.
+Lorsque vous lancer un programme, commencez avec une vitesse lente.
+Vous pouvez ensuite l'augmenter graduellement.
+
+Comme autre exemple, considérez le programme du \cref{ch.line} où Thymio suivait une ligne.
+L'algorithme de ce programme repose sur la capacité à détecter le moment où
+un des capteurs voit la ligne et l'autre ne la voit plus.
+Si le robot avance trop rapidement, le moment où seul un capteur détecte la ligne 
+est trop bref pour déclancher un événement.
+
+\item[Problèmes avec les capteurs du bas]
+Dans les programmes comme celui à peine mentionné,
+le capteur doit pouvoir distinguer beaucoup de lumière réfléchie de peu de lumière réfléchie.
+Veillez à avoir un grand contraste entre les deux.
+Si votre table, par exemple, n'est pas assez claire, fixer des feuilles blanches 
+permettra d'obtenir de meilleurs résultats.
+
+Vous pouvez sinon aussi ajuster les seuils de détection en mode avancé.
+
+\item[Les paires événement-actions sont exécutées à la suite]
+En théorie, les paires événement-actions sont exécutées \emph{simultanément}---en même temps;
+en pratique, elles sont exécutées à la suite, dans l'ordre dans lequel elles apparaissent 
+dans votre programme.
+Comme on peut le voir dans l'exercice~4.2, ceci peut poser problème car la seconde action
+peut entrer en conflit avec ce qui a été exécuté par la première action.
+
+\item[Problèmes avec l'événement frapper des mains]
+\emph{N'utilisez pas} l'événement frapper des mains \blksm{event-clap} lorsque les moteurs tournent.
+Les moteurs génèrent beaucoup de bruit et peuvent provoquer des événement frapper des mains
+indésirables.
+
+De même, \emph{n'utilisez pas} l'événement tappe \blksm{event-tap} et l'événement frapper des mains
+\blksm{event-clap} dans le même programme.
+En effet, donner une tappe au robot génère du bruit que le robot peut interpréter comme une frappe
+des mains.
+
+\end{description}

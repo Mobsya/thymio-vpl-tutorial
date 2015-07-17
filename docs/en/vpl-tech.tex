@@ -1,4 +1,4 @@
-\chapter{Techniques for Using the Sliders}\label{a.tech}
+\chap{Techniques for Using the Sliders}\label{a.tech}
 
 \sect{Setting the sliders in the motor blocks}
 
@@ -8,7 +8,7 @@ event-actions pairs into an AESL textual program to improve the
 precision.
 
 \trickbox{By moving the sliders on the motor action blocks, you will see
-that the target speeds of the motors (\p{moter.X.target}) jump by steps
+that the target speeds of the motors (\p{motor.X.target}) jump by steps
 of 50 in the range $-$500 to 500. By moving the sliders carefully, you
 can set the speeds to any of these values.}
 
@@ -58,13 +58,15 @@ condition. Sensor number 2 (front center) is checked first:
 \p{prox.horizontal[2]}. If this value is lower than 1000, the speeds of
 the left and right motors are set to 0 using the instructions:
 
+\begin{footnotesize}
 \begin{verbatim}
 motor.left.target  = 0
 motor.right.target = 0
 \end{verbatim}
+\end{footnotesize}
 
 Every block \verb+if ... then ... end+ tests a specific sensor and runs
-the associated instructions the result of test is true. The programs
+the associated instructions if the result of test is true. The programs
 runs the following algorithm:
 
 \begin{enumerate}[start=0,noitemsep,nosep]

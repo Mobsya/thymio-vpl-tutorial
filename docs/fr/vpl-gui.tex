@@ -1,0 +1,73 @@
+\part{Annexes}
+
+\chap{L'interface d'utilisateur VPL}\label{a.toolbar}
+
+Tout en haut de la fenêtre VPL se trouve une barre d'outils:
+
+\begin{center}
+\gr{toolbar}{1}
+\end{center}
+
+\bigskip
+
+\textbf{Nouveau} \blksm{new}: Supprime le programme actuel et vide la zone de programmation.
+
+\bigskip
+
+\textbf{Ouvrir} \blksm{open}: Cliquez pour ouvrir un projet existant dans VPL.
+Une fenêtre va s'ouvrir pour que vous choisissiez le fichier (extension \p{aesl}) à ouvrir.
+
+\bigskip
+
+\textbf{Sauvegarder} \blksm{save}: Sauvegarde le programme actuel.
+Il est conseillé de cliquer souvent sur ce bouton pour ne pas perdre votre travail
+si un plantage devait survenir.
+
+\bigskip
+
+\textbf{Sauvegarder sous} \blksm{saveas}: Sauvegarde le programme actuel sous un 
+\emph{nom différent}. Utilisez ce bouton lorsque vous avez un programme et que vous
+souhaitez pouvoir le modifier sans perdre la version actuelle du programme.
+
+\bigskip
+
+\textbf{Annuler} \blksm{undo}: Annuler la dernière action comme par exemple la suppression
+d'une paire événement-actions.\label{p.undo}
+
+\bigskip
+
+\textbf{Rétablir} \blksm{redo}: Rétablir la dernière action qui a été annulée.
+
+\bigskip
+
+\textbf{Lancer} \blksm{run}: Lancer le programme actuel.
+Ce bouton n'est actif que si la compilation a réussi.
+Si vous modifiez le programme après l'avoir déjà lancé une fois,
+le bouton clignotera pour vous rappeler que vous devez cliquer dessus
+pour charger dans le Thymio la version modifiée du programme.
+
+\bigskip
+
+\textbf{Arrêter} \blksm{stop}: Arrête le programme qui est en train d'être exécuté et
+arrête les moteurs. Utilisez ce bouton quand votre programme a mis les moteurs du robot
+en mouvement mais ne possède pas de paire événement-actions pour les arrêter.
+
+\textbf{Mode avancé} \blksm{advanced}: Le mode avancé offre des fonctionnalités supplémentaires:
+les états, les minuteurs, les accéléromètres et la possibilité de changer les seuils des capteurs.
+
+\textbf{Mode débutant}: L'icône ci-dessus devient \blksm{basic} en mode avancé.
+Cliquez sur ce bouton pour revenir en mode débutant.
+
+\newpage
+
+\textbf{Aide} \blksm{info1}: Affiche la documentation VPL dans votre navigateur internet.
+Une connexion internet est nécessaire. Vous trouverez aussi la documentation sous
+\href{https://www.thymio.org/en:thymiovpl}{https://www.thymio.org/en:thymiovpl}.
+
+\bigskip
+
+\textbf{Exporter} \blksm{export}: \label{p.export} Exporte une image graphique du programme vers
+un fichier. Vous pouvez ensuite importer cette image dans un document comme un livre de cours
+ou une fiche de travail.
+Plusieurs formats sont disponibles. \textsc{svg} offrent la meilleure qualité, mais le format
+\textsc{png} est plus souvent reconnu.

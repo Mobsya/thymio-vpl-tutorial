@@ -67,8 +67,8 @@ backwards. When the robot detects an object in back, it moves forwards.
 \textbf{Exercise (Dogged1)} As in \textbf{Dogged}, but when an
 object is not detected, the robot stops.
 
-\item[Insecure] If an object is not detected, turn the robot's right
-motor on and the left motor off. If an object is detected, turn the
+\item[Insecure] If an object is not detected by the left sensor, turn the robot's right
+motor on and the left motor off. If an object is detected by the left sensor, turn the
 right motor off and the left motor on. The robot should follow a wall
 placed to its left. \textbf{Hint} See the note about turning the robot in \cref{a.blocks}.
 
@@ -87,9 +87,6 @@ behind, the robot runs away until it is out of range.
 \item[Consistent (advanced mode)] The robot cycles through four states when
 it is tapped: moving forwards, turning left, turning right, moving
 backwards.
-
-\item[Inhumane] The robot travels forwards until it detects an obstacle
-and then stops.
 
 \item[Frantic (advanced mode)] The top light flashes red. \textbf{Hint}
 You can use the sensor event block with all sensors gray as explained in

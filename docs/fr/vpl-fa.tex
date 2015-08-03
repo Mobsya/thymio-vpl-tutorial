@@ -10,11 +10,11 @@ Considérons une chaîne finie de caractères $a$ ou $b$:
 L'objectif de ce problème est de lire une chaîne de caractères comme celle-ci,
 puis de déterminer si le nombre de $a$ est pair ou impair.
 Un FA pour résoudre ce problème contient deux états:
-l'état 0 si le nombre de $a$ lu jusqu'ici est pair,
+l'état 0 si le nombre de $a$ lus jusqu'ici est pair,
 l'état 1 dans le cas contraire.
 Ce FA est représenté dans le diagramme suivant.
 Il contient deux états, 0 et 1, et des transitions d'un état à l'autre,
-notée $a$ et $b$.
+notées $a$ et $b$.
 
 \begin{center}
 \begin{picture}(175,45)
@@ -43,7 +43,7 @@ notée $a$ et $b$.
 \end{picture}
 \end{center}
 
-Lorsque notre FA dans certain état lit un caractère de la chaîne,
+Lorsque notre FA dans un certain état lit un caractère de la chaîne,
 il change d'état suivant les transistions du schéma.
 Si le nombre de $a$ lus jusqu'ici est pair (état 0) et que le FA lit un $a$,
 alors l'état devient 1.
@@ -57,7 +57,7 @@ L'état initial est indiqué sur le schéma par une petite flèche.
 \textbf{Instructions}\footnote{Ces instructions ainsi que la solution ont été inspirés par
 le \href{https://www.thymio.org/fr:barcodelightpainting}{projet de \textit{Light Painting}}.}
 
-Imprimez le fichier suivant \p{fa-path-alternate.pdf}.
+Imprimez le fichier \p{fa-path-alternate.pdf}.
 Il contient l'image suivante:\footnote{Les fichiers tracé se trouvent dans le dossier \bu{image14} de cette archive.}
 
 \gr{fa-path-parity}{.8}
@@ -99,12 +99,12 @@ Le Thymio utilisera trois des quatre quartiers dans les événements et actions 
 
 \begin{itemize}
 \item Le quartier supérieur gauche indique si le programme a démarré ou non.
-\item Le quartier supérieur droit indique quand il faut relever la couleur (noir ou blanc) 
+\item Le quartier supérieur droit indique si oui ou non il faut relever la couleur (noir ou blanc) 
 du carré sur lequel se trouve le robot.
 \item Le quartier inférieur gauche retient si le nombre de $a$ lus est pair ou impair.
 \end{itemize}
 
-Voici un exemple d'une pair événement-actions.
+Voici un exemple d'une paire événement-actions.
 
 \blkc{parity-0-1}
 
@@ -119,9 +119,9 @@ la couleur du carré doit être relevée \emph{et}\\
 \hspace*{2em} relancer le minuteur
 \end{quote}
 
-{\raggedleft \hfill \textbf{Programme}: \bu{fa.aesl}}
+{\raggedleft \hfill Programme: \bu{fa.aesl}}
 
-Vous devrez essayer différentes vitesses de moteur et de longueur du minuteur
+Vous devrez essayer différentes vitesses de moteur et longueurs du minuteur
 pour pouvoir détecter fiablement les carrés noirs et blancs.
 
 \textbf{Exercice}

@@ -1,5 +1,5 @@
 \part{Tutoriel}
-\chap{Votre premier projet de robotique}
+\chap{Votre premier projet de robotique}\label{ch.intro}
 
 \sect{Faire connaissance avec Thymio}
 
@@ -33,8 +33,7 @@ Quand le texte contient une petite image, la même image en plus grand apparaît
 Il se peut que VPL se connecte directement à votre robot.
 Si ce n'est pas le cas, la fenêtre montrée dans la \cref{fig.connect} devrait apparaître.
 Cochez la case \bu{Port série}, cliquez sur \bu{Thymio-II Robot}, sélectionnez \bu{Français} et cliquez sur \bu{Connecter}.
-En fonction de la configuration de votre ordinateur, il peut y avoir plusieurs entrées dans la liste des ports séries.
-Dans tous les cas, il faut choisir Thymio-II.
+En fonction de la configuration de votre ordinateur et de votre système d'exploitation, il peut y avoir plusieurs entrées dans la liste des ports séries et le texte à côté de \bu{Thymio-II Robot} peut différer de la \cref{fig.connect}.
 
 \trickbox{Il est aussi possible d'accéder à VPL depuis Aseba Studio, l'environement de programmation textuelle, à travers le \textit{plugin} VPL qui se trouve dans la zone \textit{Outils} en bas à gauche de l'écran.}
 
@@ -69,7 +68,7 @@ Elle est composée de six zones :
 
 \bigskip
 
-\trickbox[Pour aller plus loin]{
+\informationbox{Pour aller plus loin}{
 Dès que vous créez un programme en utilisant VPL,
 la traduction du programme dans le langage de programmation textuel AESL apparaît dans la partie droite de la fenêtre.
 C'est en fait ce code AESL qui est interprêté par le robot.
@@ -84,8 +83,9 @@ pour les références et en apprendre plus sur AESL et son environnement Studio.
 Quand vous démarrez VPL, une zone de programmation vide est affichée.
 
 Si, après avoir construit un bout de programme, vous voulez effacer le contenu de la zone de programmation, vous pouvez cliquer sur \blksm{new} (\bu{Nouveau}).
+
 Un programme dans VPL consiste en des \emph{paires événement-actions}, chacune construite en mettant ensemble un bloc événement et un ou plusieurs bloc action.
-Par exemple, la paire : \blkc{e-a-pair} fait s'allumer la lumière sur le dessus du Thymio en rouge lorsque l'on touche le bouton avant sur le robot.
+Par exemple, la paire : \blkc{e-a-pair} allume la lumière du haut du Thymio en rouge lorsque l'on touche le bouton avant sur le robot.
 
 \importantbox[Signification d'une paire événement-actions]
 {
@@ -110,7 +110,7 @@ Il nous faut maintenant modifier l'événement et l'action pour qu'ils fassent c
 Pour l'événement, cliquez sur le bouton avant (le triangle supérieur) ; il va devenir rouge : \blkc{forward}
 Cela signifie qu'\textbf{un événement se produira lorsque le bouton avant de Thymio sera touché}.
 
-Le bloc action couleur contient trois \textit{sliders}---des barres de couleur avec un carré blanc.
+Le bloc action couleur contient trois \textit{sliders} --- des barres de couleur avec un carré blanc.
 Chaque barre règle une des trois couleurs primaires rouge, vert et bleu.
 Si vous déplacez un de ces carrés blanc vers la droite et revenez ensuite en arrière,
 vous vous apercevrez que le fond du bloc change de couleur.
@@ -144,7 +144,7 @@ Voici ce qu'il fait :\\
 
 \sect{Éteindre le robot}
 
-Lorsque vous avez terminé de jouer avec Thymio, vous pouvez l'éteindre en touchant son bouton central et en gardant le contact quelques secondes.
+Lorsque vous avez terminé d'utiliser Thymio, vous pouvez l'éteindre en touchant son bouton central et en gardant le contact quelques secondes.
 Vous entendrez quelques notes et Thymio s'arrêtera.
 Tant que le robot est connecté à un ordinateur, sa batterie continue à se recharger. Une petite lumière rouge à l'arrière du robot, juste à côté du câble USB, permet de savoir s'il est rechargé ou pas. La lumière passe du rouge au bleu pour indiquer qu'il est complètement rechargé, comme sur la \cref{fig.back}.
 Vous pouvez déconnecter le cable quand vous n'utilisez pas le robot.
@@ -182,10 +182,10 @@ Si vous voulez tester une modification sans perdre votre programme actuel, vous 
 
 Si vous voulez continuer un programme que vous aviez commencé précédemment, il suffit de l'ouvrir avec l'interface VPL pour le modifier ou l'améliorer.
 Cliquez sur l'icône \blksm{open} (\bu{Ouvrir}) et sélectionnez le fichier que vous voulez ouvrir, par exemple \bu{afficher-rouge}.
-Les paires événement-actions du programme vont être affichées dans la zone de programmation, et vous pouvez continuer à les modifier.
+Les paires événement-actions du programme vont être affichées dans la zone de programmation, et vous pourrez continuer à les modifier.
 
-\newpage
-\sect{La paire événement-actions sélectionnée}
+%\newpage
+\sect{La paire événement-actions actuelle}
 
 Lorsque vous cliquez sur une paire événement-actions,
 celle-ci s'affiche avec un fond jaune.
@@ -201,7 +201,7 @@ Il en va de même lorsque vous ajoutez un bloc événement ou action dans une pa
 
 Le carré gauche de couleur dorée est l'espace réservé à l'événement;
 le carré bleu à droite sert d'emplacement à la première (ou unique) action.
-La pair au fond jaune est appelée la paire sélectionnée.
+La pair au fond jaune est appelée la paire actuelle.
 
 \informationbox{Insérer un bloc rapidement}{
 Si vous cliquez sur un bloc événement ou action,

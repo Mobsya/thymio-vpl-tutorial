@@ -1,5 +1,5 @@
 \part{De la programmation visuelle à la programmation textuelle}
-\chap{Apprendre le langage AESL à partir des programmes VPL}\label{c.next}
+\chap{Apprendre le langage AESL à partir des programmes VPL}\label{ch.next}
 
 Félicitations!
 Vous êtes expert(e) de la programmation visuelle (VPL).
@@ -17,12 +17,12 @@ programmation, l'\textit{Aseba Event Scripting Language (AESL)}.
 
 VPL traduit les programmes graphiques (les paires événement-actions) en programmes textuels AESL
 qui apparaîssent d'ailleurs sur le côté droit de la fenêtre VPL (numéro~6 dans la \cref{fig.vplgui}
-à la page~\pageref{fig.vplgui}).
+de la page~\pageref{fig.vplgui}).
 Ce tutoriel utilise des programmes VPL des chapitres précédents et décrit leur programme AESL correspondant.
 Vous utiliserez vos connaissances de ces programmes VPL pour apprendre les principes fondamentaux 
 de la programmation AESL.
 
-La programmation en utilisant Aseba Studio est aussi basée sur les concepts d'événements et d'actions.
+La programmation utilisant Aseba Studio est aussi basée sur les concepts d'événements et d'actions.
 Comme les programmes VPL sont traduits en programmes AESL,
 tout ce que vous avez appris dans ce tutoriel est aussi disponible dans Studio,
 mais vous avez maintenant la flexibilité d'un langage de programmation complet
@@ -80,28 +80,28 @@ Voici le programme \p{whistles.aesl} du \cref{ch.bells} avec une partie du progr
 
 \textbf{\large Traitement des événements}
 
-Lorsqu'un événement tappe est déclanché, la lumière du haut est allumée en une couleur appelée
+Lorsqu'un événement tape est déclenché, la lumière du haut est allumée en une couleur appelée
 \emph{magenta},
-et lorsqu'un événement frapper des mains est déclanché, la lumière du bas est allumée en une couleur 
+et lorsqu'un événement frapper des mains est déclenché, la lumière du bas est allumée en une couleur 
 appelée \emph{cyan}.
 Dans AESL, ce qui correspond aux paires événement-actions de VPL est un système de traitement des événements
-qui est introduit par le mot-clé \p{onevent} (en anglais, \emph{on event} signifie <<lors de l'événement>>)
+qui est introduit par le mot-clé \p{onevent} (en anglais, \emph{on event} signifie <<\,lors de l'événement\,>>)
 Vous trouverez une liste des événements dans la table au bas de la documentation pour l'interface
-de programmation pour le Thymio.
+de programmation de Thymio.
 
 Les lignes qui suivent \p{onevent} forment le corps principal du traitement de l'événement \p{tap}, respectivement \p{mic}.
 Ils correspondent aux blocs action qui suivent les blocs événement dans VPL.
 
-Lorsqu'un événement tappe est déclanché, la \emph{fonction d'interface} \p{leds.top} est \emph{appelée}.
-La fonction prend trois \emph{paramètres} qui spécifient l'intensité du rouge, du vert et du bleu de la LED.
+Lorsqu'un événement tape est déclenché, la \emph{fonction d'interface} \p{leds.top} est \emph{appelée}.
+La fonction prend trois \emph{paramètres} qui spécifient l'intensité de rouge, de vert et de bleu de la LED.
 Les valeurs de celles-ci varient entre 0 (éteinte) et 32 (complètement allumée).
 Combiner du rouge et du bleu permet d'obtenir du magenta.
 
-L'événement VPL frapper dans les mains correspond à l'événement \p{mic} (une forme abbrégée de 
+L'événement VPL frapper dans les mains correspond à l'événement \p{mic} (une forme abrégée pour 
 microphone).
-Lorsque l'événement est déclanché, les LEDs du bas sont allumées.
+Lorsque l'événement est déclenché, les LEDs du bas sont allumées.
 Dans VPL, un bloc action allume les deux LEDs de la même couleur
-alors que dans AESL, les LEDs droite et gauche peuvent être allumées indépendemment l'une de l'autre.
+alors que dans AESL, les LEDs droite et gauche peuvent être allumées indépendamment l'une de l'autre.
 Dans notre cas, nous allumons les deux LEDs avec les composantes vertes et bleues à pleine intensité,
 ce qui donne du cyan.
 
@@ -121,9 +121,9 @@ Une ligne qui commence avec un \verb+#+ est appelée un \emph{commentaire}.
 Les commentaires n'ont aucune influence sur le programme;
 on les utilise pour donner des informations au lecteur du programme.
 Dans ce cas, le commentaire explique que l'événement frapper les mains 
-est déclanché lorsque l'intensité du son est plus grande qu'un certain
+est déclenché lorsque l'intensité du son est plus grande qu'un certain
 \emph{seuil}.
-La deuxième ligne du programme spécifie que l'événement est déclanché lorsque l'intensité du son
+La deuxième ligne du programme spécifie que l'événement est déclenché lorsque l'intensité du son
 (qui est entre $0$ et $255$) est plus grand que $250$.
 
 Dans VPL, ce seuil est intégré à l'événement et il ne peut pas être changé,
@@ -137,7 +137,7 @@ mais dans un programme textuel, vous pouvez le changer en \emph{affectant} une v
 
 Ceci signifie que la \emph{valeur} à droite du \verb+=+ est copiée vers la \emph{variable}
 à gauche.
-La variable \p{mic.threshold} est prédéfini pour le robot Thymio.
+La variable \p{mic.threshold} est prédéfinie pour le robot Thymio.
 
 \textbf{\large Initialisation du Thymio}
 
@@ -157,7 +157,7 @@ pour éteindre toutes les LEDs et le son.
 \end{footnotesize}
 
 Cette \emph{initialisation} n'est pas visible dans le programme VPL.
-Dans un programme textuelle, nous recommandons d'inclure ces instructions,
+Dans un programme textuel, nous recommandons d'inclure ces instructions,
 bien qu'elles ne soient pas nécessaires.
 
 \sect{Plusieurs alternatives}
@@ -198,7 +198,7 @@ la couleur des LEDs du haut et du bas lorsque les boutons sont touchés:
 \end{tabular}
 \end{center}
 
-Dans le programme AESL, \emph{un seul} événement est déclanché chaque fois qu'un des cinq boutons
+Dans le programme AESL, \emph{un seul} événement est déclenché chaque fois qu'un des cinq boutons
 est touché.
 L'action du traitement d'événement introduit par \p{onevent buttons}
 dépend du bouton touché. Nous allons donc nous référer à la valeur des \emph{variables bouton}
@@ -213,10 +213,10 @@ Les instructions:
 \end{verbatim}
 \end{footnotesize}
 
-signifient: \p{si} la valeur de la variable \p{button.forward} (\emph{button.forward} signifie
-<<bouton.avant>> en anglais) est un,
-alors exécute les actions écrites entre les mots-clés \p{if} (qui signifie <<si>> en anglais)
-et \p{end} (qui signifie <<fin>> en anglais).
+signifient: \p{si} (<<\,if\,>> signifie <<\,si\,>> en anglais) la valeur de la variable \p{button.forward} (\emph{button.forward} signifie
+<<\,bouton.avant>> en anglais) est un,
+alors exécute les actions écrites entre les mots-clés \p{then} (qui signifie <<\,alors\,>> en anglais)
+et \p{end} (qui signifie <<\,fin\,>> en anglais).
 Il y a cinq variables \p{bouton}, une pour chacun des boutons.
 La valeur d'une variable bouton vaut 1 si le bouton est touché et 0 si le bouton est relâché.
 Dans ce programme, il y a cinq structures introduites par \p{if}, une pour chaque bouton.
@@ -233,8 +233,8 @@ mais, rassurez-vous, ils ne sont pas nombreux.}
 \textbf{\large Un ou plusieurs événements$^*$}
 
 L'interface Thymio inclut aussi des événements distincts pour chaque bouton,
-en plus de l'événement \p{buttons} qui est déclanché chaque fois qu'un bouton est pressé ou relâché.
-Nous pourions aussi implémenter ce programme avec de multiples événements et sans structures
+en plus de l'événement \p{buttons} qui est déclenché chaque fois qu'un bouton est pressé ou relâché.
+Nous pourrions aussi implémenter ce programme avec de multiples événements et sans structures
 \p{if} ni variables bouton:
 
 \begin{footnotesize}
@@ -285,7 +285,7 @@ et
 
 Une autre différence est que les événements spécifiques à un bouton
 ont lieu lorsqu'un bouton est touché ou relâché,
-tandis que l'événement commun à tous les boutons est déclanché à une fréquence de 20 Hz,
+tandis que l'événement commun à tous les boutons est déclenché à une fréquence de 20 Hz,
 à chaque fois que le tableau des variables bouton est mis à jour (voir page~\pageref{pg.hz}
 pour une explication de ces concepts).
 
@@ -335,19 +335,19 @@ La structure du programme AESL (\cref{fig.arrays}) contient un traitement d'év�
 avec plusieurs structures \p{if}.
 Les valeurs de la position des \textit{sliders} des blocs moteurs sont affectés aux
 variables moteur correspondantes \p{motor.left.target} et \p{motor.right.target}
-(qui signifient respectivement <<moteur.gauche.cible>> et <<moteur.droit.cible>>).
+(qui signifient respectivement <<\,moteur.gauche.cible>> et <<\,moteur.droit.cible>>).
 Dans VPL, les \textit{sliders} permettent de modifier les valeurs des variables moteur
 par incréments de $50$, mais AESL vous permet d'affecter toutes les valeurs dans l'intervalle 
 $-500$ à $500$.
 
-L'événement est appelé \p{prox} (une version abrégée de <<proximité>>).
-Contrairement aux événements bouton qui sont déclanchés lorsque quelque chose <<se produit>>,
-cet événement est déclanché \emph{10 fois par seconde}.
+L'événement est appelé \p{prox} (une forme abrégée pour <<\,proximité\,>>).
+Contrairement aux événements bouton qui sont déclenchés lorsque quelque chose <<\,se produit\,>>,
+cet événement est déclenché \emph{10 fois par seconde}.
 Avant que l'événement ne se produise, des valeurs qui dépendent de ce qui est détecté par les capteurs
 sont affectées aux variables \p{prox.horizontal}.
 Voir la documentation\label{pg.hz} de l'interface de programmation Thymio pour plus de détails.
 \footnote{L'unité de mesure pour la \emph{fréquence}, le nombre de fois que quelque chose 
-se produit par seconde est le \emph{hertz}, que l'on abbrège \emph{Hz}.
+se produit par seconde est le \emph{hertz}, que l'on abrège \emph{Hz}.
 La documentation de l'interface précise que l'événemnet {\footnotesize\p{prox}} se produit
 à une fréquence de \emph{10 Hz}.}
 
@@ -437,12 +437,12 @@ Le programme \p{cats.aesl} dans l'archive des projets pour AESL contient l'instr
 
 Précédemment, nous avons utilisé uniquement les variables comprises dans l'interface Thymio;
 ici, la première ligne \emph{déclare} une nouvelle variable appelée \p{i}.
-L'instruction suivante est une boucle \p{for} (de l'anglais <<pour>>) dont la signification est: 
+L'instruction suivante est une boucle \p{for} (de l'anglais <<\,pour\,>>. Le mot-clé \p{in} signifie <<\,dans\,>>) dont la signification est: 
 
 \begin{itemize}
 \item Affecter les valeurs 0, 1, 2, 3, 4 à tour de rôle à la variable \p{i};
-\item Pour chacune des affectations, exécuter les actions entre \p{do} (<<faire>> en anglais)
-    et \p{end} (<<fin>> en anglais).
+\item Pour chacune des affectations, exécuter les actions entre \p{do} (<<\,faire\,>> en anglais)
+    et \p{end} (<<\,fin\,>> en anglais).
 \end{itemize}
 
 Ici, nous n'avons qu'une seule structure \p{if} entre \p{do} et \p{end}.
@@ -460,7 +460,7 @@ si \emph{un parmi} les capteurs avants détecte un objet.
 
 \sect{Les minuteurs}
 
-Le \cref{ch.time} présenta les \emph{minuteurs}.
+Le \cref{ch.time} a présenté les \emph{minuteurs}.
 Le programme \p{shy.aesl} demande au robot de tourner à gauche quand le capteur avant central
 détecte votre main; deux secondes plus tard, il tourne à droite:
 
@@ -495,13 +495,13 @@ La valeur est en \emph{millisecondes}, c'est-à-dire en millièmes de secondes.
 Pour régler le minuteur 0 sur 2 secondes, la valeur 2000 (millisecondes) doit être 
 affectée à \p{timer.period[0]}.
 
-Il y a deux événements, \p{timer0} et \p{timer1} (<<timer>> signifie <<minuteur>> en anglais),
+Il y a deux événements, \p{timer0} et \p{timer1} (<<\,timer\,>> signifie <<\,minuteur\,>> en anglais),
 un pour chacun des minuteurs.
-Lorsque la durée est écoulée, l'événement \textit{timer} est déclanché.
+Lorsque la durée est écoulée, l'événement \textit{timer} est déclenché.
 Dans le traitement d'événement \p{timer0}, on remet la durée du timer à 0 pour que l'événement
-ne se redéclanche plus et on change la vitesse des moteurs.
+ne se redéclenche plus et on change la vitesse des moteurs.
 
-Dans l'initialisation, le programme règle le minuteur sur 0 pour éviter qu'événement ne se déclanche
+Dans l'initialisation, le programme règle le minuteur sur 0 pour éviter qu'événement ne se déclenche
 par accident au début du programme:
 
 \begin{footnotesize}
@@ -515,7 +515,7 @@ par accident au début du programme:
 
 Les \cref{ch.states, ch.counting} ont montré comment utiliser les \emph{états}.
 Le robot Thymio peut être dans 16 états différents et on peut spécifier dans quel état précis 
-le robot doit être pour qu'un certain événement déclanche une certaine action.
+le robot doit être pour qu'un certain événement déclenche une certaine action.
 Dans le programme \p{count-to-two.aesl} du \cref{ch.counting}, l'état est mis à 0 lorsque
 le bouton central est touché.
 Il compte ensuite si le nombre de frappes des mains est pair ou impair en altérnant entre
@@ -554,7 +554,7 @@ comme il y a quatre valeurs dans {\footnotesize\verb+[0,0,0,0]+},
 il y aura quatre éléments dans le tableau.
 
 Le bloc événement état (en vert, à côté du bloc événement bouton) a les quatres quartiers en gris;
-cela signifie que l'événement aura lieu indépendemment de l'état actuel.
+cela signifie que l'événement aura lieu indépendamment de l'état actuel.
 Ainsi, à chaque fois que le bouton central est touché, le bloc événement action (en bleu) change
 l'état actuel à 0 pour tous les éléments du tableau \p{state}, comme indiqué par les quartiers blancs.
 Dans le programme AESL correspondant, la structure \p{if} vérifie si le bouton central a été touché,
@@ -599,7 +599,7 @@ Les instructions à exécuter seront déterminées à l'aide de structures \p{if
 \end{center}
 \end{figure}
 
-La signification du mot-clé \p{and} (<<et>> en anglais) est que \emph{toutes} les conditions dans 
+La signification du mot-clé \p{and} (<<\,et\,>> en anglais) est que \emph{toutes} les conditions dans 
 la structure \p{if} doivent être vérifiées pour que les instructions entre le
 \p{then} et le \p{end} soient exécutées.
 Si tous les éléments du tableau \p{state} sont 0, on affecte la valeur 1 à l'élément \p{state[0]},
@@ -615,7 +615,7 @@ Il arrive souvent qu'une même suite d'instructions doive être exécutée à pl
 à des endroits différents du programme.
 On pourrait écrire ces instructions une fois puis les copier chaque fois qu'on en a besoin.
 Une solution plus simple consiste à utiliser des \emph{sous-routines}, qui permet
-d'attribuer à un nom à une suite d'instructions.
+d'attribuer un nom à une suite d'instructions.
 Dans ce programme, l'expression {\footnotesize\verb+sub display_state+} déclare une
 sous-routine qui attribue au nom {\footnotesize\verb+display_state+} une suite d'instructions,
 ici, une seul instruction, \p{call leds.circle}:
@@ -644,7 +644,7 @@ La fonction d'interface \p{leds.circle} permet de contrôler les huit LEDs entou
 Là il faut vraiment vous référer au diagramme de la petite carte de référence pour apprendre
 quel paramètre correspond à quelle LED!
 
-L'intensité de chaque LED peut être contrôllée en donnant une valeur entre 0 (LED éteinte)
+L'intensité de chaque LED peut être contrôlée en donnant une valeur entre 0 (LED éteinte)
 et 32 (LED complètement allumée).
 Les LEDs avant, arrière, gauche et droite sont mises à 0 (éteintes), tandis que les LEDs diagonales
 sont allumées si l'élément correspondant du tableau d'état est 1

@@ -3,23 +3,23 @@
 
 Dans ce chapitre, nous allons montrer comment les états de Thymio peuvent être utilisés pour compter et même pour faire un peu d'arithmétique. 
 
-L'implémentation détaillée des projets ne sera pas donné ici. Nous pensons que vous avez désormais assez d'expérience pour les développer par vous-mêmes. Les codes source des différents programmes de ce chapitre se trouvent dans l'archive, essayez de ne pas les regarder tout de suite mais plutôt de faire un maximum de chemin de votre côté.
+L'implémentation détaillée des projets ne sera pas donné ici. Nous pensons que vous avez désormais assez d'expérience pour les développer vous-mêmes. Les codes source des différents programmes de ce chapitre se trouvent dans l'archive, essayez de ne pas les regarder tout de suite mais plutôt de faire un maximum de chemin de votre côté.
 
-Les projets suivants utilisent l'événement frapper des mains \blksm{event-clap} pour changer l'état de Thymio et il est représenté par le cercle de lumières.
+Les projets suivants utilisent l'événement frapper des mains \blksm{event-clap} pour changer l'état de Thymio qui est représenté par le cercle de lumières.
 N'hésitez pas à changer n'importe lequel de ces éléments.
 
-\importantbox{Par défaut, l'état du robot est affiché grâce au cercle de LEDs en dessus du robot.
+\importantbox{Par défaut, l'état du robot est affiché grâce au cercle de lumière en dessus du robot.
 La \cref{fig.state-leds} montre Thymio dans l'état \bu{(allumé, allumé, allumé, allumé)}.}
 
 \sect{Pair et impair}
 
 \begin{quote}
-\textbf{Programme}\\Choisissez l'un des quartiers du cercle de LEDs.
+\textbf{Programme}\\Choisissez l'un des quartiers de l'état.
 Il sera \bu{éteint} (blanc) si vous tapez dans vos mains un nombre pair de fois et \bu{allumé} (orange) si vous tapez dans vos mains un nombre impair de fois.
 Presser le bouton central de Thymio ramènera le compte à un nombre pair (puisque zéro est un nombre pair).
 \end{quote}
 
-{\raggedleft \hfill Programme \bu{count-to-two.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-two.aesl}}
 
 Les termes pair et impair viennent de l'arithmétique \emph{modulo 2}.
 Dans ce domaine, on compte de 0 à 1 puis de nouveau à 0.
@@ -37,12 +37,12 @@ les secondes et les minutes sont comptées en \emph{modulo 60}
 et les heures en \emph{modulo 12 ou 24}.
 La seconde après 59 n'est pas 60 mais 0.
 Dans la même logique, l'heure après 23 n'est pas 24 mais 0.
-S'il est 23:00 et que nous nous mettons d'accord pour nous rencontrer 3 heures après, l'heure du rendez-vous est (23+3) modulo 24 = 26 modulo 24 = 2 heures du matin.
+S'il est 23h00 et que nous nous mettons d'accord pour nous rencontrer 3 heures après, l'heure du rendez-vous est (23+3) modulo 24 = 26 modulo 24 = 2 heures du matin.
 
 \sect{Compter en unaire}
 
 \begin{quote}
-Modifiez le programme pour compter en modulo 4. Il y a quatre états possibles: 0, 1, 2, 3. Choisissez trois LEDs du cercle, elles représenteront les états 1, 2 et 3; l'état 0 sera représenté en éteignant toutes les LEDs.
+Modifiez le programme pour compter en modulo 4. Il y a quatre états possibles: 0, 1, 2, 3. Choisissez trois quartiers, ils représenteront les états 1, 2 et 3; l'état 0 sera représenté en mettant tous les quartiers sur éteint.
 \end{quote}
 
 Cette méthode de représentation de nombre est appelée \emph{unaire} car différents éléments d'un état représentent des nombres différents. Nous utilisons souvent cette représentation pour compter des points par exemple:
@@ -53,7 +53,7 @@ Cette méthode de représentation de nombre est appelée \emph{unaire} car diff�
 \end{picture}
 représente 6.
 
-{\raggedleft \hfill Programme \bu{count-to-four.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-four.aesl}}
 
 \exercisebox{\thechapter.1}{Jusqu'à combien pouvons-nous compter sur le Thymio en utilisant la représentation unaire?}
 
@@ -62,7 +62,7 @@ représente 6.
 Nous sommes familiarisés avec \emph{les représentations en base}, en particulier avec la base 10 (décimal).
 Les symboles 256 en base 10 ne représentent pas trois objets indépendants mais bien un seul.
 Le 6 représente le nombre de 1, le 5 représente le nombre de 10, le 2 représente le nombre de 10$\times$10=100.
-Si nous additionnons ces nombres nous obtenons deux cents cinquante-six.
+Si nous additionnons ces nombres nous obtenons deux cent cinquante-six.
 Grâce à la base 10, nous pouvons représenter facilement de grands nombres.
 De plus, l'arithmétique que nous avons apprise à l'école nous aide à manipuler de grands chiffres.
 
@@ -85,12 +85,12 @@ Comme nous avons le nombre en base 2: 1101, nous avons 8 + 4 + 0 + 1, ce qui fai
 Modifiez le programme pour que Thymio compte en modulo 4 en utilisant la représentation binaire (base 2).
 \end{quote}
 
-{\raggedleft \hfill Programme \bu{count-to-four-binary.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-four-binary.aesl}}
 
 Nous n'avons besoin que de \emph{deux} arcs du cercle
 pour représenter les nombres 0, 1, 2, 3 en base 2.
 Prenons le quartier en haut à droite pour représenter
-le nombre de 1---\bu{éteint} (blanc) pour aucun et \bu{allumé} (orange) pour un---et
+le nombre de 1 --- \bu{éteint} (blanc) pour aucun et \bu{allumé} (orange) pour un --- et
 le quartier d'en haut à gauche pour représenter le nombre de 2.
 Par exemple, \blksm{state-right} représente le chiffre 1
 puisque le quartier supérieur gauche est blanc
@@ -101,7 +101,7 @@ où le quartier supérieur gauche est orange
 et le quartier supérieur droit est blanc. 
 
 Il y a quatre transitions $0\rightarrow 1, 1\rightarrow 2, 2
-\rightarrow 3, 3\rightarrow 0$, donc quatre paires événements-action sont nécessaires en addition à une paire événement-actions pour remettre le compteur à zéro lorsque l'on appuie sur le bouton central.
+\rightarrow 3, 3\rightarrow 0$, donc quatre paires événements-actions sont nécessaires en addition à une paire événement-actions pour remettre le compteur à zéro lorsque l'on appuie sur le bouton central.
 
 \bigskip
 
@@ -145,7 +145,7 @@ En base 2, lorsque nous ajoutons 1 à 1, au lieu de 2, nous obtenons 10. Le 0 es
 Écrivez un programme qui commence par représenter 0 et qui ajoute 1 à chaque fois que vous tapez dans vos mains. L'addition doit être faite en modulo 16, donc ajouter 1 à 15 retournera à 0.
 \end{quote}
 
-{\raggedleft \hfill Programme \bu{addition.aesl}}
+{\raggedleft \hfill Programme: \bu{addition.aesl}}
 
 \textbf{Conseils}
 
@@ -157,7 +157,7 @@ Ainsi, le quartier inférieur droit représentera le nombre de 8.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est éteint (blanc) et que Thymio entend un «\,clap\,», changez-le simplement à allumé (orange) quel que soit l'état des autres quartiers.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est allumé (orange) et que Thymio entend un «\,clap\,», changez-le à éteint (blanc) ensuite, reportez le 1 en retenue.
 Il y aura trois paires événement-actions, en fonction de la position du \emph{prochain} quartier montrant 0 (blanc).
-\item Si tous les quartiers sont allumés (orange), la valeur 15 est représentée. Ajouter un à cet état dépasse le modulo et renvoie la valeur à 0. Il vous faut simplement éteindre toutes les LEDs.
+\item Si tous les quartiers sont allumés (orange), la valeur 15 est représentée. Ajouter un à cet état dépasse le modulo et renvoie la valeur à 0. Il vous faut simplement remettre tous les quartiers sur éteint.
 \end{itemize}
 
 \bigskip

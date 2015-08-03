@@ -24,21 +24,25 @@ Il comprend différents capteurs qui peuvent mesurer la lumière, les distances,
 Il possède également des boutons tactiles, il peut se rendre compte qu'on lui donne une petite tape et peut entendre quelqu'un qui frappe dans ses mains.
 Il possède deux roues, chacune reliée à un moteur, lui permettant de se déplacer sur une table, ou sur le sol.
 Il peut encore s'illuminer de toutes les couleurs et jouer de la musique !
+
 Dans ce document, le nom Thymio est utilisé pour désigner le robot Thymio~II.
 
 Aseba est un environnement de programmation pour petits robots comme le Thymio.
-VPL est un composant d'Aseba qui permet à toutes et tous de programmer \textit{graphiquement} Thymio en utilisant des blocs d'événement et d'action très simples d'emploi.
+VPL est un composant d'Aseba qui permet à toutes et tous de programmer \textit{graphiquement} Thymio en utilisant des blocs événement et action très simples d'emploi.
 
 \sect{Vue d'ensemble du tutoriel}
-Voici les sujets et les listes des blocs d'évènement et d'action qui seront traités dans chaque chapitre.
-Je vous suggère de commencer par les chapitres sur le mode basique de VPL.
+Voici les sujets et les listes des blocs évènement et d'action qui seront traités dans chaque chapitre.
+Je vous suggère de commencer par les chapitres sur le mode de base de VPL.
 Par la suite, vous pourrez suivre le tutoriel en mode avancé ou vous lancer dans quelques uns des projets présentés.
 Les casse-têtes de Parson peuvent être tentés à tout moment si vous voulez tester vos connaissances de VPL.
 Lisez le \cref{ch.next} lorsque vous voudrez quitter VPL pour utiliser l'environnement plus avancé Aseba Studio.
 Des résumés de référence sont aussi à votre disposition en annexes.
 
 \subsection*{Première partie: le tutoriel}
-\textbf{Les \cref{ch.intro, ch.colors}} sont une introduction essentielle du robot, de l'environnement VPL et de son principal concept de programmation: les paires événement-action.
+\textbf{Les \cref{ch.intro, ch.colors}} sont une introduction essentielle du robot, de l'environnement VPL et de son principal concept de programmation: les paires événement-actions.
+
+\textbf{Événements}: boutons\hfill
+\textbf{Actions}: couleurs du haut et du bas
 
 \blkmed{event-buttons}\hfill\blkmed{action-colors-up}\quad\blkmed{action-colors-down}
 
@@ -54,23 +58,23 @@ Des résumés de référence sont aussi à votre disposition en annexes.
 
 \medskip
 
-\textbf{Le \cref{ch.bells}} décrit certaines fonctionnalités amusantes du robot mais qui ne sont pas nécessaires (les bruitages et les chocs).
+\textbf{Le \cref{ch.bells}} décrit certaines fonctionnalités amusantes du robot mais qui ne sont pas nécessaires: les sons et les chocs.
 
-\begin{minipage}[t]{0.6\textwidth}
-\textbf{Événements}: toucher le robot, frapper des mains
-\end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushright}
-\textbf{Actions}: musique,\\ couleurs du dessus et du dessous.
-\end{flushright}
-\end{minipage}
+%\begin{minipage}[t]{0.6\textwidth}
+\textbf{Événements}: petite tape, frappe des mains\hfill
+%\end{minipage}
+%\begin{minipage}[t]{0.4\textwidth}
+%\begin{flushright}
+\textbf{Actions}: musique, couleurs du haut et du bas
+%\end{flushright}
+%\end{minipage}
 
 \blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
 \quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
 
 \medskip
 
-\importantbox[Mode avancé]{VPL contient un mode basique permettant l'utilisation d'événements et actions faciles à maîtriser pour un débutant.
+\importantbox[Mode avancé]{VPL contient un mode de base permettant l'utilisation d'événements et actions faciles à maîtriser pour un débutant.
 Le mode avancé de VPL offre plus d'événements et d'actions mais requière plus d'expérience.
 Les fonctionnalités du mode avancé sont présentées à partir du 
 \cref{ch.time}.}
@@ -79,7 +83,7 @@ Les fonctionnalités du mode avancé sont présentées à partir du
 
 \textbf{Le \cref{ch.time}} explique les événements minutés.
 Il existe une action qui enclanche un minuteur.
-Un événement est ensuite déclanché quand le minuteur est écoulé.
+Un événement est ensuite déclenché quand le minuteur est écoulé.
 
 \textbf{Événements}: minuteur écoulé\hfill
 \textbf{Actions}: démarer le minuteur.
@@ -91,7 +95,7 @@ Un événement est ensuite déclanché quand le minuteur est écoulé.
 \textbf{Les \cref{ch.states, ch.counting}} expliquent le concept de machines à états qui permettent au robot de agir différemment selon leur état.
 Les états permettent aussi des opérations arithmétiques élémentaires comme compter.
 
-\textbf{Événements}: État associé à un événement\hfill
+\textbf{Événements}: état associé à un événement\hfill
 \textbf{Actions}: changer d'état
 
 \blkmed{state-filter} \hfill \blkmed{action-states}
@@ -100,7 +104,7 @@ Les états permettent aussi des opérations arithmétiques élémentaires comme 
 
 \textbf{Le \cref{ch.angles}} décrit l'utilisation des accéléromètres du robot Thymio.
 
-\textbf{Événements}: Événements de l'accéléromètre
+\textbf{Événements}: Événements accéléromètre
 
 \blkmed{event-pitch} \quad \blkmed{event-roll}
 
@@ -114,7 +118,7 @@ Les états permettent aussi des opérations arithmétiques élémentaires comme 
 
 \subsection*{Troisième partie: les projets}
 \textbf{Les \cref{ch.brait, ch.rabbit, ch.barcode, ch.sweep, ch.speed, ch.radar, ch.fa, ch.slow}} proposent des projets que vous pouvez réaliser vous-mêmes.
-Le code source VPL est disponible dans l'archive mais je vous suggèrerais d'avancer seul avant de vérifier le corrigé.
+Le code source VPL est disponible dans l'archive mais je vous suggèrerais d'avancer seul avant de comparer avec le corrigé.
 
 \bigskip
 
@@ -126,26 +130,26 @@ Avec celui-ci, il est possible d'aller bien au-delà des possibilités offertes 
 
 \subsection*{Cinquième partie: les annexes}
 
-\textbf{L'\cref{a.toolbar}} contient une description de l'interface utilisateur---les boutons sur la barre d'outils.
+\textbf{L'\cref{a.toolbar}} contient une description de l'interface utilisateur --- les boutons sur la barre d'outils.
 
-\textbf{L'\cref{a.blocks}} est une liste des blocs événement et action pour les modes basique et avancé.
+\textbf{L'\cref{a.blocks}} est une liste des blocs événement et action pour les modes de base et avancé.
 
 \textbf{L'\cref{a.tips}} donne quelques propositions destinées aux professeurs et directeurs de projets d'étudiants.
 La première section offre des pistes pour stimuler l'exploration et l'expérimentation.
-La section suivante donne quelques bonne habitudes de programmation.
+La section suivante donne quelques bonnes habitudes de programmation.
 La section finale dresse une liste de quelques pièges courants et comment les éviter.
 
-\textbf{L'\cref{a.tech}} discute différentes techniques d'utilisation des \textit{sliders} pour les blocs de capteurs et de moteurs.
+\textbf{L'\cref{a.tech}} discute différentes techniques d'utilisation des \textit{sliders} pour les blocs capteurs et moteurs.
 
 \blkmed{event-prox-advanced} \quad \blkmed{event-prox-ground-advanced}
 
 \sect{Cartes de référence}
 Vous trouverez peut-être utile d'imprimer une ou les deux cartes de référence VPL.
-Vous les trouverez dans le même fichier zip que ce document, ou alors sur \href{https://www.thymio.org/en:visualprogramming}{https://www.thymio.org/en:visualprogramming}.
+Vous les trouverez dans le même fichier zip que ce document, ou alors sur \\\href{https://www.thymio.org/en:visualprogramming}{https://www.thymio.org/en:visualprogramming}.
 
 \begin{itemize}
-\item Une page simple contien un résumé des blocs événement et action.
-\item Une page recto-verso qui peut être pliée pour former une carte pratique contient un résumé de l'interface VPL, des blocs événement et action et contient aussi des exemples de programmes.
+\item Une page simple contient un résumé des blocs événement et action.
+\item Une page recto-verso qui peut être pliée pour former une carte pratique contient un résumé de l'interface VPL, des blocs événement et action et des exemples de programmes.
 \end{itemize}
 
 \sect{Installation d'Aseba}
@@ -154,3 +158,4 @@ Pour installer Aseba, y compris VPL, rendez-vous sur
 et cliquez sur l'icône correspondant à votre système (Windows, Mac OS etc.).
 Suivez les instructions pour télécharger et installer l'application.
 L'insallation d'Aseba contient à la fois l'environnement de développement VPL et Studio (voir \cref{ch.next}).
+

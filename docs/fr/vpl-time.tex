@@ -2,10 +2,10 @@
 
 Dans le \cref{ch.pet}, nous avons programmé un robot de compagnie qui nous aimait ou nous fuyait.
 Considérons un comportement plus avancé : un compagnon timide qui n'arrive pas à se décider s'il nous aime ou pas.
-Initiallement, le robot s'approchera de notre main tendue, puis il s'en éloignera.
+Initiallement, le robot tournera en direction de notre main tendue, puis il s'en éloignera en tournant dans l'autre sens.
 Après un moment, il changera d'avis et reviendra en direction de notre main.
 
-{\raggedleft \hfill Programme \bu{shy.aesl}}
+{\raggedleft \hfill Programme: \bu{shy.aesl}}
 
 Lorsque le bouton droite est touché, le robot tourne à droite:
 \blkc{start-turn}
@@ -14,7 +14,7 @@ Quand il détecte votre main, il tourne à gauche: \blkc{turn-away}
 Le comportement de se retourner «\,après un moment\,» peut être décomposé en deux paires événement-actions :
 \begin{itemize}
 
-\item \emph{Quand} le robot commence à se détourner $\rightarrow$ \emph{démarrer un minuteur} pour deux secondes.
+\item \emph{Quand} le robot commence à se détourner $\rightarrow$ \emph{démarrer un minuteur} de deux secondes.
 
 \item \emph{Quand} le temps du minuteur est écoulé $\rightarrow$ \emph{tourner} à droite.
 
@@ -44,7 +44,7 @@ ensuite, la partie correspondante de la montre sera colorée en bleu foncé.
 \informationbox{Le mode avancé}
 {Les minuteurs sont disponibles en mode avancé.
 Cliquez sur \blkmed{advanced} pour entrer en mode avancé.\\
-L'icône deviendra alors \blkmed{basic} et vous pourrez cliquer dessus pour retourner en mode débutant.}
+L'icône deviendra alors \blkmed{basic} et vous pourrez cliquer dessus pour retourner en mode de base.}
 
 La paire événement-actions pour cette première partie du comportement est : \blkc{turn-clock}
 

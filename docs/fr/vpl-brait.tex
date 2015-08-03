@@ -20,19 +20,20 @@ Ce document donne une implémentation des douze créatures de Braitenberg décri
 rapport le rapport du MIT, adaptées pour le robot Thymio avec la VPL.
 Les créatures développées au MIT utilisaient des lumières et des capteurs tactiles
 alors que Thymio utilise principalement les capteurs infrarouges de proximité.
-Pour garder l'équivalence avec le rapport du MIT, nous avons gardé les noms des créatures
-qu'on leur avait alors donné même s'ils ne correspondent pas à l'implémentation pour le Thymio.
+Nous avons gardé les noms des créatures
+qu'on leur avait donné dans le rapport du MIT pour pouvoir établir une équivalence même s'ils ne correspondent pas à l'implémentation pour le Thymio.
 
 Dans les descriptions, on utilise, à part mention contraire,
 l'expression <<\,détecte un objet\,>> pour signifier
 que le robot détecte un objet par le capteur avant central.
-On peut générer cet événement le plus simplement en plaçant et déplaçant sa main
-de sorte qu'elle soit détectée par un capteur.
+Le plus simple pour générer cet événement est de placer sa main
+devant le capteur central
+de sorte qu'elle soit détectée par le capteur.
 
 Le code source \textbf{VPL} est disponible dans l'archive.
 Les fichiers portent les noms en anglais des créatures qu'ils représentent
 plus l'extension \texttt{\small aesl}.
-Les noms des fichiers en anglais apparaissent entre parenthèses à côté du nom français.
+Les noms des fichiers apparaîtront entre parenthèses, à côté du nom du comportement en français.
 Pour certaines créatures, des comportements supplémentaires sont proposés en exercice.
 Leur implémentation se trouve dans des fichiers du nom de la créature avec un nombre additionnel.
 
@@ -45,7 +46,7 @@ Dès qu'un objet est détecté, il s'arrête.
 
 \item[Indécis (indecisive.aesl)] Le robot avance tant qu'il ne détecte aucun objet.
 Lorsqu'un objet est détecté, il recule.
-Lorsqu'il se trouve exactement à la bonne distance, le robot \emph{oscille}
+Lorsqu'il se trouve à une certaine distance, le robot \emph{oscille}
 entre marche avant et marche arrière.
 
 \item[Paranoïaque (paranoid.aesl)] Lorsque le robot détecte un objet, il avance. S'il ne détecte
@@ -59,8 +60,7 @@ Lorsque c'est le capteur gauche (mais pas le capteur central) qui détecte un ob
 le robot tourne à gauche.
 
 \textbf{Exercice (paranoid2.aesl - mode avancé)} 
-Tâche similaire à \textbf{Paranoïaque}, mais cette fois changer de direction lorsque le robot tourne
-chaque seconde. \textbf{Indice} Utilisez des états pour retenir la direction actuelle
+Tâche similaire à \textbf{Paranoïaque}, mais cette fois changer à chaque seconde la direction dans laquelle le robot tourne. \textbf{Indice} Utilisez des états pour retenir la direction actuelle
 et un minuteur pour changer d'état.
 
 \item[Entêté (dogged.aesl)] Lorsqu'un objet est détecté à l'avant, le robot recule et
@@ -84,7 +84,7 @@ Le robot devrait alors suivre un mur à sa gauche.
 \item[Driven A TRADUIRE (driven.aesl)]
 Lorsque le robot détecte un ojet à gauche, il allume le moteur droit et éteint le moteur gauche.
 Et lorsque le robot détecte un objet à droite, il allume le moteur gauche et éteint le moteur droit.
-Le robot devrait alors s'approcher de l'objet en zigzagant.
+Le robot devrait alors s'approcher de l'objet en zigzaguant.
 
 \item[Insistant (persistent.aesl)]
 Le robot avance jusqu'à ce qu'il détecte un objet.

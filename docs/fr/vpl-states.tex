@@ -23,7 +23,7 @@ Le bouton se \emph{rappelle} s'il est dans l'état \bu{allumé} ou l'état \bu{�
 
 {\raggedleft \hfill Programme \bu{tap-allumé-éteint.aesl}}
 
-Il est pratique de décrire ce comportemnet en utilisant un \textit{diagramme d'états} :
+Il est pratique de décrire ce comportement en utilisant un \textit{diagramme d'états} :
 
 \begin{center}
 \begin{picture}(240,45)
@@ -52,7 +52,7 @@ Les instructions décrivent quand une transition d'un état à l'autre peut se p
 
 \end{itemize}
 
-L'accent mis sur le mot \textbf{\textit{et}} avant la flèche~$\rightarrow$ signifie que deux conditions doivent être remplies pour que la transition se fasse: (a) Le robot doit être dans un certain état et (b) l'événement doit se produire.
+L'accent mis sur le mot \textbf{\textit{et}} avant la flèche~$\rightarrow$ signifie que deux conditions doivent être remplies pour que la transition se fasse: (a) le robot doit être dans un certain état et (b) l'événement doit se produire.
 Lorsque les deux conditions sont remplies, alors la transition est prise ce qui fait à la fois changer l'état et exécute l'action écrite après la flèche~$\rightarrow$.
 
 Il est important de réaliser que les deux parties de la condition sont indépendantes.
@@ -82,11 +82,11 @@ exécutée lorsque cet événement a lieu
 
 Dans un même état, différents événements peuvent causer différentes actions et des transitions vers de nouveaux états différents.
 Dans le diagramme suivant, toucher le bouton de gauche
-dans l'état \textbf{off} allume la lumière verte du robot
-et passe l'état du robot à \textbf{on1},
+dans l'état \textbf{éteint} allume la lumière verte du robot
+et passe l'état du robot à \textbf{allumé1},
 alors que toucher le bouton droit \textbf{dans le même état}
 entraîne une autre action, allumer la lumière rouge,
-et un autre changement d'état vers \textbf{on2}.
+et un autre changement d'état vers \textbf{allumé2}.
 
 \vspace*{-1ex}
 
@@ -112,7 +112,7 @@ et un autre changement d'état vers \textbf{on2}.
 Nous montrons comment \emph{implémenter} le comportement décrit par le diagramme d'état avec des paires événement-actions.
 Implémenter signifie construire un programme qui fera ce que le diagramme d'états ci-dessus décrit.
 La \cref{fig.turn-on-off} montre le programme.
-Regardons maintenant les paires événement-actions unes à unes.
+Regardons maintenant les paires événement-actions une à une.
 Le cercle gauche du bloc \blksm{event-tap} est
 sélectionné (et s'affiche en rouge) pour indiquer qu'il s'agit d'un bloc pour l'événement tape.
 
@@ -134,7 +134,7 @@ accéléromètre comme décrit au \cref{ch.angles}.}
     \label{fig.turn-on-off}
 \end{figure}
 
-Dans la première paire événement-actions (\cref{fig.turn-on-off1}), l'événement est composé du bloc détection de choc avec une indication d'état \blksm{state-filter}.
+Dans la première paire événement-actions (\cref{fig.turn-on-off1}), l'événement est composé du bloc événement tape avec une indication d'état \blksm{state-filter}.
 Un état est indiqué par quatre quartiers d'un cercle, chacun pouvant être soit allumé (orange) ou éteint (blanc).
 Dans ce programme, nous utiliserons le quartier en haut à gauche pour indiquer si la lumière du haut du robot est éteinte ou allumée.
 Dans \cref{fig.turn-on-off1}, ce quartier est coloré en blanc
@@ -143,7 +143,7 @@ Ainsi, cette paire veut dire : \textbf{si} le robot est tapé \textbf{et} que le
 
 Dans la seconde paire événement-actions
 (\cref{fig.turn-on-off2}),
-le quart est coloré en orange et donc la lumière du robot est allumée.
+le quartier est coloré en orange et donc la lumière du robot est allumée.
 Cette paire veut dire : \textbf{si} le robot est tapé \textbf{et} qu'il est allumé, \textbf{alors} l'éteindre.
 
 Si vous regardez à nouveau le diagramme d'états, vous verrez que seulement la moitié du travail est fait.
@@ -215,7 +215,40 @@ Essayez toujours de rester le plus simple possible.
 Si le robot détecte une souris avec son capteur tout à gauche, il continue la recherche jusqu'à ce que la souris soit détectée avec son capteur tout à droite.
 Puis, il se positionne en face de la souris, comme sur la \cref{fig.cat-mouse}.
 
-{\raggedleft \hfill Programme \bu{mouse.aesl}}
+{\raggedleft \hfill Programme: \bu{mouse.aesl}}
+
+Le diagramme d'état suivant décrit le comportement du robot:
+
+\begin{center}
+\unitlength=1.2pt
+\begin{picture}(320,35)
+    %\put(0,0){\framebox(320,35){}}
+    \put(40,10){\oval(80,20)}
+    \put(160,10){\oval(80,20)}
+    \put(280,10){\oval(80,20)}
+    \put(0,0){\makebox(80,20){\bu{search left}}}
+    \put(120,0){\makebox(80,20){\bu{search right}}}
+    \put(240,0){\makebox(80,20){\bu{found}}}
+    \put( 80,10){\vector(1,0){40}}
+    \put(200,10){\vector(1,0){40}}
+    \put(40,35){\vector(0,-1){15}}
+\end{picture}
+\end{center}
+
+\begin{enumerate}
+\item Lorsque le bouton central est touché, le robot entre dans l'état \bu{chercher à gauche} et 
+    tourne de droite à gauche.
+\item Lorsque le robot est dans l'état \bu{chercher à gauche}
+    et détecte la souris sur son capteur tout à droite,
+    il prend l'état \bu{chercher à droite} et tourne de gauche à droite.
+\item Lorsque le robot est dans l'état \bu{chercher à droite}
+    et il détecte la souris avec son capteur central,
+    il prend l'état \bu{trouvé} et s'arrête.
+\end{enumerate}
+
+L'essentiel est de remarquer que lorsque le capteur central détecte la souris,
+le robot s'arrête \emph{seulement si} le robot est dans l'état \bu{chercher à droite}.
+Sinon (si la souris est détectée par le capteur central en mode \bu{chercher à gauche}), rien ne se produit.
 
 \begin{figure}
     \begin{center}

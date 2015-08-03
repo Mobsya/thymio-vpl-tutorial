@@ -4,7 +4,7 @@ Considérez un entrepôt avec des charriots robotiques qui transportent des obje
 Il y a des lignes peintes sur le sol de l'entrepôt et le robot recoit comme instructions de suivre certaines lignes jusqu'à ce qu'il arrive à la zone de stockage de l'objet qu'il transporte.
 Écrivons un programme qui permette à Thymio de suivre une ligne sur le sol.
 
-{\raggedleft \hfill Programme \bu{follow-line.aesl}}
+{\raggedleft \hfill Programme: \bu{follow-line.aesl}}
 
 Suivre une ligne sur le sol illustre le genre de difficultés rencontrées en robotique:
 la ligne n'est pas forcément parfaitement droite,
@@ -14,13 +14,13 @@ le robot doit utiliser un \emph{contrôleur}, qui aura pour tâche de définir l
 
 \sect{La ligne et le robot}
 
-Pour suivre une ligne, nous allons utiliser les détecteurs de sol que nous avons déjà utilisé dans le \cref{c.moving}.
+Pour suivre une ligne, nous allons utiliser les capteurs du sol que nous avons déjà utilisé dans le \cref{c.moving}.
 Rappelons qu'ils fonctionnent en envoyant de la lumière infrarouge (invisible pour l'oeil humain) et en mesurant la quantité de lumière renvoyée.
 Si vous poser Thymio sur une couleur claire, beaucoup de lumière sera réfléchie, et donc l'événement \blksm{lots-of-light} sera déclenché.
 Nous avons donc besoin d'une ligne qui déclenchera un événement quand peu de lumière sera réfléchie \blksm{little-light}.
 Ceci est facile à réaliser en imprimant une bande noire, en la peignant ou en utilisant du ruban adhésif noir comme sur la \cref{fig.tape}.
 La ligne doit être assez large pour que les deux capteurs de sol voient du noir quand le robot suit la ligne correctement.
-Une largeur de 5 centimètres est suffisante pour que le robot suive la ligne même s'il y a de petites déviations.
+Une largeur de 5 centimètres est suffisante pour que le robot suive la ligne même s'il dévie un peu.
 
 \begin{figure}
     \subfigure[Thymio suit une ligne]
@@ -28,7 +28,9 @@ Une largeur de 5 centimètres est suffisante pour que le robot suive la ligne m�
         \includegraphics[height=0.35\textwidth]{blacktape}}
     \hfill
     \subfigure[Le capteur gauche est hors de la ligne,
-    le capteur droite est sur la ligne]{
+    le capteur droite est sur la ligne. Le point rouge
+    indique que le capteur gauche mesure beaucoup de lumière
+    réfléchie]{
         \label{fig.one-off}
         \includegraphics[height=0.35\textwidth]
         {thymio_half_on_line}}
@@ -83,7 +85,7 @@ Si la rotation est trop douce, le capteur droit pourrait aussi sortir de la lign
 si au contraire le tour est trop serré, le robot pourrait sortir de la ligne de l'autre côté.
 Dans tous les cas, des tours trop forts peuvent être dangereux pour le robot et ce qu'il transporte et qui risque de tomber.
 
-Vous devrez expérimenter avec la vitesse des roues gauche et droite dans chaque bloc d'action moteur
+Vous devrez expérimenter avec la vitesse des roues gauche et droite dans chaque bloc action moteurs
 jusqu'à ce que le robot bouge de manière \emph{fiable}.
 Par fiable, nous entendons que le robot peut réussir plusieurs fois l'expérience de suivi de ligne.
 Comme à chaque expérience vous placez le robot sur la ligne à différentes positions et pointant dans differentes directions, il faut tester plusieurs fois pour être convaincu que le programme fonctionne.
@@ -119,11 +121,11 @@ Dans le \cref{ch.states}, nous apprendrons à Thymio à se rappeler ces informat
 \exercisebox{\thechapter.3}{
 Jouez avec différentes formes de parcours :
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
-\item Virages doux
-\item Virages serrés
-\item Zig-zag
-\item Ligne plus large
-\item Ligne plus étroite
+\item Des virages doux
+\item Des virages serrés
+\item Des zig-zag
+\item Des lignes plus larges
+\item Des lignes plus étroites
 \end{itemize}
 Faites la course avec vos amis :
 Quel robot suit le plus de lignes différentes avec succès ?

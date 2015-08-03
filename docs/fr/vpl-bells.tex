@@ -8,7 +8,7 @@ Dans ce chapitre, nous vous montrerons que Thymio peut jouer de la musique et r�
 Thymio possède un synthétiseur de sons qui lui permet de jouer des notes de musique !
 Vous pouvez le programmer simplement en utilisant le bloc action :\blkc{action-music}
 
-{\raggedleft \hfill Programme \bu{bells.aesl}}
+{\raggedleft \hfill Programme: \bu{bells.aesl}}
 
 Vous ne deviendrez pas le nouveau Beethoven --- on ne peut jouer qu'un ensemble de six notes, sur cinq hauteurs et deux longueurs différentes --- mais vous pouvez composer une petite musique.
 La \cref{fig.music} illustre deux chansons différentes jouées par Thymio lorsque vous touchez les boutons avant ou arrière.
@@ -30,8 +30,8 @@ cliquez sur la barre au-dessus ou au-dessous du cercle,
 ou glissez-déposez la note sur l'une des barres.
 
 \exercisebox{\thechapter.1}{
-Écrivez un programme qui vous permet d'envoyer un \href{http://fr.wikipedia.org/wiki/Morse_(alphabet)}{code Morse}.
-Les lettres dans les codes Morse sont encodées par des séquences de longs sons (\emph{traits}) et de courts sons (\emph{points}).
+Écrivez un programme qui vous permette d'envoyer un \href{http://fr.wikipedia.org/wiki/Morse_(alphabet)}{code Morse}.
+Les lettres dans les codes Morse sont encodées par des séquences des sons longs (\emph{traits}) et des sons courts (\emph{points}).
 Par exemple, la lettre \emph{V} est encodée par trois points suivis par un trait.
 }
 
@@ -39,7 +39,7 @@ Par exemple, la lettre \emph{V} est encodée par trois points suivis par un trai
 \sect{Contrôllez votre robot par le son}
 
 Thymio a un microphone, il peut donc réagir à un son! L'événement \blksm{event-clap} se déclenche si Thymio entend un son fort, comme par exemple quelqu'un qui tape dans ses mains.
-La paire événement-actions suivante allumera les lumières en dessous du robot lorsque vous tapez dans vos mains: \blkc{clap-lights}
+La paire événement-actions suivante allumera les lumières en dessous du robot lorsque vous frappez dans vos mains: \blkc{clap-lights}
 
 \bigskip
 
@@ -48,17 +48,17 @@ La paire événement-actions suivante allumera les lumières en dessous du robot
 \bigskip
 
 \exercisebox{\thechapter.2}{
-Écrivez un programme qui fasse démarrer le robot quand vous tapez dans vos mains et le fasse s'arrêter lorsque vous touchez un bouton.
+Écrivez un programme qui fasse démarrer le robot quand vous frappez dans vos mains et le fasse s'arrêter lorsque vous touchez un bouton.
 \vspace{.5em}\\
-Écrivez un programme qui fasse l'opposé : le robot démarre lorsque vous touchez un bouton et s'arrête lorsque vous tapez dans vos mains.
+Écrivez un programme qui fasse l'opposé : le robot démarre lorsque vous touchez un bouton et s'arrête lorsque vous frappez dans vos mains.
 }
 
 \newpage
 
 \sect{C'est bien Thymio!}
 
-Il est important de récompenser votre animal de compagnie quand il est gentil, c'est pareil avec Thymio !
-Il peut vous détecter si vous lui donner une petite tape sur la tête grâce à l'événement \blksm{event-tap}.
+Il est important de récompenser votre animal de compagnie quand il est gentil et c'est pareil avec Thymio !
+Il peut détecter si vous lui donnez une petite tape sur la tête grâce à l'événement \blksm{event-tap}.
 La paire événement-actions suivante allume les lumières du haut lorsque vous lui donner une petite tape :
 \blkc{good-job}
 
@@ -66,7 +66,7 @@ Construisez un programme avec cette paire événement-actions
 et la paire suivante qui allume les lumières du bas du robot
 lorsque vous tapez dans vos mains : \blkc{clap-lights}
 
-{\raggedleft \hfill Programme \bu{whistles.aesl}}
+{\raggedleft \hfill Programme: \bu{whistles.aesl}}
 
 Arrivez-vous à n'allumer que les lumières du haut ?
 C'est difficile à faire : une tape génère un son qui est assez fort pour faire aussi s'allumer les lumières du bas.

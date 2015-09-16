@@ -4,6 +4,7 @@
 var notes[6]
 var durations[6]
 var note_index = 6
+var note_count = 6
 var wave[142]
 var i
 var wave_phase
@@ -25,36 +26,37 @@ call leds.circle(0,0,0,0,0,0,0,0)
 
 # when a note is finished, play the next note
 onevent sound.finished
-	if note_index != 6 then
+	if note_index != note_count then
 		call sound.freq(notes[note_index], durations[note_index])
 		note_index += 1
 	end
 
 onevent buttons
-	if button.forward == 1 then
-		call math.copy(notes, [440, 370, 440, 311, 370, 311])
-		call math.copy(durations, [15, 8, 15, 15, 8, 15])
-		call sound.freq(notes[0], durations[0])
+	when button.forward == 1 do
+		call math.copy(notes[0:4], [440, 370, 0, 311, 370])
+		call math.copy(durations[0:4], [14, 7, 14, 14, 7])
 		note_index = 1
+		note_count = 5
+		call sound.freq(notes[0], durations[0])
 	end
-	if button.backward == 1 then
-		call math.copy(notes, [311, 370, 311, 440, 370, 440])
-		call math.copy(durations, [8, 15, 8, 8, 15, 8])
-		call sound.freq(notes[0], durations[0])
+	when button.backward == 1 do
+		call math.copy(notes[0:4], [311, 370, 0, 440, 370])
+		call math.copy(durations[0:4], [7, 14, 14, 7, 14])
 		note_index = 1
+		note_count = 5
+		call sound.freq(notes[0], durations[0])
 	end
 <toolsPlugins>
 <ThymioVisualProgramming>
 <vplroot xml-format-version="1">
-<settings color-scheme="0"/>
 <program advanced_mode="0">
 <set>
 <block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
-<block value0="515" value1="258" value2="515" value3="513" value4="258" value5="513" type="action" name="sound"/>
+<block value0="515" value1="258" value2="517" value3="513" value4="258" value5="517" type="action" name="sound"/>
 </set>
 <set>
 <block value0="0" value1="0" value2="1" value3="0" value4="0" type="event" name="button"/>
-<block value0="257" value1="514" value2="257" value3="259" value4="514" value5="259" type="action" name="sound"/>
+<block value0="257" value1="514" value2="517" value3="259" value4="514" value5="517" type="action" name="sound"/>
 </set>
 <set/>
 </program>

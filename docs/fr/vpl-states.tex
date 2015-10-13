@@ -46,9 +46,9 @@ Les instructions décrivent quand une transition d'un état à l'autre peut se p
 
 \begin{itemize}
 
-\item \textbf{Quand} Thymio est dans l'état \bu{éteint} \textbf{\textit{et}} que l'événement \emph{tape} se produit $\rightarrow$ \emph{allumer} le robot \textbf{\textit{et}} aller dans l'etat \bu{allumé}.
+\item \emph{Quand} Thymio est dans l'état \bu{éteint} \textbf{\textit{et}} que l'événement \emph{tape} se produit $\rightarrow$ \emph{allumer} le robot \textbf{\textit{et}} aller dans l'etat \bu{allumé}.
 
-\item \textbf{Quand} Thymio est dans l'état \bu{allumé} \textbf{\textit{et}} que l'événement \emph{tape} se produit $\rightarrow$ \emph{éteindre} le robot \textbf{\textit{et}} aller dans l'etat \bu{éteint}.
+\item \emph{Quand} Thymio est dans l'état \bu{allumé} \textbf{\textit{et}} que l'événement \emph{tape} se produit $\rightarrow$ \emph{éteindre} le robot \textbf{\textit{et}} aller dans l'etat \bu{éteint}.
 
 \end{itemize}
 
@@ -150,10 +150,11 @@ Si vous regardez à nouveau le diagramme d'états, vous verrez que seulement la 
 En effet, en allumant et éteignant le robot, nous devons aussi changer son état d'\bu{éteint} à \bu{allumé} ou d'\bu{allumé} à \bu{éteint}.
 Ainsi, il nous faut ajouter un bloc action \emph{état} \blksm{action-states} à chaque paire.
 Ce bloc change l'état selon si les quartiers sont blancs ou oranges.
-Pour résumer, la signification du programme de la figure \cref{fig.turn} est la suivante :
+
+Pour résumer, la signification du programme de la figure \cref{fig.turn-on-off} est la suivante :
 
 \begin{quote}
-    \emph{Quand} le robot est tapé \emph{et} que l'état est \emph{éteint},\\ changer l'état à \bu{allumé} \emph{et} \bu{allumer} la lumière du haut.
+    \emph{Quand} le robot est tapé \emph{et} que l'état est \emph{éteint},\\ changer l'état à \bu{allumé} \emph{et} \bu{allumer} la lumière du haut.\\
     \emph{Quand} le robot est tapé \emph{et} que l'état est \bu{allumé},\\changer l'état à \bu{éteint}
     \emph{et} \bu{éteindre} la lumière du haut.
 \end{quote}
@@ -183,7 +184,7 @@ Comme chacun des quatre quartiers peut être soit allumé soit éteint, il y a 2
 (allumé, allumé, allumé, éteint)\\
 (allumé, allumé, allumé, allumé)}.
 \end{quote}
-La \cref{fig.all-states} donne tous ces états.
+La \cref{fig.all-states} montre tous les états possibles.
 \importantbox{L'état courant du robot est toujours affiché sur le haut du robot par les quatre arcs de cercles lumineux.
 Par exemple, la \cref{fig.state-leds} montre le robot dans l'état \bu{(allumé, allumé, allumé, allumé)}.}
 

@@ -14,7 +14,7 @@ le robot doit utiliser un \emph{contrôleur}, qui aura pour tâche de définir l
 
 \sect{La ligne et le robot}
 
-Pour suivre une ligne, nous allons utiliser les capteurs du sol que nous avons déjà utilisé dans le \cref{c.moving}.
+Pour suivre une ligne, nous allons utiliser les capteurs du sol que nous avons déjà utilisé dans le \cref{ch.moving}.
 Rappelons qu'ils fonctionnent en envoyant de la lumière infrarouge (invisible pour l'oeil humain) et en mesurant la quantité de lumière renvoyée.
 Si vous poser Thymio sur une couleur claire, beaucoup de lumière sera réfléchie, et donc l'événement \blksm{lots-of-light} sera déclenché.
 Nous avons donc besoin d'une ligne qui déclenchera un événement quand peu de lumière sera réfléchie \blksm{little-light}.
@@ -72,8 +72,6 @@ Deux paires événement-actions sont nécessaires (\cref{fig.follow-line}).
     doit tourner légèrement à \emph{gauche}.
 	
 \end{itemize}
-
-Comme nous avons deux conditions, il nous faut deux paires événement-actions, comme illustré sur la \cref{fig.follow-line}.
 
 \sect{Régler les paramètres}
 

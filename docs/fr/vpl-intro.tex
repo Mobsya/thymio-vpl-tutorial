@@ -23,7 +23,7 @@ Enfin, les petits rectangles noirs à l'avant du robot (\textcolor{blue}{E}) son
 
 Pour commencer, connectez Thymio à votre ordinateur à l'aide du câble USB fourni avec le robot.
 Si la connection est réussie, le robot jouera quelques notes.
-S'il est éteint, touchez simplement son bouton central pendant quelques secondes jusqu'à entendre les notes.
+S'il est éteint, touchez simplement son bouton central pendant quelques secondes jusqu'à entendre quelques notes.
 Lancez VPL en double-cliquant sur l'icône \blksm{thymiovpl} de votre ordinateur.
 
 \importantbox[Petites images]{
@@ -108,7 +108,7 @@ Et voilà ! Vous avez construit une paire événement-actions !
 
 Il nous faut maintenant modifier l'événement et l'action pour qu'ils fassent ce que l'on veut.
 Pour l'événement, cliquez sur le bouton avant (le triangle supérieur) ; il va devenir rouge : \blkc{forward}
-Cela signifie qu'\textbf{un événement se produira lorsque le bouton avant de Thymio sera touché}.
+Cela signifie qu'un événement se produira lorsque le bouton \emph{avant} de Thymio sera touché.
 
 Le bloc action couleur contient trois \textit{sliders} --- des barres de couleur avec un carré blanc.
 Chaque barre règle une des trois couleurs primaires rouge, vert et bleu.
@@ -118,7 +118,7 @@ En mélangeant ces trois couleurs primaires (rouge, vert et bleu),
 toutes les couleurs peuvent être créées.
 Déplacez le \textit{slider} rouge jusqu'à ce que le carré soit
 tout à droite et déplacez les \textit{sliders} vert et bleu tout à gauche.
-La couleur sera toute rouge sans bleu ni vert : \blkc{red}
+La couleur sera toute rouge sans composante bleu ou vert : \blkc{red}
 
 \sect{Sauvegarder le programme}
 
@@ -141,6 +141,9 @@ Essayez maintenant d'appuyer sur le bouton avant de Thymio, il devrait s'être a
 Vous avez créé et exécuté votre premier programme.
 Voici ce qu'il fait :\\
 \textbf{Lorsque l'on touche le bouton avant de Thymio, il devient rouge.}}
+
+Si vous voulez arrêter le programme VPL, cliquez sur \blksm{stop} (\bu{Stop}).
+Ceci peut être très utile lorsque par exemple vous exécutez un programme qui fait avancer le robot mais que vous avez oublié d'ajouter une paire événement-actions pour arrêter les moteurs.
 
 \sect{Éteindre le robot}
 
@@ -170,7 +173,7 @@ Si vous avez un problème, vous pouvez toujours fermer VPL, reconnecter le robot
 \item Pour effacer une paire événement-actions, cliquez sur \blksm{x}, en haut à droite de la paire.
 \item Pour ajouter une paire événement-actions, cliquez sur \blksm{plus}, disponible en dessous de chaque paire.
 \item Pour déplacer une paire événement-actions, maintenez le bouton gauche de la souris enfoncé sur une paire et glissez la à l'endroit désiré.
-\item Pour copier une paire événement-actions vers un deuxième endroit dans le programme, appuyez et maintenez pressé la touche \bu{Ctrl} et utilisez votre souris pour glisser et déposer la paire à l'emplacement désiré.\label{p.copy-pair}\footnote{Sur Mac OS, la touche \bu{Command} remplace la touche \bu{Ctrl}.}
+\item Pour copier une paire événement-actions vers un deuxième endroit dans le programme, appuyez et maintenez pressé la touche \bu{Ctrl} et utilisez votre souris pour glisser et déposer la paire à l'emplacement désiré.\label{p.copy-pairs}\footnote{Sur Mac OS, la touche \bu{Command} remplace la touche \bu{Ctrl}.}
 \end{itemize}
 
 \informationbox{Le bouton \bu{Lancer} clignote}{

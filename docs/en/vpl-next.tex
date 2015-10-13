@@ -35,7 +35,7 @@ the button \bu{Launch VPL} in the \emph{Tools} tab at the bottom left of
 the window. You can import VPL programs into Aseba Studio simply by
 opening its file.
 
-Sections marked $^*$ present related concepts of programming AESL that
+Sections marked $^*$ present AESL programming concepts that
 go beyond what is found in the VPL projects. They can be skipped when
 you first read this tutorial.
 
@@ -94,7 +94,7 @@ event''). You can find a list of events in the table at the bottom of
 the documentation for the Thymio programming interface.
 
 The lines following \p{onevent} form the body of the event handler
-and correspond to the action blocks following an event block in VPL.
+and correspond to the action blocks to the right of an event block in VPL.
 
 When a tap event occurs, the \emph{interface function} \p{leds.top} is
 \emph{called}. The function takes three \emph{parameters}, which specify
@@ -124,7 +124,7 @@ to the reader of the program. Here, the comment notes that the clap
 event occurs when the intensity of the sound is greater than a
 \emph{threshold}. The second line of the program specifies that the
 event occurs when then intensity of the sound (which can be in the range
-$0-255$) is greater than $250$.
+$0$--$255$) is greater than $250$.
 
 In VPL, the threshold is built-in and cannot be changed, but in a
 textual program you can change it using an \emph{assignment statement}:
@@ -157,6 +157,7 @@ This \emph{initialization} is not visible in the VPL program. In a
 textual program, it is recommended that you include these statements,
 but it is not required.
 
+\newpage
 
 \sect{Alternatives}
 
@@ -170,21 +171,21 @@ colors of the top and bottom LEDs when the buttons are touched:
 \begin{footnotesize}
 \begin{verbatim}
   onevent buttons
-    if button.forward == 1 then
+    when button.forward == 1 do
       call leds.top(32,0,0)
     end
-    if button.backward == 1 then
+    when button.backward == 1 do
       call leds.top(0,0,32)
     end
-    if button.right == 1 then
+    when button.right == 1 do
       call leds.bottom.left(0,32,0)
       call leds.bottom.right(0,32,0)
     end
-    if button.left == 1 then
+    when button.left == 1 do
       call leds.bottom.left(32,32,0)
       call leds.bottom.right(32,32,0)
     end
-    if button.center == 1 then
+    when button.center == 1 do
       call leds.top(0,0,0)
       call leds.bottom.left(7,0,0)
       call leds.bottom.right(7,0,0)
@@ -203,26 +204,27 @@ depends on which button is touched, so we check the value of the
 
 \begin{footnotesize}
 \begin{verbatim}
-  if button.forward == 1 then
+  when button.forward == 1 do
     call leds.top(32,0,0)
   end
 \end{verbatim}
 \end{footnotesize}
 
-mean: \p{if} the value of the variable \p{button.forward} is equal to
-one, then perform the actions written on the lines between the keyword
-\p{then} and the keyword \p{end}. There are five \p{button} variables,
-one for each button. The value of a button variable is 1 if the button
-is touched and 0 if the button is released. In the program, there are
-five \p{if}-statements, one for each button. One, two or three actions
-are run if the expression in an \p{if}-statement is true.
+mean: \emph{when} the value of the variable \p{button.forward} changes
+from some other value (here, 0) to 1, \emph{then} perform the actions
+written on the lines between the keyword \p{do} and the keyword \p{end}.
+There are five \p{button} variables, one for each button. The value of a
+button variable is 1 if the button is touched and 0 if the button is
+released. In the program, there are five \p{when}-statements, one for
+each button. One or two actions are run if the expression in a
+\p{when}-statement \emph{becomes} true.
 
 \textbf{\large One event or multiple events$^*$}
 
 The Thymio interface includes separate events for each button, in
 addition to the \p{buttons} event that occurs if any button is touched
 or released. We could implement the program as follows, using multiple
-events without \p{if}-statements and button variables:
+events without \p{when}-statements and button variables:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -256,13 +258,13 @@ and (b) to identify touching two buttons at once:
 \begin{verbatim}
   onevent buttons
     # Turn the top LEDs on when the forward button is released
-    if button.forward == 0 then
+    when button.forward == 0 do
       call leds.top(32,0,0)
     end
 
     # Turn the bottom LEDs on when
     #   both the left and the right buttons are  touched
-    if button.left == 1 and button.right == 1 then
+    when button.left == 1 and button.right == 1 do
       call leds.bottom.left(0,32,0)
       call leds.bottom.right(0,32,0)
     end
@@ -275,6 +277,62 @@ touched or released, whereas the common event \p{buttons} occurs with a
 frequency of 20 Hz after updating the array of button variables (see
 page~\pageref{pg.hz} for an explanation of these concepts).
 
+
+\textbf{\large \p{if}-statements}
+
+AESL supports two alternative statements:
+\begin{footnotesize}
+\begin{verbatim}
+  when v == 1 do ... statements ... end
+
+  if v == 1 then ... statements ... end
+\end{verbatim}
+\end{footnotesize}
+that have different meanings:
+\begin{quote}
+\emph{when} the value of \p{v} \emph{becomes} 1, run the statements
+
+\emph{if} the value of \p{v} \emph{is} 1, run the statements
+\end{quote}
+
+\p{when}-statements are commonly used with variables representing
+events, because we usually want to run an event handler when something
+changes, not just because the value of a variable has a certain value.
+We could write a \p{buttons} event handler using an \p{if}-statement:
+
+\begin{footnotesize}
+\begin{verbatim}
+  onevent buttons
+    if button.forward == 1 then
+      ... statements ...
+    end
+\end{verbatim}
+\end{footnotesize}
+However, if we touch the forward button for a long period of time,
+the statements would be run several times. If the statements change the
+color of the LEDs, it wouldn't make a difference, but there are cases
+where it does matter and a \p{when}-statement is needed.
+
+An \p{if}-statement is appropriate when we are interested the values of
+variables and not in their changes. The following statements set the
+value of the variable \p{max} to the maximum value returned by the two
+rear sensors:
+
+\begin{footnotesize}
+\begin{verbatim}
+  if prox.horizontal[5] > prox.horizontal[6] then
+    max = prox.horizontal[5]
+  else
+    max = prox.horizontal[6]
+  end
+\end{verbatim}
+\end{footnotesize}
+
+Additional examples of \p{if}-statements appear in the next section and
+in Figure~\ref{fig.respond}.
+
+
+\newpage
 
 \sect{Arrays}
 
@@ -294,19 +352,19 @@ robot turns in that direction.
 \begin{footnotesize}
 \begin{verbatim}
   onevent prox
-    if prox.horizontal[2] < 1000 then
+    when prox.horizontal[2] < 1000 do
       motor.left.target = 0
       motor.right.target = 0
     end
-    if prox.horizontal[2] > 2000 then
+    when prox.horizontal[2] > 2000 do
       motor.left.target = 300
       motor.right.target = 300
     end
-    if prox.horizontal[0] > 2000 then
+    when prox.horizontal[0] > 2000 do
       motor.left.target = -300
       motor.right.target = 300
     end
-    if prox.horizontal[4] > 2000 then
+    when prox.horizontal[4] > 2000 do
       motor.left.target = 300
       motor.right.target = -300
     end
@@ -319,7 +377,7 @@ robot turns in that direction.
 \end{figure}
 
 The AESL program (\cref{fig.arrays}) is structured as an event handler
-with several \p{if}-statements. The values of the motor variables
+with several \p{when}-statements. The values of the motor variables
 \p{motor.left.target} and \p{motor.right.target} are set to values
 corresponding to the positions of the sliders in the motor blocks. In
 VPL, the sliders change the values of the motor variables in increments
@@ -327,7 +385,8 @@ of $50$, but in AESL you can set them to any values in the range $-500$
 to $500$.
 
 The event is called \p{prox}. Unlike the button events, which
-occur when something ``happens'', this event occurs \emph{10 times
+occur when something ``happens,'' this event occurs \emph{10 times
+>>>>>>> d0c474117e88c10d57f1a02945d63994237a9e8e
 every second}. Before the event occurs, the values of the
 \p{prox.horizontal} variables are set to values that depend on what the
 sensors are detecting. See the\label{pg.hz} documentation of the
@@ -384,12 +443,12 @@ card.
 To access a specific component in an array, write its sequence number in
 square brackets after the name of the array variable. This number is
 called an \emph{index} into the array. The following statement specifies
-that the motor variables will be set to 300 if the value of the
-\emph{front center sensor} (index 2) is greater than 2000:
+that the motor variables will be set to 300 when the value of the
+\emph{front center sensor} (index 2) becomes greater than 2000:
 
 \begin{footnotesize}
 \begin{verbatim}
-  if prox.horizontal[2] > 2000 then
+  when prox.horizontal[2] > 2000 do
     motor.left.target = 300
     motor.right.target = 300
   end
@@ -410,8 +469,7 @@ A natural generalization of arrays is to use a variable instead of a
 constant for the index.\footnote{This is not used in translations of VPL
 programs into AESL, except in an advanced construct for constructing
 sounds; therefore, the simple example here is taken from the AESL
-projects.} The program \p{cats.aesl} in archive of project for AESL
-contains the following statements:
+projects.} The program \p{cats.aesl} contains the following statements:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -444,8 +502,34 @@ The variable \p{i} receives the values 0, 1, 2, 3, 4 in turn, so each
 time the \p{if}-statement is run, \p{prox.horizontal[i]} reads the value
 of each front sensor from left to right. The result of the
 \p{for}-statement is thus to set the value of the variable \p{state} to
-2 if \emph{any} of the front sensors detects an object.
+2 \emph{if} \emph{any} of the front sensors detects an object.
 
+\textbf{\large Declaring an array}
+
+An array variable is declared by giving its size in brackets following
+the array name. The size can also be specified by providing an initial
+value:\footnote{A comment need not start at the beginning of a line.
+Every character from the symbol \# to the end of the line is considered
+to be a comment and is ignored by the computer.} 
+
+\begin{footnotesize}
+\begin{verbatim}
+var state[4]             # An array with four components
+var state[] = [0,0,0,0]  # An array with four components
+\end{verbatim}
+\end{footnotesize}
+
+In the translation of the VPL program, both the size and the initial
+value are given. This is correct as long as the number of values is the
+same as the size:
+
+\begin{footnotesize}
+\begin{verbatim}
+var state[4] = [0,0,0,0]  # OK, but redundant
+\end{verbatim}
+\end{footnotesize}
+
+\newpage
 
 \sect{Timers}
 
@@ -460,7 +544,7 @@ detects your hand; two seconds later, it turns right:
 \begin{footnotesize}
 \begin{verbatim}
   onevent prox
-    if prox.horizontal[2] > 2000 then
+    when prox.horizontal[2] > 2000 do
       motor.left.target = -150
       motor.right.target = 100
       timer.period[0] = 2000
@@ -480,7 +564,7 @@ detects your hand; two seconds later, it turns right:
 There are two timers in the Thymio robot. You set the duration of a
 timer by assigning a value to components 0 or 1 of the array
 \p{timer.period}. The value is in \emph{milliseconds}, thousandths of a
-second. To set a duration of two seconds in timer 0, the value 2000
+second. To set a duration of 2 seconds in timer 0, the value 2000
 (milliseconds) should be assigned to \p{timer.period[0]}.
 
 There are two events, \p{timer0} and \p{timer1}, one for each timer.
@@ -499,6 +583,7 @@ the event won't accidently occur at the beginning of the program:
 \end{verbatim}
 \end{footnotesize}
 
+\newpage
 
 \sect{States}
 
@@ -521,7 +606,7 @@ generated by VPL as explained later in this chapter.}
   var state[] = [0,0,0,0]
   
   onevent buttons
-    if button.center == 1 then
+    when button.center == 1 do
       state[0] = 0
       state[1] = 0
       state[2] = 0
@@ -536,11 +621,11 @@ generated by VPL as explained later in this chapter.}
 The state is stored in an array \p{state[]} which has 4 components. Each
 component can be 0 or 1, so there are $2\times 2\times 2\times 2=16$
 possible values in the array. The components of the array are given
-initial values of 0 by assigning the four values {\footnotesize\verb+[0,0,0,0]+}. The
-initial value of the array is also used to specify the number of
-components in an array; since there are 4 values in {\footnotesize\verb+[0,0,0,0]+},
-there are 4 components in the array. In AESL you can assign any initial
-values to an array.
+initial values of 0 by assigning the four values
+{\footnotesize\verb+[0,0,0,0]+}. The initial value of the array is also
+used to specify the number of components in an array; since there are 4
+values in {\footnotesize\verb+[0,0,0,0]+}, there are 4 components in the
+array.
 
 The state event block (green, next to the button event block) has all of
 its quarters set to gray; this means that the event can occur regardless
@@ -592,25 +677,26 @@ be used. The statements to be run will depend on \p{if}-statements
 
 The meaning of the keyword \p{and} is that \emph{all} the conditions in
 the \p{if}-statement must hold in order to run the statements between
-\p{then} and \p{end}. If all components of the array \p{state} are 0,
-the value of the component \p{state[0]} is set to 1, while the others
-are set to 0. This corresponds to the state event block having all
-quarters white and the state action block having the upper left quarter
-orange and the others white. Similarly, if value of \p{state[0]} is 1
-and the values of the other components are 0, the values of all the
-components of \p{state} are set to 0.
+\p{then} and \p{end}. If all components of \p{state} are 0, the value of
+\p{state[0]} is set to 1, while the others are set to 0. This
+corresponds to the state event block having all quarters white and the
+state action block having the upper left quarter orange and the others
+white. Similarly, if value of \p{state[0]} is 1 and the values of the
+other components are 0, the values of all the components of \p{state}
+are set to 0.
 
-\textbf{\large Subroutines}
+\newpage
+
+\sect{Subroutines}
 
 Quite often we need to run the same sequence of statements from many
 places within a program. We could write the statements once and copy
-them each time they are needed. A simpler solution is to use
-\emph{subroutines}, which assign a name to a sequence of statements. In
-this program, the declaration {\footnotesize\verb+sub display_state+} declares a
-subroutine that assigns the name {\footnotesize\verb+display_state+} to a sequence of
-statements, here, the single statement \p{call leds.circle}:
-
-\bigskip
+them each time they are needed. A simpler solution is to use a
+\emph{subroutine}, which assigns a name to a sequence of statements. In
+this program, the declaration {\footnotesize\verb+sub display_state+}
+declares a subroutine that assigns the name
+{\footnotesize\verb+display_state+} to a sequence of statements, here,
+the single statement \p{call leds.circle}:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -643,33 +729,12 @@ component is 0. This is achieved by the \emph{arithmetic expressions}
 by 32. If one of the values is 0, the result is 0, while if it is 1, the
 result is 32.
 
-\textbf{\large Declaring an array}
+\newpage
 
-An array variable is declared by giving its size in brackets following
-the array name. The size can also be specified by providing an initial
-value:
-
-\begin{footnotesize}
-\begin{verbatim}
-var state[4]             # An array with four components
-var state[] = [0,0,0,0]  # An array with four components
-\end{verbatim}
-\end{footnotesize}
-
-In the translation of the VPL program, both the size and the initial
-value are given. This is OK as long as the number of values is the same
-as the size:
-
-\begin{footnotesize}
-\begin{verbatim}
-var state[4] = [0,0,0,0]  # OK, but redundant
-\end{verbatim}
-\end{footnotesize}
-
-\textbf{\large Native functions}
+\sect{Native functions}
 
 The program above has a problem. Since the components of the array
-\p{state} are set one by one, it is possible that an different event
+\p{state} are set one-by-one, it is possible that an different event
 will occur when some, but not all, of the components have been set. To
 set all the components at once, the new values of the state are first
 set in a second array \p{new\_state} and then they are copied to the
@@ -682,7 +747,7 @@ var state[4] = [0,0,0,0]
 var new_state[4] = [0,0,0,0]
 
 onevent buttons
-  if button.center == 1 then
+  when button.center == 1 do
     new_state[0] = 0
     new_state[1] = 0
     new_state[2] = 0
@@ -696,9 +761,8 @@ onevent buttons
 
 The \emph{native function} \p{math.copy} is used to copy the arrays.
 Native functions are built into the Thymio robot and are more efficient
-than sequences of statements in the textual programming language. The
-native functions are described in the documentation of the
-Aseba native functions library.
+than sequences of statements in AESL. The native functions are described
+in the Aseba documentation.
 
 The current version of AESL allows assignment of entire arrays, so that
 it would have been possible to use the assignment

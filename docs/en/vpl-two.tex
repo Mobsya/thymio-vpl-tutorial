@@ -1,0 +1,48 @@
+\chap{Multiple Thymios}\label{ch.two}
+
+You can run two or more Thymio robots at the same time.
+
+\textbf{Specification}
+
+Place two robots T1 and T2 facing each other. T1 chases T2; when
+T1 detects that it is close to T2 it will stop. If T2 detects that T1 is
+close to it, T2 retreats until it no longer detects T1. 
+
+\textbf{Guidance}
+
+\begin{itemize}
+
+\item The programs for T1 and T2 have two event-action pairs: one whose
+event is the detection of an object by the center horizontal sensor, and
+another whose event is the non-detection of an object. However, the
+actions for T1 and T2 are different.
+
+\item Connect two Thymios T1 and T2 to the computer and turn them on.
+Run two copies of VPL. In the target-selection window
+(Figure~\ref{fig.connect}), both T1 and T2 should appear; select T1 in
+one copy of VPL and T2 in the other. Open and run program \p{chase} in
+T1 and program \p{retreat} in T2.
+ 
+\end{itemize}
+
+\textbf{Experiments}
+
+\begin{itemize}
+
+\item What happens if you exchange the programs: T1 runs
+\p{retreat} and T2 runs \p{chase}? Explain.
+
+\item In advanced mode, experiment with different settings of the sensor
+thresholds.
+
+\end{itemize}
+
+%\bigskip
+
+{\raggedleft \hfill \textbf{Program file}: \bu{chase.aesl}, \bu{retreat.aesl}}
+
+\bigskip
+
+\informationbox{Communications between robots}{Multiple Thymio robots
+can send messages to each other. This capability is supported in the
+AESL language and Studio environment.}

@@ -90,7 +90,7 @@ Vous trouverez une liste des événements dans la table au bas de la documentati
 de programmation de Thymio.
 
 Les lignes qui suivent \p{onevent} forment le corps principal du traitement de l'événement \p{tap}, respectivement \p{mic}.
-Ils correspondent aux blocs action qui suivent les blocs événement dans VPL.
+Ils correspondent aux blocs action à droite des blocs événement dans VPL.
 
 Lorsqu'un événement tape est déclenché, la \emph{fonction d'interface} \p{leds.top} est \emph{appelée}.
 La fonction prend trois \emph{paramètres} qui spécifient l'intensité de rouge, de vert et de bleu de la LED.
@@ -160,6 +160,8 @@ Cette \emph{initialisation} n'est pas visible dans le programme VPL.
 Dans un programme textuel, nous recommandons d'inclure ces instructions,
 bien qu'elles ne soient pas nécessaires.
 
+\newpage
+
 \sect{Plusieurs alternatives}
 
 Le programme \p{colors-multiple.aesl} du \cref{ch.colors} change
@@ -172,21 +174,21 @@ la couleur des LEDs du haut et du bas lorsque les boutons sont touchés:
 \begin{footnotesize}
 \begin{verbatim}
   onevent buttons
-    if button.forward == 1 then
+    when button.forward == 1 do
       call leds.top(32,0,0)
     end
-    if button.backward == 1 then
+    when button.backward == 1 do
       call leds.top(0,0,32)
     end
-    if button.right == 1 then
+    when button.right == 1 do
       call leds.bottom.left(0,32,0)
       call leds.bottom.right(0,32,0)
     end
-    if button.left == 1 then
+    when button.left == 1 do
       call leds.bottom.left(32,32,0)
       call leds.bottom.right(32,32,0)
     end
-    if button.center == 1 then
+    when button.center == 1 do
       call leds.top(0,0,0)
       call leds.bottom.left(7,0,0)
       call leds.bottom.right(7,0,0)
@@ -207,25 +209,25 @@ Les instructions:
 
 \begin{footnotesize}
 \begin{verbatim}
-  if button.forward == 1 then
+  when button.forward == 1 do
     call leds.top(32,0,0)
   end
 \end{verbatim}
 \end{footnotesize}
 
-signifient: \p{si} (<<\,if\,>> signifie <<\,si\,>> en anglais) la valeur de la variable \p{button.forward} (\emph{button.forward} signifie
+signifient: \emph{quand} (<<\,when\,>> signifie <<\,quand\,>> en anglais) la valeur de la variable \p{button.forward} (\emph{button.forward} signifie
 <<\,bouton.avant>> en anglais) est un,
-alors exécute les actions écrites entre les mots-clés \p{then} (qui signifie <<\,alors\,>> en anglais)
+\emph{alors} exécute les actions écrites entre les mots-clés \p{do} (qui signifie <<\,exécute\,>> en anglais)
 et \p{end} (qui signifie <<\,fin\,>> en anglais).
 Il y a cinq variables \p{bouton}, une pour chacun des boutons.
 La valeur d'une variable bouton vaut 1 si le bouton est touché et 0 si le bouton est relâché.
-Dans ce programme, il y a cinq structures introduites par \p{if}, une pour chaque bouton.
-Une, deux ou trois actions sont exécutées si l'expression dans une structure \p{if} est vraie.
+Dans ce programme, il y a cinq structures introduites par \p{when}, une pour chaque bouton.
+Une ou deux actions sont exécutées si l'expression dans une structure \p{when} \emph{devient} vraie.
 
 \informationbox{La programmation textuelle et l'anglais}{
 La grande majorité -- si ce n'est la totalité -- des langages de programmation utilisent 
 des mots-clés en anglais, la langue de référence pour les codeurs du monde entier.
-Ainsi, nous avons déjà vu les mots-clés \p{onevent}, \p{if}, \p{then} et \p{end}
+Ainsi, nous avons déjà vu les mots-clés \p{onevent}, \p{when}, \p{do} et \p{end}
 qui nous viennent tous de l'anglais. Nous en verrons encore quelques autres.
 Si vous ne comprenez pas l'anglais, il vous faudra mémoriser ces quelques mots,
 mais, rassurez-vous, ils ne sont pas nombreux.}
@@ -235,7 +237,7 @@ mais, rassurez-vous, ils ne sont pas nombreux.}
 L'interface Thymio inclut aussi des événements distincts pour chaque bouton,
 en plus de l'événement \p{buttons} qui est déclenché chaque fois qu'un bouton est pressé ou relâché.
 Nous pourrions aussi implémenter ce programme avec de multiples événements et sans structures
-\p{if} ni variables bouton:
+\p{when} ni variables bouton:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -270,13 +272,13 @@ et
 \begin{verbatim}
   onevent buttons
     # Turn the top LEDs on when the forward button is released
-    if button.forward == 0 then
+    when button.forward == 0 do
       call leds.top(32,0,0)
     end
 
     # Turn the bottom LEDs on when
     #   both the left and the right buttons are  touched
-    if button.left == 1 and button.right == 1 then
+    when button.left == 1 and button.right == 1 do
       call leds.bottom.left(0,32,0)
       call leds.bottom.right(0,32,0)
     end
@@ -288,6 +290,61 @@ ont lieu lorsqu'un bouton est touché ou relâché,
 tandis que l'événement commun à tous les boutons est déclenché à une fréquence de 20 Hz,
 à chaque fois que le tableau des variables bouton est mis à jour (voir page~\pageref{pg.hz}
 pour une explication de ces concepts).
+
+\textbf{\large Structures \p{if}}
+
+AESL supporte deux structures différentes:
+\begin{footnotesize}
+\begin{verbatim}
+  when v == 1 do ... instructions ... end
+
+  if v == 1 then ... instructions ... end
+\end{verbatim}
+\end{footnotesize}
+(<<\,if ... then\,>> signifie <<\,quand ... alors\,>>) qui ont des significations différentes:
+\begin{quote}
+\emph{quand} la valeur de \p{v} \emph{devient} 1, exécute les instructions
+\emph{si} la valeur de \p{v} \emph{est} 1, exécute les instructions
+\end{quote}
+
+Les structures \p{when} s'utilisent en général pour des variables qui représentent des événements
+parce que souvent on souhaite réagir quand un événement est déclenché et non pas simplement quand une variable a une certaine valeur.
+On pourrait réagir à un événement \p{buttons} en utilisant une structure \p{if}:
+
+\begin{footnotesize}
+\begin{verbatim}
+  onevent buttons
+    if button.forward == 1 then
+      ... instructions ...
+    end
+\end{verbatim}
+\end{footnotesize}
+Néanmoins, si nous gardons le bouton avant appuyé pendant assez longtemps,
+ces instructions seraient exécutées plusieurs fois.
+Si les instructions changent la couleur des LEDs, on ne voit aucune différence, mais
+dans certains cas, il y a une différence et la structure \p{when} est alors nécessaire.
+
+Une structure \p{if} est plus appropriée lorsque ce qui nous intéresse est la valeur d'une variable
+et non le changement de cette valeur.
+Les instructions suivantes attribuent la valeur mesurée maximale entre les deux capteurs arrières à la variable \p{max}:
+
+\begin{footnotesize}
+\begin{verbatim}
+  if prox.horizontal[5] > prox.horizontal[6] then
+    max = prox.horizontal[5]
+  else
+    max = prox.horizontal[6]
+  end
+\end{verbatim}
+\end{footnotesize}
+
+Nous verrons des exemples supplémentaires de structures \p{if} dans la section suivante et
+dans la Figure~\ref{fig.respond}.
+
+
+\newpage
+
+
 
 \sect{Les tableaux}
 
@@ -307,19 +364,19 @@ le robot tourne dans cette direction.
 \begin{footnotesize}
 \begin{verbatim}
   onevent prox
-    if prox.horizontal[2] < 1000 then
+    when prox.horizontal[2] < 1000 do
       motor.left.target = 0
       motor.right.target = 0
     end
-    if prox.horizontal[2] > 2000 then
+    when prox.horizontal[2] > 2000 do
       motor.left.target = 300
       motor.right.target = 300
     end
-    if prox.horizontal[0] > 2000 then
+    when prox.horizontal[0] > 2000 do
       motor.left.target = -300
       motor.right.target = 300
     end
-    if prox.horizontal[4] > 2000 then
+    when prox.horizontal[4] > 2000 do
       motor.left.target = 300
       motor.right.target = -300
     end
@@ -332,7 +389,7 @@ le robot tourne dans cette direction.
 \end{figure}
 
 La structure du programme AESL (\cref{fig.arrays}) contient un traitement d'événements
-avec plusieurs structures \p{if}.
+avec plusieurs structures \p{when}.
 Les valeurs de la position des \textit{sliders} des blocs moteurs sont affectés aux
 variables moteur correspondantes \p{motor.left.target} et \p{motor.right.target}
 (qui signifient respectivement <<\,moteur.gauche.cible>> et <<\,moteur.droit.cible>>).
@@ -396,12 +453,12 @@ Encore mieux, vous la trouvez aussi sur le diagramme de la petite carte de réf�
 
 Pour accéder à une entrée particulière du tableau, écrivez son numéro entre crochets à la fin 
 du nom du tableau. On appelle ce nombre son \emph{indice} dans le tableau.
-L'instruction suivante indique que les variables moteur seront mises à 300 si la valeur du \emph{capteur
-avant central} (indice 2) est supérieure à 2000:
+L'instruction suivante indique que les variables moteur seront mises à 300 lorsque la valeur du \emph{capteur
+avant central} (indice 2) devient supérieure à 2000:
 
 \begin{footnotesize}
 \begin{verbatim}
-  if prox.horizontal[2] > 2000 then
+  when prox.horizontal[2] > 2000 do
     motor.left.target = 300
     motor.right.target = 300
   end
@@ -421,7 +478,7 @@ Une généralisation naturelle des tableaux consiste en l'utilisation d'une vari
 constante comme indice.\footnote{Ceci n'est pas utilisé dans les programmes VPL traduits en AESL,
 à part dans un cas complexe de création de sons; c'est pourquoi l'exemple ici est repris des projets
 AESL.}
-Le programme \p{cats.aesl} dans l'archive des projets pour AESL contient l'instruction suivante:
+Le programme \p{cats.aesl} contient l'instruction suivante:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -456,7 +513,32 @@ Ainsi, chaque fois que la structure \p{if} est exécutée, \p{prox.horizontal[i]
 la valeur mesurée par un capteur différent. Les valeurs de tous les capteurs de gauche à droite
 sont ainsi lues.
 Le résultat de la boucle \p{for} est donc d'affecter la valeur 2 à la variable \p{state}
-si \emph{un parmi} les capteurs avants détecte un objet.
+\emph{si} \emph{un parmi} les capteurs avants détecte un objet.
+
+\textbf{\large Déclarer un tableau}
+
+Un tableau de variables se déclare en donnant sa taille entre crochet après le nom du tableau.
+La taille peut aussi être donnée implicitement en donnant une valeur initiale au tableau:
+\footnote{Un commentaire ne commence pas forcément au début d'une ligne.
+Tout caractère entre le caractère \# et la fin de la ligne est considéré comme un commentaire et est ignoré par l'ordinateur.}
+
+\begin{footnotesize}
+\begin{verbatim}
+var state[4] # Un tableau avec quatre éléments
+var state[] = [0,0,0,0] # Un tableau avec quatre éléments
+\end{verbatim}
+\end{footnotesize}
+
+Lors de la traduction du programme VPL, la taille et la valeur initiale est donnée.
+Le code suivant ets correct à condition que le nombre de valeur est égal à la taille indiquée:
+
+\begin{footnotesize}
+\begin{verbatim}
+var state[4] = [0,0,0,0]
+\end{verbatim}
+\end{footnotesize}
+
+\newpage
 
 \sect{Les minuteurs}
 
@@ -471,7 +553,7 @@ détecte votre main; deux secondes plus tard, il tourne à droite:
 \begin{footnotesize}
 \begin{verbatim}
   onevent prox
-    if prox.horizontal[2] > 2000 then
+    when prox.horizontal[2] > 2000 do
       motor.left.target = -150
       motor.right.target = 100
       timer.period[0] = 2000
@@ -511,6 +593,8 @@ par accident au début du programme:
 \end{verbatim}
 \end{footnotesize}
 
+\newpage
+
 \sect{États}
 
 Les \cref{ch.states,ch.counting} ont montré comment utiliser les \emph{états}.
@@ -533,7 +617,7 @@ qui seront expliquées plus bas dans ce chapitre.}
   var state[] = [0,0,0,0]
   
   onevent buttons
-    if button.center == 1 then
+    when button.center == 1 do
       state[0] = 0
       state[1] = 0
       state[2] = 0
@@ -609,12 +693,14 @@ et à un bloc action état avec le quartier supérieur gauche orange et les autr
 De même, si la valeur de \p{state[0]} est 1 et les valeurs des autres éléments est 0,
 les valeurs de tous les éléments de \p{state} sont remis à 0.
 
-\textbf{\large Sous-routines}
+\newpage
+
+\sect{Sous-routines}
 
 Il arrive souvent qu'une même suite d'instructions doive être exécutée à plusieurs reprises
 à des endroits différents du programme.
 On pourrait écrire ces instructions une fois puis les copier chaque fois qu'on en a besoin.
-Une solution plus simple consiste à utiliser des \emph{sous-routines}, qui permet
+Une solution plus simple consiste à utiliser une \emph{sous-routine}, qui permet
 d'attribuer un nom à une suite d'instructions.
 Dans ce programme, l'expression {\footnotesize\verb+sub display_state+} déclare une
 sous-routine qui attribue au nom {\footnotesize\verb+display_state+} une suite d'instructions,
@@ -653,18 +739,9 @@ Pour obtenir ce résultat, on utilise les \emph{expressions arithmétiques} \p{s
 qui multiplient la valeur des éléments du tableau par 32.
 Si une des valeurs est 0, le résultat sera 0, tandis que si elle vaut 1, le résultat sera 32.
 
-\textbf{\large Déclarer un tableau}
+\newpage
 
-On déclare une variable tableau en mettant sa taille entre crochets à la fin du nom du tableau.
-La taille peut aussi être précisée en donnant une valeur initiale:
-
-\begin{footnotesize}
-\begin{verbatim}
-var state[4] = [0,0,0,0] # OK, but redundant
-\end{verbatim}
-\end{footnotesize}
-
-\textbf{\large Fonctions natives}
+\sect{Fonctions natives}
 
 Le programme ci-dessus a un problème.
 Puisque les valeurs des éléments du tableau \p{state} sont affectées une à une,
@@ -680,7 +757,7 @@ var state[4] = [0,0,0,0]
 var new_state[4] = [0,0,0,0]
 
 onevent buttons
-  if button.center == 1 then
+  when button.center == 1 do
     new_state[0] = 0
     new_state[1] = 0
     new_state[2] = 0
@@ -694,9 +771,8 @@ onevent buttons
 
 La \emph{fonction native} \p{math.copy} est utilisée pour copier des tableaux.
 Les fonctions natives sont déjà intégrées dans le robot Thymio et sont plus efficaces
-que des suites d'instructions dans le langage de programmation textuelle.
-Les fonctions natives sont décrites dans la documentation de la bibliothèque des fonctions
-natives d'Aseba.
+que des suites d'instructions dans AESL.
+Les fonctions natives sont décrites dans la documentation d'Aseba.
 
 La version actuelle d'AESL autorise les affectations de tableaux entiers, de telle sorte qu'il
 aurait été possible d'utiliser une instruction d'affectation:

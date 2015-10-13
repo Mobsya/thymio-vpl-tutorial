@@ -17,12 +17,14 @@ Mitchel Resnick. \textit{Braitenberg Creatures}. MIT Media Laboratory, E\&L Memo
 Ces véhicules étaient construits à partir de \emph{briques programmables} qui étaient les
 précurseurs des kits robotiques LEGO Mindstorms.
 
-Ce document donne une implémentation des douze créatures de Braitenberg décrites dans
+Ce document donne une implémentation de la majorité des créatures de Braitenberg décrites dans
 rapport le rapport du MIT, adaptées pour le robot Thymio avec la VPL.
 Les créatures développées au MIT utilisaient des lumières et des capteurs tactiles
 alors que Thymio utilise principalement les capteurs infrarouges de proximité.
 Nous avons gardé les noms des créatures
 qu'on leur avait donné dans le rapport du MIT pour pouvoir établir une équivalence même s'ils ne correspondent pas à l'implémentation pour le Thymio.
+L'ordre aussi des descriptions des créatures a été conservé
+bien que celui-ci ne corresponde pas à la difficulté de son implémentation dans VPL.
 
 Dans les descriptions, on utilise, à part mention contraire,
 l'expression <<\,détecte un objet\,>> pour signifier
@@ -36,7 +38,7 @@ Les fichiers portent les noms en anglais des créatures qu'ils représentent
 plus l'extension \texttt{\small aesl}.
 Les noms des fichiers apparaîtront entre parenthèses, à côté du nom du comportement en français.
 Pour certaines créatures, des comportements supplémentaires sont proposés en exercice.
-Leur implémentation se trouve dans des fichiers du nom de la créature avec un nombre additionnel.
+Vous trouverez leur implémentation aussi dans l'archive.
 
 \sect{Les créatures}
 
@@ -61,7 +63,7 @@ Lorsque c'est le capteur gauche (mais pas le capteur central) qui détecte un ob
 le robot tourne à gauche.
 
 \textbf{Exercice (paranoid2.aesl - mode avancé)} 
-Tâche similaire à \textbf{Paranoïaque}, mais cette fois changer à chaque seconde la direction dans laquelle le robot tourne. \textbf{Indice} Utilisez des états pour retenir la direction actuelle
+Tâche similaire à \textbf{Paranoïaque}, mais cette fois changer à chaque seconde la direction dans laquelle le robot tourne. \textbf{Indice}: Utilisez des états pour retenir la direction actuelle
 et un minuteur pour changer d'état.
 
 \item[Entêté (dogged.aesl)] Lorsqu'un objet est détecté à l'avant, le robot recule et
@@ -70,21 +72,21 @@ lorsqu'un objet est détecté à l'arrière, le robot avance.
 \textbf{Exercice (dogged1.aesl)}
 Reprenez \textbf{Entêté}, mais arrêtez le robot lorsqu'aucun objet n'est détecté.
 
-\textbf{Exercice (dogged2.aesl - mode avancé)}
-Le robot avance tant qu'il ne rencontre pas d'objet, puis recule.
-Il recule alors jusqu'à ce qu'il détecte un nouvel objet, puis avance de nouveau.
-\textbf{Indice} Utilisez les états pour retenir la direction actuelle.
-L'état change lorsqu'un objet est détecté et c'est l'état qui contrôle les moteurs.
+%\textbf{Exercice (dogged2.aesl - mode avancé)}
+%Le robot avance tant qu'il ne rencontre pas d'objet, puis recule.
+%Il recule alors jusqu'à ce qu'il détecte un nouvel objet, puis avance de nouveau.
+%\textbf{Indice} Utilisez les états pour retenir la direction actuelle.
+%L'état change lorsqu'un objet est détecté et c'est l'état qui contrôle les moteurs.
 
 \item[Désécurisé (insecure.aesl)]
-S'il n'y a pas d'objet détecté, allumez le moteur droit du robot et éteignez le moteur gauche.
-Si un objet est détecté, allumez le moteur gauche et éteignez le moteur droit.
+Si le capteur gauche ne détecte pas d'objet, allumez le moteur droit du robot et éteignez le moteur gauche.
+Si un objet est détecté par le capteur gauche, allumez le moteur gauche et éteignez le moteur droit.
 Le robot devrait alors suivre un mur à sa gauche.
-\textbf{Indice} Voir la référence \cref{a.blocks} sur les virages avec Thymio.
+\textbf{Indice}: Voir la référence \cref{a.blocks} sur les virages avec Thymio.
 
 \item[Déterminé (driven.aesl)]
-Lorsque le robot détecte un ojet à gauche, il allume le moteur droit et éteint le moteur gauche.
-Et lorsque le robot détecte un objet à droite, il allume le moteur gauche et éteint le moteur droit.
+Lorsque un objet est détecté par le capteur gauche, il allume le moteur droit et éteint le moteur gauche.
+Et lorsque un objet est détecté par le capteur droit, il allume le moteur gauche et éteint le moteur droit.
 Le robot devrait alors s'approcher de l'objet en zigzaguant.
 
 \item[Insistant (persistent.aesl)]
@@ -98,12 +100,12 @@ Lorsqu'un objet approche le robot, il s'enfuit jusqu'à ce qu'il ne le voit plus
 Chaque fois qu'on donne une tappe au robot, celui-ci passe à l'état suivant:
 d'abord il avance, ensuite il tourne à gauche, puis à droite, puis recule, puis recommemce.
 
-\item[Inhumain (inhumane.aesl)]
-Le robot continue à avancer jusqu'à ce qu'il rencontre un obstacle.
+%\item[Inhumain (inhumane.aesl)]
+%Le robot continue à avancer jusqu'à ce qu'il rencontre un obstacle.
 
 \item[Paniqué (frantic.aesl - mode avancé)]
 La lumière du haut clignote en rouge.
-\textbf{Indice} Vous pouvez utiliser le bloc événement capteur avec tous les carrés des capteurs en mode gris comme décrit dans \cref{a.blocks}.
+\textbf{Indice}: Vous pouvez utiliser le bloc événement capteur avec tous les carrés des capteurs en mode gris comme décrit dans \cref{a.blocks}.
 
 \textbf{Exercice (frantic1.aesl - mode avancé)}
 Implémentez le clignotement à l'aide du bloc événement boutons au lieu du bloc événement capteurs.
@@ -113,6 +115,6 @@ Y a-t-il une différence de comportement du robot? Si oui, quelle en est la caus
 La lumière du haut est verte quand le capteur droit détecte un objet.
 La lumière du haut devient rouge lorsque le capteur gauche détecte un objet.
 Une fois la lumière du haut allumée, le robot attend trois secondes avant de s'éteindre;
-pendant ce temps, la lumière ne change pas, peu importe ce que le robot détecte.
+pendant ce temps, la lumière ne change pas.
 
 \end{description}

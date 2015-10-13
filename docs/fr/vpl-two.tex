@@ -1,0 +1,43 @@
+\chap{Plusieurs Thymio}\label{ch.two}
+
+Vous pouvez contôler deux ou plus de Thymio simultanément.
+
+\textbf{Instructions}
+
+Placez deux robots T1 et T2, un en face de l'autre. T1 poursuit T2;
+lorsque T1 détecte qu'il est proche de T2, il s'arrête.
+Si T2 détecte que T1 est proche de lui, T2 recule jusqu'à ce qu'il ne voit plus T1.
+
+\textbf{Conseils}
+
+\begin{itemize}
+
+\item Les programmes de T1 et T2 ont deux paires événements-action: l'événement de la première
+est la détection d'un objet par le capteur central horizontal,
+l'événement de la seconde est l'absence de détection d'un objet.
+Mais les programmes de T1 et T2 diffèrent par les actions associées aux événements.
+
+\item Connectez les deux Thymios T1 et T2 à l'ordinateur et allumez-les.
+Lancez deux fois VPL. Dans la fenêtre qui permet de choisir le robot qu'utilisera VPL
+(Figure~\ref{fig.connect}), vous devriez voir à la fois T1 et T2;
+sélectionnez T1 dans la première instance de VPL et T2 dans la seconde.
+Ouvrez et lancez le programme \p{chase} pour T1 et le programme \p{retreat} pour T2.
+
+\end{itemize}
+
+\textbf{Expériences}
+
+\begin{itemize}
+
+\item Que se passe-t-il si vous échangez les programmes: lancez \p{retreat} pour T1 et \p{chase} pour T2? Expliquez.
+
+\item En mode avancé, testez différents paramètres des seuils des capteurs.
+
+\end{itemize}
+
+{\raggedleft \hfill \textbf{Programme}: \bu{chase.aesl}, \bu{retreat.aesl}}
+
+\bigskip
+
+\informationbox{Communiquer entre les robots}{Plusieurs robots Thymio peuvent s'envoyer des messages.
+Cette fonctionnalité est disponible dans le langage AESL et l'environnement Studio.}

@@ -271,13 +271,13 @@ et
 \begin{footnotesize}
 \begin{verbatim}
   onevent buttons
-    # Turn the top LEDs on when the forward button is released
+    # Allumez les LEDs du haut lorsque le bouton avant est relâché
     when button.forward == 0 do
       call leds.top(32,0,0)
     end
 
-    # Turn the bottom LEDs on when
-    #   both the left and the right buttons are  touched
+    # Allumez les LEDs du bas lorsque à la fois
+    # les boutons gauche et droite sont pressés
     when button.left == 1 and button.right == 1 do
       call leds.bottom.left(0,32,0)
       call leds.bottom.right(0,32,0)

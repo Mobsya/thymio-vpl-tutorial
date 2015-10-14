@@ -3,6 +3,7 @@ Stéphane Magnenat, http://stephane.magnenat.net, minor editing and formatting
 Gregory Hitz, http://www.asl.ethz.ch/people/hitzg, first part of German translation
 Lukas Bühler, second part of German translation
 Christophe Barraud, English to French translation
+Luca Mondada, English to French translation
 Jacques Paul Grivaz, review of French version
 Ezio Somà, English to Italian translation
 Asaf Zadik, asaf.zadik@gmail.com, improvements to the projects and text

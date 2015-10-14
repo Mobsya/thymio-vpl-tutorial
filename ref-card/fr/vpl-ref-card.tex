@@ -45,7 +45,7 @@
 \fontsize{15pt}{18pt}\selectfont
 
 \begin{center}
-{\Huge \textbf{Carte de référence VPL}}
+{\Huge \textbf{Carte de référence VPL (Version 1.4)}}
 \end{center}
 
 \bigskip
@@ -74,7 +74,7 @@ Colore le haut avec un mélange de rouge, vert et bleu.%
 %
 \\[.6cm]
 
-\blk{event-ground} & \textbf{Détecteurs de sol}
+\blk{event-prox-ground} & \textbf{Détecteurs de sol}
 
 gris: ignore, rouge: sol, blanc: pas de sol&
 
@@ -98,20 +98,6 @@ Choisir la hauteur, blanche deux fois la durée de noire.%
 
 Le roobt a entendu un fort bruit.&
 
-\blk{action-timer} & \textbf{Démarrer un minuteur}
-
-Un événement temps écoulé se produira après un temps.%
-%
-\\[.6cm]
-
-\blk{event-timer} & \textbf{Temps écoulé}
-
-Le temps du minuteur est écoulé.&
-
-\cellcolor{advancedmode} \blk{action-states} & \cellcolor{advancedmode} \textbf{Défini l'état du robot}
-
-Défini les 4 bits de l'état interne du robot.\\
-
 \end{tabularx}
 
 \vfill
@@ -120,9 +106,14 @@ Défini les 4 bits de l'état interne du robot.\\
 
 \multicolumn{2}{l}{\textbf{Construire votre programme}} \\[.4cm]
 
-\blkbig{event-action-pair-empty} & Glissez/déposez des événements dans le carré gauche, des actions dans le carré droite.
+\blkbig{empty-frame} & Glissez/déposez des événements dans le carré gauche, des actions dans le carré droite.
 
 Lorsque l'événement se produit, le robot fait l'action.
+\\
+
+\blkbig{colors-multiple} & Multiples actions associées à un seul événement.
+
+Lorsque l'événement se produit, le robot fait toutes les actions.
 \\
 
 \end{tabularx}
@@ -143,6 +134,64 @@ Gauche \textbf{et} droite doivent être touchés/avoir un objet à proximité. &
 
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}\hfill\colorbox{advancedmode}{fonctionnalité du mode avancé}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{center}
+{\Huge \textbf{Mode Avancé}}
+\end{center}
+
+\begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
+
+\multicolumn{2}{l}{\textbf{Événements}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.4cm]
+
+\blk{event-prox-advanced} & \textbf{Détecteurs d'obstacle}
+
+Les curseurs définissent les seuils haut (objet proche) et bas (objet loin)&
+
+\blk{action-timer} & \textbf{Démarrer un minuteur}
+
+Un événement temps écoulé se produira après un temps.%
+%
+\\[.6cm]
+
+\blk{event-prox-ground-advanced} & \textbf{Détecteurs de sol}
+
+Les curseurs définissent les seuils haut (blanc / sol proche) et bas (noir / sol loin)&
+
+\blk{action-states} & \textbf{Définir l'état du robot}
+
+Défini les 4 bits de l'état interne du robot.\\
+%
+\\[.2cm]
+
+\blk{event-tap-advanced} & \textbf{Robot tapé}
+
+Le robot a reçu un choc.&
+\\[1.6cm]
+
+\blk{event-pitch} & \textbf{Accéléromètre tangage}
+
+Le tangage (avant / arrière) est dans le segment rouge.
+\\[.6cm]
+
+\blk{event-roll} & \textbf{Accéléromètre roulis}
+
+Le roulis (droite / gauche) est dans le segment rouge.
+\\[1cm]
+
+\blk{event-timer} & \textbf{Temps écoulé}
+
+Le temps du minuteur est écoulé.&
+
+
+\end{tabularx}
+
+\vfill
+
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
 
 \end{document}

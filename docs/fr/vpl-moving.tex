@@ -1,67 +1,73 @@
-\chap{Thymio en mouvement}\label{c.moving}
+\chap{Thymio en mouvement}\label{ch.moving}
 
 \sect{En avant, en arrière}
 
 Thymio a deux moteurs, un sur chaque roue.
 Ils peuvent tourner dans les deux sens, permettant à Thymio d'avancer, de reculer et de tourner. Commençons par un petit programme qui vous apprendra à contrôler les moteurs.
 
-Le bloc d'action des moteurs \blksm{action-motors} représente Thymio entouré de deux \textit{sliders}.
+Le bloc action moteurs \blksm{action-motors} représente Thymio entouré de deux \textit{sliders}.
 Chaque \textit{slider} contrôle un moteur.
-En les faisant glisser vers l'avant, Thymio avancera, à l'inverse, en les faisant glisser vers l'arrière, Thymio reculera.
+En les glissant vers l'avant, Thymio avancera, à l'inverse, en les glissant vers l'arrière, Thymio reculera.
 Pour arrêter les moteurs, il suffit de glisser les \textit{sliders} au centre des barres.
-Écrivons un programme qui fasse avancer Thymio lorsque l'on touche le bouton avant et qui le fasse reculer l'on touche le bouton arrière.
+Écrivons un programme qui fasse avancer Thymio lorsque l'on touche le bouton avant et qui le fasse reculer lorsque l'on touche le bouton arrière.
 
-{\raggedleft \hfill Programme \bu{moving.aesl}}
+{\raggedleft \hfill Programme: \bu{moving.aesl}}
 
-Nous allons avoir besoin de deux paires événement-action. Une pour faire avancer Thymio, l'autre pour le faire reculer, comme sur la \cref{fig.nostop}. Amenez les blocs correspondants dans la zone de programmation, choisissez le bouton que vous souhaitez utiliser et ajustez les \textit{sliders} des moteurs pour faire avancer Thymio dans un cas et pour le faire reculer dans l'autre. Plus vous positionnez les \textit{sliders} vers les extrémités, plus les moteurs tourneront vite. Essayez d'abord avec une vitesse moyenne.
+Nous allons avoir besoin de deux paires événement-actions:
 
-\begin{figure}
 \begin{center}
-\gr{no-stop-motors}{.4}
-\caption{Thymio avance ou recule}\label{fig.nostop}
+\gr{no-stop-motors}{.3}
 \end{center}
-\end{figure}
+Amenez les blocs événement et action dans la zone de programmation et ajustez les \textit{sliders} des moteurs identiquement à droite et à gauche, à la moitié vers le haut pour avancer et à la moitié vers le bas pour reculer.
 
-Lancez maintenant le programme et touchez les boutons avant et arrière du robot pour voir si Thymio avance et recule!
+Lancez maintenant le programme et touchez les boutons avant et arrière du robot pour faire avancer et reculer Thymio!
 
 \sect{Arrête-toi!}
 
 \textbf{À l'aide !} Thymio ne veut plus s'arrêter !
 
-Cliquez sur l'icône \blksm{stop} pour arrêter Thymio.
-Nous allons corriger ce problème en ajoutant une paire événement-action dans le programme: \blkc{stop-motors}
-Avec ces deux blocs, Thymio s'arrêtera lorsqu'on touche son bouton central.
+Cliquez sur le bouton \blksm{stop} \bu{(Arrêter)} pour arrêter Thymio.
+
+\newpage
+
+Nous allons corriger ce problème en ajoutant une paire événement-actions qui va arrêter les moteurs quand le bouton central est touché : \blkc{stop-motors}
 Lorsque vous ajoutez un bloc moteur dans le programme, il est réglé avec les \textit{sliders} en position médiane, de sorte que les moteurs s'arrêtent.
 
 \sect{Ne tombe pas de la table}
 
-Si Thymio se trouve sur le sol, au pire, il rentrera dans un mur ou se débranchera tout seul de votre ordinateur, mais s'il est sur une table, il risque de tomber !
+Si Thymio se trouve sur le sol, au pire, il rentrera dans un mur, mais s'il est sur une table, il risque de tomber !
 Nous allons créer un petit programme qui lui permettra de s'arrêter s'il arrive au bord de la table.
 
-\warningbox{Si Thymio roule sur une table, tenez-vous toujours prêt à le rattraper s'il arrive près du bord de la table!}
+\warningbox{Si Thymio roule sur une table, tenez-vous toujours prêt(e) à le rattraper s'il arrive près du bord de la table!}
 
-Tournez Thymio sur son dos. Vous verrez deux petits rectangles noirs qui contiennent des éléments optiques, comme nous le voyons sur le haut de la \cref{fig.bottom}.
-Ce sont les \emph{détecteurs de sols} !
-Ils envoyent une impulsion de lumière infrarouge et mesurent la quantité de lumière qui leur est réfléchie.
+Tournez Thymio sur son dos.
+Vous verrez deux petits rectangles noirs qui contiennent des éléments optiques: on peut les voir sur le haut de la \cref{fig.bottom}.
+Ce sont les \emph{capteurs du sol}.
+Ils envoient une impulsion de lumière infrarouge et mesurent la quantité de lumière qui leur est réfléchie.
 Si Thymio est posé sur une table de couleur claire, beaucoup de lumière sera réfléchie, alors que s'il dépasse le bord de la table, peu de lumière sera réfléchie.
 Nous allons donc utiliser ces capteurs pour dire à Thymio de s'arrêter lorsqu'il arrive au bord de la table.
 
 \trickbox{
-Utilisez une table est de couleur claire et évitez les tables en verre transparent, elles ne réfléchiront probablement pas la lumière et Thymio croira qu'il n'est pas sur une table !}
+Utilisez une table de couleur claire ou fixez des feuilles de papier blanc sur la table. Évitez les tables en verre transparent, elles ne réfléchiront probablement pas la lumière et Thymio croira qu'il n'est pas sur une table !}
 
-Amenez le bloc détecteur de sols \blksm{event-ground} sur la zone de programmation pour commencer.
+Glisser-déposer le bloc capteurs du sol \blksm{event-prox-ground} sur la zone de programmation pour commencer.
 Les deux petits carrés gris représentent les détecteurs de sols.
-En cliquant sur ces carrés, ils passent de gris à rouge, à blanc puis à nouveau à gris, etc. Pour ce bloc, ces couleurs signifient:
+En cliquant sur ces carrés, ils passent de gris à rouge, à noir puis à nouveau à gris.
+Pour ce bloc, ces couleurs signifient:
 
 \begin{itemize}
+
 \item \textbf{Gris} : Le détecteur n'est pas utilisé.
-\item \textbf{Rouge} : L'action associée est déclenchée s'il y a beaucoup de lumière réfléchie.
-\item \textbf{Blanc} : L'action associée est déclenchée s'il y a peu de lumière réfléchie.
+
+\item \textbf{Blanc} : L'action associée est déclenchée s'il y a beaucoup de lumière réfléchie.\label{p.proximity-colors1}
+À côté du carré blanc, il y a un petit point rouge;
+ce point correspond à la petite lumière rouge visible à côté de chaque capteur et qui s'allume lorsque le capteur détecte quelque chose.
+\footnote{Le carré blanc a un bord rouge pour vous rappeler que l'événement sera déclenché lorsque les lumières à côtés des capteurs seront elles-mêmes allumées.}
+\item \textbf{Noir} : L'action associée est déclenchée s'il y a peu de lumière réfléchie.
 \end{itemize}
 
-\trickbox[Information]{La couleur d'un bloc est arbitraire, celles que nous avons choisie nous paraissaient indicatives, mais d'autres pourraient être choisies.}
-
-Pour faire que Thymio s'arrête au bord de la table, lorsque qu'il y a peu de lumière réfléchie, cliquez les carrés jusqu'à ce qu'ils soient blancs et créez la paire événement-action suivante : \blkc{dont-fall}
+Pour que Thymio s'arrête au bord de la table (lorsqu'il y a peu de lumière réfléchie) cliquez sur les deux carrés jusqu'à ce qu'ils soient noirs.
+Créez la paire événement-action suivante : \blkc{dont-fall}
 
 \begin{figure}
 \begin{center}
@@ -73,13 +79,17 @@ Pour faire que Thymio s'arrête au bord de la table, lorsque qu'il y a peu de lu
 Placez Thymio près d'un bord d'une table de façon à ce qu'il soit face au bord et touchez le bouton avant.
 Thymio devrait avancer jusqu'au bord et s'y arrêter. 
 
-\exercisebox{\thechapter.1}{Jouez avec le bloc action moteurs de Thymio.
+\bigskip
+
+\exercisebox{\thechapter.1}{Modifiez la vitesse du bloc action moteurs de Thymio.
 À sa vitesse maximale, Thymio est-il toujours capable de s'arrêter avant le bord de la table ?
 Si non, à partir de quelle vitesse le robot ne peut plus s'arrêter ?
 Pouvez-vous empêcher le robot de tomber s'il va en arrière ?
 }
 
-\trickbox{
-Lorsque j'ai lancé le programme, le robot \emph{est} tombé.
-La raison était que mon bureau a un bord arrondi ; d'ici à ce que le robot ait détecté un faible niveau de lumière, il n'était déjà plus stable et a basculé.
+\bigskip
+
+\warningbox{
+Lorsque j'ai lancé moi le programme, le robot \emph{est} tombé.
+La raison était que mon bureau avait un bord arrondi ; d'ici à ce que le robot ait détecté un faible niveau de lumière, il n'était déjà plus stable et a basculé.
 Si vous voulez arrêter Thymio un peu avant le bord de la table, vous pouvez placer une feuille noir, ou du ruban adhésif noir, là où vous souhaitez qu'il s'arrête!}

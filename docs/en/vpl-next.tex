@@ -386,10 +386,11 @@ to $500$.
 
 The event is called \p{prox}. Unlike the button events, which
 occur when something ``happens,'' this event occurs \emph{10 times
+>>>>>>> d0c474117e88c10d57f1a02945d63994237a9e8e
 every second}. Before the event occurs, the values of the
 \p{prox.horizontal} variables are set to values that depend on what the
 sensors are detecting. See the\label{pg.hz} documentation of the
-Thymio rogramming interface for details.\footnote{The unit
+Thymio programming interface for details.\footnote{The unit
 for \emph{frequency}, the number of times something happens per second, is called
 the \emph{hertz}, abbreviated \emph{Hz}. The interface document specifies
 that the {\footnotesize\p{prox}} event occurs with frequency \emph{10 Hz}.}
@@ -589,7 +590,7 @@ the event won't accidently occur at the beginning of the program:
 \cref{ch.states,ch.counting} showed how to use \emph{states}. The
 Thymio robot can be in one of 16 states and you can specify that an
 event causes an action only if the robot is in certain states. In the
-program \p{count-to-two.aesl} from Chapter~9, the state is set to 0 when
+program \p{count-to-two.aesl} from \cref{ch.counting}, the state is set to 0 when
 the center button is touched and then it counts whether the number of
 claps is even or odd by alternating between state 0 and state 1. The VPL
 program and the AESL event handler for touching the center button
@@ -724,8 +725,8 @@ value between 0 (off) and 32 (full intensity). The front, back,
 left and right LEDs are set to 0 (off), whereas the diagonal LEDs are
 set to on if the corresponding state component is 1 and off if the state
 component is 0. This is achieved by the \emph{arithmetic expressions}
-\p{state[...]*32} which multiplies the value of a component of the array
-by 32. If the value is 0, the result is 0, while if the value is 1, the
+\p{state[...]*32} which multiply the value of the components of the array
+by 32. If one of the values is 0, the result is 0, while if it is 1, the
 result is 32.
 
 \newpage

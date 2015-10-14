@@ -1,34 +1,37 @@
-\part{Parsons Puzzles}
+\part{Les casse-têtes de Parson}
 
-\chap{Parsons Puzzles for VPL}\label{ch.parsons}
+\chap{Les casse-têtes de Parson}\label{ch.parsons}
 
 \newcommand*{\eblock}{\framebox[40pt]{\rule[-11pt]{0pt}{32pt}}\ }
 
-\sect{What are Parsons puzzles?}
+\sect{Que sont les casse-têtes de Parson?}
 
-\emph{Parsons puzzles} are a form of exercise that can help students
-learn how to program.\footnote{Parsons, D. and Haden, P. Parson's
-programming puzzles: A fun and effective learning tool for first
-programming courses. \textit{Proceedings of the 8th Australian
-Conference on Computing Education}, Darlinghurst, Australia, 2006,
-157–163.} A Parsons puzzle consists of a specification of a program
-together with a set of statements in a programming language. Your task
-is to place the statements in the correct order so that they the form a
-program that implements what is required. A Parsons puzzle may also
-include \emph{distractors}, which are incorrect statements or extra
-statements that are not needed in the solution.
-The advantage of Parsons puzzles is that all the statements needed for the
-solution are visible to the student and have the correct syntax.
+Les \emph{casse-têtes de Parson} sont un type d'exercices
+qui peuvent aider les étudiants à apprendre à programmer.
+\footnote{Parsons, D. and Haden, P. Parson's programming puzzles: A fun and effective learning tool for first programming courses. \textit{Proceedings of the 8th Australian Conference
+on Computing Education}, Darlinghurst, Australia, 2006, 157-163.}
+Un casse-tête de Parson consiste en la donnée d'un objectif
+pour un programme et d'une série d'instructions dans un langage de programmation.
+L'exercice consiste alors à placer les instructions
+dans le bon ordre pour créer un programme
+qui remplit l'objectif donné.
+Un casse-tête de Parson peut aussi contenir des \emph{pièges},
+comme des instructions incorrectes ou inutiles.
+L'avantage de ces casse-têtes est que toutes les instructions
+dont on a besoin sont à disposition des étudiants et ont une
+syntaxe correcte.
 
-In VPL, there is almost no meaning to the order of the set of
-event-actions pairs in a program. Therefore, the puzzles will be
-programs where one or more pairs are missing the event block, the action
-block or both. To the right of each event-actions pair will appear two
-or more blocks; select the correct block and draw an arrow from it to
-the empty block.
+Dans VPL, l'ordre des paires événement-actions ne joue presque
+aucun rôle.
+C'est pourquoi les casse-têtes ici seront des programmes
+avec des paires incomplètes,
+où le bloc événement, action ou les deux manquent.
+À droite de chaque paire événement-actions,
+il y aura deux blocs ou plus; sélectionnez-en un 
+et tracez une flèche de ce bloc vers la case vide.
 
-\textbf{Example}
-When the forwards button is touched, the top green light is turned on.
+\textbf{Exemple}
+Lorsque le bouton avant est touché, la lumière verte est allumée.
 
 \bigskip\bigskip
 
@@ -45,12 +48,13 @@ When the forwards button is touched, the top green light is turned on.
 
 \vspace*{-8ex}
 
-\sect{The puzzles}
+\sect{Les casse-têtes}
 
 
 \begin{enumerate}
 
-\item When the right button is touched the bottom red light is turned on.
+\item Lorsque le bouton droit est touché,
+    la lumière rouge du bas est allumée.
 
 \bigskip
 
@@ -60,7 +64,7 @@ When the forwards button is touched, the top green light is turned on.
 
 \bigskip
 
-\item When the right button is touched the top red light is turned on.
+\item Lorsque le bouton droit est touché, la lumière rouge du haut est allumée.
 
 \bigskip
 
@@ -71,7 +75,8 @@ When the forwards button is touched, the top green light is turned on.
 
 \bigskip
 
-\item When the left button is touched the bottom green light is turned on.
+\item Lorsque le bouton gauche est touché,
+    la lumière verte du bas est allumée.
 
 \bigskip
 
@@ -82,8 +87,8 @@ When the forwards button is touched, the top green light is turned on.
 
 \bigskip
 
-\item When the left button \textbf{or} the right button is touched, the
-top green light is turned on.
+\item Lorsque le bouton gauche \textbf{ou} le bouton droit est touché, 
+    la lumière verte du haut est allumée.
 
 \bigskip
 
@@ -97,13 +102,14 @@ top green light is turned on.
 
 \bigskip
 
-\item When \textbf{both} the left button \textbf{and} the right button
-are touched, the top red light is turned on.
-Select one of the following two programs:
+\item Lorsque \textbf{à la fois} le bouton gauche \textbf{et}
+    le bouton droit sont touchés,
+    la lumière rouge du haut est allumée.
+    Choisissez l'un des deux programmes suivants:
 
 \begin{center}
 \begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
-\blk{left-right-button} $\rightarrow$ \blk{red} & \textbf{or}&
+\blk{left-right-button} $\rightarrow$ \blk{red} & \textbf{ou}&
 \blk{left-button} $\rightarrow$ \blk{red}\\
 &&\blk{right-button} $\rightarrow$ \blk{red}
 \end{tabular}
@@ -113,7 +119,8 @@ Select one of the following two programs:
 
 \bigskip
 
-\item If an object is detected \textbf{only} by the leftmost sensor, turn left.
+\item Si un objet est détecté par le capteur tout à gauche
+    \textbf{seulement}, tournez à gauche.
 
 \bigskip
 
@@ -124,7 +131,7 @@ Select one of the following two programs:
 
 \bigskip
 
-\item Stop the robot when the end of the table has been reached.
+\item Arrêtez le robot lorsqu'il atteint le bord de la table.
 
 \bigskip
 
@@ -135,7 +142,8 @@ Select one of the following two programs:
 
 \bigskip
 
-\item When the robot detects a wall, the top red light is turned on.
+\item Lorsque le robot détecte un mur, la lumière rouge
+    du haut est allumée.
 
 \bigskip
 
@@ -145,7 +153,7 @@ Select one of the following two programs:
 
 \bigskip
 
-\item When the robot hits the wall, the motors are turned off.
+\item Lorsque le robot atteint un mur, les moteurs s'arrêtent.
 \bigskip
 
 \begin{tabular}{l@{\hspace{5em}}llll}
@@ -154,7 +162,8 @@ Select one of the following two programs:
 
 \bigskip
 
-\item The robot turns to the left if there is an object in front of the center sensor.
+\item Le robot tourne à gauche s'il y a un objet devant le
+    capteur central.
 
 \bigskip
 
@@ -164,7 +173,7 @@ Select one of the following two programs:
 
 \bigskip
 
-\item The robot turns to the right if there is \textbf{no} object in front of the center sensor.
+\item Le robot tourne à droite s'il n'y a \textbf{pas} d'objet devant le capteur central.
 
 \bigskip
 
@@ -175,8 +184,8 @@ Select one of the following two programs:
 
 \bigskip
 
-\item The motors are turned off when the left button is touched
-\textbf{or} if the robot is tapped.
+\item Les moteurs sont arrêtés dès que le bouton gauche est touché 
+\textbf{ou} si on donne une tape au robot.
 
 \bigskip
 
@@ -190,8 +199,8 @@ Select one of the following two programs:
 
 \bigskip
 
-\item When the forwards button is touched, the robot moves forward
-for three seconds and then moves backwards.
+\item Lorsque le bouton avant est touché,
+    le robot avance pendant trois secondes puis recule.
 
 \bigskip
 
@@ -205,8 +214,8 @@ for three seconds and then moves backwards.
 
 \bigskip
 
-\item The robot moves towards an object that is detected by its left,
-right or center sensor.
+\item Le robot s'approche d'un objet lorsqu'il le détecte
+    par son capteur gauche, droite ou central.
 
 \bigskip
 
@@ -222,9 +231,9 @@ right or center sensor.
 
 \bigskip
 
-\item The robot is following a line on the floor. It turns left if it no
-longer detects the line in its right sensor and it turns right if it no
-longer detects the line in its left sensor,
+\item Le robot suit une ligne sur le sol.
+    Il tourne à gauche s'il ne détecte plus la ligne sous son capteur droit et
+    tourne à droite s'il ne détecte plus la ligne sous son capteur gauche.
 
 \bigskip
 
@@ -235,8 +244,8 @@ longer detects the line in its left sensor,
 \\
 \end{tabular}
 
-\item The robot counts 0,1,2,3,0,1,2,3, \ldots, whenever it
-detects a clap event.
+\item Le robot compte dans l'ordre 0,1,2,3,0,1,2,3, \ldots
+    chaque fois qu'il détecte un événement frappe les mains.
 
 \bigskip
 
@@ -258,8 +267,9 @@ detects a clap event.
 
 \newpage
 
-\item When the center button is touched, the right front and left front circle
-lights turn on and off alternately at one-second intervals.
+\item Lorsque le bouton central est touché,
+    les arcs de cercles avants droit et gauche
+    s'allument et s'éteignent alternativement chaque seconde.
 
 \bigskip
 
@@ -278,9 +288,9 @@ lights turn on and off alternately at one-second intervals.
 
 \bigskip
 
-\item The bottom light of the robot turns green when it detects an object 
-far away from it and the top light of the robot turns red when it
-detects an object close to it.
+\item La lumière du bas du robot devient verte lorsqu'il
+    détecte un objet loin de lui et devient rouge
+    lorsqu'il détecte un objet proche de lui.
 
 \bigskip
 
@@ -298,9 +308,10 @@ detects an object close to it.
 \bigskip
 
 
-\item Tilt the robot on its left side; the top light turns blue and the bottom
-light is turned off. Tilt the robot on its back; the top light is turned
-off and the bottom light turns yellow.
+\item Penchez le robot vers la gauche; la lumière du haut
+    devient bleue et la lumière du bas s'éteint.
+    Penchez le robot sur son dos; la lumière du haut s'éteint
+    et la lumière du bas devient jaune.
 
 \bigskip
 

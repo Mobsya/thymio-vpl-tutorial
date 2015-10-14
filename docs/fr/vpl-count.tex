@@ -1,36 +1,48 @@
-% !TeX root = vpl.tex
-
-\chap{Thymio apprend à compter (avancé)}\label{ch.counting}
+\chap{Thymio apprend à compter (Mode avancé)}
+\label{ch.counting}
 
 Dans ce chapitre, nous allons montrer comment les états de Thymio peuvent être utilisés pour compter et même pour faire un peu d'arithmétique. 
 
-L'implémentation détaillée des projets ne sera pas donné ici. Nous pensons que vous avez désormais assez d'expérience pour les développer par vous-mêmes. Les codes source des différents programmes de ce chapitre se trouvent dans l'archive, essayez de ne pas les regarder tout de suite mais plutôt de faire un maximum de chemin de votre côté.
+L'implémentation détaillée des projets ne sera pas donné ici. Nous pensons que vous avez désormais assez d'expérience pour les développer vous-mêmes. Les codes source des différents programmes de ce chapitre se trouvent dans l'archive, essayez de ne pas les regarder tout de suite mais plutôt de faire un maximum de chemin de votre côté.
 
-Les projets suivants utilisent l'événement \blksm{event-clap} pour changer l'état de Thymio et il est représenté par le cercle de LEDs.
+Les projets suivants utilisent l'événement frapper des mains \blksm{event-clap} pour changer l'état de Thymio qui est représenté par le cercle de lumières.
+N'hésitez pas à changer n'importe lequel de ces éléments.
 
-\importantbox{L'état du robot est affiché grâce au cercle de LEDs en dessus du robot.
+\importantbox{Par défaut, l'état du robot est affiché grâce au cercle de lumière en dessus du robot.
 La \cref{fig.state-leds} montre Thymio dans l'état \bu{(allumé, allumé, allumé, allumé)}.}
-
-Sentez-vous libre de changer n'importe lequel de ces comportements.
 
 \sect{Pair et impair}
 
 \begin{quote}
-\textbf{Programme}\\Choisissez l'un des quartiers du cercle de LEDs. Il sera \bu{éteint} (blanc) si vous tapez dans vos mains un nombre pair de fois et \bu{allumé} (orange) si vous tapez dans vos mains un nombre impair de fois. Presser le bouton central de Thymio le fera retourner au mode pair (puisque zéro est un nombre pair).
+\textbf{Programme}\\Choisissez l'un des quartiers de l'état.
+Il sera \bu{éteint} (blanc) si vous tapez dans vos mains un nombre pair de fois et \bu{allumé} (orange) si vous tapez dans vos mains un nombre impair de fois.
+Presser le bouton central de Thymio ramènera le compte à un nombre pair (puisque zéro est un nombre pair).
 \end{quote}
 
-{\raggedleft \hfill Programme \bu{count-to-two.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-two.aesl}}
 
-La méthode de comptage illustrée ici montre le concept de \emph{modulo 2}. Nous comptons de 0 à 1 puis de nouveau à 0. Le terme \emph{modulo} est proche de \emph{reste}: si vous tapez dans vos mains 7 fois, et que nous divisons 7 par 2, nous obtenons 3 avec un reste de 1. En \emph{modulo 2}, nous ne gardons que le reste de 1.
+Les termes pair et impair viennent de l'arithmétique \emph{modulo 2}.
+Dans ce domaine, on compte de 0 à 1 puis de nouveau à 0.
+Le terme \emph{modulo} est proche de \emph{reste}:
+si vous tapez dans vos mains 7 fois,
+et que nous divisons 7 par 2,
+nous obtenons 3 avec un reste de 1.
+En \emph{modulo 2}, nous ne gardons que le reste de 1.
 
-Dans cette arithmétique, 0 et 1 sont souvent appelés \emph{pair et impair}. Nous appelons aussi ce concept \emph{l'arithmétique cyclique}. Au lieu de compter de 0 à 1, puis de 1 à 2, nous \emph{retournons} à 0: 0, 1, 0, 1 \ldots
+Nous appelons aussi ce concept \emph{l'arithmétique cyclique}. Au lieu de compter de 0 à 1, puis de 1 à 2, nous \emph{retournons} à 0: 0, 1, 0, 1 \ldots
 
-Ce concept est en fait très familier puisqu'il est utilisé dans les horloges. Les secondes et les minutes sont comptées en \emph{modulo 60} et les heures en \emph{modulo 12 ou 24}. Donc, la seconde après 59 n'est pas 60 mais 0. Dans la même logique, l'heure après 23 n'est pas 24 mais 0. S'il est 23:\ 00 et que nous nous mettons d'accord pour nous rencontrer 3 heures après, l'heure du rendez-vous est 26 modulo 24, donc 2 heures du matin.
+Ce concept est en fait familier puisqu'il est utilisé
+lorsque l'on mesure le temps:
+les secondes et les minutes sont comptées en \emph{modulo 60}
+et les heures en \emph{modulo 12 ou 24}.
+La seconde après 59 n'est pas 60 mais 0.
+Dans la même logique, l'heure après 23 n'est pas 24 mais 0.
+S'il est 23h00 et que nous nous mettons d'accord pour nous rencontrer 3 heures après, l'heure du rendez-vous est (23+3) modulo 24 = 26 modulo 24 = 2 heures du matin.
 
 \sect{Compter en unaire}
 
 \begin{quote}
-Modifiez le programme pour compter en modulo 4. Il y a quatre états possibles: 0, 1, 2, 3. Choisissez trois LEDs du cercle, elles représenteront les états 1, 2 et 3; l'état 0 sera représenté en éteignant toutes les LEDs.
+Modifiez le programme pour compter en modulo 4. Il y a quatre états possibles: 0, 1, 2, 3. Choisissez trois quartiers, ils représenteront les états 1, 2 et 3; l'état 0 sera représenté en mettant tous les quartiers sur éteint.
 \end{quote}
 
 Cette méthode de représentation de nombre est appelée \emph{unaire} car différents éléments d'un état représentent des nombres différents. Nous utilisons souvent cette représentation pour compter des points par exemple:
@@ -41,15 +53,21 @@ Cette méthode de représentation de nombre est appelée \emph{unaire} car diff�
 \end{picture}
 représente 6.
 
-{\raggedleft \hfill Programme \bu{count-to-four.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-four.aesl}}
 
 \exercisebox{\thechapter.1}{Jusqu'à combien pouvons-nous compter sur le Thymio en utilisant la représentation unaire?}
 
 \sect{Compter en binaire}
 
-Nous sommes familiarisés avec \emph{les représentations en base}, en particulier avec la base 10 (décimal). Les symboles 256 en base 10 ne représentent pas trois objets différents mais bien un seul. Le 6 représente le nombre de 1, le 5 représente le nombre de 10, le 2 représente le nombre de 10 $\times$ 10 (donc de 100). Si nous additionnons ces nombres nous obtenons deux cents cinquante-six. Grâce à la base 10, nous pouvons représenter facilement de grands nombres. De plus, l'arithmétique que nous avons apprise à l'école nous aide à manipuler de grands chiffres.
+Nous sommes familiarisés avec \emph{les représentations en base}, en particulier avec la base 10 (décimal).
+Les symboles 256 en base 10 ne représentent pas trois objets indépendants mais bien un seul.
+Le 6 représente le nombre de 1, le 5 représente le nombre de 10, le 2 représente le nombre de 10$\times$10=100.
+Si nous additionnons ces nombres nous obtenons deux cent cinquante-six.
+Grâce à la base 10, nous pouvons représenter facilement de grands nombres.
+De plus, l'arithmétique que nous avons apprise à l'école nous aide à manipuler de grands chiffres.
 
-Nous utilisons la base 10 parce que nous avons 10 doigts, ce qui facilite l'apprentissage de cette base. Les ordinateurs n'ont que deux «\,doigts\,» (\bu{éteint} et \bu{allumé}), c'est donc cette base qui est utilisée par les ordinateurs. Au début, la base 2 peut paraître étrange mais il est assez facile de s'y faire. Nous utilisons les même symboles qu'en base 10, le 0 et le 1. Au lieu de passer de 1 à 2, nous retournons à 0. 
+Nous utilisons la base 10 parce que nous avons 10 doigts, ce qui rend l'arithmétique en base 10 facil à  apprendre.
+Les ordinateurs n'ont que deux «\,doigts\,» (\bu{éteint} et \bu{allumé}), c'est donc cette base qui est utilisée par les ordinateurs. Au début, la base 2 peut paraître étrange mais il est assez facile de s'y faire. Nous utilisons les même symboles qu'en base 10, le 0 et le 1. Au lieu de passer de 1 à 2, nous retournons à 0. 
 
 Voici comment un ordinateur compte jusqu'à dix:
 
@@ -57,27 +75,40 @@ Voici comment un ordinateur compte jusqu'à dix:
 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010
 \end{displaymath}
 
-Prenons le nombre en base 2 suivant: 1101. Nous calculons sa valeur de droite à gauche, comme avec la base 10. Le chiffre le plus à droite représente le nombre de 1, celui d'à côté le nombre de 2, le suivant le nombre de 2 $\times$ 2 (donc de 4) et le dernier (le plus à gauche) le nombre de 2 $\times$ 2 $\times$ 2 (donc de 8). Comme nous avons le nombre en base 2: 1101, nous avons 8 + 4 + 0 + 1, ce qui fait treize, représenté en base 10 par 13.
-
+Prenons le nombre en base 2 suivant: 1101.
+Nous calculons sa valeur de droite à gauche, comme avec la base 10.
+Le chiffre le plus à droite représente le nombre de 1, celui d'à côté le nombre de 2, le suivant le nombre de 2 $\times$ 2 = 4 et le dernier (le plus à gauche) le nombre de 2 $\times$ 2 $\times$ 2 = 8.
+Comme nous avons le nombre en base 2: 1101, nous avons 8 + 4 + 0 + 1, ce qui fait treize.
 
 \begin{quote}
 \textbf{Programme}\\
 Modifiez le programme pour que Thymio compte en modulo 4 en utilisant la représentation binaire (base 2).
 \end{quote}
 
-{\raggedleft \hfill Programme \bu{count-to-four-binary.aesl}}
+{\raggedleft \hfill Programme: \bu{count-to-four-binary.aesl}}
 
-Nous n'avons besoin que de deux LEDs du cercle pour représenter les nombres 0 à 3 en base 2. Prenons le quartier en haut à droite pour représenter le nombre de 1 (\bu{éteint} (blanc) pour aucun et \bu{allumé} (orange) pour un) et le quartier d'en haut à gauche pour représenter le nombre de 2. Par exemple, \blksm{state-right} représente le chiffre 1 et \blksm{state-left} représente le chiffre 2. Si les deux quartiers sont blanc, l'état représente le chiffre 0 et s'ils sont les deux oranges, le chiffre 3.
+Nous n'avons besoin que de \emph{deux} arcs du cercle
+pour représenter les nombres 0, 1, 2, 3 en base 2.
+Prenons le quartier en haut à droite pour représenter
+le nombre de 1 --- \bu{éteint} (blanc) pour aucun et \bu{allumé} (orange) pour un --- et
+le quartier d'en haut à gauche pour représenter le nombre de 2.
+Par exemple, \blksm{state-right} représente le chiffre 1
+puisque le quartier supérieur gauche est blanc
+et le quartier supérieur droit est orange.
+Si les deux quartiers sont blanc, l'état représente le chiffre 0 et s'ils sont les deux oranges, le chiffre 3.
+Le nombre 2 est représenté par \blksm{state-left},
+où le quartier supérieur gauche est orange
+et le quartier supérieur droit est blanc. 
 
 Il y a quatre transitions $0\rightarrow 1, 1\rightarrow 2, 2
-\rightarrow 3, 3\rightarrow 0$, donc quatre paires événements-action sont nécessaires en addition à une paire événement-action pour remettre le compteur à zéro lorsque l'on appuie sur le bouton central.
+\rightarrow 3, 3\rightarrow 0$, donc quatre paires événements-actions sont nécessaires en addition à une paire événement-actions pour remettre le compteur à zéro lorsque l'on appuie sur le bouton central.
 
+\bigskip
 
-\medskip
+\informationbox{Ignorer les quartiers inutilisés}{
+Les deux quartiers du bas ne sont pas utilisés. Ils sont donc laissés en gris et sont ignorés par le programme.}
 
-\trickbox{Les deux quartiers du bas ne sont pas utilisés. Ils sont donc laissés en gris et sont ignorés par le programme.}
-
-\medskip
+\bigskip
 
 \exercisebox{\thechapter.2}{Développez le programme pour qu'il puisse compter en modulo 8. Le quartier en bas à gauche représentera le nombre de 4.}
 
@@ -85,7 +116,7 @@ Il y a quatre transitions $0\rightarrow 1, 1\rightarrow 2, 2
 
 \sect{Additionner et soustraire}
 
-Écrire un programme pour compter jusqu'à 8 est plutôt long puisqu'il faut créer 8 paires événement-action, une pour chaque transition de \emph{n} à \emph{n + 1} (modulo 8). Au lieu de procéder de cette façon, nous utilisons des méthodes pour additionner les nombres chiffre à chiffre. En base 10, nous faisons ainsi:
+Écrire un programme pour compter jusqu'à 8 est plutôt long puisqu'il faut créer 8 paires événement-actions, une pour chaque transition de \emph{n} à \emph{n + 1} (modulo 8). Au lieu de procéder de cette façon, nous utilisons des méthodes pour additionner les nombres chiffre à chiffre. En base 10, nous faisons ainsi:
 
 \begin{displaymath}
 \begin{array}{r}
@@ -114,23 +145,34 @@ En base 2, lorsque nous ajoutons 1 à 1, au lieu de 2, nous obtenons 10. Le 0 es
 Écrivez un programme qui commence par représenter 0 et qui ajoute 1 à chaque fois que vous tapez dans vos mains. L'addition doit être faite en modulo 16, donc ajouter 1 à 15 retournera à 0.
 \end{quote}
 
-Conseils:
+{\raggedleft \hfill Programme: \bu{addition.aesl}}
+
+\textbf{Conseils}
 
 \begin{itemize}
-\item Le quartier d'en bas à droite sera utilisé pour représenter les 8.
+\item En commençant en haut à gauche puis en allant dans le sens contraire des aiguilles d'une montre,
+les quartiers représenteront le nombre de 1, de 2, de 4
+et de 8.
+Ainsi, le quartier inférieur droit représentera le nombre de 8.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est éteint (blanc) et que Thymio entend un «\,clap\,», changez-le simplement à allumé (orange) quel que soit l'état des autres quartiers.
 \item Si le quartier d'en haut à droite (représentant le nombre de 1) est allumé (orange) et que Thymio entend un «\,clap\,», changez-le à éteint (blanc) ensuite, reportez le 1 en retenue.
-Il y aura trois paires événement-action, en fonction de la position du \emph{prochain} quartier montrant 0 (blanc).
-\item Si tous les quartiers sont allumés (orange), la valeur 15 est représentée. Ajouter un à cet état dépasse le modulo et renvoie la valeur à 0. Il vous faut simplement éteindre toutes les LEDs.
+Il y aura trois paires événement-actions, en fonction de la position du \emph{prochain} quartier montrant 0 (blanc).
+\item Si tous les quartiers sont allumés (orange), la valeur 15 est représentée. Ajouter un à cet état dépasse le modulo et renvoie la valeur à 0. Il vous faut simplement remettre tous les quartiers sur éteint.
 \end{itemize}
 
-
-{\raggedleft \hfill Programme \bu{addition.aesl}}
+\bigskip
 
 \exercisebox{\thechapter.4}{Modifiez le programme pour qu'il commence à 15 et soustraie 1 à chaque «\,clap\,». Lorsqu'il arrivera à 0 et qu'il entendra encore un «\,clap\,», il devra retourner à 15.}
 
+\bigskip
 
 \exercisebox{\thechapter.5}{Coller des petites bandes de ruban adhésif noir (ou dessinez simplement) à intervalles réguliers sur une surface blanche. Écrivez ensuite un programme qui fait que Thymio avance et s'arrête lorsqu'il passe sur la quatrième bande.}
 
-Cet exercice n'est pas facile. Les bandes de ruban adhésif doivent être assez longue pour que Thymio les détecte mais pas trop pour ne pas qu'il lance plusieurs événements par bande. Il vous faudra faire des essais avec leurs tailles et avec la vitesse de Thymio.
+\bigskip
+
+Cet exercice n'est pas facile.
+Les bandes de ruban adhésif doivent être assez larges
+pour que Thymio les détecte mais pas trop
+pour ne pas qu'il lance plusieurs événements par bande.
+Il vous faudra faire des essais avec leurs tailles et avec la vitesse de Thymio.
 

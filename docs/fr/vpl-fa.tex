@@ -1,0 +1,180 @@
+\chap{Automates finis}\label{ch.fa}
+
+Un \emph{automate fini} (\emph{finite automaton} (FA) en anglais)  est une machine abstraite capable d'exécuter des calculs.
+Ces automates sont extrêmement importants dans de nombreux domaines de l'informatique.
+\footnote{Une définition formelle des automates finis peut se trouver par exemple dans
+J.E. Hopcroft, R. Motwani, J.D. Ullman. \textit{Introduction to Automata Theory, Languages and Computation}, Pearson, 2013.}
+Considérons une chaîne finie de caractères $a$ ou $b$:
+\begin{quote} aabbbababbaba \end{quote}
+
+L'objectif de ce problème est de lire une chaîne de caractères comme celle-ci,
+puis de déterminer si le nombre de $a$ est pair ou impair.
+Un FA pour résoudre ce problème contient deux états:
+l'état 0 si le nombre de $a$ lus jusqu'ici est pair,
+l'état 1 dans le cas contraire.
+Ce FA est représenté dans le diagramme suivant.
+Il contient deux états, 0 et 1, et des transitions d'un état à l'autre,
+notées $a$ et $b$.
+
+\begin{center}
+\begin{picture}(175,45)
+%\put(0,0){\framebox(175,45){}}
+\put(35,25){\circle{30}}
+\put(140,25){\circle{30}}
+\put(3,25){\vector(1,0){15}}
+\put(20,10){\makebox(30,30){0}}
+\put(125,10){\makebox(30,30){1}}
+\put(50,20){\vector(1,0){75}}
+\put(50,10){\makebox(75,10){a}}
+\put(125,30){\vector(-1,0){75}}
+\put(50,30){\makebox(75,10){a}}
+\put(20,10){
+   \put(0,0){\oval(20,18)[b]}
+    \put(0,0){\oval(20,18)[tl]}
+    \put(-1,9){\vector(1,0){1}}
+    \put(-20,-5){\makebox(10,10){b}}
+}
+\put(145,10){
+    \put(10,0){\oval(20,18)[b]}
+    \put(10,0){\oval(20,18)[tr]}
+    \put(11,9){\vector(-1,0){1}}
+    \put(20,-5){\makebox(10,10){b}}
+}
+\end{picture}
+\end{center}
+
+Lorsque notre FA dans un certain état lit un caractère de la chaîne,
+il change d'état suivant les transistions du schéma.
+Si le nombre de $a$ lus jusqu'ici est pair (état 0) et que le FA lit un $a$,
+alors l'état devient 1.
+Et inversément, si le nombre de $a$ lus jusqu'ici est impair (état 1) et que le FA lit un $a$,
+le FA passe à l'état 0.
+Si un $b$ est lu par contre, l'état ne change pas puisque le nombre de $a$ n'a pas changé.
+
+Le FA démarre dans l'état 0 puisqu'au début zéro $a$ ont été lus, ce qui est un nombre pair.
+L'état initial est indiqué sur le schéma par une petite flèche.
+
+\textbf{Instructions}\footnote{Ces instructions ainsi que la solution ont été inspirés par
+le \href{https://www.thymio.org/fr:barcodelightpainting}{projet de \textit{Light Painting}}.}
+
+Imprimez le fichier \p{fa-path-alternate.pdf}.
+Il contient l'image suivante:\footnote{Les fichiers tracé se trouvent dans le dossier \bu{image14} de cette archive.}
+
+\gr{fa-path-parity}{.8}
+
+La ligne dégradée permet au robot d'avancer droit et de ne pas sortir du tracé à gauche ou à droite.
+La chaîne de caractères est représentée ici par des carrés noirs pour les $a$ et blancs pour les $b$.
+Cette image représente la chaîne de caractères $babababab$.
+
+Placez le robot à gauche de l'image, avant le premier carré.
+Il doit être tourné vers la droite et le capteur du sol droit doit être au milieu de la ligne dégradée.
+Voici le comportement du robot:
+
+\begin{enumerate}
+
+\item Appuyer sur le bouton avant démarre le robot. La lumière du haut doit être éteinte,
+l'état est initialisé (voir ci-dessous) et un minuteur est démarré.
+
+\item Appuyer sur le bouton central arrête le robot.
+
+\item Le robot tourne vers la droite.
+Il utilise le capteur du sol \emph{droit} pour détecter si il commence à dévier vers la droite ou
+vers la gauche.
+Si le robot tourne vers la droite, le capteur détectera un niveau de lumière plus bas (plus noir);
+le robot tourne alors vers la gauche.
+Si le robot tourne vers la gauche, le capteur détectera plus de lumière (plus blanc);
+le robot tourne alors vers la droite.
+
+\item Lorsque le minuteur est écoulé, la valeur du capteur du sol \emph{gauche} est relevée.
+Si le robot est alors sur un carré blanc (il lit un $b$), la lumière du haut s'allume en rouge
+et le minuteur est relancé.
+Si le robot est alors sur un carré noir (il lit un $a$), la lumière du haut s'allume en vert,
+le minuteur est relancé et l'état change de pair à impair, ou d'impair à pair.
+
+\end{enumerate}
+
+\textbf{Conseils}
+
+Le Thymio utilisera trois des quatre quartiers dans les événements et actions d'état:
+
+\begin{itemize}
+\item Le quartier supérieur gauche indique si le programme a démarré ou non.
+\item Le quartier supérieur droit indique si oui ou non il faut relever la couleur (noir ou blanc) 
+du carré sur lequel se trouve le robot.
+\item Le quartier inférieur gauche retient si le nombre de $a$ lus est pair ou impair.
+\end{itemize}
+
+Voici un exemple d'une paire événement-actions.
+
+\blkc{parity-0-1}
+
+\begin{quote}
+si le capteur gauche détecte peu de lumière (un carré noir) \emph{et}\\
+\hspace*{1em} le programme a déjà démarré \emph{et}
+la couleur du carré doit être relevée \emph{et}\\
+\hspace*{1em} jusqu'ici le nombre de $a$ lus est pair, alors\\
+\hspace*{2em} allumer le haut en rouge\\
+\hspace*{2em} changer d'état: le nombre de $a$ lus est impair \emph{et}\\
+\hspace*{4em} ne plus relever la couleur du carré\\
+\hspace*{2em} relancer le minuteur
+\end{quote}
+
+{\raggedleft \hfill Programme: \bu{fa.aesl}}
+
+Vous devrez essayer différentes vitesses de moteur et longueurs du minuteur
+pour pouvoir détecter fiablement les carrés noirs et blancs.
+
+\textbf{Exercice}
+Imprimez le fichier \p{fa-path-blank.pdf} qui contient une image avec des carrés tous blancs.
+Utilisez un marqueur noir pour colorier certains carrés et essayer une nouvelle chaîne de caractères.
+Verifiez en particulier que votre programme fonctionne lorsque plusieurs carrés de suite sont noirs,
+représentant une chaîne de caractères avec plusieurs $a$ à la suite.
+
+\textbf{Exercice}
+Modifiez votre programme pour qu'il détermine le reste ($0$, $1$ ou $2$)
+du nombre de $a$ divisé par $3$.
+
+\bigskip
+
+\textbf{Créer ses propres tracés}
+
+\warningbox{Cette section montre comment modifier le tracé (la ligne dégradée et les carrés),
+mais pour cela il faut que vous maîtrisiez le langage de mise en page de documents \LaTeX{}.}
+
+Les fichiers \p{\footnotesize fa-path-*.tex} dans l'archive contiennent le code source \LaTeX{}.
+
+Les instructions suivantes créent une ligne dégradée de 2 cm de largeur et de 23 cm de longueur:
+\footnote{Ces instructions utilisent la bibliothèque graphique Ti\textit{k}Z.}
+\begin{footnotesize}
+\begin{verbatim}
+\shade[left color=black,right color=white] (0,0) rectangle +(2,23);
+\end{verbatim}
+\end{footnotesize}
+
+On peut dessiner les carrés noirs et blancs avec les instructions suivantes:
+\begin{footnotesize}
+\begin{verbatim}
+\foreach \a in {1, 3, 5, 7}
+  \filldraw[color=black] (\offset,\height*\a) rectangle +(\width,\height);
+
+\foreach \a in {0, 2, 4, 6, 8}
+  \draw (\offset,\height*\a) rectangle +(\width,\height);
+\end{verbatim}
+\end{footnotesize}
+
+Vous pouvez changer la liste de nombres dans les instructions \p{foreach}
+pour indiquer quels carrés doivent être blancs et lesquels doivent être noirs.
+
+Les instructions \p{filldraw} et \p{draw} utilisent pour les dimensions des paramètres
+qui peuvent être modifiés facilement:
+\begin{footnotesize}
+\begin{verbatim}
+\setlength{\height}{2.4cm}  % Hauteur d'un carré
+\setlength{\width}{3cm}     % Largeur d'un carré
+\setlength{\offset}{2.3cm}  % Séparation entre carrés et ligne dégradée
+\end{verbatim}
+\end{footnotesize}
+
+Compilez le fichier avec \p{pdflatex} et imprimez le en utilisant \p{Adobe Reader} ou \p{SumatraPDF}.
+L'image est créée en format portrait mais vous pouvez fixer la feuille sur la table dans les deux sens.
+On peut accrocher plusieurs pages ensemble sur une table pour représenter des chaînes de caractères plus longues.

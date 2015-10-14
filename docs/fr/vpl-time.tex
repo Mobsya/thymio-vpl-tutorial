@@ -1,22 +1,20 @@
-\chap{Aimer pour un temps}
+\chap{Aimer pour un temps (Mode avancé)}\label{ch.time}
 
 Dans le \cref{ch.pet}, nous avons programmé un robot de compagnie qui nous aimait ou nous fuyait.
 Considérons un comportement plus avancé : un compagnon timide qui n'arrive pas à se décider s'il nous aime ou pas.
-Initiallement, le robot s'approchera de notre main tendue, puis il s'en éloignera.
+Initiallement, le robot tournera en direction de notre main tendue, puis il s'en éloignera en tournant dans l'autre sens.
 Après un moment, il changera d'avis et reviendra en direction de notre main.
 
-{\raggedleft \hfill Programme \bu{shy.aesl}}
+{\raggedleft \hfill Programme: \bu{shy.aesl}}
 
-Le comportement du robot est le suivant.
-Lorsque le bouton droite est touché, le robot tourne à droite.
-Quand il détecte votre main, il tourne à gauche mais après un moment il regrette sa décision et se retourne.
-Nous savons comment construire les paires événement-action pour le premier mouvement :
-\blkc{start-turn} et pour se détourner quand votre main est détectée : \blkc{turn-away}
+Lorsque le bouton droite est touché, le robot tourne à droite:
+\blkc{start-turn}
+Quand il détecte votre main, il tourne à gauche: \blkc{turn-away} 
 
-Le comportement de se retourner «\,après un moment\,» peut être décomposé en deux paires événement-action :
+Le comportement de se retourner «\,après un moment\,» peut être décomposé en deux paires événement-actions :
 \begin{itemize}
 
-\item \emph{Quand} le robot commence à se détourner $\rightarrow$ \emph{démarrer un minuteur} pour deux secondes.
+\item \emph{Quand} le robot commence à se détourner $\rightarrow$ \emph{démarrer un minuteur} de deux secondes.
 
 \item \emph{Quand} le temps du minuteur est écoulé $\rightarrow$ \emph{tourner} à droite.
 
@@ -24,26 +22,44 @@ Le comportement de se retourner «\,après un moment\,» peut être décomposé 
 
 Nous avons besoin d'une nouvelle \emph{action} pour la première partie du comportement et d'un nouvel \emph{événement} pour la seconde partie.
 
-L'action démarre un \emph{minuteur}, qui ressemble à un réveil \blksm{action-timer}.
-Ce minuteur est, en fait, un compte à rebours qui peut aller jusqu'à 4 secondes.
-Pour régler la durée du compte à rebours, vous pouvez cliquer n'importe où dans le cadran de l'alarme.
-Une petite animation vous montre combien de temps le compte à rebours va durer.
+L'action qui démarre un \emph{minuteur}
+est semblable à un réveil \blksm{action-timer}.
+Quand on demande au réveil de sonner à un moment précis,
+on lui donne une heure absolue, par exemple 7 heures.
+Mais quand j'utilise mon smartphone comme réveil,
+il me donne aussi l'heure relative: <<\,alarme dans 11 heures et 23 minutes.\,>>
+Le minuteur fonctionne ainsi.
+Vous indiquez au bloc action minuteur un certain nombre de secondes; quand le nombre de secondes données seront écoulées,
+le minuteur générera un événement minuteur.
 
-\newpage
+On peut régler le minuteur jusqu'à quatre secondes.
+Sur le bloc, chaque seconde est représentée par un quart de la montre.
+Cliquez où vous souhaitez sur la montre;
+une petite animation vous indiquera le temps que représente le compte à rebours;
+ensuite, la partie correspondante de la montre sera colorée en bleu foncé.
+%Ce minuteur est, en fait, un compte à rebours qui peut aller jusqu'à 4 secondes.
+%Pour régler la durée du compte à rebours, vous pouvez cliquer n'importe où dans le cadran de l'alarme.
+%Une petite animation vous montre combien de temps le compte à rebours va durer.
 
-La paire événement-action pour cette première partie du comportement est : \blkc{turn-clock}
+\informationbox{Le mode avancé}
+{Les minuteurs sont disponibles en mode avancé.
+Cliquez sur \blkmed{advanced} pour entrer en mode avancé.\\
+L'icône deviendra alors \blkmed{basic}. En cliquant dessus, retournerez en mode débutant.}
 
-Le compte à rebours est réglé sur deux secondes.
-Lorsque l'événement détectant votre main se produit, il y aura donc deux actions : tourner le robot à gauche et lancer le compte à rebours.
+La paire événement-actions pour cette première partie du comportement est : \blkc{turn-clock}
 
-La seconde partie du comportement nécessite un événement se produisant lorsque le compte à rebours arrive à zéro, c'est le bloc d'événement \emph{temps écoulé} \blksm{event-timer} qui montre un réveil sonnant.
+Lorsque l'événement détectant votre main se produit, il y aura donc deux actions : tourner le robot à gauche et lancer un compte à rebours de deux secondes.
 
-La paire événement-action pour faire tourner à nouveau le robot vers la droite est donc : 
+La seconde partie du comportement nécessite un événement se produisant lorsque le compte à rebours arrive à zéro, c'est le bloc événement \emph{temps écoulé} \blksm{event-timer} qui montre un réveil sonnant.
+
+La paire événement-actions pour faire tourner à nouveau le robot vers la droite lorsque le minuteur est écoulé est donc : 
 \blkc{turn-back}
+
+\bigskip
 
 \exercisebox{\thechapter.1}{
 Écrivez un programme qui fasse avancer le robot à vitesse maximale pour trois seconde lorsque que le bouton avant est touché ; puis qui fasse reculer le robot.
-Ajoutez une paire événement-action qui arrête le mouvement en touchant le bouton central.
+Ajoutez une paire événement-actions qui arrête le mouvement en touchant le bouton central.
 }
 
 \trickbox[Information]{En robotique, ce genre de compte à rebours s'appelle des \textit{timers}.

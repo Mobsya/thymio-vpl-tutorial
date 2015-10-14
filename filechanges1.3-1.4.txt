@@ -1,0 +1,18 @@
+Files that were removed from 1.3 to 1.4
+---------------------------------------
+* connect-fr.png (now in images/fr/connect.png)
+* gui-fr.png (now in images/fr/gui.png)
+* color-cubes-fr.pdf (now in images/fr/color-cubes.pdf)
+* event-action-pair-empty
+* scheme
+* action-colors-up-white
+* action-colors-down-white
+* colors2.png (now in colors2-1-3.png)
+* event-ground.pdf (now in event-prox-ground)
+* follow4
+* music
+* clap.png
+* touch
+* tap-turn-on-state-only
+* tap-state-on
+* tap-state-off

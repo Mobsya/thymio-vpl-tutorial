@@ -1,21 +1,11 @@
-\documentclass[12pt,a4paper,twoside,french]{report}
-\usepackage{../../vpl}
-\graphicspath{{../../images/}}
-
-% localized boxes
-\newcommand*{\trickbox}[2][Truc]{\infobox{#1}{#2}{blue!10}{\bclampe}}
-\newcommand*{\importantbox}[2][Information importante]{\infobox{#1}{#2}{yellow!10}{\bcinfo}}
-\newcommand*{\yourturnbox}[1]{\infobox{Votre tour}{#1}{orange!10}{\bccrayon}}
-\newcommand*{\exercisebox}[2]{\infobox{Exercice #1}{#2}{orange!10}{\bccrayon}}
-\newcommand*{\warningbox}[1]{\infobox{Attention !}{#1}{orange!10}{\bcattention}}
+\documentclass[11pt,a4paper,french]{report}
+\usepackage[fr]{../../vpl}
+\graphicspath{{../../images/} {../../images/fr/} {../../images/en/}}
 
 \begin{document}
-\pagenumbering{Roman} \setcounter{page}{0} 
 \include{vpl-front}
 \include{vpl-preface}
-\tableofcontents
-\thispagestyle{empty}
-\pagenumbering{arabic} \setcounter{page}{1}
+\include{vpl-diffs}
 \include{vpl-intro}
 \include{vpl-colors}
 \include{vpl-moving}
@@ -25,5 +15,21 @@
 \include{vpl-time}
 \include{vpl-states}
 \include{vpl-count}
+\include{vpl-angles}
+\include{vpl-parsons}
+\include{vpl-brait}
+\include{vpl-rabbit}
+\include{vpl-barcode}
+\include{vpl-sweep}
+\include{vpl-speed}
+\include{vpl-radar}
+\include{vpl-fa}
+\include{vpl-slow}
+\include{vpl-two}
 \include{vpl-next}
+\appendix
+\include{vpl-gui}
+\include{vpl-blocks}
+\include{vpl-tips}
+\include{vpl-tech}
 \end{document}

@@ -1,0 +1,69 @@
+\chap{Les accéléromètres (Mode avancé)}
+\label{ch.angles}
+
+Tout le monde est familier avec le concept d'\emph{accélération}, par exemple lorsqu'une voiture met les gaz ou freine.
+Un \emph{accéléromètre} est un outil qui permet de mesurer
+l'accélération.
+L'airbag dans les voitures utilise un accéléromètre pour
+détecter un ralentissement trop rapide à cause d'un accident,
+ce qui permet de déclancher l'airbag.
+
+Thymio a trois accéléromètres, un pour chacune des directions:
+avant/arrière, gauche/droite, haut/bas.
+
+Il est difficle d'obtenir des acélérations assez importantes
+pour être mesurées, sauf dans le cas de la \emph{gravité}, l'accélération qui nous attire vers le centre de la Terre.
+Dans ce projet, nous allons mesurer l'angle d'inclinaison
+du Thymio.
+
+Il y a deux événements qui permettent de détecter l'angle
+du robot par rapport à la Terre: \label{p.accel}
+
+\begin{itemize}
+
+\item \blksm{event-roll}: un événement est déclanché lorsque l'angle gauche/droite du robot est à l'intérieur de l'angle blanc
+du demi-cercle.
+
+\item \blksm{event-pitch}: un événement est déclanché 
+lorsque l'angle avant/arrière est à l'intérieur
+de l'angle blanc du demi-cercle.
+
+\end{itemize}
+
+Au début, l'angle blanc de ces blocs est placé verticalement
+au-dessus du Thymio, de sorte qu'un événement se produit
+lorsque le Thymio est à plat, sur le sol ou sur une table.
+En glissant cet angle avec la souris, on peut choisir 
+d'autres angles; par exemple, le bloc suivant
+déclanchera un événement lorsque le robot est penché vers la
+gauche, plus ou moins à moitié entre la verticale et
+l'horizontale:
+\blkc{roll-left}
+
+\begin{quote}
+\textbf{Programme}\\
+Tenez le robot face à vous et penchez le vers la gauche
+et vers la droite.
+La lumière du dessus du robot doit changer de couleur
+à chaque intervalle possible de l'angle blanc.
+\end{quote}
+
+{\raggedleft \hfill Programme: \bu{measure-angle.aesl}}
+
+Construisez un ensemble de paires événement-actions
+dans lesquels chaque événement est un événement accéléromètre
+et l'action associée change la couleur du haut du robot:
+\blkc{measure-angles}
+Créez une liste qui donne les équivalences entre angle
+et couleur pour que vous puissiez traduire chaque couleur
+en son angle correspondant.
+
+Les quartiers du bloc événement état sont gris pour que 
+l'événement déclanche l'action quelque soit l'état.
+
+\bigskip
+
+\exercisebox{\thechapter.1}{Est-il possible que deux
+événements utilisent le même angle blanc?\\
+Combien d'événements avec des angles différents pouvez-vous 
+construire?}

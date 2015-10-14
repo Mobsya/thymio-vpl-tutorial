@@ -6,9 +6,10 @@ save/
 *.toc
 *.out
 *.pdf
-!images/*.pdf
+!images/**/*.pdf
 *.synctex
 *.bat
 *.swp
 *~
+.vimrc
 .DS_Store

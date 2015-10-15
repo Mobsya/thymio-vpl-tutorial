@@ -1,6 +1,6 @@
-langs=en de fr it
+langs=en fr de it
 targets=$(patsubst %,thymio-vpl-tutorial-%.zip,$(langs)) $(patsubst %,thymio-vpl-folding-ref-card-%.pdf,$(langs))
-zipdeps=authors.txt $(wildcard programs/*.aesl) $(wildcard answers/*.aesl)
+zipdeps=authors.txt $(wildcard programs/*.aesl) $(wildcard programs/*/*.aesl) $(wildcard answers/*.aesl)
 texdeps=$(wildcard images/*.png) $(wildcard images/*.jpg) $(wildcard images/*.pdf) vpl.sty Makefile
 
 # TODO: fix $(wildcard docs/*/*.tex), find why $(wildcard docs/%/*.tex) does not work

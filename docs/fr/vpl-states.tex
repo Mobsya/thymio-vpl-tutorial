@@ -21,7 +21,7 @@ Le bouton se \emph{rappelle} s'il est dans l'état \bu{allumé} ou l'état \bu{�
 
 Écrivons un programme qui allume les lumières du robot si vous lui donnez une petite tape et qui les éteigne si vous lui donnez une seconde tape.
 
-{\raggedleft \hfill Programme \bu{tap-allumé-éteint.aesl}}
+{\raggedleft \hfill Programme \bu{tap-on-off.aesl}}
 
 Il est pratique de décrire ce comportement en utilisant un \textit{diagramme d'états} :
 
@@ -113,7 +113,7 @@ Nous montrons comment \emph{implémenter} le comportement décrit par le diagram
 Implémenter signifie construire un programme qui fera ce que le diagramme d'états ci-dessus décrit.
 La \cref{fig.turn-on-off} montre le programme.
 Regardons maintenant les paires événement-actions une à une.
-Le cercle gauche du bloc \blksm{event-tap} est
+Le cercle gauche du bloc \blksm{event-tap-advanced} est
 sélectionné (et s'affiche en rouge) pour indiquer qu'il s'agit d'un bloc pour l'événement tape.
 
 \importantbox[Le bloc tape en mode avancé]{
@@ -227,9 +227,9 @@ Le diagramme d'état suivant décrit le comportement du robot:
     \put(40,10){\oval(80,20)}
     \put(160,10){\oval(80,20)}
     \put(280,10){\oval(80,20)}
-    \put(0,0){\makebox(80,20){\bu{search left}}}
-    \put(120,0){\makebox(80,20){\bu{search right}}}
-    \put(240,0){\makebox(80,20){\bu{found}}}
+    \put(0,0){\makebox(80,20){\bu{chercher à gauche}}}
+    \put(120,0){\makebox(80,20){\bu{chercher à droite}}}
+    \put(240,0){\makebox(80,20){\bu{trouvé}}}
     \put( 80,10){\vector(1,0){40}}
     \put(200,10){\vector(1,0){40}}
     \put(40,35){\vector(0,-1){15}}

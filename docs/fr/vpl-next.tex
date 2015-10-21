@@ -41,7 +41,7 @@ Elles peuvent être sautées si vous lisez ce tutoriel pour la première fois.
 \textbf{\large Documentation}
 
 Pour en savoir plus sur Aseba Studio et AESL, rendez-vous sur la page \emph{Programmer avec du texte}
-disponible sur \href{https://www.thymio.org/en:asebausermanual}{https://www.thymio.org/en:asebausermanual}.
+disponible sur \href{https://www.thymio.org/fr:asebausermanual}{https://www.thymio.org/fr:asebausermanual}.
 Vous y trouverez la documentation concernant:
 
 \begin{itemize}
@@ -301,9 +301,9 @@ AESL supporte deux structures différentes:
   if v == 1 then ... instructions ... end
 \end{verbatim}
 \end{footnotesize}
-(<<\,if ... then\,>> signifie <<\,quand ... alors\,>>) qui ont des significations différentes:
+qui ont des significations différentes (<<\,if ... then\,>> signifie <<\,si ... alors\,>>, tandis que nous avons déjà vu que <<\,when ... do\,>> signifie <<\,quand ... exécute\,>>):
 \begin{quote}
-\emph{quand} la valeur de \p{v} \emph{devient} 1, exécute les instructions
+\emph{quand} la valeur de \p{v} \emph{devient} 1, exécute les instructions\\
 \emph{si} la valeur de \p{v} \emph{est} 1, exécute les instructions
 \end{quote}
 
@@ -530,7 +530,7 @@ var state[] = [0,0,0,0] # Un tableau avec quatre éléments
 \end{footnotesize}
 
 Lors de la traduction du programme VPL, la taille et la valeur initiale est donnée.
-Le code suivant ets correct à condition que le nombre de valeur est égal à la taille indiquée:
+Le code suivant est correct à condition que le nombre de valeur est égal à la taille indiquée:
 
 \begin{footnotesize}
 \begin{verbatim}
@@ -641,7 +641,7 @@ Le bloc événement état (en vert, à côté du bloc événement bouton) a les 
 cela signifie que l'événement aura lieu indépendamment de l'état actuel.
 Ainsi, à chaque fois que le bouton central est touché, le bloc événement action (en bleu) change
 l'état actuel à 0 pour tous les éléments du tableau \p{state}, comme indiqué par les quartiers blancs.
-Dans le programme AESL correspondant, la structure \p{if} vérifie si le bouton central a été touché,
+Dans le programme AESL correspondant, la structure \p{when} vérifie si le bouton central a été touché,
 mais ne vérifie pas les valeurs contenues dans le tableau \p{state}.
 Si le bouton central a été touché, chaque élément du tableau est remis à 0.
 

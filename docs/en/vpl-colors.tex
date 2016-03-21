@@ -1,3 +1,5 @@
+% !TeX root = vpl.tex
+
 \chap{Changing Colors}\label{ch.colors}
 
 \sect{Display colors}
@@ -86,19 +88,10 @@ be able to run the program as long as there are errors.
 \end{itemize}
 }
 
-% No longer legal in 1.4
-%
-%\begin{figure}
-%\centering
-%    \subfigure[Changing colors when a button is touched]{
-%		\label{fig.colors-a}
-%		\includegraphics[width = 0.4\textwidth]{colors1}
-%	}
-%	\hspace{1.5cm}
-%    \subfigure[Turn the colored lights off when a button is touched]{
-%		\label{fig.colors-b}
-%		\includegraphics[width = 0.4\textwidth]{colors2}
-%	}
-%    \caption{Play with the lights of Thymio}
-%    \label{fig.colors}
-%\end{figure}
+\sect{Dynamic feedback}\label{p.feedback}
+
+Whenever a button is touched, an event is generated and the event-actions pair associated with that event is run. VPL provides dynamic feedback so that you can see exactly which pair is run. The pair is emphasized with a yellow frame and a yellow arrow to its left:
+
+\blkc{feedback}
+
+The feedback will appear briefly when the event occurs and then it is removed. For example, if you touch a button, an event is generated when the button is first touched. If you continue to touch the button, no additional events are generated, so the the feedback will be removed. It will re-appear only if you release the button and then touch it again.

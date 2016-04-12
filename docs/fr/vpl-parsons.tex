@@ -251,7 +251,7 @@ Lorsque le bouton avant est touché, la lumière verte est allumée.
 
 \begin{tabular}{l@{\hspace{3em}}llll}
 
-\blk{event-clap} \blk{state-0} $\rightarrow$ \eblock &
+\blk{event-clap} \blk{state-event-0} $\rightarrow$ \eblock &
 \blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
 \\
 \blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
@@ -278,10 +278,10 @@ Lorsque le bouton avant est touché, la lumière verte est allumée.
 \blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
 \blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
 \\
-\blk{event-timer} \blk{state-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} \blk{state-event-1} $\rightarrow$ \blk{state-2} \eblock &
 \blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
 \\
-\eblock \blk{state-2} $\rightarrow$ \eblock \blk{one-second} &
+\eblock \blk{state-event-2} $\rightarrow$ \eblock \blk{one-second} &
 \blk{event-timer} & \blk{action-timer} & \blk{state-0} & \blk{state-1}\\ 
 \\
 \end{tabular}

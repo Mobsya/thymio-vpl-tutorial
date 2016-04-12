@@ -13,3 +13,4 @@ save/
 *~
 .vimrc
 .DS_Store
+.directory

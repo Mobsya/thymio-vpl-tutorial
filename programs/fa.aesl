@@ -1,6 +1,6 @@
 <!DOCTYPE aesl-source>
 <network>
-<node nodeId="1" name="thymio-II"># variables for state
+<node nodeId="62941" name="thymio-II"># variables for state
 var state[4] = [0,0,0,0]
 var new_state[4] = [0,0,0,0]
 
@@ -18,54 +18,60 @@ sub display_state
 	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
 
 onevent buttons
-	if button.forward == 1 then
+	when button.forward == 1 do
 		call leds.top(0,0,0)
-		motor.left.target = 0
-		motor.right.target = 0
+		motor.left.target = 100
+		motor.right.target = 100
 		new_state[0] = 1
 		new_state[1] = 0
 		new_state[2] = 0
 		new_state[3] = 0
 		timer.period[0] = 598
+		emit pair_run 0
 	end
-	if button.center == 1 and state[2] == 1 then
-		call leds.top(32,0,32)
+	when button.center == 1 do
 		motor.left.target = 0
 		motor.right.target = 0
-		new_state[0] = 0
-		new_state[1] = 0
-	end
-	if button.center == 1 and state[2] == 0 then
-		call leds.top(0,32,0)
-		motor.left.target = 0
-		motor.right.target = 0
-		new_state[0] = 0
-		new_state[1] = 0
+		emit pair_run 1
 	end
 
 	call math.copy(state, new_state)
 	callsub display_state
 
 onevent prox
-	if prox.ground.delta[1] > 229 and state[0] == 1 then
-		motor.left.target = 150
-		motor.right.target = 100
+	when prox.ground.delta[1] >= 550 do
+		if state[0] == 1 then
+			motor.left.target = 150
+			motor.right.target = 100
+			emit pair_run 2
+		end
 	end
-	if prox.ground.delta[1] &lt; 147 and state[0] == 1 then
-		motor.left.target = 100
-		motor.right.target = 150
+	when prox.ground.delta[1] &lt;= 325 do
+		if state[0] == 1 then
+			motor.left.target = 100
+			motor.right.target = 150
+			emit pair_run 3
+		end
 	end
-	if prox.ground.delta[0] > 743 and state[0] == 1 and state[1] == 1 then
-		call leds.top(0,32,0)
-		new_state[0] = 1
-		new_state[1] = 0
-		timer.period[0] = 441
+	when prox.ground.delta[0] >= 675 do
+		if state[0] == 1 and state[1] == 1 then
+			call leds.top(0,32,0)
+			new_state[0] = 1
+			new_state[1] = 0
+			new_state[2] = 0
+			timer.period[0] = 441
+			emit pair_run 5
+		end
 	end
-	if prox.ground.delta[0] &lt; 502 and state[0] == 1 and state[1] == 1 then
-		call leds.top(31,0,0)
-		new_state[0] = 1
-		new_state[1] = 0
-		timer.period[0] = 439
+	when prox.ground.delta[0] &lt;= 375 do
+		if state[0] == 1 and state[1] == 1 then
+			call leds.top(31,0,0)
+			new_state[0] = 1
+			new_state[1] = 0
+			new_state[2] = 1
+			timer.period[0] = 439
+			emit pair_run 6
+		end
 	end
 
 	call math.copy(state, new_state)
@@ -76,6 +82,7 @@ onevent timer0
 	if state[0] == 1 and state[1] == 0 then
 		new_state[0] = 1
 		new_state[1] = 1
+		emit pair_run 4
 	end
 
 	call math.copy(state, new_state)
@@ -83,37 +90,27 @@ onevent timer0
 <toolsPlugins>
 <ThymioVisualProgramming>
 <vplroot xml-format-version="1">
-<settings color-scheme="0"/>
 <program advanced_mode="1">
 <set>
 <block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
 <block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="0" value1="0" value2="0" type="action" name="colortop"/>
-<block value0="0" value1="0" type="action" name="move"/>
+<block value0="100" value1="100" type="action" name="move"/>
 <block value0="1" value1="2" value2="2" value3="2" type="action" name="setstate"/>
 <block value0="598" type="action" name="timer"/>
 </set>
 <set>
 <block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
-<block value0="0" value1="0" value2="1" value3="0" type="state" name="statefilter"/>
-<block value0="32" value1="0" value2="32" type="action" name="colortop"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="0" value1="0" type="action" name="move"/>
-<block value0="2" value1="2" value2="0" value3="0" type="action" name="setstate"/>
 </set>
 <set>
-<block value0="0" value1="0" value2="0" value3="0" value4="1" type="event" name="button"/>
-<block value0="0" value1="0" value2="2" value3="0" type="state" name="statefilter"/>
-<block value0="0" value1="32" value2="0" type="action" name="colortop"/>
-<block value0="0" value1="0" type="action" name="move"/>
-<block value0="2" value1="2" value2="0" value3="0" type="action" name="setstate"/>
-</set>
-<set>
-<block value0="0" value1="1" value2="0" value3="229" type="event" name="proxground"/>
+<block value0="0" value1="1" value2="0" value3="550" type="event" name="proxground"/>
 <block value0="1" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="150" value1="100" type="action" name="move"/>
 </set>
 <set>
-<block value0="0" value1="2" value2="147" value3="1023" type="event" name="proxground"/>
+<block value0="0" value1="2" value2="325" value3="1023" type="event" name="proxground"/>
 <block value0="1" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="100" value1="150" type="action" name="move"/>
 </set>
@@ -123,17 +120,17 @@ onevent timer0
 <block value0="1" value1="1" value2="0" value3="0" type="action" name="setstate"/>
 </set>
 <set>
-<block value0="1" value1="0" value2="0" value3="743" type="event" name="proxground"/>
+<block value0="1" value1="0" value2="0" value3="675" type="event" name="proxground"/>
 <block value0="1" value1="1" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="0" value1="32" value2="0" type="action" name="colortop"/>
-<block value0="1" value1="2" value2="0" value3="0" type="action" name="setstate"/>
+<block value0="1" value1="2" value2="2" value3="0" type="action" name="setstate"/>
 <block value0="441" type="action" name="timer"/>
 </set>
 <set>
-<block value0="2" value1="0" value2="502" value3="966" type="event" name="proxground"/>
+<block value0="2" value1="0" value2="375" value3="966" type="event" name="proxground"/>
 <block value0="1" value1="1" value2="0" value3="0" type="state" name="statefilter"/>
 <block value0="31" value1="0" value2="0" type="action" name="colortop"/>
-<block value0="1" value1="2" value2="0" value3="0" type="action" name="setstate"/>
+<block value0="1" value1="2" value2="1" value3="0" type="action" name="setstate"/>
 <block value0="439" type="action" name="timer"/>
 </set>
 <set>

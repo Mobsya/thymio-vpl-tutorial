@@ -1,0 +1,62 @@
+<!DOCTYPE aesl-source>
+<network>
+<node nodeId="63974" name="thymio-II"># variables for state
+var state[4] = [0,0,0,0]
+var new_state[4] = [0,0,0,0]
+
+# variable for angle
+var angle
+# reset outputs
+call sound.system(-1)
+call leds.top(0,0,0)
+call leds.bottom.left(0,0,0)
+call leds.bottom.right(0,0,0)
+call leds.circle(0,0,0,0,0,0,0,0)
+
+# subroutine to display the current state
+sub display_state
+	call leds.circle(0,state[1]*32,0,state[3]*32,0,state[2]*32,0,state[0]*32)
+
+onevent buttons
+	when button.forward == 1 do
+		motor.left.target = 100
+		motor.right.target = 100
+		emit pair_run 0
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+
+onevent acc
+	call math.atan2(angle, acc[1], acc[2])
+	when angle > -4095 and angle &lt; -1365 do
+		motor.left.target = 0
+		motor.right.target = 0
+		emit pair_run 1
+	end
+
+	call math.copy(state, new_state)
+	callsub display_state
+<toolsPlugins>
+<ThymioVisualProgramming>
+<vplroot xml-format-version="1">
+<program advanced_mode="1">
+<set>
+<block value0="1" value1="0" value2="0" value3="0" value4="0" type="event" name="button"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="100" value1="100" type="action" name="move"/>
+</set>
+<set>
+<block value0="2" value1="-1" type="event" name="acc"/>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+<block value0="0" value1="0" type="action" name="move"/>
+</set>
+<set>
+<block value0="0" value1="0" value2="0" value3="0" type="state" name="statefilter"/>
+</set>
+</program>
+</vplroot>
+</ThymioVisualProgramming>
+</toolsPlugins>
+</node>
+</network>

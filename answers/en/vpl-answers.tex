@@ -23,7 +23,7 @@ Answers to the Exercises
 
 \end{Large}
 
-Version 1.4
+Version 1.5.1
 
 \bigskip
 
@@ -372,7 +372,7 @@ block, choosing a different angle for the red segment makes the events
 different.
 
 There are seven different positions of the red segment between the
-vertical and horizonal on one side. Therefore, each segment represents
+vertical and horizonal on one side (altogether 13 segments). Therefore, each segment represents
 $90 / 6.5 \approx 14$ degrees. (The vertical segment is half within the
 left quarter circle and half within the right quarter circle, so we
 divide 90 by 6.5 and not 7.)
@@ -691,7 +691,7 @@ detects a clap event.
 
 \begin{tabular}{l@{\hspace{3em}}llll}
 
-\blk{event-clap} \blk{state-0} $\rightarrow$ \eblock &
+\blk{event-clap} \blk{state-event-0} $\rightarrow$ \eblock &
 \blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
 \\
 \blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
@@ -740,10 +740,10 @@ lights turn on and off alternately at one-second intervals.
 \blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
 \blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
 \\
-\blk{event-timer} \blk{state-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} \blk{state-event-1} $\rightarrow$ \blk{state-2} \eblock &
 \blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
 \\
-\eblock \blk{state-2} $\rightarrow$ \eblock \blk{one-second} &
+\eblock \blk{state-event-2} $\rightarrow$ \eblock \blk{one-second} &
 \blk{event-timer} & \blk{action-timer} & \blk{state-1} & \blk{state-2}\\ 
 \\
 \end{tabular}

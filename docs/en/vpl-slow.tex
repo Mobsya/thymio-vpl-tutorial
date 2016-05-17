@@ -1,3 +1,5 @@
+% !TeX root = vpl.tex
+
 \chap{Multiple Sensor Thresholds}\label{ch.slow}
 
 As explained in \cref{a.tech}, in advanced mode sensors events can be
@@ -11,6 +13,8 @@ reflected light falls between two thresholds (dark gray):
 \blk{slow-low}&\blk{slow-mid}&\blk{slow-high}\\
 \end{tabular}
 \end{center}
+
+\bigskip
 
 \textbf{Specification}
 
@@ -38,3 +42,34 @@ the sensors as explained in \cref{a.blocks}.
 \bigskip
 
 {\raggedleft \hfill \textbf{Program file}: \bu{slow.aesl}}
+
+\bigskip
+\bigskip
+
+\textbf{Specification}
+
+The line following program in Chapter~\ref{ch.line} used two sensors to decide if the robot is moving off the line to the left or to the right. Implement a line following algorithm that uses one sensor.
+
+\textbf{Guidance}
+
+The robot will follow the \emph{edge} of the line, not its center. The ground sensors receive reflected light from a relatively wide area so the decision can be made using multiple thresholds. If the right sensor is used to follow the right edge of a (dark) line:
+\begin{itemize}
+\item If the sensor is to the left of the edge, little light will sensed.
+\item If the sensor is to the right of the edge, a lot of light will be sensed.
+\item If the sensor is over the edge, the amount of light sensed will be midway between the two extreme values.
+\end{itemize}
+The three cases are shown in the following diagram:
+\begin{center}
+\begin{tikzpicture}
+\draw[fill,lightgray] (0,0) rectangle +(8,4mm);
+\foreach \x/\y in {6.5cm/1pt, .5cm/5pt, 3.5cm/-3pt} {
+  \draw[rounded corners] (\x-2mm,\y-11pt) rectangle +(15mm,12mm);
+  \draw[fill,gray] (\x+.9cm,\y-8pt) rectangle +(6pt,12pt);
+  \draw (\x+.9cm,\y+8pt) rectangle +(6pt,12pt);
+}
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+
+{\raggedleft \hfill \textbf{Program file}: \bu{line-one.aesl}}

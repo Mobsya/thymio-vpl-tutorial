@@ -1,3 +1,5 @@
+% !TeX root = vpl.tex
+
 \part{Tutorial}
 
 \chap{Your First Robotics Project}\label{ch.intro}
@@ -51,11 +53,21 @@ text-based programming environment through the VPL plugin found in the
 \end{center}
 \end{figure}
 
-\newpage
+\sect{Wireless Thymio}
+
+The Thymio robot comes in a wireless version that does not need to be connected
+to a computer in order to load programs. The wireless robot comes with a small object called a \emph{dongle}:
+
+\gr{dongle}{.4}
+
+Plug the dongle into a USB socket on your computer, turn the robot on and start VPL, as described above. When you see the connection window (Figure~\ref{fig.connect}) select the line \bu{Thymio-II Wireless (COM15)}.
+
+\importantbox{You need to use the USB cable to charge the Thymio (Figure~\ref{fig.back}).}
+
 
 \sect{The VPL user interface}
 
-The user interface of VPL is shown below.
+The user interface of VPL is shown in Figure~\ref{fig.vplgui}.
 There are six areas in the interface:
 \begin{enumerate}[noitemsep,nosep]
 \item A toolbar with buttons for opening, saving, running a program, etc.
@@ -74,19 +86,15 @@ well-formed.
 \end{figure}
 \framedfloat
 
-\bigskip
+\informationbox{The VPL toolbar}{\cref{a.toolbar} contains a
+description of all the buttons in the VPL toolbar.\\
+Look at it occasionally until you have learned how to use them.}
 
 \informationbox{To go further}{ When you construct a program using VPL, the
 translation of the program into the textual programming language AESL
 appears in the right part of the window. It is the AESL program that is
-actually run by the robot. If you are curious and wish to understand
-AESL, you can read the \cref{ch.next} which explains these translations.
-Then, go to
-\href{https://www.thymio.org/en:asebausermanual}{https://www.thymio.org/en:asebausermanual}
-for learning and reference materials on AESL and its Studio
-environment.}
-
-\newpage
+actually run by the robot. \cref{ch.next} explains these translations.
+The webpage \href{https://www.thymio.org/en:asebausermanual}{https://www.thymio.org/en:asebausermanual} contains learning and reference materials on AESL and its Studio environment.}
 
 \sect{Write a program}
 
@@ -164,15 +172,15 @@ but the program does not have an event-actions pair to stop the motors.
 
 \sect{Turn the robot off}
 
-When you have finished working with the Thymio robot, you can turn it
+When you have finished working with the Thymio robot, turn it
 off by touching and holding the center button for a few seconds until
-you hear a sequence of tones. The battery in the robot will
+you hear a sequence of tones. The battery will
 continue charging as long as it is connected to a working computer. A
 red light next to the USB cable connector means that the robot is
 charging; it turns blue when the charging is completed (\cref{fig.back}).
 You can disconnect the cable when you are not using the robot.
 
-\trickbox{You can charge the robot faster by using a mobile phone
+\trickbox{To charge the robot faster, use a mobile phone
 charger with a micro-USB connector.}
 
 \begin{figure}
@@ -187,8 +195,6 @@ Should the USB cable disconnect during programming, VPL will wait for
 the connection to be made again. Check both ends of the cable, reconnect
 and see if VPL is working. If you have a problem, you can always close
 VPL, reconnect the robot and open VPL again.
-
-%\newpage
 
 \sect{Modify a program}
 
@@ -228,8 +234,6 @@ Connect the robot and run VPL as described previously. Click on
 example, \bu{display-red}. The event-actions pairs of the program will
 be displayed in the program area, and you can continue working on it.
 
-\newpage
-
 \sect{The current event-actions pair}
 
 When you click on an event-actions pair, it will be displayed with a
@@ -252,10 +256,3 @@ yellow background is called the \emph{current} pair.
 automatically placed in the program area in the current
 event-actions pair.}
 
-\bigskip
-
-\bigskip
-
-\informationbox{The VPL toolbar}{\cref{a.toolbar} contains a
-description of all the buttons in the VPL toolbar. Look at it
-occasionally until you have learned how to use them.}

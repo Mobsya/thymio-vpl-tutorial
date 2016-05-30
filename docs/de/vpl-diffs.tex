@@ -1,0 +1,41 @@
+% !TeX root = vpl.tex
+
+\chapter*{VPL Tutorial Versionsgeschichte}
+
+\paragraph{Version 1.5}
+
+\begin{itemize}
+
+\item Events sind nun mit Hilfe des Aseba-Programmiersprachen-Konstrukts \p{when} implementiert anstelle von \p{if}. Dies bedeutet, dass Ereignisse nur dann stattfindet, wenn das Ereignis auftritt und nicht unabhängig von seinem Auftreten, wie auf der Seite ~\pageref{p.if-when} erklärt. Diese Änderung könnte zu unerwartetem Verhalten führen in einigen Programmen, die in diesem Tutorial beschrieben sind.
+
+\item Das dynamische Feedback während der Programm-Ausführung wurde implementiert (Seite ~\pageref{p.feedback}).
+
+\end{itemize}
+
+\paragraph{Version 1.4}
+
+\begin{itemize}
+
+\item Das graphische Design der Knöpfe wurde geändert, insbesondere um zusätzliche Funktionalität hinzuzufügen.
+
+\item In Version 1.3, hat ein \emph{roter} Kasten im Ereignisbereich bedeutet, dass der Sensor ein Objekt wahr genommen hat, wohingegen ein 
+\emph{weisser} Kasten bedeutete, dass kein Objekt wahrgenommen wurde. In der Version 1.4, bedeutet ein \emph{weisser} Kasten, dass Licht von einem Objekt reflektiert wurde, wohingegen ein \emph{schwarzer} Kasten bedeutet dass das Objekt zu wenig Licht reflektiert hat oder dass gar kein Objekt vor dem Sensor steht (siehe Seite ~\pageref{p.proximity-colors1}).
+Auch die Bodendistanzsensoren verwenden weiss und schwarz, anstelle von rot und weiss, aber das Verhalten unterscheidet sich in den beiden Versionen nicht. 
+\item Im Fortgeschrittenen-Modus können die Schwellenwerte der Sensoren eingestellt werden (Seite ~\pageref{p.proximity-sensitivity}).
+\item Im Fortgeschrittenen-Modus kann ein Ereignis mit einem Bereich von Werten für den Beschleunigungssensor für vorwärts/rückwärts und links/rechts eingestellt werden (Seite~\pageref{p.accel}).
+
+\item Einem Ereignis können mehrere Aktionsblöcke zugewiesen werden (Seite~\pageref{p.multiple}).
+
+\item Blöcke und Ereignis-Aktions-Paare können kopiert werden
+(Seite ~\pageref{p.copy-pairs}).
+
+\item Screenshots aus VPL Programmen können exportiert werden (Seite~\pageref{p.export}).
+
+\item Knöpfe für das rückgängig-machen ''Zurücksetzen'' bzw. erneut-ausführen ''Vorwärts-machen'' (undo/redo) wurden hinzugefügt (Seite~\pageref{p.undo}).
+
+\item Der Ausführen-Knopf blinkt grün, wenn das Programm verändert wurde
+(Seite~\pageref{p.blink}).
+
+\item Es ist nicht mehr möglich, das Farbschema von VPL anzupassen.
+
+\end{itemize}

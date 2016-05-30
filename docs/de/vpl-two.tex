@@ -1,0 +1,36 @@
+\chap{Mehrere Thymios}\label{ch.two}
+
+Sie können zwei oder mehrere Thymio Roboter gleichzeitig steuern.
+
+\textbf{Spezifikation}
+
+Setzen Sie zwei Roboter T1 und T2 so, dass sie sich gegenüber stehen; T1 ist der Jäger, T2 ist die Beute. Wenn T1 erkennt, dass er nahe bei T2 ist, hält er an; wenn T2 bemerkt, dass er nahe bei T1 ist, zieht er sich zurück bis er T1 nicht mehr erkennt.  
+
+\textbf{Anleitung}
+
+\begin{itemize}
+
+\item Die Programme für T1 und T2 haben zwei Ereignis-Aktions-Paare: eines, dessen Ereignis das Erkennen eines Objekts mit dem mittleren horizontalen Sensor ist und ein anderes, des Ereignis das Nicht-Erkennen eines Objekts ist. Die Aktionen für T1 und T2 sind allerdings unterschiedlich. 
+
+\item Verbinden Sie zwei Thymios T1 und T2 mit Ihrem Computer und schalten Sie sie ein. Starten Sie zwei Kopien von VPL. Im Ziel-Auswahl-Fenster (siehe Bild ~\ref{fig.connect}) sollten beide Roboter T1 und T2 erscheinen; wählen Sie T1 in der einen Kopie von VPL bzw. dem Ziel-Auswahl-Fenster und T2 im anderen. Öffnen und starten Sie in der ersten Kopie von VPL das Programm \p{chase} (Jäger) und im anderen das Programm \p{retreat} (Beute).
+ 
+\end{itemize}
+
+\textbf{Experimente}
+
+\begin{itemize}
+
+\item Was passiert, wenn Sie die Programme austauschen: auf T1 läuft 
+\p{retreat} und auf T2 läuft \p{chase}? Erklären Sie!
+
+\item Experimentieren Sie im fortgeschrittenen Modus mit unterschiedlichen Werten für die Schwellwerte. 
+
+\end{itemize}
+
+%\bigskip
+
+{\raggedleft \hfill Beispielprogramme \bu{chase.aesl}, \bu{retreat.aesl}}
+
+\bigskip
+
+\informationbox{Kommunikation zwischen Robotern}{Thymio Roboter können sich Meldungen schicken. Diese Funktionalität wird in der AESL-Sprache und -Umgebung unterstützt.}

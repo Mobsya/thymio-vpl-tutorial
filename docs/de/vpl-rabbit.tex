@@ -1,0 +1,24 @@
+\chap{Der Hase und der Fuchs}\label{ch.rabbit}
+
+Dieses Kapitel enthält die Spezifikation eines grösseren Projekts (mein Programm
+besteht aus 7 Ereignis-Aktions-Paaren mit jeweils 2 bis 3 Aktionen). Sie sollten 
+inzwischen ausreichend Erfahrung haben mit der Gestaltung und Umsetzung von VPL-Programmen, um dieses Projekt selbständig lösen zu können. Nachfolgend wird die Spezifikation gegeben anhand einer Liste von Aufgaben und Verhaltensweisen. Wir schlagen vor, dass Sie die Implementierung Schritt für Schritt vornehmen.
+
+\textbf{Story}\footnote{Die Geschichte wurde lose inspiriert von einem 
+\href{http://www.cs.hmc.edu/~fleck/parable.html}{Witz}
+der bei Doktoranden gut bekannt ist.} Der Roboter ist ein Hase, der durch den Wald läuft. Ein Fuchs jagt den Hasen und will ihn von hinten fangen. Der Hase bemerkt den Fuchs, dreht sich um und fängt den Fuchs. 
+
+\textbf{Spezifikation}
+
+Für jedes Ereignis definieren wir eine Farbe für das obere Licht, welche aufleuchtet, wenn das Ereignis eintritt. 
+
+\begin{enumerate}
+\item Berühren des Vorwärts-Knopfes: der Roboter fährt vorwärts (blau).
+\item Berühren des Rückwärts-Knopfes: der Roboter hält an (aus).
+\item Wenn der Roboter die Tischkante erkennt, hält er an (aus).
+\item Wenn der linke hintere Sensor etwas entdeckt, dreht sich der Roboter schnell nach links (im Gegenuhrzeigersinn) bis er das Objekt mit seinem mittleren vorderen Sensor wahr nimmt (rot).
+\item Wenn der rechte hintere Sensor etwas entdeckt, dreht sich der Roboter schnell nach rechts (im Uhrzeigersinn) bis er das Objekt mit seinem mittleren vorderen Sensor wahr nimmt (grün).
+\item Wenn das Objekt vom mittleren vorderen Sensor entdeckt wird, fährt er für eine Sekunde schnell nach vorne (gelb) und hält dann an (aus).
+\end{enumerate}
+
+{\raggedleft \hfill Beispielprogramm \bu{rabbit-fox.aesl}}

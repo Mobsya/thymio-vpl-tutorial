@@ -1,0 +1,51 @@
+\chap{Beschleunigungssensor (Fortgeschrittenen Modus)}\label{ch.angles}
+
+Wir kenne alle das Prinzip der \emph{Beschleunigung}, die Rate der Geschwindigkeitszunahme, wenn ein Auto beschleunigt oder abbremst. Ein
+\emph{Beschleunigungssensor} ist ein Gerät, welches die Beschleunigung misst. Ein Airbag in einem Auto verwendet einen Beschleunigungssensor um festzustellen, ob die Fahrzeuggeschwindigkeit ''zu schnell'' abnimmt, weil das Auto einen Aufprall hatte. Falls dies festgestellt wird, wird der Airbag gezündet (aufgeblasen).
+
+Thymio besitzt drei Beschleunigungssensoren, für jede Richtung einen: 
+vorwärts / rückwärts, links / rechts, rauf / runter. 
+
+%\informationbox{Advanced mode}{Accelerometers are supported in \emph{advanced
+%mode}. Click on \blkmed{advanced} to enter advanced mode.}
+
+Abgesehen von der \emph{Schwerkraft} (Gravitation) ist es schwierig, messbare Beschleunigungen zu erreichen. Die Schwerkraft ist eine Beschleunigung in Richtung des Erdmittelpunktes. In diesem Projekt verwenden wir die Beschleunigungsmesser um den den Winkel zu bestimmen, um den der Roboter gekippt wird.
+
+Es gibt zwei Ereignisse um den Winkel des Roboters relativ zur Erde zu bestimmen:\label{p.accel}
+
+\begin{itemize}
+
+\item \blksm{event-roll}: Ein Ereignis tritt ein, wenn der links- / rechts-Winkel des Roboters sich innerhalb des weissen Winkelsegments im Halbkreis befindet; (der Fachausdruck für diese Bewegung um die Längsachse lautet \emph{rollen} oder wanken, engl.: roll)
+
+\item \blksm{event-pitch}: Ein Ereignis tritt ein, wenn der vorwärts / rückwärts Winkel des Roboter sich innerhalb des weissen Winkelsegments im Halbkreis befindet; (der Fachausdruck für diese Bewegung um die Querachse lautet \emph{nicken} oder stampfen, engl.: pitch).
+
+\end{itemize}
+
+Zu Beginn ist das weisse Winkelsegment nach oben ausgerichtet (90°), d.h. das Ereignis tritt ein, wenn der Roboter auf einer Ebene aufrecht steht. Mit der Maus kann dieses Winkelsegment nun zwischen 0° und 90° (links) oder 90 und 180° (rechts) verschoben werden. Im untenstehenden Beispiel tritt das Ereignis ein, wenn der Roboter
+etwa auf halbem Weg nach links gekippt ist: 
+\blkc{roll-left}
+
+%\newpage
+
+\begin{quote}
+\textbf{Programmierung}\\
+Halten Sie den Roboter so, dass er Ihnen zugewandt ist und kippen Sie ihn nach links und nach rechts. Das obere Licht des Roboters wird eine andere Farbe für 5 Bereiche des Neigungswinkels anzeigen.
+\end{quote}
+
+{\raggedleft \hfill {Beispielprogramm} \bu{measure-angles.aesl}}
+
+Konstruieren Sie eine Reihe von Ereignis-Aktions-Paaren, wobei jedes Ereignis eine links- / rechts-Beschleunigung sein soll. Tritt das Ereignis ein, soll sich die Farbe des oberen Lichts ändern:
+\blkc{measure-angles}
+Machen Sie eine Liste für den Zusammenhang von Farben und Winkeln, so dass Sie jede Farbe in einen bestimmten Winkel übersetzen können.
+Alle Viertel des Ereignis-Zustand-Blocks sind grau, so dass das Ereignis unabhängig vom Zustand eintritt. 
+
+\bigskip
+
+\exercisebox{\thechapter.1}{Können zwei Ereignisse dasselbe Winkelsegment verwenden? \\
+Wie viele verschiedene Winkel können festgestellt werden?}
+
+\exercisebox{\thechapter.2}{Schreiben Sie ein Programm das den Roboter vorwärts fahren lässt, wenn ein Knopf betätigt wird und anhält, wenn er zu kippen beginnt.\\
+Zur Vermeidung von Schäden am Roboter testen Sie das Programm beim Fallen von einer oder zwei Zeitschriften auf den Tisch!\\
+	{\hspace*{20em}{Beispielprogramm} \bu{acc-stop.aesl}}
+}
+

@@ -1,25 +1,19 @@
-\chap{Angenehme Zeit}
+\chap{Angenehme Zeit (Fortgeschrittener Modus)}\label{ch.time}
 
-Im \cref{ch.pet} haben wir ein Roboterhaustier programmiert,
-das uns entweder mag oder nicht mag.
-Nun stellen wir uns ein etwas komplizierteres  Verhalten vor:
-ein schüchternes Haustier, welches sich nicht entscheiden kann,
-ob es uns mag oder nicht. Anfänglich wird das Haustier sich unserer Hand zuwenden,
-dann aber zurückweichen und schlussendlich sich wieder zu unserer Hand hinbewegen.
+Im \cref{ch.pet} haben wir ein Roboterhaustier programmiert, das uns entweder mag oder nicht mag. Nun stellen wir uns ein etwas komplizierteres Verhalten vor: ein schüchternes Haustier, welches sich nicht entscheiden kann, ob es uns mag oder nicht. Anfänglich wird das Haustier sich unserer Hand zuwenden, dann aber zurückweichen und schlussendlich sich wieder zu unserer Hand hinbewegen.
 
-{\raggedleft \hfill Program file \bu{shy.aesl}}
+{\raggedleft \hfill Beispielprogramm \bu{shy.aesl}}
 
-Das Verhalten des Roboters ist wie folgt: Falls der Rechte Schalter berührt wird, bewegt sich der Roboter nach rechts, falls er deine Hand wahrnimmt, bewegt er sich nach links, aber nach einer Weile bereut er die Entscheidung und bewegt sich wieder zurück. Wir wissen, wie wir die Ereignis-Aktions Paare für die erste Bewegung erstellen
+Das Verhalten des Roboters ist wie folgt: Falls der Rechte Schalter berührt wird, bewegt sich der Roboter nach rechts, falls er Ihre Hand wahrnimmt, bewegt er sich nach links, aber nach einer Weile bereut er die Entscheidung und bewegt sich wieder zurück. Wir wissen, wie wir die Ereignis-Aktions-Paare für die erste Bewegung erstellen:
 \blkc{start-turn} 
-und wie für das Zurückbewegen, falls deine Hand erkannt wird
+und wie für das zurück-bewegen, falls Ihre Hand erkannt wird:
 \blkc{turn-away}
-
-Das Verhalten des Zurückweichens nach einer Weile kann in zwei Ereignis-Aktions Paare zerlegt werden.
+Das Verhalten des Zurückweichens ``nach einer Weile'' kann in zwei Ereignis-Aktions-Paare zerlegt werden:
 
 \begin{itemize}
 
 \item \emph{Falls} der Roboter sich wegbewegt $\rightarrow$
-\emph{starte eine Timer} für zwei Sekunden.
+\emph{starte einen Timer} für zwei Sekunden.
 
 \item \emph{Falls} der Timer null erreicht $\rightarrow$ \emph{drehe}
 nach rechts ab.
@@ -28,19 +22,17 @@ nach rechts ab.
 
 Wir brauchen eine neue \emph{Aktion} für das erste Verhalten und ein neues \emph{Ereignis} für das zweite Verhalten.
 
-Die Aktion ist ein \emph{Timer} einzustellen, welcher wie ein Wecker funktioniert \blksm{action-timer}.  Normalerweise stellen wir den Wecker auf eine bestimmte Zeit ein, aber falls ich den Wecker auf meinem Smartphone auf eine bestimmte Zeit einstelle, wird mir diese als Zeitdauer angegeben: ``Wecker läutet in 11 Stunden und 23 Minuten''. Der Timerblock arbeitet auf die selbe Art und Weise. Der Timer wird auf eine bestimmte Anzahl Sekunden eingestellt, sobald das Ereignis stattfindet und die Aktion ausgelöst wird. Der Timer kann auf bis zu vier Sekunden eingestellt werden. Klicke irgendwo innerhalb des schwarzen Kreises, wo die Oberfläche der Uhr gezeigt wird (aber nicht auf den schwarzen Kreis selber). Nach einer kleinen Animation wir die Zeitdauer des Timers (bis der Alarm ausgelöst wird) in blauer Farbe angezeigt.
+Die Aktion ist, einen \emph{Timer} einzustellen, welcher wie ein Wecker funktioniert \blksm{action-timer}.  Normalerweise stellen wir den Wecker auf eine bestimmte Zeit ein, aber falls ich den Wecker auf meinem Smartphone auf eine bestimmte Zeit einstelle, wird mir diese als Zeitdauer angegeben: ``Wecker läutet in 11 Stunden und 23 Minuten''. Der Timerblock arbeitet auf die selbe Art und Weise. Der Timer wird auf eine bestimmte Anzahl Sekunden eingestellt, sobald das Ereignis stattfindet und die Aktion ausgelöst wird. Der Timer kann auf bis zu vier Sekunden eingestellt werden. Klicken Sie irgendwo innerhalb des schwarzen Kreises, wo die Oberfläche der Uhr gezeigt wird (aber nicht auf den schwarzen Kreis selber). Nach einer kleinen Animation wir die Zeitdauer des Timers (bis der Alarm ausgelöst wird) in blauer Farbe angezeigt.
 
 Das Ereignis-Aktions Paar für das erste, oben beschriebene Verhalten ist: \blkc{turn-clock}
 
 Der Timer ist auf zwei Sekunden eingestellt. Falls das Ereignis Handerkennung stattfindet, werden zwei Aktionen ausgelöst: Drehung des Roboters nach links und Starten des Timers.
 
-Der zweite Teil dieses Verhaltens benötigt ein Ereignis, das stattfindet, falls der Alarm ausgelöst wird. Dieses tritt ein, falls die eingestellte Zeit auf Null abgelaufen ist. Der Ereignisblock \blksm{event-timer} zeigt dann einen klingelnden Wecker.
+Der zweite Teil dieses Verhaltens benötigt ein Ereignis, das stattfindet, falls der Alarm ausgelöst wird. Dieses tritt ein, sobald die eingestellte Zeit abgelaufen ist. Der Ereignisblock \blksm{event-timer} zeigt dann einen klingelnden Wecker.
 
-Das Ereignis-Aktions Paar ist
-\blkc{turn-back}
-dass der Roboter zurück nach rechts drehen lässt, wenn der Timer abgelaufen ist.
+\informationbox{Fortgeschrittener Modus}{Timer werden nur im \emph{Fortgeschrittenen Modus} unterstützt. Klicken Sie auf \blkmed{advanced} um in den fortgeschrittenen Modus zu gelangen.\\Das Icon ändert in \blkmed{basic}; durch erneutes Klicken gelangt man zurück in den \emph{Standard-Modus}.}
 
-
+Das Ereignis-Aktions-Paar ist: \blkc{turn-back} welches den Roboter zurück nach rechts drehen lässt, sobald der Timer abgelaufen ist.
 
 \exercisebox{\thechapter.1}{
-Schreibe ein Programm, welches den Roboter bei Höchstgeschwindigkeit für drei Sekunden vorwärts fahren und danach wieder zurückkehren lässt, falls der Vorwärtsschalter gedrückt wird. Füge ein Ereignis-Aktions Paar hinzu, dass die Fahrt des Roboters stoppt, falls der zentrale Schalter gedrückt wird.}
+	Schreiben Sie ein Programm, welches den Roboter bei Höchstgeschwindigkeit für drei Sekunden vorwärts fahren und danach wieder zurückkehren lässt, sobald der Vorwärtsschalter gedrückt wird. Fügen Sie ein Ereignis-Aktions-Paar hinzu, das die Fahrt des Roboters stoppt, falls der mittlere Schalter gedrückt wird.}

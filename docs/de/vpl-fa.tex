@@ -1,0 +1,132 @@
+\chap{Endlicher Automat}\label{ch.fa}
+
+Ein \emph{endlicher Automat (EA)}\footnote{Die Mehrzahl ist \emph{endliche Automaten}, die Abkürzung ist ebenfalls EA.} ist ein Modellrechnern oder eine abstrakte Maschine, die Berechnungen durchführen kann. EA sind sehr wichtig in verschiedenen Bereichen der Informatik.\footnote{EA werden formal beschreiben in Lehrbüchern wie demjenigen von  J.E. Hopcroft, R. Motwani, J.D. Ullman. \textit{Einführung in Automatentheorie, Formale Sprachen und Berechenbarkeit, Pearson, 2013.}} Betrachten wir eine endliche Zeichenketten die aus zwei Symbolen bestehen: $a$ und $b$: \begin{quote} aabbbababbaba \end{quote}
+
+Die Aufgabe besteht darin, eine solche Zeichenfolgen zu lesen und zu entscheiden, ob die Anzahl der $a$'s ungerade ist oder gerade. Ein EA, der dieses Problem löst, hat zwei Zustände: einen Zustand 0, wenn die bisher gelesene Anzahl $a$'s gerade ist und einen Zustand 1, wenn das bisher gelesene Anzahl $a$'s ungerade ist. Der EA wird wie folgt dargestellt (zwei Zustände 0 und 1 sowie vier Übergänge zwischen den Zuständen, die mit $a$ und $b$ beschriftet sind):
+
+\begin{center}
+\begin{picture}(175,45)
+%\put(0,0){\framebox(175,45){}}
+\put(35,25){\circle{30}}
+\put(140,25){\circle{30}}
+\put(3,25){\vector(1,0){15}}
+\put(20,10){\makebox(30,30){0}}
+\put(125,10){\makebox(30,30){1}}
+\put(50,20){\vector(1,0){75}}
+\put(50,10){\makebox(75,10){a}}
+\put(125,30){\vector(-1,0){75}}
+\put(50,30){\makebox(75,10){a}}
+\put(20,10){
+   \put(0,0){\oval(20,18)[b]}
+   \put(0,0){\oval(20,18)[tl]}
+   \put(-1,9){\vector(1,0){1}}
+   \put(-20,-5){\makebox(10,10){b}}
+}
+\put(145,10){
+    \put(10,0){\oval(20,18)[b]}
+    \put(10,0){\oval(20,18)[tr]}
+    \put(11,9){\vector(-1,0){1}}
+    \put(20,-5){\makebox(10,10){b}}
+}
+\end{picture}
+\end{center}
+
+Wenn sich der EA in einem Zustand befindet und ein Symbol aus der Zeichenkette liest, wechselt er in einen anderen Zustand, je nach dem, was die Übergänge vorgeben. Wenn die Anzahl der bisher gelesenen Symbole $a$ gerade ist (Zustand 0) und ein weiteres $a$ gelesen wird, nimmt der EA den Übergang zu Zustand 1; umgekehrt falls die bisherige Anzahl ungerade ist und ein $a$ gelesen wird, wird der Übergang von Zustand 1 zu Zustand 0 genommen. Wenn ein $b$ gelesen wird, ändert der Zustand nicht, weil sich dadurch die Anzahl der gelesenen Symbole $a$ nicht ändert. 
+
+Der EA ist zu Beginn im Zustand 0, weil die Anzahl der gelesenen Symbole $a$ 0 ist, welches eine gerade Zahl ist. Dieser initiale Zustand wird durch einen kleinen Pfeil dargestellt. 
+
+\textbf{Spezifikation}\footnote{Diese Spezifikation und ihre Implementierung sind inspiriert durch \href{https://www.thymio.org/de:barcodelightpainting}{Lichtmalerei mit Barcodes}.}
+
+Drucken Sie die Datei \p{fa-path-alternate.pdf} aus, welche das folgende Bild enthält \footnote{Der Pfad zur Datei befindet sich im Verzeichnis \bu{images} in diesem Archiv.}
+
+\gr{fa-path-parity}{.8}
+
+Die schraffierte Linie wird verwendet, um sicherzustellen, dass sich der Roboter auf der Linie vorwärts bewegt und nicht nach lnks oder rechts abweicht. Die Zeichenfolge wird durch Felder (Quadrate oder Rechtecke) codiert, wobei $a$ für ein schwarzes Feld steht und $b$ für ein weisses. Dieses Bild stellt die Zeichenkette $babababab$ dar.
+
+Stellen Sie den Roboter an den linken Rand des Bildes vor das erste Feld nach rechts schauend mit dem rechten Bodensensor in der Mitte der schraffierten Linie. 
+Das Verhalten ist wie folgt:
+
+\begin{enumerate}
+
+\item Betätigen Sie den vorderen Knopf um den Roboter zu starten. Das obere Licht ist ausgeschaltet, der Zustand wird initialisiert (siehe weiter unten) und der Timer wird gestartet. 
+
+\item Betätigen Sie den mittleren Knopf um den Roboter anzuhalten.
+
+\item Der Roboter fährt nach rechts (in Bezug auf das Bild --- eigentlich fährt er ja geradeaus). Er benutzt den \emph{rechten} Bodensensor um festzustellen, ob er sich nach links oder rechts bewegt. Wenn der Roboter nach rechts dreht, erkennt der Sensor, dass die Werte kleiner (dunkler) werden und er dreht nach links; wenn er nach links dreht, erkennt der Sensor höhere (hellere) Werte und er dreht nach rechts. 
+
+\item Wenn der Timer abgelaufen ist, wird der Wert des \emph{linken} Bodensensors untersucht. Wenn der Roboter über einem weissen Feld ist (was ein $b$ bedeutet), wird das obere Licht auf rot geschaltet und der Timer wird zurückgesetzt. Wenn er über einem schwarzen Feld ist (was ein $a$ bedeutet), wird das obere Licht auf grün geschaltet und der Timer wird zurückgesetzt und der Zustand wird umgeschaltet (von gerade auf ungerade oder von ungerade auf gerade). 
+
+\end{enumerate}
+
+
+\textbf{Anleitung}
+
+Der Roboter benötigt drei der vier Viertel im Zustandsblock für Ereignisse und Aktionen:
+
+\begin{itemize}
+\item Das Viertel oben links gibt an, ob das Programm läuft oder nicht. 
+\item Das Viertel oben rechts gibt an, dass die Farbe (schwarz oder weiss) gelesen werden soll. 
+\item Das Viertel unten links gibt an, ob die Anzahl der gelesenen Symbole $a$ gerade oder ungerade ist.
+\end{itemize}
+
+Hier ein Beispiel eines Ereignis-Aktions-Paares: 
+
+\blkc{parity-0-1}
+
+\begin{quote}
+	Wenn der linke Sensor wenig Licht erkennt (ein schwarzes Feld) \emph{und}\\
+	\hspace*{1em} das Programm läuft \emph{und}
+	die Farbe des Feldes erkannt werden soll\emph{und}\\
+	\hspace*{1em} bisher eine gerade Anzahl der Symbole $a$ gelesen wurde, dann\\
+	\hspace*{2em} schalte das obere Licht auf rot\\
+	\hspace*{2em} wechsle den Zustand so, dass die Anzahl der Symbole $a$ ungerade ist \emph{und}\\
+	\hspace*{4em} die Farbe der des Feldes nicht erkannt werden soll \\
+	\hspace*{2em} Setze den Timer zurück. 
+\end{quote}
+
+{\raggedleft \hfill Beispielprogramm \bu{fa.aesl}}
+
+Sie werden mit der Fahrgeschwindigkeit und der Dauer des Timers experimentieren müssen, bis die schwarzen und weissen Felder verlässlich erkannt werden. 
+
+\textbf{Übung} Drucken Sie die Datei \p{fa-path-blank.pdf} aus, auf welcher alle Felder weiss sind. Benutzen Sie einen Filzstift um einige Felder schwarz einzufärben und überprüfen Sie Ihr Programm. Überprüfen Sie insbesondere den Fall, wo zwei oder mehr Felder hintereinander schwarz sind, was einer Zeichenkette mit einer Unterfolge von mehr als einem $a$ entspricht.
+
+\textbf{Zusatz} Ändern Sie das Programm so, dass es den Rest $0$, $1$ oder $2$ darstellt, wenn man die Anzahl der Symbole $a$ durch $3$ dividiert (mod).
+
+\bigskip
+
+\textbf{Verändern des Layout}
+
+\warningbox{Dieser Abschnitt erklärt, wie man den Pfad (die schraffierte Linie) verändert; Kenntnisse der Textverarbeitungs-Software \LaTeX{} müssen aber vorausgesetzt werden.}
+
+Die Dateien \p{\footnotesize fa-path-*.tex} enthalten den \LaTeX{} Quellcode.
+
+Die folgenden Befehle zeichnen die schraffierte Linie mit einer Breite von 2 cm und einer länge von 23 cm.\footnote{Diese Befehle entstammen nicht der Ti\textit{k}Z
+Grafikbibliothek.}
+\begin{footnotesize}
+\begin{verbatim}
+\shade[left color=black,right color=white] (0,0) rectangle +(2,23);
+\end{verbatim}
+\end{footnotesize}
+
+Die schwarzen und weissen Felder werden mit den folgenden Befehlen gezeichnet:  
+\begin{footnotesize}
+\begin{verbatim}
+\foreach \a in {1, 3, 5, 7}
+  \filldraw[color=black] (\offset,\height*\a) rectangle +(\width,\height);
+
+\foreach \a in {0, 2, 4, 6, 8}
+  \draw (\offset,\height*\a) rectangle +(\width,\height);
+\end{verbatim}
+\end{footnotesize}
+Sie können die Liste der Zahlen in der Schleife \p{foreach} ändern, um anzugeben, welche Felder weiss und welche schwarz sein sollen. 
+
+Die Befehle \p{filldraw} und \p{draw} verwenden Längenangaben, die man leicht anpassen kann:
+\begin{footnotesize}
+\begin{verbatim}
+\setlength{\height}{2.4cm}  % Höhe des Feldes
+\setlength{\width}{3cm}     % Breite des Feldes 
+\setlength{\offset}{2.3cm}  % Abstand zwischen Feld und schraffierter Linie
+\end{verbatim}
+\end{footnotesize}
+
+Formatieren Sie die Datei mit ihrem Latex-Programm und drucken Sie die Seite mit einem PDF-Reader aus. Das Bild wird in Hochformat erstellt, man kann die Ausrichtung aber wechseln. Zwei oder mehrere Bilder können auf dem Tisch hintereinander geklebt werden, um eine längere Sequenz zu erhalten, was eine längere Zeichenkette repräsentiert.

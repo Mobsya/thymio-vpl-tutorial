@@ -1,19 +1,13 @@
-\documentclass[12pt,a4paper,ngerman]{report}
-\usepackage{../../vpl}
-\graphicspath{{../../images/}}
+% !TeX root = vpl.tex
 
-\newcommand*{\trickbox}[2][Trick]{\infobox{#1}{#2}{blue!10}{\bclampe}}
-\newcommand*{\importantbox}[2][Wichtige Information]{\infobox{#1}{#2}{yellow!10}{\bcinfo}}
-%\newcommand*{\importantbox}[1]{\infobox{Wichtige Information}{#1}{yellow!10}{\bcinfo}}
-\newcommand*{\yourturnbox}[1]{\infobox{Ihre Umdrehung}{#1}{orange!10}{\bccrayon}}
-\newcommand*{\exercisebox}[2]{\infobox{Übung #1}{#2}{orange!10}{\bccrayon}}
-\newcommand*{\warningbox}[1]{\infobox{Achtung !}{#1}{orange!10}{\bcattention}}
+\documentclass[11pt,a4paper,english,ngerman]{report}
+\usepackage[de]{../../vpl}
+\graphicspath{{../../images/de/} {../../images/en/} {../../images/}}
 
 \begin{document}
 \include{vpl-front}
-\tableofcontents
-\thispagestyle{empty}
 \include{vpl-preface}
+\include{vpl-diffs}
 \include{vpl-intro}
 \include{vpl-colors}
 \include{vpl-moving}
@@ -23,5 +17,21 @@
 \include{vpl-time}
 \include{vpl-states}
 \include{vpl-count}
+\include{vpl-angles}
+\include{vpl-parsons}
+\include{vpl-brait}
+\include{vpl-rabbit}
+\include{vpl-barcode}
+\include{vpl-sweep}
+\include{vpl-speed}
+\include{vpl-radar}
+\include{vpl-fa}
+\include{vpl-slow}
+\include{vpl-two}
 \include{vpl-next}
+\appendix
+\include{vpl-gui}
+\include{vpl-blocks}
+\include{vpl-tips}
+\include{vpl-tech}
 \end{document}

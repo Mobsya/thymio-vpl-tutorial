@@ -1,103 +1,87 @@
-\chap{Los, beweg dich}\label{c.moving}
+\chap{Los, beweg dich}\label{ch.moving}
 
-\sect{Vorwärts- und rückwärtsfahren}
+\sect{Vorwärts und rückwärts fahren}
 
-Der Thymio Roboter hat zwei Motoren mit denen er seine zwei Räder unabhängig antreiben
-kann. Beide Motoren können vorwärts und rückwärts drehen. Dadurch kann der
-Roboter vorwärts und rückwärts fahren. Lass uns mit einem kleineen Projekt starten bei dem du mehr über die Motoren lernst.
+Thymio hat zwei Motoren mit denen er seine zwei Räder unabhängig voneinander antreiben kann. Beide Motoren können vorwärts und rückwärts drehen. Dadurch kann der Roboter vorwärts und rückwärts fahren. Wir wollen uns mit einem kleinen Projekt befassen, um mehr über die Motoren zu lernen.
 
-Der Aktions-Block für die Motoren \blksm{action-motors} zeigt ein kleines Bild
-des Roboters in der Mitte mit zwei Schieberegler links und rechts. Mit den beiden Balken kannst du die
-Geschwindigkeit der beiden Motoren einstellen, mit dem linken Balken die des
-linken Motors und mit dem rechten Balken die des rechten Motors. Wenn das
-weisse Quadrat in der Mitte ist, dreht der Motor nicht. 
-Du kannst die Geschwindigkeit ändern indem du das weisse Quadrat verschiebst.
-Wenn du das Quadrat
-nach oben schiebst, dreht der Motor immer schneller vorwärts. Schiebst du es
-nach unten, dreht der Motor rückwärts.
+Der Aktions-Block für die Motoren \blksm{action-motors} zeigt ein kleines Bild des Roboters in der Mitte mit zwei Schiebereglern links und rechts. Mit den beiden Balken können Sie die Geschwindigkeit der beiden Motoren einstellen, mit dem linken Balken die des linken Motors und mit dem rechten Balken die des rechten Motors. Wenn das weisse Quadrat in der Mitte ist (vertikal), dreht der Motor nicht.  Sie können die Geschwindigkeit ändern, indem Sie das weisse Quadrat verschieben. Schiebt man das Quadrat nach oben, dreht der Motor vorwärts --- je weiter oben, desto schneller; schiebt man es nach unten, dreht der Motor entsprechend rückwärts.
 
-Erstelle ein Programm, um den Roboter vorwärts fahren zu lassen, wenn der
-Vorwärts-Kopf gedrückt und rückwärts, wenn der Rückwärts-Knopf gedrückt
-wird.
+Erstellen Sie ein Programm, um den Roboter vorwärts fahren zu lassen, wenn der Vorwärts-Kopf gedrückt wird und rückwärts, wenn der Rückwärts-Knopf gedrückt wird.
 
 {\raggedleft \hfill Beispielprogramm \bu{moving.aesl}}
 
-Wir brauchen zwei Ereignis-Aktions-Paare (\cref{fig.nostop}). 
-Ziehe die Ereignis- und Aktionsblöcke in die Programmierumgebung und stelle für beiden Motoren die Schieberegler auf halbe Geschwindigkeit ein. Dies indem du die Quadrate für Vorwärtsfahren halb nach oben und für Rückwärtsfahren halb nach unten verschiebst.
+Wir brauchen zwei Ereignis-Aktions-Paare:
+%(\cref{fig.nostop}).
 
-Führe das Programm aus und drücke die Knöpfe, um den Roboter vorwärts- und rückwärts fahren zu lassen. 
-
-
-\begin{figure}
+%\begin{figure}
 \begin{center}
-\gr{no-stop-motors}{.36}
-\vspace{-1em}
-\caption{Vorwärts- und rückwärtsfahren}\label{fig.nostop}
+\gr{no-stop-motors}{.3}
+%\caption{Moving forward or backwards}\label{fig.nostop}
 \end{center}
-\end{figure}
+%\end{figure}
 
+Ziehen Sie die Ereignis- und Aktions-Blöcke in die Programmierumgebung und stellen Sie für beiden Motoren die Schieberegler auf halbe Geschwindigkeit ein. Dies indem Sie die Quadrate für vorwärts fahren halb nach oben und für rückwärts fahren halb nach unten verschieben.
 
-\newpage
+Führen Sie das Programm aus und drücken Sie die Knöpfe, um den Roboter vorwärts- und rückwärts fahren zu lassen. 
 
-\sect{Stoppe den Roboter}
+\sect{Den Roboter anhalten}
 
-\textbf{Hilfe!} Ich kann die Motoren des Roboters nicht mehr stoppen!
+\textbf{Hilfe!} Ich kann den Roboter nicht mehr stoppen!
 
-Klicke auf das Symbol \blksm{stop}, um den Roboter zu stoppen.
+Klicken Sie auf das Symbol \blksm{stop}, um den Roboter zu stoppen.
 
-Lass uns diese Problem beheben, indem wir ein neues Ereignis-Aktions-Paar
-hinzufügen: \blkc{stop-motors}Dieses soll die Motoren stoppen, wenn der mittlere Knopf gedrückt wird. Wenn du den Motoraktionsblock in die Programmierumgebung ziehst, sind die Schieberegler in der Mitte, was die Motoren abstellen lässt.
+Wir wollen diese Problem beheben, indem wir ein neues Ereignis-Aktions-Paar
+hinzufügen: \blkc{stop-motors}
+Dieses soll die Motoren stoppen, wenn der mittlere Knopf gedrückt wird. Wenn Sie den Motoraktionsblock in die Programmierumgebung ziehen, sind die Schieberegler in der Mitte, was die Motoren ausschaltet und den Roboter anhalten lässt.
 
-\sect{Falle nicht vom Tisch}
+\sect{Nicht vom Tisch fallen!}
 
 Wenn der Roboter auf dem Boden fährt, kann er im schlimmsten Fall in eine Wand
-fahren oder sein USB Kabel herausziehen. Aber wenn der Roboter auf einem Tisch
-fährt, kann er auf den Boden fallen und kaputt gehen! Lass uns den Roboter so
-programmieren, dass der Roboter stoppt sobald er an die Tischkante gelangt.
+fahren oder sein USB-Kabel herausziehen. Aber wenn der Roboter auf einem Tisch
+fährt, kann er auf den Boden fallen und kaputt gehen! Wir wollen den Roboter so
+programmieren, dass er anhält, sobald er die Tischkante erreicht.
 
-\warningbox{Wenn der Roboter auf einem Tisch fährt, musst du
-bereit sein, um ihn aufzufangen, falls er herunterfällt.}
+\warningbox{Wenn der Roboter auf einem Tisch fährt, muss man bereit sein, um ihn aufzufangen, falls er hinunterfällt.}
 
-Drehe deinen Thymio auf den Rücken. Nun siehst du, dass er unten zwei
-kleine, schwarze Rechtecke mit optischen Elementen hat (Bild~\ref{fig.bottom}).
-Das sind \emph{Bodensensoren}. Diese senden Infrarotlichtimpulse aus und messen wieviel Licht relektiert wird. 
+Drehen Sie Ihren Thymio auf den Rücken. Nun sehen Sie, dass er unten zwei
+kleine, schwarze Rechtecke mit optischen Elementen hat (\cref{fig.bottom}).
+Das sind \emph{Bodensensoren}. Diese senden Infrarotlichtimpulse aus und messen wie viel Licht reflektiert wird. 
 Auf einem hellen Tisch wird viel Licht reflektiert. Fährt der Roboter über die Tischkante wird wenig Licht reflektiert. Tritt dies ein, möchten wir, dass der Roboter stoppt.
 
-\trickbox{Benutze einen hellen Tisch aber keinen aus Glas, da von diesem kein Licht reflektiert wird. Thymio kann dann nicht erkennen, ob er auf einem Tisch ist oder nicht.}
+\trickbox{Benutzen Sie einen hellen Tisch aber keinen aus Glas, da von diesem kein Licht reflektiert wird. Thymio kann dann nicht erkennen, ob er auf einem Tisch ist oder nicht.}
 
-Ziehe das Bodensensor-Ereignis \blksm{event-ground} in dein Programm. Oben hat
-dieser Block zwei kleine Quadrate. Wenn du sie anklickst, werden sie weiss, rot
-und dann wieder grau. Die Farben haben verschiedene Bedeutungen:
+Ziehen Sie das Bodensensor-Ereignis \blksm{event-prox-ground}
+in Ihr Programm. Oben hat dieser Block zwei kleine Quadrate. Wenn Sie sie anklicken, werden sie weiss mit rotem Rand, schwarz und dann wieder grau. Die Farben haben verschiedene Bedeutungen:
 
 \begin{itemize}
-\item \textbf{Grau}: Der Sensor wird nicht gebraucht.
-\item \textbf{Rot}: Ein Ereignis passiert, wenn viel Licht reflektiert wird.
-\item \textbf{Weiss}: Ein Ereignis passiert, wenn wenig Licht reflektiert wird. 
+
+\item \textbf{Grau}: Der Sensor wird nicht beachtet.
+
+\item \textbf{Weiss}: Das Ereignis tritt ein, wenn viel Licht reflektiert wird. \label{p.proximity-colors1} Links vom weissen Feld wird ein kleiner roter Punkt dargestellt; dies nimmt Bezug auf das rote Licht neben dem Sensor, das leuchtet, wenn der Sensor etwas entdeckt hat.\footnote{Das weisse Quadrat hat einen roten Rand, der daran erinnert, dass das Ereignis eintrifft, wenn die Lichter neben dem Sensor aufleuchten.}
+
+\item \textbf{Schwarz}: Das Ereignis tritt ein, wenn es wenig oder kein reflektierendes Licht gibt.
+
 \end{itemize}
 
-\trickbox[Information]{Grau, rot und weiss, die für diesen Aktionsblock verwendet werden, wurden zufällig ausgewählt und könnten auch durch andere ersetzt werden.}
+%\trickbox[Information]{The gray, red and white colors used in a block
+%are arbitrary and others could have been chosen.}
 
-Klicke auf die Quadrate bis beide weiss sind, um den Roboter zu stoppen, wenn
-wenig Licht reflektiert wird. Erstelle das Ereignis-Aktions-Paar:
-\blkc{dont-fall}
+Damit der Roboter an der Tischkante anhält (wo es nur geringe Reflektion von Licht gibt) klicken Sie beide Quadrate bis sie schwarz werden.
+Erstellen Sie das folgende Ereignis-Aktions-Paar: \blkc{dont-fall}
 
 \begin{figure}
 \begin{center}
 \gr{bottom}{0.6}
-\caption{Unterseite des Thymio Roboters mit zwei Bodensensoren in der vorderen Hälfte.}\label{fig.bottom}
+\caption{Thymios Unterseite mit den beiden Bodensensoren}\label{fig.bottom}
 \end{center}
 \end{figure}
 
-Stelle den Roboter mit der Vorderseite nahe an die Tischkante und drücke den Vorwärtsknopf. Der
-Roboter sollte bis zur Tischkante fahren und dann stoppen.
+Stellen Sie den Roboter in der Nähe der Tischkante auf (auf die Tischkante ausgerichtet) und betätigen Sie den vorderen Knopf. Der Roboter sollte sich auf die Kante zu bewegen und anhalten, bevor er vom Tisch fällt. 
 
-\exercisebox{\thechapter.1}{
-Probiere verschiedene Geschwindigkeiten mit dem Roboter aus. Kann der Roboter
-auch bei der schnellsten Geschwindigkeit noch rechtzeitig stoppen, um nicht vom
-Tisch zu fallen? Falls nicht, wie schnell kannst du ihn einstellen, damit er
-noch rechtzeitig stoppen kann? Kannst du ein Herunterfallen verhindern, indem du die Räder rückwärtsdrehen lässt, anstatt die Motoren nur zu stoppen?
-}
+\bigskip
 
-\trickbox{
-Als ich das Programm laufen liess, \emph{fiel} der Roboter vom Tisch. Der Grund war, dass mein Tisch runde Kanten hatte; als der Roboter eine geringe Reflektion detektierte, war es schon zu spät und der Roboter rutschte vom Tisch. Meine Lösung war, dass ich ein schwarzes Klebeband an den Tischrand anbrachte.
-}
+\exercisebox{\thechapter.1}{ Experimentieren Sie mit der Geschwindigkeit. Gelingt es dem Roboter bei Höchstgeschwindigkeit doch noch rechtzeitig anzuhalten? Falls nicht: ab welcher Geschwindigkeit fällt er vom Tisch? Kann man den Roboter auch im Rückwärtsgang davon abhalten, vom Tisch zu fallen?}
+
+\bigskip
+
+\warningbox{Als wir dieses Programm getestet haben, \emph{ist} der Roboter vom Tisch gefallen. Der Grund war, dass der Tisch eine abgerundete Kante hatte; sobald die fehlende Reflektion erkannt wurde, war es schon zu spät und der Roboter kippte nach vorne, verlor an Stabilität und viel vom Tisch.}

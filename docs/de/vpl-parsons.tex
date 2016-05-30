@@ -1,0 +1,294 @@
+\part{Parsons Rätsel}
+
+\chap{Parsons-Rätsel für VPL}\label{ch.parsons}
+
+\newcommand*{\eblock}{\framebox[40pt]{\rule[-11pt]{0pt}{32pt}}\ }
+
+\sect{Was sind Parsons Rätsel?}
+
+\emph{Parsons Rätsel} sind eine spezielle Art von Übungen, die den Lernenden vermitteln, wie man programmiert.\footnote{Parsons, D. and Haden, ''P. Parson's
+programming puzzles: A fun and effective learning tool for first
+programming courses.'' \textit{Proceedings of the 8th Australian
+Conference on Computing Education}, Darlinghurst, Australia, 2006,
+Seiten 157–163.} Ein Parsons Rätsel besteht aus der Spezifikation eines Programmes, sowie einer Menge von Anweisungen in einer Programmiersprache. Die Aufgabe besteht darin, die Anweisungen in die richtige Reihenfolge zu bringen, so dass ein Programm entsteht das macht, was spezifiziert wurde. Ein Parsons Rätsel kann \emph{Ablenker} (Distraktoren) beinhalten, bei denen es sich um falsche oder überflüssige Anweisungen handelt, die für die Lösung nicht benötigt werden. Der Vorteil eines Parsons Rätsels ist, dass alle zur Lösung nötigen Anweisungen vorliegen und dass ihre Syntax stimmt.
+
+In VPL ist die Reihenfolge der Anweisungen (Ereignis-Aktions-Paare) nicht relevant. Daher werden die Rätsel hier aus Blöcken bestehen, bei denen der Ereignis- oder der Aktions-Block fehlen; ausserdem können auch ganze Blöcke fehlen. Auf der rechten Seite der Ereignis-Aktions-Blöcke stehen jeweils zwei oder mehrere Blöcke, aus denen der richtige Block ausgewählt und mit einem Pfeil mit dem Ereignis-Aktions-Block verbunden werden soll.
+
+\textbf{Beispiel}
+Wenn der Vorwärts-Knopf gedrückt wird, leuchtet das obere Licht grün.
+
+\bigskip\bigskip
+
+\begin{center}
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{forward} $\rightarrow$ \eblock  &  \blk{red} & \blk{green}\\
+\end{tabular}
+\begin{picture}(250,20)
+\put(230,60){\line(0,1){20}}
+\put(230,80){\line(-1,0){155}}
+\put(75,80){\vector(0,-1){20}}
+\end{picture}
+\end{center}
+
+\vspace*{-8ex}
+
+\sect{Die Rätsel}
+
+
+\begin{enumerate}
+
+\item Wenn der rechte Knopf gedrückt wird, leuchten die unteren Lichter rot.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{right-button} $\rightarrow$ \eblock  &  \blk{red-bottom} & \blk{red}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der rechte Knopf gedrückt wird, leuchtet das obere Licht rot. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{left-button} &
+ \blk{right-button}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der linke Knopf gedrückt wird, leuchten die unteren Lichter grün.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \eblock  &  \blk{right-button} & \blk{left-button}
+ & \blk{green} & \blk{green-bottom}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der linke \textbf{oder} der rechte Knopf gedrückt wird, leuchtet das obere Licht grün. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\blk{left-button} $\rightarrow$ \eblock  &  \blk{green} &
+  \blk{green-bottom}\\
+\\
+\eblock $\rightarrow$ \blk{green}  &  \blk{right-button} &
+ \blk{left-button}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der linke und der rechte Knopf \textbf{gleichzeitig} gedrückt werden, leuchtet das obere Licht rot. 
+Wählen Sie eines der folgenden Programme: 
+
+\begin{center}
+\begin{tabular}{c@{\hspace{5em}}c@{\hspace{5em}}c}
+\blk{left-right-button} $\rightarrow$ \blk{red} & \textbf{oder}&
+\blk{left-button} $\rightarrow$ \blk{red}\\
+&&\blk{right-button} $\rightarrow$ \blk{red}
+\end{tabular}
+\end{center}
+
+\vspace{-2ex}
+
+\bigskip
+
+\item Wenn ein Hindernis \textbf{ausschliesslich} mit dem am weitesten links liegenden Sensor entdeckt wird, dreht der Roboter nach links. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{left-turn} & \blk{sensor-and-prox} &
+\blk{right-prox} & \blk{center-prox} & \blk{left-prox} \\
+\end{tabular}
+
+\bigskip
+
+\item Halten Sie den Roboter an, wenn die Tischkante erreicht wurde. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-prox-ground} &
+ \blk{ground2} & \blk{ground1}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der Roboter eine Wand entdeckt, leuchtet das obere Licht rot. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lll}
+\eblock $\rightarrow$ \blk{red} & \blk{center-prox} & \blk{ground1}\\
+\end{tabular}
+
+\bigskip
+
+\item Wenn der Roboter in die Wand gefahren ist, hält er an. 
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+	\blk{event-tap} $\rightarrow$  \eblock & \blk{full} & \blk{back-full} & \blk{action-motors}\\
+\end{tabular}
+
+
+\bigskip
+
+\item Der Roboter dreht nach links, wenn der mittlere vordere Sensor ein Hindernis entdeckt. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+	\blk{center-prox} $\rightarrow$ \eblock & \blk{left-turn} & \blk{full} & \blk{right-turn}\\
+\end{tabular}
+
+\bigskip
+
+\item Der Roboter dreht nach rechts, wenn der mittlere vordere Sensor \textbf{kein} Hindernis entdeckt.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{center-prox} & \blk{no-detect-forward} &
+\blk{neither-prox}\\
+\end{tabular}
+
+\bigskip
+
+\item Die Motoren werden ausgeschaltet, wenn der linke Knopf gedrückt wird 
+\textbf{oder} wenn der Roboter berührt (angetippt) wird.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}lllll}
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-buttons} &
+\blk{left-right-button} & \blk{left-button} & \blk{right-button}\\
+\\
+\eblock $\rightarrow$ \blk{action-motors} & \blk{event-tap} &
+\blk{event-clap}
+\end{tabular}
+
+\bigskip
+
+\item Wenn der Vorwärts-Knopf betätigt wird, fährt der Roboter während 3 Sekunden nach vorne und fährt anschliessend rückwärts. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{forward} $\rightarrow$ \blk{full}\\
+\\
+\blk{forward} $\rightarrow$ \eblock & \blk{event-timer} & \blk{three-seconds}\\
+\\
+\eblock       $\rightarrow$ \blk{back-full} & \blk{event-timer} &  \blk{three-seconds}\\
+\end{tabular}
+
+\bigskip
+
+\item Der Roboter fährt auf ein Objekt zu, welches der rechte, mittlere oder linke Sensor entdeckt hat.
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\blk{center-prox} $\rightarrow$ \blk{full}\\
+\\
+\blk{left-prox} $\rightarrow$ \eblock & \blk{right-turn} & \blk{full} &
+ \blk{left-turn} & \blk{action-motors}\\
+\\
+\eblock       $\rightarrow$ \eblock & \blk{right-turn} & \blk{left-turn} &
+ \blk{left-prox} & \blk{right-prox}\\
+\end{tabular}
+
+\bigskip
+
+\item Der Roboter folgt einer Linie auf dem Boden. Wird die Linie vom rechten Sensor nicht mehr wahrgenommen, dreht er nach links; wird sie vom linken Sensor nicht mehr wahrgenommen, dreht er nach rechts. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{5em}}llll}
+\eblock $\rightarrow$ \blk{right-turn} & \blk{bottom-right} & \blk{bottom-left} & \blk{left-prox} & \blk{right-prox}\\
+\\
+\eblock $\rightarrow$ \eblock & \blk{bottom-right} & \blk{bottom-left} & \blk{right-turn} & \blk{left-turn}\\
+\\
+\end{tabular}
+
+\item Der Roboter zählt 0,1,2,3,0,1,2,3, \ldots, wenn in die Hände geklatscht wird. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{event-clap} \blk{state-event-0} $\rightarrow$ \eblock &
+\blk{state-0} & \blk{state-1} & \blk{state-2} & \blk{state-3}\\ 
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-2} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \blk{state-3} &
+\blk{state-event-0} & \blk{state-event-1} & \blk{state-event-2} & \blk{state-event-3}\\
+\\
+\blk{event-clap} \eblock $\rightarrow$ \eblock &
+\blk{state-event-0} & \blk{state-event-3} & \blk{state-0} & \blk{state-3}\\ 
+\\
+\end{tabular}
+
+\newpage
+
+\item Wenn der mittlere Knopf betätigt wird, werden die Lichter vorne rechts und vorne links abwechselnd in einem Sekundenintervall ein- und ausgeschaltet. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\blk{center-button} \blk{event-state} $\rightarrow$ \eblock \blk{one-second} &
+\blk{action-states} & \blk{state-0} & \blk{state-1} & \blk{state-2}\\ 
+\\
+\blk{event-timer} \blk{state-event-1} $\rightarrow$ \blk{state-2} \eblock &
+\blk{event-timer} & \blk{action-timer} & \blk{one-second} & \blk{three-seconds}\\ 
+\\
+\eblock \blk{state-event-2} $\rightarrow$ \eblock \blk{one-second} &
+\blk{event-timer} & \blk{action-timer} & \blk{state-0} & \blk{state-1}\\ 
+\\
+\end{tabular}
+
+\bigskip
+
+\item Die unteren Lichter leuchten grün, wenn in der Ferne ein Objekt entdeckt wird und die oberen Lichter leuchten rot, wenn ein nahes Objekt entdeckt wird. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{bottom-green} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{red} &
+\blk{far} & \blk{close} & \blk{far-no} & \blk{close-no}\\ 
+\\
+\end{tabular}
+
+\bigskip
+
+
+\item Liegt der Roboter auf seine linke Seite, leuchten die oberen Lichter blau und die unteren Lichter werden ausgeschaltet. Liegt der Roboter auf dem Rücken (Hinterseite) leuchten die unteren Lichter gelb und die oberen Lichter werden ausgeschaltet. 
+
+\bigskip
+
+\begin{tabular}{l@{\hspace{3em}}llll}
+
+\eblock \blk{event-state} $\rightarrow$ \blk{blue} \blk{action-colors-down} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+
+\eblock \blk{event-state} $\rightarrow$ \blk{action-colors-up} \blk{yellow-bottom} &
+\blk{tilt-left} & \blk{tilt-right} & \blk{tilt-front} & \blk{tilt-back}\\ 
+\\
+\end{tabular}
+
+\end{enumerate}

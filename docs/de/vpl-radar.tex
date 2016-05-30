@@ -1,0 +1,24 @@
+\chap{Fangen Sie die Temposünder}\label{ch.radar}
+
+\textbf{Spezifikation}
+
+Helfen Sie der Polizei, etwas gegen Raser zu unternehmen. Messen Sie die Geschwindigkeit indem sie feststellen, wie weit ein Fahrzeug während einer festen Zeitperiode fährt.
+
+Der Roboter erkennt ein Objekt, das sich vor den Sensoren von seiner linken zu seiner rechten Seite bewegt. Schalten Sie das obere Licht in einer jeweils unterschiedlichen Farbe ein, je nach dem, wie weit sich das Objekt während einer von seinem am weitesten links liegenden Sensor nach rechts bewegt hat. 
+
+\textbf{Anleitung}
+
+\begin{itemize}
+\item Im initialen Zustand, sobald der linke vordere Sensor das Objekt entdeckt, starten Sei einen Timer für eine Sekunde. 
+
+\item Wenn der Timer abgelaufen ist, ändern Sie den Zustand auf einen neuen Zustand; wir wollen ihn \emph{Messzustand} nennen. 
+
+\item Erstellen Sie vier Ereignis-Aktions-Paare, je eines für die 4 weiteren vorderen Sensoren. Das Ereignis tritt nur ein, wenn man sich im Messezustand befindet. Wenn ein Sensor ein Objekt entdeckt, wird das obere Licht eingeschaltet in der Farbe, die dem Sensor zugeordnet ist.
+
+\item Stellen Sie sicher, dass das Ereignis-Aktions-Paar nur eintritt, wenn der entsprechende Sensor das Objekt entdeckt, d.h. verhindern Sie, dass das Objekt auch durch die Nachbarsensoren wahrgenommen wird. 
+
+\end{itemize}
+
+\bigskip
+
+{\raggedleft \hfill Beispielprogramm \bu{speeders.aesl}}

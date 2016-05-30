@@ -1,0 +1,58 @@
+\chap{Tipps für die VPL-Programmierung}\label{a.tips}
+
+\sect{Erforschen und Experimentieren}
+\
+\begin{description}
+
+\item[Verständnis für jeden Ereignis- und Aktions-Block] Für jeden Ereignis-Block und jeden Aktions-Block sollten Sie etwas Zeit einsetzen, um mit den Einstellungen herum zu experimentieren und um festzustellen, wie der Block genau funktioniert. Um das Verhalten eines Aktions-Blockes zu erforschen, erstellen Sie ein Ereignis-Aktions-Paar, wo das Ereignis ein einfaches Knopf-Ereignis ist. Durch das einfache Ereignis kann man leichter lernen, was der Aktions-Block genau macht. Wenn Sie umgekehrt ein Ereignis untersuchen wollen, nehmen Sie dazu einen Aktions-Block, der nur die Farbe des Roboters ändert.
+
+\item[Experimentieren mit den Sensor-Ereignis-Blöcken] Die kleinen Lichter neben den Sensoren zeigen, dass der Sensor etwas wahrgenommen hat. Bewegen Sie Ihre Finger vor den Sensoren, um zu sehen, welche lichter an gehen. Konstruieren Sie ein Ereignis-Aktions-Paar bestehend aus dem Sensor-Ereignis und dem oberen Licht und experimentieren Sie mit den Einstellungen der kleinen Quadrate im Ereignis-Block (grau, weiss, schwarz und dunkelgrau im Fortgeschrittenen Modus).
+
+\item[Experimentieren mit den Motoren] Experimentieren Sie mit den Einstellungen der Motoren, um zu sehen, wie schnell der Roboter bei unterschiedlichen Einstellungen fährt. Untersuchen Sie das Drehverhalten, indem Sie die Geschwindigkeit (und Richtung) der beiden Motoren variieren.
+
+\end{description}
+
+
+\sect{Konstruieren eines Programms}
+
+\begin{description}
+
+\item[Programm planen] Bevor Sie mit dem Schreiben des Programms beginnen, fertigen Sie ein kurze Beschreibung an, wie das Programm später arbeiten soll: ein Satz pro Ereignis-Aktions-Paar reicht aus. 
+
+\item[Konstruieren Sie ein Ereignis-Aktions-Paar nach dem anderen] Wenn Sie verstehen, wie jedes Ereignis-Aktions-Paar funktioniert, können Sie diese in das Programm zusammenfügen. 
+
+\item[Testen Sie jede Änderung des Programms aus] Führen Sie einen Test durch, nach jeder Änderung oder Ergänzung eines Ereignis-Aktions-Paar um einen allfälligen Fehler besser erkennen zu können. 
+
+\item[Benutzen Sie \bu{Speichen unter} nachdem Sie das Programm geändert haben] Bevor Sie das Programm verändern, klicken Sie auf \blksm{saveas} um eine neue Version des Programms unter einem neuen Namen zu speichern. Wenn die Änderungen eine Verschlechterung darstellen, können Sie so einfach auf die frühere Version zurückgehen. 
+
+\item[Anzeigen, was passiert] Benutzen Sie Farben, um aufzuzeigen, was das Programm gerade macht. Ein Beispiel: wenn ein Sensor in einem Paar den Roboter nach links fahren lässt und ein Sensor in einem anderen Paar den Roboter nach rechts fahren lässt, fügen Sie zu jedem Paar eine Aktion hinzu, die den Roboter jeweils in einer unterschiedlichen Farbe leuchten lässt. So können Sie feststellen, ob es ein Problem mit den Sensoren gibt oder ob die Motoren nicht richtig auf das Ereignis reagieren. 
+
+
+\end{description}
+
+
+\sect{Fehlerbehebung}
+
+\begin{description}
+
+\item[Verwenden Sie eine glatte Oberfläche] Achten Sie darauf, dass die Oberfläche, auf der sich der Roboter bewegt --- Tisch oder Boden --- sehr sauber und glatt ist. Ansonsten können die Motoren den Roboter nicht richtig bewegen oder die Kurven werden ungenau. 
+
+\item[Verwenden Sie ein langes Kabel] Achten Sie darauf, ein Kabel zu nehmen, das lange genug ist, oder arbeiten Sie mit der Kabellosen Version. Wenn der Roboter zu weit fährt, kann das Kabel ihn abbremsen oder gar zum stehen bringen. 
+
+\item[Sensor-Ereignisse können übersehen werden] Sensor-Ereignisse werden pro Sekunde 10 Mal abgefragt. Wenn der Roboter zu schnell fährt, kann ein Ereignis übersehen werden.
+
+Wenn beispielsweise der Roboter die Tischkante erkennen und anhalten soll, er aber zu schnell unterwegs ist, kann er vom Tisch Fallen, bevor er der Sensor ihn zum anhalten bringt. Wenn Sie ein Programm starten, beginnen sie mit tiefer Geschwindigkeit und erhöhen Sie sie nur allmählich. 
+
+Für ein weiteres Beispiel denken Sie an das Spur-Folgen-Programm in \cref{ch.line}. Sein Algorithmus hängt von der Fähigkeit ab, dass der eine Bodensensor die Linie wahrnimmt und der andere sie nicht wahr nimmt. Wenn der Roboter zu schnell unterwegs ist, kann das Ereignis nicht ausgelöst werden, weil die Position für die Sensoren zu schnell verschwindet.  
+
+\item[Probleme mit Bodensensoren] In Programmen wie dem Spur-Folgen-Programm müssen die Sensoren unterscheiden zwischen viel und wenig reflektiertem Licht. Dies funktioniert nur, wenn der Kontrast zwischen den beiden Farben hoch ist. Wenn Sie beispielsweise eine nicht allzu helle Tischplatte verwenden, sollten Sie weisses Papier als Unterlage verwenden. 
+
+Als Alternative können Sie natürlich den Grenzwert im Erweiterten Modus verändern. 
+
+\item[Ereignis-Aktions-Paare werden nacheinander ausgeführt] Theoretisch werden die Ereignis-Aktions-Paare \emph{gleichzeitig} abgefragt --- zur selben Zeit; in der Praxis werden sie aber oft nacheinander abgefragt und das in der Reihenfolge, wie sie programmiert wurden. Wie in Aufgabe ~4.2 gezeigt kann das zu Problemen führen, wenn die zweite Aktion mit der ersten Aktion in Konflikt steht. 
+
+\item[Probleme mit dem Klatschen-Ereignis] Verwenden Sie das Klatschen-Ereignis \blksm{event-clap} \emph{nicht}, wenn die Motoren laufen. Das Geräusch der Motoren kann unerwarteter Weise das Klatschen-Ereignis auslösen. 
+
+Des weiteren sollte das Klopfen-Ereignis \blksm{event-tap} \emph{nicht} gemeinsam mit dem Klatschen-Ereignis verwendet werden. Das Klopfen erzeugt ein Geräusch, das wieder das Klatschenereignis auslösen kann. 
+
+\end{description}

@@ -1,47 +1,129 @@
 \chapter*{Vorwort}
-
 \sect{Was ist ein Roboter?}
+Sie fahren mit ihrem Fahrrad und plötzlich sehen sie, dass die Strasse vor ihnen aufwärts geht. Sie treten kräftiger in die Pedale, um den Rädern mehr Energie zuzuführen. Dadurch werden sie auch aufwärts nicht langsamer. Nachdem sie oben angekommen sind, geht es wieder runter. Sie betätigen die Bremsen ihres Fahrrads wodurch sie nicht zu schnell werden. Wenn sie Fahrrad fahren, sind ihre Augen wie \textit{Sensoren}, die ihre Umgebung wahrnehmen. Wenn diese Sensoren — ihre Augen — ein \textit{Ereignis} erfassen (zum Beispiel eine Kurve), führen sie eine \textit{Aktion} aus (zum Beispiel den Fahrradlenker nach links oder rechts zu bewegen).
 
-Du fährst dein Fahrrad und plötzlich siehst du, dass die Strasse vor dir
-aufwärts geht.  Du trittst kräftiger in die Pedale, um den Rädern mehr Energie
-zuzuführen. Dadurch wirst du auch aufwärts nicht langsamer. Nachdem du oben
-angekommen bist, geht es wieder runter. Du betätigst die Bremsen deines
-Fahrrads damit die Bremsblöcke gegen die Räder gedrückt werden. Dadurch wird
-dein Fahrrad nicht zu schnell.  Wenn du Fahrrad fährst, sind deine Augen
-\emph{Sensoren}, die deine Umgebung \emph{wahrnehmen}. Wenn diese Sensoren ---
-deine Augen --- ein \emph{Ereignis} erfassen (zum Beispiel eine Kurve der
-Strasse), führst du eine \emph{Aktion} aus (zum Beispiel indem du den
-Fahrradlenker nach links oder rechts steuerst).
+In einem Auto sind Sensoren eingebaut, die \textit{messen} was in der Umgebung passiert. Der Tachometer misst, wie schnell das Auto fährt. Wenn sie sehen, dass das Auto schneller als das Tempolimit fährt, sagen sie dem Fahrer, er fahre zu schnell. Darauf kann der Fahrer eine Aktion ausführen, nämlich die Bremse betätigen, damit das Auto langsamer wird. Die Tankanzeige misst, wie viel Benzin noch im Tank des Autos ist. Wenn sie sehen, dass die Anzeige zu tief ist, können sie der Fahrerin sagen, dass sie eine Tankstelle suchen muss. Sie kann dann eine Aktion ausführen: Sie kann den Blinker einschalten und das Steuerrad nach rechts drehen, um zur Tankstelle zu fahren.
 
-In einem Auto sind Sensoren eingebaut, die \emph{messen} was in der Umgebung
-passiert. Der Tachometer misst, wie schnell das Auto fährt. Wenn du siehst, dass
-das Auto schneller als die Tempolimite fährt, sagst du dem Fahrer, er fahre zu
-schnell. Darauf kann der Fahrer eine Aktion ausführen, nämlich die Bremse
-betätigen, damit das Auto langsamer wird. Die Tankanzeige misst, wie viel Benzin
-noch im Tank des Autos ist. Wenn du siehst, dass die Anzeige zu tief ist,
-kannst du der Fahrerin sagen, dass sie eine Tankstelle suchen muss. Sie kann
-dann eine Aktion ausführen: Sie kann den Blinker einschalten und das Steuerrad
-nach rechts drehen, um zur Tankstelle zu fahren.
+Jeder Fahrradfahrer und Autofahrer erhält Informationen von den Sensoren, entscheidet dann welche Aktion nötig ist und führt diese Aktionen aus. Ein \textit{Roboter} ist ein System, in welchem dieser Prozess — Informationen erhalten, Entscheidungen treffen, Aktionen ausführen — von einem Computer durchgeführt wird. Normalerweise macht der Roboter das ohne die Hilfe von Menschen.
 
-Jeder Fahrradfahrer und Autofahrer erhält Informationen von den Sensoren,
-entscheidet dann welche Aktion nötig ist und verursacht diese Aktionen.
-Ein \emph{Roboter} ist ein System, in welchem dieser Prozess --- Informationen
-erhalten, Entscheidungen treffen, Aktionen ausführen --- von einem Computer
-ausgeführt wird. Normalerweise macht der Roboter das ohne die Hilfe von
-Menschen.
+\sect{Thymio Roboter und Aseba VPL Umgebung}
+Thymio ist ein kleiner Roboter, der für pädagogische Zwecke entwickelt wurde (\cref{fig.front}). Die Sensoren des Roboters messen Licht, Töne und Distanzen und detektieren, ob Knöpfe gedrückt werden oder ob an den Roboter geklopft wird. Die wichtigste Aktionen, die durchgeführt werden kann, ist die Bewegung durch zwei Räder, die mit je einem Motor angetrieben werden. Weitere Aktionen sind das Erklingen lassen von Tönen und das Ein- und Ausschalten von Lichtern in verschiedenen Farben.
 
-\sect{Der Thymio Roboter und die Aseba VPL Umgebung}
+In diesem Dokument sprechen wir jeweils von Thymio, obwohl natürlich die aktuelle Version Thymio II gemeint ist. 
 
-Der Thymio-II ist ein kleiner Roboter, der für Ausbildungszwecke vorgesehen ist
-(Bild~\ref{fig.front}). Die Sensoren des Roboters messen Licht, Töne und
-Distanzen und detektieren, ob Knöpfe gedrückt werden oder ob an den Roboter
-geklopft wird. Die wichtigsten Aktionen, die durchgeführt werden können sind: Bewegung durch die zwei Räder, die mit je einem Motor angetrieben werden. Weitere Aktionen sind das Erklingenlassen von Tönen und das An- und Abschalten von Lichtern.
+Aseba ist eine Programmierumgebung für kleine Roboter, wie Thymio. VPL ist ein Teil von Aseba und dient der visuellen Programmierung (visual programming). VPL wurde entwickelt, um Thymio auf einfache Art und Weise mit Ereignis- und Aktionsblöcken programmieren zu können.
 
-In diesem Dokument wird Thymio II einfachheitshalber Thymio genannt, bezieht sich aber immer auf die Version II des Thymio Roboters.
+%\newpage
+\sect{Tutorialübersicht}
 
-Aseba ist eine Programmierumgebung für kleine Roboter, wie den Thymio. VPL ist ein Teil
-vom Aseba und dient der \emph{visuellen Programmierung} (visual programming). VPL wurde Entwickelt, um Thymio auf einfache Art und Weise mit Ereignis- und Aktionsblöcken programmieren zu können.
+Jedes Kapitel befasst sich mit einem besonderen Thema, welches aus der kurzen Einleitung hervor geht, gefolgt von der Darstellung der Ereignisse und Aktionsblöcke, die jeweils verwendet werden. Es wird empfohlen, zunächst die Kapitel im Standard-Modus zu bearbeiten, später den Fortgeschrittenen-Modus zu untersuchen oder einige Projekte zu versuchen. Das Parson-Rätsel soll versuchen, wer sein Wissen über VPL testen will. Lesen Sie \cref{ch.next} sobald Sie VPL verlassen möchten, um sich der erweiterten Umgebung von Aseba Studio zu widmen. Die Anhänge umfassen Referenzmaterialien, die bei Bedarf gelesen werden sollen. 
 
-Dieses Tutorial setzt voraus, dass sie Aseba auf ihrem Computer installiert haben. Ist dies nicht der Fall, gehen sie auf
- \url{https://aseba.wikidot.com/en:downloadinstall}, wählen sie ihr Betriebssystem aus, laden sie das Programm herunter und installieren sie dieses auf ihrem Computer. 
+\subsection*{Teil I: Tutorial}
 
+\textbf{\cref{ch.intro,ch.colors}} geben eine grundlegende Einführung in den Roboter, die VPL-Umgebung und ihr wichtigstes Programmierkonstrukt: das Ereignis-Aktionen-Paar.
+
+\textbf{Ereignis}: Tasten \hfill \textbf{Aktionsblöcke}: Farbe der oberen und unteren Lichter
+
+\blkmed{event-buttons} \hfill \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\medskip
+
+\textbf{\cref{ch.moving,ch.pet,ch.line}} erklären die Aktionen und Algorithmen für autonome mobile Roboter. Sie stellen sicher den Kern jeder Beschäftigung mit Thymio und VPL dar. 
+
+\textbf{Ereignis}: Tasten, Distanzsensoren \hfill
+\textbf{Aktionsblöcke}: Motoren
+
+\blkmed{event-buttons} \quad\blkmed{event-prox}\quad \blkmed{event-prox-ground} \hfill
+\blkmed{action-motors}
+
+\medskip
+
+\textbf{\cref{ch.bells}} beschreibt Funktionen des Roboters, deren Verwendung Spass macht, die aber nicht wesentlich sind: Geräusche und Erschütterungen.
+
+\textbf{Ereignis}: Berührung, Klatschen \hfill \textbf{Aktionsblöcke}: Melodie, Farbe der Lichter
+
+\blkmed{event-tap} \quad \blkmed{event-clap} \hfill \blkmed{action-music}
+\quad \blkmed{action-colors-up} \quad \blkmed{action-colors-down}
+
+\medskip
+
+\importantbox[Fortgeschrittener Modus]{VPL hat einen Standard-Modus, der elementare Ereignisse und Aktionen unterstützt, die für Anfänger einfach zu meistern sind. Der erweiterte Modus von VPL unterstützt weitere Ereignisse und Aktionen, die einen Anfänger überfordern würden, aber für den Fortgeschrittenen hilfreich sind. Er beginnt ab \cref{ch.time}.}
+
+\medskip
+
+\textbf{\cref{ch.time}} erklärt zeit-bezogene Ereignisse. Es gibt einen Aktionsblock um einen Timer (Wecker) zu stellen; sobald der Timer abgelaufen ist, tritt das Ereignis ein. 
+
+\textbf{Ereignis}: Zeit abgelaufen \hfill \textbf{Aktionsblöcke}: Timer setzen
+
+\blkmed{event-timer} \hfill \blkmed{action-timer}
+
+\newpage
+
+\textbf{\cref{ch.states,ch.counting}} erklären Zustands-Maschinen, welche es dem Roboter erlauben, bestimmte Aktionen zu unterschiedlichen Zeitpunkten durchzuführen. Zustände können auch verwendet werden, um elementare arithmetische Operationen auszuführen wie das Zählen.
+
+\textbf{Ereignis}: Zustand (bezogen auf Ereignis) \hfill \textbf{Aktionsblöcke}:
+ändern des Zustands
+
+\blkmed{state-filter} \hfill \blkmed{action-states}
+
+\medskip
+
+\textbf{\cref{ch.angles}} beschreibt, wie man die Beschleunigungsmesser von Thymio verwendet.
+
+\textbf{Ereignis}: Beschleunigungsmesser
+
+\blkmed{event-pitch} \quad \blkmed{event-roll}
+
+\bigskip
+
+\subsection*{Teil II: Parson-Rätsel}
+
+\textbf{\cref{ch.parsons}} stellt die Parson-Rätsel vor, mit denen man das Wissen über VPL testen kann.
+
+\bigskip
+
+\subsection*{Teil III: Projekte}
+
+\textbf{\cref{ch.brait,ch.rabbit,ch.barcode,ch.sweep,ch.speed,ch.radar,ch.fa,ch.slow,ch.two}}
+spezifizieren Projekte, die man selbständig designen und implementieren kann. Der passende Quellcode findet man im Archiv, es wird aber empfohlen, zunächst eine selbständige Lösung zu erarbeiten!
+
+\bigskip
+
+\subsection*{Teil IV: Übergang von visueller zu textbasierter Programmierung}
+
+\textbf{\cref{ch.next}} verweist auf den nächsten Schritt: die Verwendung der textbasierten Programmierung mit Aseba-Studio. Diese bietet deutlich mehr Funktionen für die Entwicklung von Robotern als VPL.
+
+%\informationbox{Reference material}{The appendices contains reference
+%material that you will want to look at from time to time to learn about
+%new featuers of VPL or to refresh your memory.}
+\bigskip
+
+\subsection*{Teil V: Anhänge}
+
+\textbf{\cref{a.toolbar}} enthält eine Beschreibung der Benutzerschnittstelle---die Knöpfe in der Toolbar.
+%It also describes how to display dynamic feedback when a VPL program is run.
+
+\textbf{\cref{a.blocks}} zählt die Ereignisse auf und die Aktionsblöcke des Standard- und der Fortgeschrittenen-Modus. 
+
+\textbf{\cref{a.tips}} enthält Leitlinien für Lehrer und
+Mentoren. Der erste Abschnitt zeigt, wie man das entdeckende Lernen und das Experimentieren fördern kann. Der nächste Abschnitt konzentriert sich auf gutes Programmieren. Der letzte Abschnitt listet einige Probleme auf, auf die man stossen kann und bietet Hinweise, wie diese zu überwinden sind.
+
+\textbf{\cref{a.tech}} beschreibt Techniken im Umgang mit den Schiebereglern der Motoren und Sensoren.
+
+\blkmed{event-prox-advanced} \quad \blkmed{event-prox-ground-advanced}
+
+
+\sect{Referenzkarten}
+
+Es mag hilfreich sein, eine oder beide VPL-Referenzkarte(n) auszudrucken. Sie sind in dem Zip-File enthalten, woher Sie diese Beschreibung haben; sie sind aber auch unter folgendem Link verfügbar: \href{https://www.thymio.org/de:visualprogramming}{https://www.thymio.org/de:visualprogramming}.
+
+\begin{itemize}
+\item Übersicht über die Ereignis und Aktions-Blöcke auf einer Seite.
+\item Ein zweiseitiges Dokument, das zu einer handlichen Karte gefaltet werden kann. Sie fasst die Benutzeroberfläche, die Ereignis- und Aktions-Blöcke zusammen und enthält einige Beispiele.
+\end{itemize}
+
+\sect{Aseba installieren}
+
+Um Aseba zu installieren (inkl. VPL), gehen sie auf folgende Seite 
+\href{https://www.thymio.org/de:start}{https://www.thymio.org/de:start}
+und klicken sie auf das Icon mit ihrem Betriebssystem (Windows, Mac OS, etc.). Folgen sie der Anleitung zum Download und zur Installation der Software. Die Aseba-Installation umfasst neben der VPL auch die Entwickler-Umgebung Aseba Studio (siehe \cref{ch.next}).

@@ -1,0 +1,61 @@
+\part{Projekte}
+
+\chap{Braitenberg Vehikel}\label{ch.brait}
+
+\sect{Was sind Braitenberg Vehikel? }
+
+\href{https://de.wikipedia.org/wiki/Valentin_Braitenberg}{Valentin Braitenberg}
+war ein Südtiroler Hirnforscher und Kybernetiker, der ein Buch über das Verhalten von kybernetischen Vehikeln schrieb, welche ein überraschend komplexes Verhalten an den Tag legen.\footnote{V. Braitenberg. \textit{Vehicles: Experiments in
+Synthetic Psychology} (MIT Press, 1984).} Braitenbergs Vehikel werden oft verwendet wenn es um die Robotik in der Bildung geht. Wissenschaftlich am MIT Media
+Lab entwickelten Hardware-Implementierungen dieser Vehikel, die sie 
+\emph{Braitenberg Kreaturen} nannten.\footnote{David W. Hogg, Fred Martin,
+Mitchel Resnick. \textit{Braitenberg Creatures}. MIT Media Laboratory,
+E\&L Memo 13, 1991.
+\href{http://cosmo.nyu.edu/hogg/lego/braitenberg_vehicles.pdf}{http://cosmo.nyu.edu/hogg/lego/braitenberg\_vehicles.pdf}.} Diese Vehikel werden unter Verwendung von (angepassten) \emph{programmierbaren Bricks} hergestellt, die eine Vorversion der LEGO Mindstorms Robotik Kits sind.
+
+Dieses Kapitel gibt eine Implementierung für den Thymio Roboter mit VPL; die meisten der Braitenberg Kreaturen aus dem erwähnten MIT-Bericht werden beschrieben. Die 
+MIT-Hardware verwendete Licht- und Berührungs-Sensoren, während der Thymio Roboter sich
+in erster Linie auf Infrarot-Näherungssensoren stützt. Um die Kreaturen besser mit dem MIT-Bericht vergleichen zu können, wurden die dortigen Namen übernommen, auch wenn diese für die Implementierung für den Thymio manchmal unpassend sind. Auch die Reihenfolge der Darstellung der Vehikel wurde aus dem besagten Bericht übernommen, obwohl dies nicht der Schwierigkeit der Umsetzung in VPL entspricht.
+
+In der Beschreibung meint ``erkennt ein Objekt'' jeweils, dass der mittlere vordere Sensor ein Objekt entdeckt hat. Am einfachsten simuliert man dies, indem man seine Hand vor den Roboter hinhält. 
+
+Der Quellcode in \textsc{VPL} ist im Archiv verfügbar. Die Dateinamen sind dieselben wie die Namen der Kreaturen mit der Endung \texttt{\small aesl}. Für manche Kreaturen wurde zusätzliche Verhaltensweisen vorgeschlagen, deren Implementierung sich ebenfalls im Archiv befindet. 
+
+\sect{Spezifikation der Kreaturen}
+
+\begin{description}
+
+\item[Schüchtern] Wenn der Roboter kein Objekt erkennen kann, fährt er vorwärts, wenn er ein Objekt entdeckt, hält er an. 
+
+\item[Unentschlossen] Wenn der Roboter kein Objekt erkennen kann, fährt er vorwärts. Wenn er ein Objekt entdekct, fährt er rückwärts. Beim korrekten Abstand wird der Roboter \emph{oszilieren}, d.h. er wird in rascher Abfolge nach vorn und nach hinten fahren. 
+
+\item[Paranoid] Wenn der Roboter ein Objekt entdeckt, fährt er vorwärts. Wenn er kein Objekt entdeckt, dreht er nach links.  
+
+\textbf{Zusatz (Paranoid1)} Wenn ein Objekt durch den mittleren Sensor erkannt wird, fährt der Roboter vorwärts. Wenn ein Objekt durch den rechten Sensor erkannt wird (aber nicht durch den mittleren), dann dreht der Roboter nach rechts. Wenn ein Objekt durch den linken Sensor erkannt wird (aber nicht durch den mittleren), dann dreht der Roboter nach links. 
+
+\textbf{Zusatz (Paranoid2, (fortgeschrittener Modus))} Wie in \textbf{Paranoid}, aber der Roboter alterniert die Richtung abwechselnd jede Sekunde. \textbf{Hinweis}:
+verwenden Sie Zustände um die Richtung zu bestimmen und einen Timer um die Zustände zu wechseln. 
+
+\item[Verbissen] Wenn der Roboter ein Objekt vor sich entdeckt, fährt er rückwärts. Wenn er eines hinter sich entdeckt, fährt er vorwärts.
+
+\textbf{Zusatz (Verbissen1)} Wie bei \textbf{Verbissen}, aber wenn kein Objekt erkannt wird, hält der Roboter an.
+
+\item[Unsicher] Wenn der Roboter mit seinem linken Sensor kein Objekt erkennen kann, schaltet er den rechten Motor ein und den linken aus. Wird mit dem linken Sensor ein Objekt entdeckt, schalte den rechten Motor aus und den linken ein. Der Roboter sollte einer Wand folgen die sich zu seiner Linken befindet. \textbf{Hinweis}: Beachten Sie den Hinweis über das drehen des Roboters in \cref{a.blocks}.
+
+\item[Angetrieben] Wenn ein Objekt durch den linken Sensor erfasst wird, schaltet der Roboter den rechten Motor ein und den linken Motor aus. Wenn ein Objekt durch den rechten Sensor erfasst wird, schaltet der Roboter den linken Motor ein und den rechts Motor aus. Der Roboter sollte sich dem Objekt in einem Zickzack-Kurs nähern.
+
+\item[Beharrlich (fortgeschrittener Modus)] Der Roboter fährt nach vorne, bis er ein Objekt erkennt. Anschliessend fährt er für eine Sekunde nach hinten, dreht sich und bewegt sich wieder nach vorne.
+
+\item[Anziehung und Abstossung] Wenn sich ein Objekt dem Roboter von hinten nähert, entfernt sich der Roboter, bis er ausser Reichweite ist.
+
+\item[Beständig (fortgeschrittener Modus)] Der Roboter durchläuft zyklisch vier Zustände, wenn er berührt wird: bewegt sich vorwärts, dann nach links, dann nach rechts, dann rückwärts.
+
+\item[Wild (fortgeschrittener Modus)] Das obere Licht blinkt rot. \textbf{Tipp}:
+Sie können die Sensor-Ereignis-Blöcke ohne aktivierte Sensoren verwenden (allen Sensoren ''grau''), wie in \cref{a.blocks} erklärt wurde. 
+
+\textbf{Zusatz (Wild1, (fortgeschrittener Modus))} Implementieren Sie das blinkende Licht unter Verwendung des Tasten-Ereignis-Blocks statt eines Sensor-Ereignis-Blocks. Gibt es einen Unterschied? Falls ja: was ist die Ursache?
+
+\newpage
+\item[Aufmerksam (fortgeschrittener Modus)] Wenn der Roboter mit seinen rechten Sensor ein Objekt entdeckt, schaltet er das obere Licht auf grün. Wenn er das Objekt mit seinem linken Sensor entdeckt, schaltet er das obere Licht auf rot. Nachdem er das Licht eingeschaltet hat, wartet er 3 Sekunden bis er das Licht wieder ausschaltet --- während dieser Zeit ändert das Licht nicht. 
+
+\end{description}

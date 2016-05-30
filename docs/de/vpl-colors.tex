@@ -1,85 +1,67 @@
-\chap{Sich ändernde Farben}
+% !TeX root = vpl.tex
 
-\sect{Zeige Farben an}
+\chap{Ändern der Farben}\label{ch.colors}
 
-Erstelle ein VPL Programm, das zwei verschiedene Farben oben auf dem Roboter
-anzeigt, wenn der Vorwärts- oder der Rückwärts-Knopf gedrückt wird. Wenn die
-Links- und Rechts-Knöpfe gedrückt werden, sollen unten am Roboter zwei andere
-Farben angezeigt werden.
+\sect{Farben anzeigen}
+
+Erstellen Sie ein VPL-Programm, das zwei verschiedene Farben oben auf dem Roboter anzeigt, wenn der Vorwärts- bzw. der Rückwärts-Knopf gedrückt wird. Wenn die Links- und Rechts-Knöpfe gedrückt werden, sollen unten am Roboter zwei andere Farben angezeigt werden.
 
 {\raggedleft \hfill Beispielprogramm \bu{colors.aesl}}
 
 Wir brauchen vier Ereignis-Aktions-Paare, da es vier verschiedene
-Ereignisse---das Drücken der vier Knöpfe---gibt. Mit jedem Ereignis ist eine Farbaktion verbunden. 
-Beachte den Unterschiede der Aktions-Blöcke für die obere Farben (\blksm{action-colors-up-white}) und 
-die untere Farben \blksm{action-colors-down-white}) des Roboters. Der erste Block ändert die Farben, die auf der Oberseite des Roboters liegen, während der zweite die Farben der Unterseite des Roboters ändert. Im Block für die unteren Lichter sind die Räder als schwarze Balken abgebildet.
+Ereignisse gibt für das Drücken der vier Knöpfe. Mit jedem Ereignis ist eine Farbaktion verbunden. Beachten Sie den Unterschiede der Aktions-Blöcke für die obere Farben (\blksm{action-colors-up}) und die untere Farben \blksm{action-colors-down}) des Roboters. Der erste Block ändert die Farben der Lichter, die auf der Oberseite des Roboters liegen, während der zweite die Farben der Lichter der Unterseite des Roboters ändert. Im Block für die unteren Lichter sind die Räder als schwarze Balken abgebildet sowie mit einem weissen Punkt für die Ausbuchtung vorne unten (\cref{fig.bottom}).
 
 Das fertige Programm ist im \cref{fig.colors} dargestellt.
 
-Welche Farben werden angezeigt? In den ersten drei Ereignis-Aktions-Paaren ist
-jeweils eine Grundfarbe alleine gewählt. Die weissen Quadrate für die anderen
-beiden Farben sind jeweils ganz links. Diese drei Aktionen werden also reines
-Rot, Blau oder Grün anzeigen. Beim letzten Ereignis-Aktions-Paar werden aber
-zwei Farben gemischt: die weissen Quadrate sind bei Rot und Grün ganz rechts.
-Es wird also Rot und Grün gemischt. Welche Farbe entsteht daraus?
+\begin{figure}
+	\gr{colors1}{.35}
+	\caption{Ändern der Farben durch Betätigung der Knöpfe}\label{fig.colors}
+\end{figure}
 
-Dieses Programm ist in der Abbildung \cref{fig.colors-a} gezeigt.
+Welche Farben werden angezeigt? In den ersten drei Ereignis-Aktions-Paaren ist jeweils eine Grundfarbe alleine gewählt. Die weissen Quadrate für die anderen beiden Farben sind jeweils ganz links. Diese drei Aktionen werden also reines Rot, Blau oder Grün anzeigen. Beim letzten Ereignis-Aktions-Paar werden aber zwei Farben gemischt: die weissen Quadrate sind bei Rot und Grün ganz rechts. Es wird also Rot und Grün gemischt, also Gelb dargestellt. Man erkennt, dass der Hintergrund des Kastens jeweils angepasst wird, wenn man den Regler bewegt. 
 
-Welche Farben werden angezeigt? In den ersten drei Aktionen ist der Schieberegler jeweils einer Farbe ganz nach rechts verschoben, während die Schieberegler der anderen Farben ganz links liegen. Deshalb werden diese Farben nicht dazugemischt und reines Rot, Blau oder Grün erscheint.
-Die Aktion, welche mit dem linken Knopf verbunden ist, mixt die Farben Rot und Grün, was Gelb ergiebt.
-Im Hintergrund siehst du wie sich die Farben ändern je nach Position des Schiebereglers. Die Farbe des Hintergrundes zeigt an, in welcher Farbe Thymio leuchten wird.
+Starten Sie das Programm (\blksm{run}) und testen Sie die 4 Pfeiltasten aus. \cref{fig.front} zeigt Thymio mit roter Farbe oben, \cref{fig.bottom} zeigt ihn mit grüner Farbe unten.
 
-Lass das Programm (Icon \blksm{run}) laufen und überprüfe, ob sich durch das Drücken der Knöpfe die Farben des Roboters ändern.
-\Cref{fig.front}  zeigt Thymio auf der Oberseite rot leuchtend und \cref{fig.bottom} zeigt Thymio auf der Unterseite grün leuchtend.
+\exercisebox{\thechapter.1}{ Experimentieren Sie mit den Farbreglern um herauszufinden, welche Farben möglich sind. }
 
-\exercisebox{\thechapter.1}{
-Spiele mit dem Farbbalken und finde heraus welche Farben du anzeigen kannst.
-Wie kannst du orange mischen?}
+\trickbox[Hinweis]{Durch Kombination der Farben Rot, Grün und Blau lassen sich alle Farben erzeugen (\cref{fig.cube})!}
 
-\trickbox[Information]{
-\gr{color-cubes-de}{1}
-Durch Mischen rot, grün und blau, können Sie jede Farbe machen!
-}
+\begin{figure}
+\gr{color-cubes}{.85}
+\caption{Der Rot-Grün-Blau-Farbwürfel (RGB)}\label{fig.cube}
+\end{figure}
 
 
-\sect{Schalte die Lichter aus}
+\sect{Mehrere Aktionen nach einem Ereignis}
 
-Lass uns nun das Programm so verändern, dass alle Lichter ausgehen, wenn der
-mittlere Knopf berührt wird. Wir brauchen also zwei neue
-Ereignis-Aktions-Paare. Eines um die oberen und ein zweites,
-um die unteren Lichter aus zu schalten. Damit die Lichter ausgehen, müssen wir alle drei
-Schieberegler nach ganz links verschieben \cref{fig.colors-b}. So wird keine Farbe angezeigt und die Lichter werden ausgeschaltet.
+Verändern wir das Programm so, dass alle Lichter ausgelöscht werden, wenn man den mittleren Knopf betätigt. Wir benötigen dazu \emph{zwei} Aktionen für ein Ereignis in einem Ereignis-Aktions-Paar. Nachdem wir das Ereignis und die erste Aktion eingegeben haben, erscheint rechts von der Aktion ein mit einer grauen gestrichelten Linie umrahmtes Quadrat: 
 
-Das \emph{Ereignis} ist jetzt für beide der neuen Ereignis-Aktions-Paare \emph{dasselbe}--- das Drücken des mittleren Knopfes---aber die \emph{Aktionen} sind \emph{unterschiedlich}.---das Ausschalten der Oberlicher und das Ausschalten der Unterlichter.
+\blkc{multiple-outline}
 
-Vergiss nicht das Icon \blksmpure{run} zudrücken, damit das Programm geladen wird. In Zukunft werden wir diese Erinnerung nicht mehr bringen. Du brauchst jedoch jedesmal diese Funktion, um ein Programm zum Laufen zu bringen. 
+Sie können nun in dieses Quadrat die zweite Aktion hineinziehen, womit wir ein Paar mit einem Ereignis und zwei Aktionen erhalten:\label{p.multiple}
 
-\vfill
+\blkc{colors-multiple}
 
-%\importantbox[Mehrere Ereignis-Aktions-Paare]{
-\importantbox[Mehrere Ereignis-Aktions-Paare]{
+{\raggedleft \hfill Beispielprogramm \bu{colors-multiple.aesl}}
+
+Vergessen Sie nicht, \blksmpure{run} anzuklicken, um das Programm zu laden und zu starten. In Zukunft werden wir an diesen Schritt nicht mehr erinnern..
+
+\bigskip
+
+\importantbox[Regeln für Paare mit mehreren Aktionen]{
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
-\item Wenn ein Programm ausgeführt wird, werden alle Ereignis-Aktions-Paare
-gleichzeitig ausgeführt.
-\item Man kann mehrere Ereignis-Aktions-Paare mit dem gleichen Ereignis
-    konstruieren, solange sie verschiedene Aktionen haben.
-\item Sind zwei Ereignis-Aktions-Paare gleich (gleiches Ereignis und gleiche
-    Aktion), zeigt VPL eine Fehlermeldung an. (Feld 3 in \cref{fig.vplgui}).
-Es ist nicht möglich ein Programm laufenzulassen solange Fehlermeldungen angezeigt werden.
+	\item Wenn ein Programm ausgeführt wird, werden \emph{alle} Ereignis-Aktions-Paare ausgeführt.
+	\item Man kann mehrere Ereignis-Aktions-Paare mit dem gleichen Ereignis
+	konstruieren, solange sie verschiedene Parameter haben. Man kann mehrere Ereignisse mit Knöpfen haben, wenn dabei jeweils unterschiedliche Knöpfe betätigt werden müssen. 
+	\item Werden zwei oder mehrere Ereignis-Aktions-Paare eingegeben mit demselben Ereignis (und denselben Parametern), zeigt VPL eine Fehlermeldung an. (Feld 3 in \cref{fig.vplgui}).
+	Es ist nicht möglich ein Programm laufenzulassen solange Fehlermeldungen angezeigt werden.
 \end{itemize}
 }
 
-\begin{figure}
-    \centering
-    \subfigure[Die Farben verändern sich, wenn ein Knopf berührt wird.]{
-		\label{fig.colors-a}
-		\includegraphics[width = 0.4\textwidth]{colors1}
-	}
-	\hspace{1.5cm}
-    \subfigure[Lösche die Lichter mit dem mittleren Knopf.]{
-		\label{fig.colors-b}
-		\includegraphics[width = 0.4\textwidth]{colors2}
-	}
-    \caption{Spiele mit den Lichter von Thymio}
-    \label{fig.colors}
-\end{figure}
+\sect{Feedback zur Laufzeit}\label{p.feedback}
+
+Jedes Mal, wenn eine Taste berührt wird, wird ein Ereignis erzeugt, und das Ereignis-Aktions-Paar, dem dieses Ereignis zugeordnet ist, wird ausgeführt. VPL bietet ein dynamisches Feedback zur Laufzeit, so dass Sie genau sehen können, welches Paar ausgeführt wird, nämlich dasjenige mit einem gelben Rahmen und einem gelben Pfeil auf der linken Seite:
+
+\blkc{feedback}
+
+Das Feedback wird nur kurz angezeigt, sobald das Ereignis eintritt. Wenn Sie zum Beispiel eine Taste berühren, wird ein Ereignis generiert, sobald Sie die Taste berühren; falls Sie die Taste weiterhin berühren, werden keine zusätzlichen Ereignisse generiert --- das Feedback wird entfernt. Es erscheint nur dann erneut, wenn Sie die Taste loslassen und dann wieder berühren.

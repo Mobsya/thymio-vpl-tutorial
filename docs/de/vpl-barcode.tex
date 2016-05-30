@@ -1,0 +1,26 @@
+\chap{Barcode-Leser}\label{ch.barcode}
+
+Barcodes werden in Einkaufsläden und anderswo verwendet, um Objekte zu identifizieren. Die Identifizierung erfolgt über eine Zahl oder eine Folge von Symbolen, die für jeden Objekttyp unterschiedlich sind. Die Identifikation wird für den Zugriff auf eine Datenbank verwendet, die Informationen über das Objekt enthält, wie beispielsweise den Preis. Wir wollen nun mit dem Thymio-Roboter einen Barcode-Leser bauen.
+
+\textbf{Spezifikation}
+
+\begin{enumerate}
+\item Messen Sie sorgfältig den Abstand zwischen zwei vorderen, horizontalen Sensoren und die Breite dieses Sensors. Fabrizieren Sie dann mit einem dünnen Stück Karton, schwarzem Isolierband und Alufolie einen Barcode wie nachfolgend dargestellt: 
+
+\begin{center}
+\gr{barcode}{.6}
+\end{center}
+
+\item Jede Anordnung der drei mittleren horizontalen Sensoren repräsentiert einen anderen Code. (Wie viele Codes sind möglich?) Für einige oder alle dieser Codes soll ein Ereignis-Aktions-Paar implementiert werden, welches die obere Farbe je nach Code unterschiedlich anzeigt!
+
+\end{enumerate}
+
+\textbf{Anleitung}:
+
+Wir werden nur die mittleren drei Sensoren verwenden, d.h. die beiden äusseren Sensoren bleiben unberücksichtigt (grau). Für die mittleren Sensoren müssen für die reflektierten Teile entsprechende weisse Sensor-Quadrate verwendet werden, für die schwarzen Stellen schwarze Sensor-Quadrate.
+Das nachfolgende Ereignis-Aktions-Paar beispielsweise schaltet das obere Licht auf gelb wenn es den \texttt{ein-aus-ein} entdeckt:
+
+\blkc{barcode1-3}
+
+Das Beispielprogramm im Archiv behandelt alle Barcodes, die an zwei der drei Stellen Folie haben, sowie den Code für keine Folie.
+{\raggedleft \hfill Beispielprogramm \bu{barcode.aesl}}

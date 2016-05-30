@@ -1,0 +1,31 @@
+\chap{Geschwindigkeitsmessung}\label{ch.speed}
+
+\textbf{Spezifikation}
+
+Wir wollen die Geschwindigkeit von Thymio messen bei unterschiedlichen Einstellungen für die beiden Motoren. Kleben Sie einen streifen schwarzes Isolierband auf eine weisse Fläche wie wir es bereits beim ``Einer-Linie-Folgen'' in \cref{ch.line} gemacht haben. Stellen Sie den Roboter vor das eine Ende der schwarzen Linie und implementieren Sie folgendes Verhalten:
+
+\begin{itemize}
+
+\item Der Roboter fährt geradeaus, sobald der mittlere Knopf betätigt wird.
+
+\item Sobald die schwarze Linie durch die Bodensensoren entdeckt wird, starten Sie einen Eine-Sekunde-Timer. 
+
+\item Wenn der Timer abgelaufen ist, ändern Sie die obere Farbe und starten Sie den Timer wieder für eine Sekunde. 
+
+\item Wenn das Ende des Isolierbandes erreicht ist, schalten Sie den Motor aus. 
+
+\end{itemize} 
+
+Starten Sie das Programm und zählen Sie, wie oft die Farbe ändert. Dies ist die Dauer in Sekunden, die der Roboter für die Strecke benötigt hat. Teilen Sie die Länge der Strecke durch die Anzahl Sekunden und Sie erhalten die Geschwindigkeit. Wenn Sie zum Beispiel eine Isolierband-Strecke von 30cm auslegen und die Farbe 6 Mal wechselt, beträgt die Geschwindigkeit $30 \div 6 = 5$ Zentimeter pro Sekunde. 
+
+Versuchen Sie es mit unterschiedlichen Motoreneinstellungen und Isolierbandlöngen!
+
+\textbf{Anleitung}
+
+Erstellen Sie eine Farben-Liste, z.B. 1=rot, 2=blau, 3=grün, 4=gelb, usw. und verwenden Sie die Liste um die Anzahl Sekunden zu bestimmen.
+
+Verwenden Sie Zustände um den Überblick über die aktuelle und die nächste Farben zu behalten. Beispielsweise in Zustand 3, ist die Farbe grün; wenn der Timer abläuft \emph{und} der Zustand 3 ist, dann ändere den Zustand in 4, die Farbe auf gelb und setze den Timer zurück. Es gibt jeweils drei Aktionen für jedes Timer-Ereignis.
+
+\bigskip
+
+{\raggedleft \hfill Beispielprogramm \bu{measure-speed.aesl}}

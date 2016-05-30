@@ -1,0 +1,54 @@
+\chap{Bodenwischer}\label{ch.sweep}
+
+Sind Sie müde Ihr Haus zu reinigen? Nun gibt es \emph {automatische Staubsauger}, die diese Arbeit für Sie erledigen können! Der Roboter bewegt sich systematisch
+über den Boden Ihrer Wohnung, weicht Möbeln und anderen Hindernisse aus, und saugt dabei den Staub.
+
+\textbf{Spezifikation}
+
+Wenn der Vorwärts-Knopf gedrückt wird, fährt Thymio von einer Seite des Raumes auf die gegenüberliegende Seite des Raumes, dreht dann, fährt ein wenig weiter und fährt dann weiter auf die ursprüngliche Seite:
+\begin{center}
+\begin{picture}(200,30)
+%\put(0,0){\framebox(200,30){}}
+\put(0,30){\vector(1,0){200}}
+\put(200,30){\vector(0,-1){30}}
+\put(200,0){\vector(-1,0){200}}
+\end{picture}
+\end{center}
+
+\textbf{Anleitung}
+
+Die Lösung sollte aus drei Teilschritten bestehen: (1) lange Fahrt durch den Raum (nach links oder nach rechts), (2) nach rechts drehen (3) kurze Fahrt (ein wenig weiter fahren). Die Teilschritte werden in der folgenden Reihenfolge ausgeführt: 
+
+\begin{center}
+\begin{picture}(380,20)
+%\put(0,0){\framebox(380,20){}}
+\put(30,10){\oval(60,20)}
+\put(110,10){\oval(60,20)}
+\put(190,10){\oval(60,20)}
+\put(270,10){\oval(60,20)}
+\put(350,10){\oval(60,20)}
+\put(0,0){\makebox(60,20){lange Fahrt}}
+\put(80,0){\makebox(60,20){nach rechts}}
+\put(160,0){\makebox(60,20){kurze Fahrt}}
+\put(240,0){\makebox(60,20){nach rechts}}
+\put(320,0){\makebox(60,20){lange Fahrt}}
+\put( 60,10){\vector(1,0){20}}
+\put(140,10){\vector(1,0){20}}
+\put(220,10){\vector(1,0){20}}
+\put(300,10){\vector(1,0){20}}
+\end{picture}
+\end{center}
+
+Der Roboter muss Zustände verwenden, um die einzelnen Teilschritte identifizieren zu können. Die Richtung und die Dauer der Fahrt werden durch die Geschwindigkeit des linken und rechten Motors bestimmt, sowie durch die Dauer der jeweiligen Aktion. Daher wird jeder Teilschritt mit einem Ereignis-Aktions-Paar implementiert, wo das Ereignis der Ablauf der vorgängigen Timers ist und wo die Aktion darin besteht, die Parameter für den nächsten Teilschritt festzulegen: (1) Zustand; (2) Geschwindigkeit des linken und rechten Motors; (3) Dauer des Timers. Das Programm starte durch ein Knopf-Ereignis.
+
+Sie werden mit der Dauer und Geschwindigkeit experimentieren müssen, um den gewünschten Pfad (Rechteck) zu erreichen. 
+
+\bigskip
+
+{\raggedleft \hfill Beispielprogramm \bu{sweep.aesl}}
+
+Verwenden Sie spasseshalber folgende Farben für die oberen Lichter: grün für die lange Fahrt, gelb für die Drehung und rot für das Anhalten. 
+
+\bigskip
+
+{\raggedleft \hfill Beispielprogramm \bu{sweep1.aesl}}

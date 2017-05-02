@@ -45,7 +45,7 @@
 \fontsize{15pt}{18pt}\selectfont
 
 \begin{center}
-{\Huge \textbf{VPL Reference Card (Version 1.4)}}
+{\Huge \textbf{VPL Reference Card (Version 1.5)}}
 \end{center}
 
 \bigskip
@@ -135,7 +135,7 @@ Left \textbf{and} right must be touched or have an object close. &
 
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA} - sources on github.com/aseba-community/thymio-vpl-tutorial}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -147,27 +147,39 @@ Left \textbf{and} right must be touched or have an object close. &
 
 \begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
 
-\multicolumn{2}{l}{\textbf{Events}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.4cm]
+\multicolumn{2}{l}{\textbf{Events}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.2cm]
 
-\blk{event-prox-advanced} & \textbf{Obstacle detectors}
+\blk{event-rc-arrow} & \textbf{Remote control arrows}
 
-Sliders set high (object close) and low (object far) thresholds&
+Signal from the remote control, arrows buttons.&
 
 \blk{action-timer} & \textbf{Start timer}
 
 Timer elapsed event will occur after some duration.%
 %
-\\[.6cm]
+\\[.4cm]
 
-\blk{event-prox-ground-advanced} & \textbf{Ground detectors}
+\blk{event-rc-keypad} & \textbf{Remote control keypad}
 
-Sliders set high (white / ground close) and low (black / ground far) thresholds&
+Signal from the remote control, keypad buttons.&
 
 \blk{action-states} & \textbf{Set robot's state}
 
 Set the four-bit internal state of the robot.%
 %
-\\[1.cm]
+\\[.4cm]
+
+\blk{event-prox-advanced} & \textbf{Obstacle detectors}
+
+Sliders set high (object close) and low (object far) thresholds.
+
+\\[-0.2cm]
+
+\blk{event-prox-ground-advanced} & \textbf{Ground detectors}
+
+Sliders set high (white / ground close) and low (black / ground far) thresholds
+
+\\[-0.2cm]
 
 \blk{event-tap-advanced} & \textbf{Robot tapped}
 
@@ -177,22 +189,34 @@ Robot received a shock.
 \blk{event-pitch} & \textbf{Pitch accelerometer}
 
 Pitch (forwards / backwards) is within the red segment.
-\\[.6cm]
+\\[.4cm]
 
 \blk{event-roll} & \textbf{Roll accelerometer}
 
 Roll (left / right) is within the red segment.
-\\[1cm]
+\\[0.4cm]
 
 \blk{event-timer} & \textbf{Timer elapsed}
 
-The timer has timed out.\\
-
+The timer has timed out.\\[0.6cm]
 
 \end{tabularx}
 
+
+
+\begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}Ll}
+
+\multicolumn{2}{l}{\textbf{Events can be combined with a state}} & \\[.4cm]
+
+\blk{event-state} & The robot's response to an event can depend on the robot's state.
+
+The event is considered only if the state corresponds the value of the green icon.& \\
+
+\end{tabularx}
+
+
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA} - sources on github.com/aseba-community/thymio-vpl-tutorial}
 
 \end{document}

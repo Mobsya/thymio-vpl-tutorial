@@ -20,6 +20,7 @@
 \usepackage{colortbl}
 \usepackage[colorlinks=true,linkcolor=Blue,urlcolor=Blue,citecolor=Blue]{hyperref}
 \usepackage{libertine}
+\urlstyle{rm}
 
 \graphicspath{{../../images/}}
 
@@ -45,7 +46,7 @@
 \fontsize{15pt}{18pt}\selectfont
 
 \begin{center}
-{\Huge \textbf{Carte de référence VPL (Version 1.4)}}
+{\Huge \textbf{Carte de référence VPL (Version 1.5)}}
 \end{center}
 
 \bigskip
@@ -134,7 +135,7 @@ Gauche \textbf{et} droite doivent être touchés/avoir un objet à proximité. &
 
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA} - sources dans \textsf{ref-card} à \url{http://github.com/aseba-community/thymio-vpl-tutorial/}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -146,27 +147,39 @@ Gauche \textbf{et} droite doivent être touchés/avoir un objet à proximité. &
 
 \begin{tabularx}{\textwidth}{lL@{\hspace{1cm}}lL}
 
-\multicolumn{2}{l}{\textbf{Événements}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.4cm]
+\multicolumn{2}{l}{\textbf{Événements}} & \multicolumn{2}{l}{\textbf{Actions}} \\[.2cm]
 
-\blk{event-prox-advanced} & \textbf{Détecteurs d'obstacle}
+\blk{event-rc-arrow} & \textbf{Flèches télécommande}
 
-Les curseurs définissent les seuils haut (objet proche) et bas (objet loin)&
+Signal d'une télécommande, boutons flèche.&
 
 \blk{action-timer} & \textbf{Démarrer un minuteur}
 
 Un événement temps écoulé se produira après un temps.%
 %
-\\[.6cm]
+\\[.4cm]
 
-\blk{event-prox-ground-advanced} & \textbf{Détecteurs de sol}
+\blk{event-rc-keypad} & \textbf{Clavier numérique télécommande}
 
-Les curseurs définissent les seuils haut (blanc / sol proche) et bas (noir / sol loin)&
+Signal d'une télécommande, clavier numérique.&
 
 \blk{action-states} & \textbf{Définir l'état du robot}
 
 Défini les 4 bits de l'état interne du robot.\\
 %
-\\[.2cm]
+\\[.4cm]
+
+\blk{event-prox-advanced} & \textbf{Détecteurs d'obstacle}
+
+Les curseurs définissent les seuils haut (objet proche) et bas (objet loin)&
+
+\\[-0.2cm]
+
+\blk{event-prox-ground-advanced} & \textbf{Détecteurs de sol}
+
+Les curseurs définissent les seuils haut (blanc / sol proche) et bas (noir / sol loin)&
+
+\\[-0.2cm]
 
 \blk{event-tap-advanced} & \textbf{Robot tapé}
 
@@ -187,11 +200,23 @@ Le roulis (droite / gauche) est dans le segment rouge.
 
 Le temps du minuteur est écoulé.&
 
+\end{tabularx}
+
+
+
+\begin{tabularx}{\textwidth}{l@{\hspace{.7cm}}Ll}
+
+\multicolumn{2}{l}{\textbf{Les évènements peuvent être combinés avec un état}} & \\[.4cm]
+
+\blk{event-state} & La réponse du robot à un évènement peut dépendre d'un état du robot.
+
+L'évènement est considéré seulement si l'état correspond à la valeur définie dans l'icône verte.& \\
 
 \end{tabularx}
 
+
 \vfill
 
-{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA}}
+{\normalsize M. Ben-Ari, S. Magnenat, J. Shin - \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA} - sources dans \textsf{ref-card} à \url{http://github.com/aseba-community/thymio-vpl-tutorial/}}
 
 \end{document}

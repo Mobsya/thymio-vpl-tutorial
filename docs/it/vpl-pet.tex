@@ -85,7 +85,7 @@ Il robot Thymio non dispone di un volante come una macchina o di un
 manubrio come una bicicletta. Così come può girare? Il robot usa una
 \emph{guida differenziale}, che è comunemente utilizzata da veicoli cingolati come il
 bulldozer (\cref{fig.bull}). Invece di girare un manubrio in una
-direzione desiderata, i cingoli o le ruote di sinistra e destra sono guidati da
+direzione desiderata, i cingoli o le ruote di sinistra e destra sono mossi da
 motori individuali a \emph{diverse} velocità. Se il cingolo di destra si muove
 più velocemente di quello di sinistra, il veicolo gira a sinistra, e se il cingolo di sinistra
 si muove più velocemente di quello di destra, il veicolo gira a destra.
@@ -106,24 +106,24 @@ Il risultato è che il robot girerà a sinistra, come indicato dalla piccola imm
 Esperimento con una coppia evento-azione come ad esempio: \blkc{turning}
 
 Imposta i cursori sinistro e destro, esegui il programma
-e toccare il pulsante centrale; per fermare il robot click su \blksm{stop}.
-Ora è possibile cambiare i cursori e riprovare.
+e tocca il pulsante centrale; per fermare il robot clicca su \blksm{stop}.
+Ora è possibile spostare i cursori e riprovare.
 
 \trickbox{
 L'icona di Thymio del blocco azione motori mostra al centro un'animazione del movimento del robot quando si spostano i cursori.}
 
 
-\sect{Al robot piacete}
+\sect{Al robot piaci}
 
-Un vero e proprio animale domestico ti segue in giro. Per fare in modo che il robot segua la mano, aggiungere
-due ulteriori coppie evento-azione: se il robot rileva un oggetto davanti al suo sensore più a sinistra, si gira a sinistra, mentre se rileva
-un oggetto di fronte al suo sensore più a destra, si gira a destra.
+Un vero e proprio animale domestico ti segue in giro. Per fare in modo che il robot segua la mano, aggiungi
+due ulteriori coppie evento-azione: se il robot rileva un oggetto davanti al suo sensore più a sinistra, gira a sinistra, mentre se rileva
+un oggetto di fronte al suo sensore più a destra, gira a destra.
 
 
 {\raggedleft \hfill File di programma \bu{likes.aesl}}
 
-Il programma per il robot che ti segue è costituito da due coppie di eventi-azione, come mostrato in \cref{fig.likes}.
-Esperimentare con i cursori su ogni blocco di azione motori.
+Il programma per il robot che ti segue è costituito da due coppie di eventi-azione, come mostrato nella \cref{fig.likes}.
+Sperimenta con i cursori su ogni blocco di azione motori.
 
 \begin{figure}
 	\subfigure[Al robot piacete]{
@@ -139,31 +139,31 @@ Esperimentare con i cursori su ogni blocco di azione motori.
 \end{figure}
 
 \exercisebox{\thechapter.1}{
-Modificare il comportamento del robot da compagnia in modo che inizi a muoversi in avanti quando il programma
+Modifica il comportamento del robot da compagnia in modo che inizi a muoversi in avanti quando il programma
 viene eseguito e si fermi quando rileva il bordo di un tavolo (o una striscia di nastro adesivo nero).}
 
-Come spiegato in \cref{ch.moving}, molta luce sarà riflessa
+Come spiegato nel \cref{ch.moving}, molta luce sarà riflessa
 da una superficie bianca, mentre pochissima luce viene riflessa da una
 superficie nera.
-Dovrete sperimentare con il blocco sensore orizzontale per determinare quando cliccare su un quadrato bianco e quando su un quadrato rosso, a seconda del piano del tavolo o dove si posiziona il robot.
+Dovrai sperimentare con il blocco sensore orizzontale per determinare quando cliccare su un quadrato bianco e quando su un quadrato rosso, a seconda del piano del tavolo o dove si posiziona il robot.
 
 
 \exercisebox{\thechapter.2}{
 Che cosa succede se si cambia l'ordine delle
-coppie evento-azione che avete usato nell'esercizio precedente?
+coppie evento-azione che hai usato nell'esercizio precedente?
 }
 
 
-\sect{Al robot non piacete}
+\sect{Al robot non piaci}
 
-A volte il vostro animale domestico può essere di cattivo umore e si allontana dalla tua mano.
-Scrivere un programma che riproduce questo comportamento nel robot.
+A volte il tuo animale domestico può essere di cattivo umore e si allontana dalla tua mano.
+Scrivi un programma che riproduce questo comportamento nel robot.
 
 {\raggedleft \hfill File di programma \bu{does-not-like.aesl}}
 
-Aprire il programma per l'animale domestico che ti ama e scambiare l'associazione
+Apri il programma per l'animale domestico che ti ama e scambia l'associazione
 degli eventi con le azioni. Il rilevamento di un ostacolo dal sensore di sinistra
-farà in modo che il robot giri a destra, mentre il rilevamento di un ostacolo dal sensore di destra farà sì che il robot svolti a sinistra, come mostrato in \cref{fig.hates}.
+farà in modo che il robot giri a destra, mentre il rilevamento di un ostacolo dal sensore di destra farà sì che il robot svolti a sinistra, come mostrato nella \cref{fig.hates}.
 
 % \begin{figure}[htb]
 % \begin{center}
@@ -176,12 +176,12 @@ farà in modo che il robot giri a destra, mentre il rilevamento di un ostacolo d
 {
 Esperimento con i sensori.
 I sensori anteriori orizzontali sono numerati 0, 1, 2, 3, 4 dalla sinistra del robot alla sua destra.
-Il sensori posteriori sono numerate 5 per il sinistro e 6 per quella di destra.
-Invece di utilizzare sensori 0 e 4 come prima:
+I sensori posteriori sono numerati 5 per il sinistro e 6 per quella di destra.
+Invece di utilizzare i sensori 0 e 4 come prima:
 \begin{itemize}[noitemsep,nosep,leftmargin=*]
-\item Usare sensori 1 e 3 per girare il robot a destra e a sinistra,
+\item Usa i sensori 1 e 3 per girare il robot a destra e a sinistra,
 rispettivamente.
-\item Usare entrambi i sensori 0 e 1 per girare il robot a sinistra e entrambi i sensori 3
+\item Usa entrambi i sensori 0 e 1 per girare il robot a sinistra e entrambi i sensori 3
 e 4 per girare il robot a destra.
 \item Aggiungi coppie evento-azione per i sensori posteriori 5 e 6.
 \end{itemize}
@@ -242,6 +242,6 @@ Infine, una volta che il Thymio ha letto tutti questi sensori, attende il prossi
 
 Per scrivere programmi in modalità testo, usare l'ambiente AsebaStudio (\cref{ch.next}).
 
-\trickbox{Spostando i cursori sui blocchi azione motori, vedrete che le velocità dei motori (\p{motor.X.target}) cambia a passi di 50 nella gamma da $-$500 a 500.
+\trickbox{Spostando i cursori sui blocchi azione motori, vedrai che la velocità dei motori (\p{motor.X.target}) cambia a passi di 50 nella gamma da $-$500 a 500.
 Spostando con attenzione i cursori, è possibile impostare le velocità per uno qualsiasi di questi valori.
 }
